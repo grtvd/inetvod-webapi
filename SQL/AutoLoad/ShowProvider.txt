@@ -1,0 +1,481 @@
+ShowProviderID	ShowID	ProviderID	ProviderShowID	ShowCost_ShowCostType	ShowCost_Money_CurrencyID	ShowCost_Money_Amount	ShowCost_Description	RentalHours
+sp1	1	internetvideos	internetvideos1	PayPerView	USD	3.95	$3.95	72
+sp2	2	moviesmovies	moviesmovies2	Free			Free	72
+sp3	3	vodflicks	vodflicks3	Subscription			Subscription	72
+sp4	4	excellentvideos	excellentvideos4	PayPerView	USD	2.95	$2.95	72
+sp5	5	internetvideos	internetvideos5	PayPerView	USD	4.95	$4.95	72
+sp6	6	moviesmovies	moviesmovies6	PayPerView	USD	9.95	$9.95	72
+sp7	7	vodflicks	vodflicks7	PayPerView	USD	3.95	$3.95	72
+sp8	8	excellentvideos	excellentvideos8	Free			Free	72
+sp9	9	internetvideos	internetvideos9	Subscription			Subscription	72
+sp10	10	moviesmovies	moviesmovies10	PayPerView	USD	2.95	$2.95	72
+sp11	11	vodflicks	vodflicks11	PayPerView	USD	4.95	$4.95	72
+sp12	12	excellentvideos	excellentvideos12	PayPerView	USD	9.95	$9.95	72
+sp13	13	internetvideos	internetvideos13	PayPerView	USD	3.95	$3.95	72
+sp14	14	moviesmovies	moviesmovies14	Free			Free	72
+sp15	15	vodflicks	vodflicks15	Subscription			Subscription	72
+sp16	16	excellentvideos	excellentvideos16	PayPerView	USD	2.95	$2.95	72
+sp17	17	internetvideos	internetvideos17	PayPerView	USD	4.95	$4.95	72
+sp18	18	moviesmovies	moviesmovies18	PayPerView	USD	9.95	$9.95	72
+sp19	19	vodflicks	vodflicks19	PayPerView	USD	3.95	$3.95	72
+sp20	20	excellentvideos	excellentvideos20	Free			Free	72
+sp21	21	internetvideos	internetvideos21	Subscription			Subscription	72
+sp22	22	moviesmovies	moviesmovies22	PayPerView	USD	2.95	$2.95	72
+sp23	23	vodflicks	vodflicks23	PayPerView	USD	4.95	$4.95	72
+sp24	24	excellentvideos	excellentvideos24	PayPerView	USD	9.95	$9.95	72
+sp25	25	internetvideos	internetvideos25	PayPerView	USD	3.95	$3.95	72
+sp26	26	moviesmovies	moviesmovies26	Free			Free	72
+sp27	27	vodflicks	vodflicks27	Subscription			Subscription	72
+sp28	28	excellentvideos	excellentvideos28	PayPerView	USD	2.95	$2.95	72
+sp29	29	internetvideos	internetvideos29	PayPerView	USD	4.95	$4.95	72
+sp30	30	moviesmovies	moviesmovies30	PayPerView	USD	9.95	$9.95	72
+sp31	31	vodflicks	vodflicks31	PayPerView	USD	3.95	$3.95	72
+sp32	32	excellentvideos	excellentvideos32	Free			Free	72
+sp33	33	internetvideos	internetvideos33	Subscription			Subscription	72
+sp34	34	moviesmovies	moviesmovies34	PayPerView	USD	2.95	$2.95	72
+sp35	35	vodflicks	vodflicks35	PayPerView	USD	4.95	$4.95	72
+sp36	36	excellentvideos	excellentvideos36	PayPerView	USD	9.95	$9.95	72
+sp37	37	internetvideos	internetvideos37	PayPerView	USD	3.95	$3.95	72
+sp38	38	moviesmovies	moviesmovies38	Free			Free	72
+sp39	39	vodflicks	vodflicks39	Subscription			Subscription	72
+sp40	40	excellentvideos	excellentvideos40	PayPerView	USD	2.95	$2.95	72
+sp41	41	internetvideos	internetvideos41	PayPerView	USD	4.95	$4.95	72
+sp42	42	moviesmovies	moviesmovies42	PayPerView	USD	9.95	$9.95	72
+sp43	43	vodflicks	vodflicks43	PayPerView	USD	3.95	$3.95	72
+sp44	44	excellentvideos	excellentvideos44	Free			Free	72
+sp45	45	internetvideos	internetvideos45	Subscription			Subscription	72
+sp61	61	moviesmovies	moviesmovies61	PayPerView	USD	2.95	$2.95	72
+sp62	62	vodflicks	vodflicks62	PayPerView	USD	4.95	$4.95	72
+sp63	63	excellentvideos	excellentvideos63	PayPerView	USD	9.95	$9.95	72
+sp64	64	internetvideos	internetvideos64	PayPerView	USD	3.95	$3.95	72
+sp65	65	moviesmovies	moviesmovies65	Free			Free	72
+sp66	66	vodflicks	vodflicks66	Subscription			Subscription	72
+sp67	67	excellentvideos	excellentvideos67	PayPerView	USD	2.95	$2.95	72
+sp68	68	internetvideos	internetvideos68	PayPerView	USD	4.95	$4.95	72
+sp69	69	moviesmovies	moviesmovies69	PayPerView	USD	9.95	$9.95	72
+sp70	70	vodflicks	vodflicks70	PayPerView	USD	3.95	$3.95	72
+sp71	71	excellentvideos	excellentvideos71	Free			Free	72
+sp72	72	internetvideos	internetvideos72	Subscription			Subscription	72
+sp73	73	moviesmovies	moviesmovies73	PayPerView	USD	2.95	$2.95	72
+sp74	74	vodflicks	vodflicks74	PayPerView	USD	4.95	$4.95	72
+sp75	75	excellentvideos	excellentvideos75	PayPerView	USD	9.95	$9.95	72
+sp76	76	internetvideos	internetvideos76	PayPerView	USD	3.95	$3.95	72
+sp77	77	moviesmovies	moviesmovies77	Free			Free	72
+sp78	78	vodflicks	vodflicks78	Subscription			Subscription	72
+sp79	79	excellentvideos	excellentvideos79	PayPerView	USD	2.95	$2.95	72
+sp80	80	internetvideos	internetvideos80	PayPerView	USD	4.95	$4.95	72
+sp81	81	moviesmovies	moviesmovies81	PayPerView	USD	9.95	$9.95	72
+sp82	82	vodflicks	vodflicks82	PayPerView	USD	3.95	$3.95	72
+sp83	83	excellentvideos	excellentvideos83	Free			Free	72
+sp84	84	internetvideos	internetvideos84	Subscription			Subscription	72
+sp85	85	moviesmovies	moviesmovies85	PayPerView	USD	2.95	$2.95	72
+sp86	86	vodflicks	vodflicks86	PayPerView	USD	4.95	$4.95	72
+sp87	87	excellentvideos	excellentvideos87	PayPerView	USD	9.95	$9.95	72
+sp88	88	internetvideos	internetvideos88	PayPerView	USD	3.95	$3.95	72
+sp89	89	moviesmovies	moviesmovies89	Free			Free	72
+sp90	90	vodflicks	vodflicks90	Subscription			Subscription	72
+sp196	196	excellentvideos	excellentvideos196	PayPerView	USD	2.95	$2.95	72
+sp197	197	internetvideos	internetvideos197	PayPerView	USD	4.95	$4.95	72
+sp198	198	moviesmovies	moviesmovies198	PayPerView	USD	9.95	$9.95	72
+sp199	199	vodflicks	vodflicks199	PayPerView	USD	3.95	$3.95	72
+sp200	200	excellentvideos	excellentvideos200	Free			Free	72
+sp201	201	internetvideos	internetvideos201	Subscription			Subscription	72
+sp202	202	moviesmovies	moviesmovies202	PayPerView	USD	2.95	$2.95	72
+sp203	203	vodflicks	vodflicks203	PayPerView	USD	4.95	$4.95	72
+sp204	204	excellentvideos	excellentvideos204	PayPerView	USD	9.95	$9.95	72
+sp205	205	internetvideos	internetvideos205	PayPerView	USD	3.95	$3.95	72
+sp206	206	moviesmovies	moviesmovies206	Free			Free	72
+sp207	207	vodflicks	vodflicks207	Subscription			Subscription	72
+sp208	208	excellentvideos	excellentvideos208	PayPerView	USD	2.95	$2.95	72
+sp209	209	internetvideos	internetvideos209	PayPerView	USD	4.95	$4.95	72
+sp210	210	moviesmovies	moviesmovies210	PayPerView	USD	9.95	$9.95	72
+sp211	211	vodflicks	vodflicks211	PayPerView	USD	3.95	$3.95	72
+sp212	212	excellentvideos	excellentvideos212	Free			Free	72
+sp213	213	internetvideos	internetvideos213	Subscription			Subscription	72
+sp214	214	moviesmovies	moviesmovies214	PayPerView	USD	2.95	$2.95	72
+sp215	215	vodflicks	vodflicks215	PayPerView	USD	4.95	$4.95	72
+sp216	216	excellentvideos	excellentvideos216	PayPerView	USD	9.95	$9.95	72
+sp217	217	internetvideos	internetvideos217	PayPerView	USD	3.95	$3.95	72
+sp218	218	moviesmovies	moviesmovies218	Free			Free	72
+sp219	219	vodflicks	vodflicks219	Subscription			Subscription	72
+sp220	220	excellentvideos	excellentvideos220	PayPerView	USD	2.95	$2.95	72
+sp221	221	internetvideos	internetvideos221	PayPerView	USD	4.95	$4.95	72
+sp222	222	moviesmovies	moviesmovies222	PayPerView	USD	9.95	$9.95	72
+sp223	223	vodflicks	vodflicks223	PayPerView	USD	3.95	$3.95	72
+sp224	224	excellentvideos	excellentvideos224	Free			Free	72
+sp225	225	internetvideos	internetvideos225	Subscription			Subscription	72
+sp301	301	moviesmovies	moviesmovies301	PayPerView	USD	2.95	$2.95	72
+sp302	302	vodflicks	vodflicks302	PayPerView	USD	4.95	$4.95	72
+sp303	303	excellentvideos	excellentvideos303	PayPerView	USD	9.95	$9.95	72
+sp304	304	internetvideos	internetvideos304	PayPerView	USD	3.95	$3.95	72
+sp305	305	moviesmovies	moviesmovies305	Free			Free	72
+sp306	306	vodflicks	vodflicks306	Subscription			Subscription	72
+sp307	307	excellentvideos	excellentvideos307	PayPerView	USD	2.95	$2.95	72
+sp308	308	internetvideos	internetvideos308	PayPerView	USD	4.95	$4.95	72
+sp309	309	moviesmovies	moviesmovies309	PayPerView	USD	9.95	$9.95	72
+sp310	310	vodflicks	vodflicks310	PayPerView	USD	3.95	$3.95	72
+sp311	311	excellentvideos	excellentvideos311	Free			Free	72
+sp312	312	internetvideos	internetvideos312	Subscription			Subscription	72
+sp313	313	moviesmovies	moviesmovies313	PayPerView	USD	2.95	$2.95	72
+sp314	314	vodflicks	vodflicks314	PayPerView	USD	4.95	$4.95	72
+sp315	315	excellentvideos	excellentvideos315	PayPerView	USD	9.95	$9.95	72
+sp316	316	internetvideos	internetvideos316	PayPerView	USD	3.95	$3.95	72
+sp317	317	moviesmovies	moviesmovies317	Free			Free	72
+sp318	318	vodflicks	vodflicks318	Subscription			Subscription	72
+sp319	319	excellentvideos	excellentvideos319	PayPerView	USD	2.95	$2.95	72
+sp320	320	internetvideos	internetvideos320	PayPerView	USD	4.95	$4.95	72
+sp321	321	moviesmovies	moviesmovies321	PayPerView	USD	9.95	$9.95	72
+sp322	322	vodflicks	vodflicks322	PayPerView	USD	3.95	$3.95	72
+sp323	323	excellentvideos	excellentvideos323	Free			Free	72
+sp324	324	internetvideos	internetvideos324	Subscription			Subscription	72
+sp325	325	moviesmovies	moviesmovies325	PayPerView	USD	2.95	$2.95	72
+sp326	326	vodflicks	vodflicks326	PayPerView	USD	4.95	$4.95	72
+sp327	327	excellentvideos	excellentvideos327	PayPerView	USD	9.95	$9.95	72
+sp328	328	internetvideos	internetvideos328	PayPerView	USD	3.95	$3.95	72
+sp329	329	moviesmovies	moviesmovies329	Free			Free	72
+sp330	330	vodflicks	vodflicks330	Subscription			Subscription	72
+sp346	346	excellentvideos	excellentvideos346	PayPerView	USD	2.95	$2.95	72
+sp347	347	internetvideos	internetvideos347	PayPerView	USD	4.95	$4.95	72
+sp348	348	moviesmovies	moviesmovies348	PayPerView	USD	9.95	$9.95	72
+sp349	349	vodflicks	vodflicks349	PayPerView	USD	3.95	$3.95	72
+sp350	350	excellentvideos	excellentvideos350	Free			Free	72
+sp351	351	internetvideos	internetvideos351	Subscription			Subscription	72
+sp352	352	moviesmovies	moviesmovies352	PayPerView	USD	2.95	$2.95	72
+sp353	353	vodflicks	vodflicks353	PayPerView	USD	4.95	$4.95	72
+sp354	354	excellentvideos	excellentvideos354	PayPerView	USD	9.95	$9.95	72
+sp355	355	internetvideos	internetvideos355	PayPerView	USD	3.95	$3.95	72
+sp356	356	moviesmovies	moviesmovies356	Free			Free	72
+sp357	357	vodflicks	vodflicks357	Subscription			Subscription	72
+sp358	358	excellentvideos	excellentvideos358	PayPerView	USD	2.95	$2.95	72
+sp359	359	internetvideos	internetvideos359	PayPerView	USD	4.95	$4.95	72
+sp360	360	moviesmovies	moviesmovies360	PayPerView	USD	9.95	$9.95	72
+sp361	361	vodflicks	vodflicks361	PayPerView	USD	3.95	$3.95	72
+sp362	362	excellentvideos	excellentvideos362	Free			Free	72
+sp363	363	internetvideos	internetvideos363	Subscription			Subscription	72
+sp364	364	moviesmovies	moviesmovies364	PayPerView	USD	2.95	$2.95	72
+sp365	365	vodflicks	vodflicks365	PayPerView	USD	4.95	$4.95	72
+sp366	366	excellentvideos	excellentvideos366	PayPerView	USD	9.95	$9.95	72
+sp367	367	internetvideos	internetvideos367	PayPerView	USD	3.95	$3.95	72
+sp368	368	moviesmovies	moviesmovies368	Free			Free	72
+sp369	369	vodflicks	vodflicks369	Subscription			Subscription	72
+sp370	370	excellentvideos	excellentvideos370	PayPerView	USD	2.95	$2.95	72
+sp371	371	internetvideos	internetvideos371	PayPerView	USD	4.95	$4.95	72
+sp372	372	moviesmovies	moviesmovies372	PayPerView	USD	9.95	$9.95	72
+sp373	373	vodflicks	vodflicks373	PayPerView	USD	3.95	$3.95	72
+sp374	374	excellentvideos	excellentvideos374	Free			Free	72
+sp375	375	internetvideos	internetvideos375	Subscription			Subscription	72
+sp376	376	moviesmovies	moviesmovies376	PayPerView	USD	2.95	$2.95	72
+sp377	377	vodflicks	vodflicks377	PayPerView	USD	4.95	$4.95	72
+sp378	378	excellentvideos	excellentvideos378	PayPerView	USD	9.95	$9.95	72
+sp379	379	internetvideos	internetvideos379	PayPerView	USD	3.95	$3.95	72
+sp380	380	moviesmovies	moviesmovies380	Free			Free	72
+sp381	381	vodflicks	vodflicks381	Subscription			Subscription	72
+sp382	382	excellentvideos	excellentvideos382	PayPerView	USD	2.95	$2.95	72
+sp383	383	internetvideos	internetvideos383	PayPerView	USD	4.95	$4.95	72
+sp384	384	moviesmovies	moviesmovies384	PayPerView	USD	9.95	$9.95	72
+sp385	385	vodflicks	vodflicks385	PayPerView	USD	3.95	$3.95	72
+sp386	386	excellentvideos	excellentvideos386	Free			Free	72
+sp387	387	internetvideos	internetvideos387	Subscription			Subscription	72
+sp388	388	moviesmovies	moviesmovies388	PayPerView	USD	2.95	$2.95	72
+sp389	389	vodflicks	vodflicks389	PayPerView	USD	4.95	$4.95	72
+sp390	390	excellentvideos	excellentvideos390	PayPerView	USD	9.95	$9.95	72
+sp436	436	internetvideos	internetvideos436	PayPerView	USD	3.95	$3.95	72
+sp437	437	moviesmovies	moviesmovies437	Free			Free	72
+sp438	438	vodflicks	vodflicks438	Subscription			Subscription	72
+sp439	439	excellentvideos	excellentvideos439	PayPerView	USD	2.95	$2.95	72
+sp440	440	internetvideos	internetvideos440	PayPerView	USD	4.95	$4.95	72
+sp441	441	moviesmovies	moviesmovies441	PayPerView	USD	9.95	$9.95	72
+sp442	442	vodflicks	vodflicks442	PayPerView	USD	3.95	$3.95	72
+sp443	443	excellentvideos	excellentvideos443	Free			Free	72
+sp444	444	internetvideos	internetvideos444	Subscription			Subscription	72
+sp445	445	moviesmovies	moviesmovies445	PayPerView	USD	2.95	$2.95	72
+sp446	446	vodflicks	vodflicks446	PayPerView	USD	4.95	$4.95	72
+sp447	447	excellentvideos	excellentvideos447	PayPerView	USD	9.95	$9.95	72
+sp448	448	internetvideos	internetvideos448	PayPerView	USD	3.95	$3.95	72
+sp449	449	moviesmovies	moviesmovies449	Free			Free	72
+sp450	450	vodflicks	vodflicks450	Subscription			Subscription	72
+sp481	481	excellentvideos	excellentvideos481	PayPerView	USD	2.95	$2.95	72
+sp482	482	internetvideos	internetvideos482	PayPerView	USD	4.95	$4.95	72
+sp483	483	moviesmovies	moviesmovies483	PayPerView	USD	9.95	$9.95	72
+sp484	484	vodflicks	vodflicks484	PayPerView	USD	3.95	$3.95	72
+sp485	485	excellentvideos	excellentvideos485	Free			Free	72
+sp486	486	internetvideos	internetvideos486	Subscription			Subscription	72
+sp487	487	moviesmovies	moviesmovies487	PayPerView	USD	2.95	$2.95	72
+sp488	488	vodflicks	vodflicks488	PayPerView	USD	4.95	$4.95	72
+sp489	489	excellentvideos	excellentvideos489	PayPerView	USD	9.95	$9.95	72
+sp490	490	internetvideos	internetvideos490	PayPerView	USD	3.95	$3.95	72
+sp491	491	moviesmovies	moviesmovies491	Free			Free	72
+sp492	492	vodflicks	vodflicks492	Subscription			Subscription	72
+sp493	493	excellentvideos	excellentvideos493	PayPerView	USD	2.95	$2.95	72
+sp494	494	internetvideos	internetvideos494	PayPerView	USD	4.95	$4.95	72
+sp495	495	moviesmovies	moviesmovies495	PayPerView	USD	9.95	$9.95	72
+sp541	541	vodflicks	vodflicks541	PayPerView	USD	3.95	$3.95	72
+sp542	542	excellentvideos	excellentvideos542	Free			Free	72
+sp543	543	internetvideos	internetvideos543	Subscription			Subscription	72
+sp544	544	moviesmovies	moviesmovies544	PayPerView	USD	2.95	$2.95	72
+sp545	545	vodflicks	vodflicks545	PayPerView	USD	4.95	$4.95	72
+sp546	546	excellentvideos	excellentvideos546	PayPerView	USD	9.95	$9.95	72
+sp547	547	internetvideos	internetvideos547	PayPerView	USD	3.95	$3.95	72
+sp548	548	moviesmovies	moviesmovies548	Free			Free	72
+sp549	549	vodflicks	vodflicks549	Subscription			Subscription	72
+sp550	550	excellentvideos	excellentvideos550	PayPerView	USD	2.95	$2.95	72
+sp551	551	internetvideos	internetvideos551	PayPerView	USD	4.95	$4.95	72
+sp552	552	moviesmovies	moviesmovies552	PayPerView	USD	9.95	$9.95	72
+sp553	553	vodflicks	vodflicks553	PayPerView	USD	3.95	$3.95	72
+sp554	554	excellentvideos	excellentvideos554	Free			Free	72
+sp555	555	internetvideos	internetvideos555	Subscription			Subscription	72
+sp556	556	moviesmovies	moviesmovies556	PayPerView	USD	2.95	$2.95	72
+sp557	557	vodflicks	vodflicks557	PayPerView	USD	4.95	$4.95	72
+sp558	558	excellentvideos	excellentvideos558	PayPerView	USD	9.95	$9.95	72
+sp559	559	internetvideos	internetvideos559	PayPerView	USD	3.95	$3.95	72
+sp560	560	moviesmovies	moviesmovies560	Free			Free	72
+sp561	561	vodflicks	vodflicks561	Subscription			Subscription	72
+sp562	562	excellentvideos	excellentvideos562	PayPerView	USD	2.95	$2.95	72
+sp563	563	internetvideos	internetvideos563	PayPerView	USD	4.95	$4.95	72
+sp564	564	moviesmovies	moviesmovies564	PayPerView	USD	9.95	$9.95	72
+sp565	565	vodflicks	vodflicks565	PayPerView	USD	3.95	$3.95	72
+sp566	566	excellentvideos	excellentvideos566	Free			Free	72
+sp567	567	internetvideos	internetvideos567	Subscription			Subscription	72
+sp568	568	moviesmovies	moviesmovies568	PayPerView	USD	2.95	$2.95	72
+sp569	569	vodflicks	vodflicks569	PayPerView	USD	4.95	$4.95	72
+sp570	570	excellentvideos	excellentvideos570	PayPerView	USD	9.95	$9.95	72
+sp571	571	internetvideos	internetvideos571	PayPerView	USD	3.95	$3.95	72
+sp572	572	moviesmovies	moviesmovies572	Free			Free	72
+sp573	573	vodflicks	vodflicks573	Subscription			Subscription	72
+sp574	574	excellentvideos	excellentvideos574	PayPerView	USD	2.95	$2.95	72
+sp575	575	internetvideos	internetvideos575	PayPerView	USD	4.95	$4.95	72
+sp576	576	moviesmovies	moviesmovies576	PayPerView	USD	9.95	$9.95	72
+sp577	577	vodflicks	vodflicks577	PayPerView	USD	3.95	$3.95	72
+sp578	578	excellentvideos	excellentvideos578	Free			Free	72
+sp579	579	internetvideos	internetvideos579	Subscription			Subscription	72
+sp580	580	moviesmovies	moviesmovies580	PayPerView	USD	2.95	$2.95	72
+sp581	581	vodflicks	vodflicks581	PayPerView	USD	4.95	$4.95	72
+sp582	582	excellentvideos	excellentvideos582	PayPerView	USD	9.95	$9.95	72
+sp583	583	internetvideos	internetvideos583	PayPerView	USD	3.95	$3.95	72
+sp584	584	moviesmovies	moviesmovies584	Free			Free	72
+sp585	585	vodflicks	vodflicks585	Subscription			Subscription	72
+sp601	601	excellentvideos	excellentvideos601	PayPerView	USD	2.95	$2.95	72
+sp602	602	internetvideos	internetvideos602	PayPerView	USD	4.95	$4.95	72
+sp603	603	moviesmovies	moviesmovies603	PayPerView	USD	9.95	$9.95	72
+sp604	604	vodflicks	vodflicks604	PayPerView	USD	3.95	$3.95	72
+sp605	605	excellentvideos	excellentvideos605	Free			Free	72
+sp606	606	internetvideos	internetvideos606	Subscription			Subscription	72
+sp607	607	moviesmovies	moviesmovies607	PayPerView	USD	2.95	$2.95	72
+sp608	608	vodflicks	vodflicks608	PayPerView	USD	4.95	$4.95	72
+sp609	609	excellentvideos	excellentvideos609	PayPerView	USD	9.95	$9.95	72
+sp610	610	internetvideos	internetvideos610	PayPerView	USD	3.95	$3.95	72
+sp611	611	moviesmovies	moviesmovies611	Free			Free	72
+sp612	612	vodflicks	vodflicks612	Subscription			Subscription	72
+sp613	613	excellentvideos	excellentvideos613	PayPerView	USD	2.95	$2.95	72
+sp614	614	internetvideos	internetvideos614	PayPerView	USD	4.95	$4.95	72
+sp615	615	moviesmovies	moviesmovies615	PayPerView	USD	9.95	$9.95	72
+sp661	661	vodflicks	vodflicks661	PayPerView	USD	3.95	$3.95	72
+sp662	662	excellentvideos	excellentvideos662	Free			Free	72
+sp663	663	internetvideos	internetvideos663	Subscription			Subscription	72
+sp664	664	moviesmovies	moviesmovies664	PayPerView	USD	2.95	$2.95	72
+sp665	665	vodflicks	vodflicks665	PayPerView	USD	4.95	$4.95	72
+sp666	666	excellentvideos	excellentvideos666	PayPerView	USD	9.95	$9.95	72
+sp667	667	internetvideos	internetvideos667	PayPerView	USD	3.95	$3.95	72
+sp668	668	moviesmovies	moviesmovies668	Free			Free	72
+sp669	669	vodflicks	vodflicks669	Subscription			Subscription	72
+sp670	670	excellentvideos	excellentvideos670	PayPerView	USD	2.95	$2.95	72
+sp671	671	internetvideos	internetvideos671	PayPerView	USD	4.95	$4.95	72
+sp672	672	moviesmovies	moviesmovies672	PayPerView	USD	9.95	$9.95	72
+sp673	673	vodflicks	vodflicks673	PayPerView	USD	3.95	$3.95	72
+sp674	674	excellentvideos	excellentvideos674	Free			Free	72
+sp675	675	internetvideos	internetvideos675	Subscription			Subscription	72
+sp721	721	moviesmovies	moviesmovies721	PayPerView	USD	2.95	$2.95	72
+sp722	722	vodflicks	vodflicks722	PayPerView	USD	4.95	$4.95	72
+sp723	723	excellentvideos	excellentvideos723	PayPerView	USD	9.95	$9.95	72
+sp724	724	internetvideos	internetvideos724	PayPerView	USD	3.95	$3.95	72
+sp725	725	moviesmovies	moviesmovies725	Free			Free	72
+sp726	726	vodflicks	vodflicks726	Subscription			Subscription	72
+sp727	727	excellentvideos	excellentvideos727	PayPerView	USD	2.95	$2.95	72
+sp728	728	internetvideos	internetvideos728	PayPerView	USD	4.95	$4.95	72
+sp729	729	moviesmovies	moviesmovies729	PayPerView	USD	9.95	$9.95	72
+sp730	730	vodflicks	vodflicks730	PayPerView	USD	3.95	$3.95	72
+sp731	731	excellentvideos	excellentvideos731	Free			Free	72
+sp732	732	internetvideos	internetvideos732	Subscription			Subscription	72
+sp733	733	moviesmovies	moviesmovies733	PayPerView	USD	2.95	$2.95	72
+sp734	734	vodflicks	vodflicks734	PayPerView	USD	4.95	$4.95	72
+sp735	735	excellentvideos	excellentvideos735	PayPerView	USD	9.95	$9.95	72
+sp751	751	internetvideos	internetvideos751	PayPerView	USD	3.95	$3.95	72
+sp752	752	moviesmovies	moviesmovies752	Free			Free	72
+sp753	753	vodflicks	vodflicks753	Subscription			Subscription	72
+sp754	754	excellentvideos	excellentvideos754	PayPerView	USD	2.95	$2.95	72
+sp755	755	internetvideos	internetvideos755	PayPerView	USD	4.95	$4.95	72
+sp756	756	moviesmovies	moviesmovies756	PayPerView	USD	9.95	$9.95	72
+sp757	757	vodflicks	vodflicks757	PayPerView	USD	3.95	$3.95	72
+sp758	758	excellentvideos	excellentvideos758	Free			Free	72
+sp759	759	internetvideos	internetvideos759	Subscription			Subscription	72
+sp760	760	moviesmovies	moviesmovies760	PayPerView	USD	2.95	$2.95	72
+sp761	761	vodflicks	vodflicks761	PayPerView	USD	4.95	$4.95	72
+sp762	762	excellentvideos	excellentvideos762	PayPerView	USD	9.95	$9.95	72
+sp763	763	internetvideos	internetvideos763	PayPerView	USD	3.95	$3.95	72
+sp764	764	moviesmovies	moviesmovies764	Free			Free	72
+sp765	765	vodflicks	vodflicks765	Subscription			Subscription	72
+sp766	766	excellentvideos	excellentvideos766	PayPerView	USD	2.95	$2.95	72
+sp767	767	internetvideos	internetvideos767	PayPerView	USD	4.95	$4.95	72
+sp768	768	moviesmovies	moviesmovies768	PayPerView	USD	9.95	$9.95	72
+sp769	769	vodflicks	vodflicks769	PayPerView	USD	3.95	$3.95	72
+sp770	770	excellentvideos	excellentvideos770	Free			Free	72
+sp771	771	internetvideos	internetvideos771	Subscription			Subscription	72
+sp772	772	moviesmovies	moviesmovies772	PayPerView	USD	2.95	$2.95	72
+sp773	773	vodflicks	vodflicks773	PayPerView	USD	4.95	$4.95	72
+sp774	774	excellentvideos	excellentvideos774	PayPerView	USD	9.95	$9.95	72
+sp775	775	internetvideos	internetvideos775	PayPerView	USD	3.95	$3.95	72
+sp776	776	moviesmovies	moviesmovies776	Free			Free	72
+sp777	777	vodflicks	vodflicks777	Subscription			Subscription	72
+sp778	778	excellentvideos	excellentvideos778	PayPerView	USD	2.95	$2.95	72
+sp779	779	internetvideos	internetvideos779	PayPerView	USD	4.95	$4.95	72
+sp780	780	moviesmovies	moviesmovies780	PayPerView	USD	9.95	$9.95	72
+sp781	781	vodflicks	vodflicks781	PayPerView	USD	3.95	$3.95	72
+sp782	782	excellentvideos	excellentvideos782	Free			Free	72
+sp783	783	internetvideos	internetvideos783	Subscription			Subscription	72
+sp784	784	moviesmovies	moviesmovies784	PayPerView	USD	2.95	$2.95	72
+sp785	785	vodflicks	vodflicks785	PayPerView	USD	4.95	$4.95	72
+sp786	786	excellentvideos	excellentvideos786	PayPerView	USD	9.95	$9.95	72
+sp787	787	internetvideos	internetvideos787	PayPerView	USD	3.95	$3.95	72
+sp788	788	moviesmovies	moviesmovies788	Free			Free	72
+sp789	789	vodflicks	vodflicks789	Subscription			Subscription	72
+sp790	790	excellentvideos	excellentvideos790	PayPerView	USD	2.95	$2.95	72
+sp791	791	internetvideos	internetvideos791	PayPerView	USD	4.95	$4.95	72
+sp792	792	moviesmovies	moviesmovies792	PayPerView	USD	9.95	$9.95	72
+sp793	793	vodflicks	vodflicks793	PayPerView	USD	3.95	$3.95	72
+sp794	794	excellentvideos	excellentvideos794	Free			Free	72
+sp795	795	internetvideos	internetvideos795	Subscription			Subscription	72
+sp826	826	moviesmovies	moviesmovies826	PayPerView	USD	2.95	$2.95	72
+sp827	827	vodflicks	vodflicks827	PayPerView	USD	4.95	$4.95	72
+sp828	828	excellentvideos	excellentvideos828	PayPerView	USD	9.95	$9.95	72
+sp829	829	internetvideos	internetvideos829	PayPerView	USD	3.95	$3.95	72
+sp830	830	moviesmovies	moviesmovies830	Free			Free	72
+sp831	831	vodflicks	vodflicks831	Subscription			Subscription	72
+sp832	832	excellentvideos	excellentvideos832	PayPerView	USD	2.95	$2.95	72
+sp833	833	internetvideos	internetvideos833	PayPerView	USD	4.95	$4.95	72
+sp834	834	moviesmovies	moviesmovies834	PayPerView	USD	9.95	$9.95	72
+sp835	835	vodflicks	vodflicks835	PayPerView	USD	3.95	$3.95	72
+sp836	836	excellentvideos	excellentvideos836	Free			Free	72
+sp837	837	internetvideos	internetvideos837	Subscription			Subscription	72
+sp838	838	moviesmovies	moviesmovies838	PayPerView	USD	2.95	$2.95	72
+sp839	839	vodflicks	vodflicks839	PayPerView	USD	4.95	$4.95	72
+sp840	840	excellentvideos	excellentvideos840	PayPerView	USD	9.95	$9.95	72
+sp841	841	internetvideos	internetvideos841	PayPerView	USD	3.95	$3.95	72
+sp842	842	moviesmovies	moviesmovies842	Free			Free	72
+sp843	843	vodflicks	vodflicks843	Subscription			Subscription	72
+sp844	844	excellentvideos	excellentvideos844	PayPerView	USD	2.95	$2.95	72
+sp845	845	internetvideos	internetvideos845	PayPerView	USD	4.95	$4.95	72
+sp846	846	moviesmovies	moviesmovies846	PayPerView	USD	9.95	$9.95	72
+sp847	847	vodflicks	vodflicks847	PayPerView	USD	3.95	$3.95	72
+sp848	848	excellentvideos	excellentvideos848	Free			Free	72
+sp849	849	internetvideos	internetvideos849	Subscription			Subscription	72
+sp850	850	moviesmovies	moviesmovies850	PayPerView	USD	2.95	$2.95	72
+sp851	851	vodflicks	vodflicks851	PayPerView	USD	4.95	$4.95	72
+sp852	852	excellentvideos	excellentvideos852	PayPerView	USD	9.95	$9.95	72
+sp853	853	internetvideos	internetvideos853	PayPerView	USD	3.95	$3.95	72
+sp854	854	moviesmovies	moviesmovies854	Free			Free	72
+sp855	855	vodflicks	vodflicks855	Subscription			Subscription	72
+sp856	856	excellentvideos	excellentvideos856	PayPerView	USD	2.95	$2.95	72
+sp857	857	internetvideos	internetvideos857	PayPerView	USD	4.95	$4.95	72
+sp858	858	moviesmovies	moviesmovies858	PayPerView	USD	9.95	$9.95	72
+sp859	859	vodflicks	vodflicks859	PayPerView	USD	3.95	$3.95	72
+sp860	860	excellentvideos	excellentvideos860	Free			Free	72
+sp861	861	internetvideos	internetvideos861	Subscription			Subscription	72
+sp862	862	moviesmovies	moviesmovies862	PayPerView	USD	2.95	$2.95	72
+sp863	863	vodflicks	vodflicks863	PayPerView	USD	4.95	$4.95	72
+sp864	864	excellentvideos	excellentvideos864	PayPerView	USD	9.95	$9.95	72
+sp865	865	internetvideos	internetvideos865	PayPerView	USD	3.95	$3.95	72
+sp866	866	moviesmovies	moviesmovies866	Free			Free	72
+sp867	867	vodflicks	vodflicks867	Subscription			Subscription	72
+sp868	868	excellentvideos	excellentvideos868	PayPerView	USD	2.95	$2.95	72
+sp869	869	internetvideos	internetvideos869	PayPerView	USD	4.95	$4.95	72
+sp870	870	moviesmovies	moviesmovies870	PayPerView	USD	9.95	$9.95	72
+sp901	901	vodflicks	vodflicks901	PayPerView	USD	3.95	$3.95	72
+sp902	902	excellentvideos	excellentvideos902	Free			Free	72
+sp903	903	internetvideos	internetvideos903	Subscription			Subscription	72
+sp904	904	moviesmovies	moviesmovies904	PayPerView	USD	2.95	$2.95	72
+sp905	905	vodflicks	vodflicks905	PayPerView	USD	4.95	$4.95	72
+sp906	906	excellentvideos	excellentvideos906	PayPerView	USD	9.95	$9.95	72
+sp907	907	internetvideos	internetvideos907	PayPerView	USD	3.95	$3.95	72
+sp908	908	moviesmovies	moviesmovies908	Free			Free	72
+sp909	909	vodflicks	vodflicks909	Subscription			Subscription	72
+sp910	910	excellentvideos	excellentvideos910	PayPerView	USD	2.95	$2.95	72
+sp911	911	internetvideos	internetvideos911	PayPerView	USD	4.95	$4.95	72
+sp912	912	moviesmovies	moviesmovies912	PayPerView	USD	9.95	$9.95	72
+sp913	913	vodflicks	vodflicks913	PayPerView	USD	3.95	$3.95	72
+sp914	914	excellentvideos	excellentvideos914	Free			Free	72
+sp915	915	internetvideos	internetvideos915	Subscription			Subscription	72
+sp916	916	moviesmovies	moviesmovies916	PayPerView	USD	2.95	$2.95	72
+sp917	917	vodflicks	vodflicks917	PayPerView	USD	4.95	$4.95	72
+sp918	918	excellentvideos	excellentvideos918	PayPerView	USD	9.95	$9.95	72
+sp919	919	internetvideos	internetvideos919	PayPerView	USD	3.95	$3.95	72
+sp920	920	moviesmovies	moviesmovies920	Free			Free	72
+sp921	921	vodflicks	vodflicks921	Subscription			Subscription	72
+sp922	922	excellentvideos	excellentvideos922	PayPerView	USD	2.95	$2.95	72
+sp923	923	internetvideos	internetvideos923	PayPerView	USD	4.95	$4.95	72
+sp924	924	moviesmovies	moviesmovies924	PayPerView	USD	9.95	$9.95	72
+sp925	925	vodflicks	vodflicks925	PayPerView	USD	3.95	$3.95	72
+sp926	926	excellentvideos	excellentvideos926	Free			Free	72
+sp927	927	internetvideos	internetvideos927	Subscription			Subscription	72
+sp928	928	moviesmovies	moviesmovies928	PayPerView	USD	2.95	$2.95	72
+sp929	929	vodflicks	vodflicks929	PayPerView	USD	4.95	$4.95	72
+sp930	930	excellentvideos	excellentvideos930	PayPerView	USD	9.95	$9.95	72
+sp1036	1036	internetvideos	internetvideos1036	PayPerView	USD	3.95	$3.95	72
+sp1037	1037	moviesmovies	moviesmovies1037	Free			Free	72
+sp1038	1038	vodflicks	vodflicks1038	Subscription			Subscription	72
+sp1039	1039	excellentvideos	excellentvideos1039	PayPerView	USD	2.95	$2.95	72
+sp1040	1040	internetvideos	internetvideos1040	PayPerView	USD	4.95	$4.95	72
+sp1041	1041	moviesmovies	moviesmovies1041	PayPerView	USD	9.95	$9.95	72
+sp1042	1042	vodflicks	vodflicks1042	PayPerView	USD	3.95	$3.95	72
+sp1043	1043	excellentvideos	excellentvideos1043	Free			Free	72
+sp1044	1044	internetvideos	internetvideos1044	Subscription			Subscription	72
+sp1045	1045	moviesmovies	moviesmovies1045	PayPerView	USD	2.95	$2.95	72
+sp1046	1046	vodflicks	vodflicks1046	PayPerView	USD	4.95	$4.95	72
+sp1047	1047	excellentvideos	excellentvideos1047	PayPerView	USD	9.95	$9.95	72
+sp1048	1048	internetvideos	internetvideos1048	PayPerView	USD	3.95	$3.95	72
+sp1049	1049	moviesmovies	moviesmovies1049	Free			Free	72
+sp1050	1050	vodflicks	vodflicks1050	Subscription			Subscription	72
+sp1066	1066	excellentvideos	excellentvideos1066	PayPerView	USD	2.95	$2.95	72
+sp1067	1067	internetvideos	internetvideos1067	PayPerView	USD	4.95	$4.95	72
+sp1068	1068	moviesmovies	moviesmovies1068	PayPerView	USD	9.95	$9.95	72
+sp1069	1069	vodflicks	vodflicks1069	PayPerView	USD	3.95	$3.95	72
+sp1070	1070	excellentvideos	excellentvideos1070	Free			Free	72
+sp1071	1071	internetvideos	internetvideos1071	Subscription			Subscription	72
+sp1072	1072	moviesmovies	moviesmovies1072	PayPerView	USD	2.95	$2.95	72
+sp1073	1073	vodflicks	vodflicks1073	PayPerView	USD	4.95	$4.95	72
+sp1074	1074	excellentvideos	excellentvideos1074	PayPerView	USD	9.95	$9.95	72
+sp1075	1075	internetvideos	internetvideos1075	PayPerView	USD	3.95	$3.95	72
+sp1076	1076	moviesmovies	moviesmovies1076	Free			Free	72
+sp1077	1077	vodflicks	vodflicks1077	Subscription			Subscription	72
+sp1078	1078	excellentvideos	excellentvideos1078	PayPerView	USD	2.95	$2.95	72
+sp1079	1079	internetvideos	internetvideos1079	PayPerView	USD	4.95	$4.95	72
+sp1080	1080	moviesmovies	moviesmovies1080	PayPerView	USD	9.95	$9.95	72
+sp1111	1111	vodflicks	vodflicks1111	PayPerView	USD	3.95	$3.95	72
+sp1112	1112	excellentvideos	excellentvideos1112	Free			Free	72
+sp1113	1113	internetvideos	internetvideos1113	Subscription			Subscription	72
+sp1114	1114	moviesmovies	moviesmovies1114	PayPerView	USD	2.95	$2.95	72
+sp1115	1115	vodflicks	vodflicks1115	PayPerView	USD	4.95	$4.95	72
+sp1116	1116	excellentvideos	excellentvideos1116	PayPerView	USD	9.95	$9.95	72
+sp1117	1117	internetvideos	internetvideos1117	PayPerView	USD	3.95	$3.95	72
+sp1118	1118	moviesmovies	moviesmovies1118	Free			Free	72
+sp1119	1119	vodflicks	vodflicks1119	Subscription			Subscription	72
+sp1120	1120	excellentvideos	excellentvideos1120	PayPerView	USD	2.95	$2.95	72
+sp1121	1121	internetvideos	internetvideos1121	PayPerView	USD	4.95	$4.95	72
+sp1122	1122	moviesmovies	moviesmovies1122	PayPerView	USD	9.95	$9.95	72
+sp1123	1123	vodflicks	vodflicks1123	PayPerView	USD	3.95	$3.95	72
+sp1124	1124	excellentvideos	excellentvideos1124	Free			Free	72
+sp1125	1125	internetvideos	internetvideos1125	Subscription			Subscription	72
+sp1126	1126	moviesmovies	moviesmovies1126	PayPerView	USD	2.95	$2.95	72
+sp1127	1127	vodflicks	vodflicks1127	PayPerView	USD	4.95	$4.95	72
+sp1128	1128	excellentvideos	excellentvideos1128	PayPerView	USD	9.95	$9.95	72
+sp1129	1129	internetvideos	internetvideos1129	PayPerView	USD	3.95	$3.95	72
+sp1130	1130	moviesmovies	moviesmovies1130	Free			Free	72
+sp1131	1131	vodflicks	vodflicks1131	Subscription			Subscription	72
+sp1132	1132	excellentvideos	excellentvideos1132	PayPerView	USD	2.95	$2.95	72
+sp1133	1133	internetvideos	internetvideos1133	PayPerView	USD	4.95	$4.95	72
+sp1134	1134	moviesmovies	moviesmovies1134	PayPerView	USD	9.95	$9.95	72
+sp1135	1135	vodflicks	vodflicks1135	PayPerView	USD	3.95	$3.95	72
+sp1136	1136	excellentvideos	excellentvideos1136	Free			Free	72
+sp1137	1137	internetvideos	internetvideos1137	Subscription			Subscription	72
+sp1138	1138	moviesmovies	moviesmovies1138	PayPerView	USD	2.95	$2.95	72
+sp1139	1139	vodflicks	vodflicks1139	PayPerView	USD	4.95	$4.95	72
+sp1140	1140	excellentvideos	excellentvideos1140	PayPerView	USD	9.95	$9.95	72

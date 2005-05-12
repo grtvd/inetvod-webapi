@@ -1,0 +1,481 @@
+ShowID	Name	EpisodeName	EpisodeNumber	ReleasedOn	ReleasedYear	Description	RunningMins	PictureURL	RatingID	IsAdult
+1	M				1931	Starring: Peter Lorre, Otto Wernicke & Gustav Grundgens	99			FALSE
+2	10:30 P.M. Summer				1966	Starring: Melina Mercouri & Romy Schneider	84			FALSE
+3	20,000 Leagues Under the Sea				1916	Starring: Matt Moore, Alen Holubar & June Gail	99			FALSE
+4	39 Steps, The				1935	Starring: Robert Donat & Madeleine Caroll	85			FALSE
+5	911				2001	Starring: N/A	13			FALSE
+6	A Christmas Carol				1951	Starring: Alastair Sim & Kathleen Harrison	83			FALSE
+7	A Farewell To Arms				1932	Starring: Gary Cooper & Helen Hayes	78			FALSE
+8	Abilene Town				1946	Starring: Randolph Scott, Ann Dvorak & Edgar Buchanan	89			FALSE
+9	Abraham Lincoln				1930	Starring: Walter Houston	89			FALSE
+10	Absolution				1981	Starring: Richard Burton	94			FALSE
+11	Aces and Eights				1936	Starring: Tim McCoy & Jimmy Aubrey	59			FALSE
+12	Aces High				1976	Starring: Malcolm McDowell, Christopher Plummer & Simon Ward	109			FALSE
+13	Achtung! The Desert Tigers				1976	Starring: Richard Harrison, Isarco Ravaioli & Lea Lander	82			FALSE
+14	Adam and Eve vs. Cannibals				1982	Starring: Mark Gregory & Andrea Goldman	90			FALSE
+15	Admiral Was A Lady, The				1950	Starring: Hillary Brooke, Steve Brodie & Richard Erdman	86			FALSE
+16	Adolescent Sexcapades				1998	Starring: Candy & Mandy	26			TRUE
+17	Adolescent Sexcapades pt.2				1998	Starring: Candy & Mandy	19			TRUE
+18	Adventures of Kit Carson, The - Border City				1955	Starring: Bill Williams & Don Diamond	26			FALSE
+19	Adventures of Kit Carson, The - Fury At Red Gulch				1953	Starring: Bill Williams & Don Diamond	26			FALSE
+20	Adventures of Kit Carson, The - The Phantom Uprising				1955	Starring: Bill Williams & Don Diamond	26			FALSE
+21	Adventures of Kit Carson, The - Trouble in Tuscarora				1953	Starring: Bill Williams & Don Diamond	26			FALSE
+22	Adventures of Mr. Wonderbird, The				1960	Starring: Mr. Wonderbird	63			FALSE
+23	Africa Screams				1949	Starring: Abbott & Costello	79			FALSE
+24	After Mein Kampf				1940	Starring: N/A	43			FALSE
+25	After Pearl Harbor 1941-1945				1946	Starring: N/A	60			FALSE
+26	Aladdin				1968	Starring: Aladdin	72			FALSE
+27	Alfred Hitchcock Presents: Sorcerers Apprentice				1956	Starring: Diana Dors, Brandon De Wilde & Larry Kert	26			FALSE
+28	Alfred Hitchcock Presents: The Chaney Vase				1955	Starring: Darren McGavin, Patricia Collinge & Carolyn Jones	26			FALSE
+29	Algiers				1938	Starring: Charles Boyer, Hedy Lamarr & Gene Lockhart	96			FALSE
+30	Alias: The Badman				1931	Starring: Ken Maynard & Virginia Brown Faire	63			FALSE
+31	Alice in Wonderland				1915	Starring: Alice in Wonderland	52			FALSE
+32	Alice of Wonderland in Paris				1966	Starring: Alice in Wonderland in Paris	52			FALSE
+33	Alien Force				1997	Starring: Tyrone Wade, Burt Ward & Roxanne Coyne	85			FALSE
+34	Alvin Purple				1973	Starring: Graeme Blundell, Christine Amor & Dina Mann	97			FALSE
+35	Amazing Adventure				1937	Starring: Cary Grant & Mary Brian	62			FALSE
+36	Amazon Jail				1982	Starring: Maurício do Valle & Márcia Fraga	93			FALSE
+37	An Erotic Vampire in Paris				2002	Starring: Misty Mundae, Mia Copia & Fanny Terjeki	79			FALSE
+38	An Intimate Interview With Darian Caine				1998	Starring: Darian Caine	13			FALSE
+39	And When She Was Bad				1973	Starring: John Alderman & Lyllah Torena	85			FALSE
+40	Angel and the Badman				1947	Starring: John Wayne & Gail Russell	100			FALSE
+41	Angry Breed, The				1969	Starring: James MacArthur & Jan Murray	94			FALSE
+42	Animal Farm				1955	Starring: Farm Animals	71			FALSE
+43	Animals, The				1970	Starring: Michele Carey & Henry Silva	84			FALSE
+44	Anna Karenina				1948	Starring: Vivien Leigh & Ralph Richardson	110			FALSE
+45	Apache Rose				1947	Starring: Roy Rogers & Dale Evans	75			FALSE
+61	Bad Man's River				1972	Starring: Lee Van Cleef, James Mason & Gina Lollobrigida	92			FALSE
+62	Bailey and Cream				1997	Starring: Shilo and Bailey	40			TRUE
+63	Bailey and Cream pt.2				1997	Starring: Shilo and Bailey	20			TRUE
+64	Ballad of Calypso Jenkins				1995	Starring: E. Warren Hopf & Lora Moss Hall	73			FALSE
+65	Barbed Wire Dolls				1975	Starring: Lina Romay, Monica Swinn & Martine Stedil	81			FALSE
+66	Bare Brunettes				2000	Starring: Joey Mackenzie	55			TRUE
+67	Battle of Britain, The				1943	Starring: Douglas Bader, Winston Churchill & Adolph Hitler	52			FALSE
+68	Battle of China				1944	Starring: Kai-Shek Chiang, Hirohito & Douglas MacArthur	62			FALSE
+69	Battle of Midway				1945	Starring: N/A	17			FALSE
+70	Battle of Russia, The Part I				1943	Starring: Adolf Hitler, Ion Antonescu & Galeazzo Ciano	36			FALSE
+71	Battle Squadron aka Eagles Over London				1970	Starring: Ida Galli, Christian Hay & Van Johnson	122			FALSE
+72	Battleship Potemkin				1925	Starring: Alexander Antonov, Vladimir Barsky, Grigori Alexan	62			FALSE
+73	Beach Party Girls				1999	Starring: Kathryn Lee & Raven Lea	55			TRUE
+74	Beat Girl				1960	Starring: Noëlle Adam, Margot Bryant & Gillian Hills	89			FALSE
+75	Behave Yourself				1951	Starring: Farley Granger, Shelley Winters & William Demarest	80			FALSE
+76	Behind the Scenes with Roxanna				2002	Starring: Misty Mundae, Katie Jordon & Darian Caine	7			FALSE
+77	Behind the Scenes: The Erotic Ghost				2001	Starring: Tammy Parks & Darian Caine	24			FALSE
+78	Behind the Scenes: Vampire's Seduction				1998	Starring: Tina Krause & Debbie Rochon	10			FALSE
+79	Bel Air Bitch Project, The				2000	Starring: Trisha Berdot	89			FALSE
+80	Bells of Coronado				1950	Starring: Roy Rogers & Dale Evans	67			FALSE
+81	Beneath The 12 Mile Reef				1953	Starring: Robert Wagner & Terry Moore	101			FALSE
+82	Best of Beverly Hills Competition				1996	Starring: Johnny Luv	55			TRUE
+83	Best of Enemies				1961	Starring: David Niven, Michael Wilding & Harry Andrews	99			FALSE
+84	Best of Hot Body Video Magazine I				1994	Starring: Avalon Anders, Bobbi Baird & Tracy Dali	55			TRUE
+85	Best of Hot Body Video Magazine II				1996	Starring: Christy Carrera, Johnny Luv & Julie Strain	55			TRUE
+86	Best of Hot Body Video Magazine III				1996	Starring: Summer Leigh & Linda Lee	55			TRUE
+87	Best of Hot Body Video Magazine IV				1997	Starring: Summer Leigh & Mallesia Renne	55			TRUE
+88	Best of Hot Body Video Magazine V				2000	Starring: Christy Carrera, Mason Marconi & Nikki Nova	55			TRUE
+89	Best of Hot Body Video Magazine VI				2001	Starring: Nikki Nova, Sydney Moon & Joey Mackenzie	55			TRUE
+90	Betty Boop in Blunderland				1949	Starring: Betty Boop	6			FALSE
+196	Bulldog Drummond's Bride				1938	Starring: John Howard & Heather Angel	56			FALSE
+197	Butterflies				1974	Starring: Marie Forsa & Harry Reems	112			FALSE
+198	Butterfly Affair, The				1971	Starring: Claudia Cardinale & Henri Charriere	76			FALSE
+199	Cains Cutthroats				1971	Starring: John Carradine & Scott Brady	88			FALSE
+200	Calendar Girl				1947	Starring: Jane Frazee & Victor McLaglen	80			FALSE
+201	California Girl				1996	Starring: Morgan Royce & Ashleigh Taylor	55			TRUE
+202	Campaigns in Europe: A Free Paris				1995	Starring: N/A	53			FALSE
+203	Campaigns in Europe: Airwar in Europe				1995	Starring: N/A	72			FALSE
+204	Campaigns in Europe: Code Name: Overlord				1995	Starring: N/A	62			FALSE
+205	Campaigns in Europe: Eisenhower				1995	Starring: N/A	75			FALSE
+206	Campaigns in Europe: Invasion of Sicily				1995	Starring: N/A	75			FALSE
+207	Campaigns in Europe: Launchpad England				1995	Starring: N/A	72			FALSE
+208	Campaigns in Europe: Victory Preview				1995	Starring: N/A	71			FALSE
+209	Campaigns in the Pacific: Bombs Over Japan				1996	Starring: N/A	97			FALSE
+210	Campaigns in the Pacific: I Have Returned				1996	Starring: N/A	97			FALSE
+211	Campaigns in the Pacific: Japanese Empire				1996	Starring: N/A	103			FALSE
+212	Campaigns in the Pacific: The Sea War				1996	Starring: N/A	74			FALSE
+213	Campaigns in the Pacific: Turkey Shoot				1996	Starring: N/A	73			FALSE
+214	Campaigns in the Pacific: U.S & The Philippines				1996	Starring: N/A	74			FALSE
+215	Canvas of Blood				1999	Starring: Jack McClernan & Jamie Bell	86			FALSE
+216	Captain Apache				1971	Starring: Lee Van Cleef, Carroll Baker & Stuart Whitman	94			FALSE
+217	Captain Kidd				1945	Starring: Charles Laughton, Randolph Scott & John Carradine	83			FALSE
+218	Captain Scarface				1953	Starring: Barton MacLane & Leif Erickson	70			FALSE
+219	Captain Scarlett				1953	Starring: Leonora Amar, Nedrick Young & Carlos Múzquiz	77			FALSE
+220	Captive Women aka Linda				1980	Starring: Katja Bienert, Ursula Buchfellner & Raquel Evans	83			FALSE
+221	Capture, The				1950	Starring: Lew Ayres, Teresa Wright & Victor Jory	90			FALSE
+222	Caress of the Vampire				1998	Starring: Paulina Monet, Jessica English & Darien Price	46			FALSE
+223	Caress of the Vampire 2				1997	Starring: Ruby Honeycat, William Hellfire & Mikey Ovum	76			FALSE
+224	Caroline and the Rebels				1955	Starring: Jean-Claude Pascal, Alfred Adam & Brigitte Bardot	108			FALSE
+225	Carson City Kid				1940	Starring: Roy Rogers, Gabby Hayes & Trigger	57			FALSE
+301	Dawn Rider, The				1935	Starring: John Wayne	55			FALSE
+302	Days of Jesse James				1939	Starring: Roy Rogers, Gabby Hayes & Trigger	53			FALSE
+303	Dead or Alive				1944	Starring: Tex Ritter, Dave O'Brien & Guy Wilkerson	53			FALSE
+304	Deadly Companions, The				1961	Starring: Maureen OHara	93			FALSE
+305	Deadly Scavengers				1998	Starring: Eva DeSena & Heather Branch	88			FALSE
+306	Death Run To Istanbul				1993	Starring: Dean Thomas, D. Fallon & Bill Ballis	79			FALSE
+307	Death Valley				1946	Starring: Robert Lowery, Helen Gilbert & Nat Pendleton	54			FALSE
+308	Air Force One				1997	1998 Oscar Nominee Harrison Ford and Gary Oldman star in Wolfgang Petersen's thriller about the hijacking of Air Force One with the First Family on board. Starring: Harrison Ford , Gary Oldman , Glen Close , William H. Macy. Directed By: Wolfgang Peterson.			r	FALSE
+309	Delightfully Dangerous				1945	Starring: Jane Powell, Constance Moore & Ralph Bellamy	92			FALSE
+310	Dementia 13				1963	Starring: William Campbell & Barbara Dowling	74			FALSE
+311	Demi Paradise, The				1943	Starring: Laurence Olivier & Penelope Dudley-Ward	112			FALSE
+312	Demonsoul				1995	Starring: Kerry Norton, Daniel Jordan & Eileen Daly	81			FALSE
+313	Desert Trail, The				1935	Starring: John Wayne	52			FALSE
+314	Detour				1945	Starring: Tom Neal & Ann Savage	67			FALSE
+315	Devil Bat, The				1941	Starring: Bela Lugosi	72			FALSE
+316	Devil's Cavaliers, The				1959	Starring: Frank Latimore, Mirko Ellis & Nunzio Gallo	83			FALSE
+317	Diabolique				1955	Starring: Simone Signoret & Vera Clouzot	116			FALSE
+318	Dick Tracy - Detective				1942	Starring: Morgan Conway & Anne Jefferys	61			FALSE
+319	Dick Tracy Dilemma				1947	Starring: Ralph Byrd, Jack Lambert & Lyle Latell	60			FALSE
+320	Dick Tracy Meets Gruesome				1947	Starring: Boris Karloff & Ralph Byrd	65			FALSE
+321	Dick Tracy vs Cueball				1946	Starring: Morgan Conway & Anne Jeffreys	52			FALSE
+322	Dick Van Dyke Show, The - Bank Book				1962	Starring: Dick Van Dyke, Mary Tyler Moore & Rose Marie	26			FALSE
+323	Dick Van Dyke Show, The - Give Me Your Walls				1963	Starring: Dick Van Dyke, Mary Tyler Moore & Rose Marie	25			FALSE
+324	Dick Van Dyke Show, The - Hustling the Hustler				1962	Starring: Dick Van Dyke, Mary Tyler Moore & Rose Marie	25			FALSE
+325	Dick Van Dyke Show, The - Man's Teeth				1961	Starring: Dick Van Dyke, Mary Tyler Moore & Rose Marie	25			FALSE
+326	Dick Van Dyke Show, The - Never Name A Duck				1963	Starring: Dick Van Dyke, Mary Tyler Moore & Rose Marie	25			FALSE
+327	Dick Van Dyke Show, The	The Night The Roof Fell	327		1966	The Dick Van Dyke Show is definitely one of MovieFlix.com's favorite shows. Every episode is well written and acted, and is genuinely fun to watch. All of the characters are well defined. An interesting window into the suburban world of the 1960s. A true classic!	25			FALSE
+328	Dicktator, The				1974	Starring: Paul Daniels, Bernie Schwartz & Jess Ramos	95			FALSE
+329	Dirty Dancers: Belinda				1997	Starring: Belinda	26			TRUE
+330	Dirty Dancers: Bunny				1997	Starring: Bunny	26			TRUE
+346	Dragnet: Big Shoplift				1954	Starring: Jack Webb & Ben Alexanders	26			FALSE
+347	Dragnet: The Big Bird				1954	Starring: Jack Webb & Ben Alexanders	26			FALSE
+348	Dragnet: The Big Boys				1956	Starring: Jack Webb, Ben Alexanders & Leonard Nimoy	26			FALSE
+349	Dragnet: The Big Trunk				1954	Starring: Jack Webb & Ben Alexanders	26			FALSE
+350	Dressed to Kill				1946	Starring: Basil Rathbone & Nigel Bruce	71			FALSE
+351	Drive-In Massacre				1974	Starring: Jake Barns & Adam Lawrence	73			FALSE
+352	Drums in the Deep South				1951	Starring: James Craig, Guy Madison & Craig Stevens	86			FALSE
+353	Duel of the Dragon				1975	Starring: Jackie Chan	94			FALSE
+354	Duke Is Tops, The				1938	Starring: Lena Horne	75			FALSE
+355	Education of Sonny Carson, The				1974	Starring: Rony Clanton & Joyce Walker	104			FALSE
+356	Electric House				1922	Starring: Buster Keaton	20			FALSE
+357	Endplay				1975	Starring: George Mallaby, John Waters & Ken Goodlet	106			FALSE
+358	Enemy of The Law				1945	Starring: Tex Ritter, Guy Wilkerson & Dave O'Brien	61			FALSE
+359	Erotic Asian Contest				1999	Starring: Marissa Kitana & Caroline	55			TRUE
+360	Erotic Compilation				1999	Starring: N/A	51			FALSE
+361	Erotic Ghost, The				2001	Starring: Tammy Parks & Darian Caine	80			FALSE
+362	Erotic Mirror, The				2002	Starring: Misty Mundae, Darian Caine & Laurie Wallace	117			FALSE
+363	Erotic Survivor				2001	Starring: Misty Mundae & Darian Caine, Jade Duboir	91			FALSE
+364	Erotic Survivor 2				2002	Starring: Katie Jordon, Allanah Rhodes & Vanessa Del Sol	87			FALSE
+365	Erotic Survivor: On Set				2001	Starring: Misty Mundae & Darian Caine, Jade Duboir	9			FALSE
+366	Erotic Time Machine, The				2002	Starring: Kelli Summers	70			FALSE
+367	Erotic Witch Project II, The				2001	Starring: Darian Caine & Katie Jordon	74			FALSE
+368	Erotic Witch Project, The				1999	Starring: Katie Keane, Darian Caine & Victoria Vega	86			FALSE
+369	Evil Mind, The				1934	Starring: Claude Rains, Fay Wray & Jan Baxter	68			FALSE
+370	Evil Sister				1996	Starring: Kim Farina & Joeanne Lee Rubino	86			FALSE
+371	Extreme Wet T-Shirt Party				1998	Starring: Kitten Marie & Carly Mathews	55			TRUE
+372	Eye Candy				1997	Starring: Sara St. James, Heather Bankx & Ashley Phillips	55			TRUE
+373	Fabulous Dorseys, The				1947	Starring: Tommy Dorsey, Jimmy Dorsey & Janet Blair	88			FALSE
+374	Face of the Screaming Werewolf				1959	Starring: Lon Chaney Jr	59			FALSE
+375	Far Frontier, The				1948	Starring: Roy Rogers & Trigger	67			FALSE
+376	Fargo Express				1932	Starring: Ken Maynard	58			FALSE
+377	Fast and Sexy				1960	Starring: Gina Lollobrigida, Vittorio De Sica & Dale Roberts	99			FALSE
+378	Fatal Glass Of Beer				1933	Starring: W. C. Fields, Rosemary Theby & George Chandler	18			FALSE
+379	Fatal Hour, The				1940	Starring: Boris Karloff, Grant Withers & Marjorie Reynolds	67			FALSE
+380	Father's Little Dividend				1951	Starring: Spencer Tracy, Elizabeth Taylor & Joan Bennett	79			FALSE
+381	Fatty's Spooning Day				1915	Starring: Roscoe 'Fatty' Arbuckle & Mabel Normand	12			FALSE
+382	Fearless Frank				1967	Starring: Jon Voight & Monique van Vooren	77			FALSE
+383	Felix the Cat: Golden Goose Egg				1951	Starring: Felix the Cat	7			FALSE
+384	Felix the Cat: Neptune Nonsense				1950	Starring: Felix the Cat	7			FALSE
+385	Female Prisoner				1968	Starring: Laurent Terzieff, Elisabeth Wiener & Bernard Fress	102			FALSE
+386	Fighting Parson, The				1933	Starring: Hoot Gibson & Marceline Day	58			FALSE
+387	Fighting Renegade				1939	Starring: Tim McCoy & Dave O' Brien	51			FALSE
+388	Flash Gordon Conquers the Universe: Ep. 1				1940	Starring: Buster Crabbe, Carol Hughes & Charles Middleton	21			FALSE
+389	Flash Gordon Conquers the Universe: Ep. 10				1940	Starring: Buster Crabbe, Carol Hughes & Charles Middleton	19			FALSE
+390	Flash Gordon Conquers the Universe: Ep. 11				1940	Starring: Buster Crabbe, Carol Hughes & Charles Middleton	21			FALSE
+436	Gawain and the Green Knight				1973	Starring: Murray Head, Ciaran Madden & Nigel Green	92			FALSE
+437	Gay Ranchero, The				1948	Starring: Roy Rogers, Tito Guizar & Trigger	53			FALSE
+438	Gen's Big O				2003	Starring: Gen	30			TRUE
+439	General, The				1927	Starring: Buster Keaton	68			FALSE
+440	George				1970	Starring: Marshall Thompson & George	85			FALSE
+441	George Burns & Gracie Allen Show - Beverly Hills Uplift Society				1958	Starring: George Burns, Gracie Allen & Bea Benaderet	28			FALSE
+442	George Burns & Gracie Allen Show - Harry Morton's Secretary				1955	Starring: George Burns, Gracie Allen & Bea Benaderet	28			FALSE
+443	Gestapo's Last Orgy				1976	Starring: Marc Loud, Daniela Poggi & Maristella Greco	58			FALSE
+444	Ghost Patrol				1936	Starring: Tim McCoy	57			FALSE
+445	Giant Gila Monster, The				1959	Starring: Don Sullivan & Lisa Simone	84			FALSE
+446	Girl Explores Girl				1999	Starring: Victoria Vega, Katie Keane & Darian Caine	86			FALSE
+447	Girl Hunters, The				1963	Starring: Mickey Spillane	95			FALSE
+448	Girl in Room 20				1946	Starring: Geraldine Brock, Spencer Williams & July Jones	62			FALSE
+449	Girl Meets Girl				1973	Starring: Marie Forsa	105			FALSE
+450	Girlfriends				2002	Starring: Misty Mundae	14			TRUE
+481	Hairy Ape, The				1944	Starring: William Bendix, Susan Hayward & John Loder	91			FALSE
+482	Happy Go Lovely				1951	Starring: Cesar Romero & Vera Ellen	95			FALSE
+483	Hard Hombre				1931	Starring: Hoot Gibson	64			FALSE
+484	Harlem Rides The Range				1939	Starring: Herbert Jeffrey, Spencer Williams & John Thomas	55			FALSE
+485	Hatchet For The Honeymoon				1970	Starring: Stephen Forsyth & Laura Betti	93			FALSE
+486	Hawks and Sparrows				1966	Starring: Ninetto Davoli, Femi Benussi & Flaminia Siciliano	88			FALSE
+487	Headin' For The Rio Grande				1936	Starring: Tex Ritter	60			FALSE
+488	Heart of the Golden West				1942	Starring: Roy Rogers, Smiley Burnette & Gabby Hayes	53			FALSE
+489	Heart of the Rockies				1951	Starring: Roy Rogers & Trigger	67			FALSE
+490	Heartbeat				1946	Starring: Ginger Rogers	95			FALSE
+491	Heidi				1968	Starring: Maximilian Schell & Jean Simmons	104			FALSE
+492	Heldorado				1946	Starring: Roy Rogers, Dale Evans & George	57			FALSE
+493	Helen Does Holland pt.1				1997	Starring: Helen Duval, Sabrina Johnson & Hayley Russell	26			TRUE
+494	Helen Does Holland pt.2				1997	Starring: Helen Duval, Sabrina Johnson & Hayley Russell	16			TRUE
+495	Helen Does Holland pt.3				1997	Starring: Helen Duval, Sabrina Johnson & Hayley Russell	28			TRUE
+541	In Old Caliente				1939	Starring: Roy Rogers, Gabby Hayes & Trigger	57			FALSE
+542	In the Beach House				1977	Starring: Jodie Foster, Franco Citti & Gigi Proietti	96			FALSE
+543	In the Hood				1998	Starring: Fred Rerun Berry	86			FALSE
+544	Indestructible Man				1956	Starring: Lon Chaney Jr., Casey Adams & Marion Carr	70			FALSE
+545	Indiscretion of an American Wife				1954	Starring: Jennifer Jones, Montgomery Clift & Richard Beymer	61			FALSE
+546	Infamous Crimes				1947	Starring: Terry Austin, Leon Belasco & Clara Blandick	63			FALSE
+547	Inga Up Close				1986	Starring: Inga	28			TRUE
+548	Initiation				2001	Starring: N/A	21			FALSE
+549	Inside Misty Mundae				2001	Starring: Misty Mundae	68			FALSE
+550	Inspector General, The				1949	Starring: Danny Kaye & Alan Hale	102			FALSE
+551	Internet Wild Women				1998	Starring: Harmony Grant & Kelsie Chambers	55			TRUE
+552	Invisible Ghost, The				1941	Starring: Bela Lugosi	65			FALSE
+553	Invitation To Die				1994	Starring: Richard Lynch, Jorge Rivero & Jorgo Ognenovski	91			FALSE
+554	Its Good To Be Alive				1974	Starring: Lou Gosset & Paul Winfield	100			FALSE
+555	Jack and the Beanstalk				1952	Starring: Abbott & Costello	82			FALSE
+556	Jack Benny Show, The: Jack Goes To New York				1959	Starring: Jack Benny, Don Wilson & Mel Blanc	25			FALSE
+557	Jack Benny Show, The: New Year's Show				1960	Starring: Jack Benny, Don Wilson & Mel Blanc	25			FALSE
+558	Jack Benny Show, The: The Christmas Show				1959	Starring: Jack Benny, Don Wilson & Mel Blanc	25			FALSE
+559	Jack London				1943	Starring: Susan Hayward, Osa Massen & Harry Davenport	89			FALSE
+560	Jackie Gleason Show, The				1958	Starring: Jackie Gleason, Art Carney & Buddy Hackett	55			FALSE
+561	Jackie Robinson Story, The				1950	Starring: Jackie Robinson	76			FALSE
+562	Jamaica Inn				1939	Starring: Charles Laughton, Leslie Banks & Robert Newton	94			FALSE
+563	James Dean Story, The				1957	Starring: Martin Gabel	79			FALSE
+564	Jane				1996	Starring: Rebecca Kyler Downs, Tupelo Jereme, Brian Bowman	90			FALSE
+565	Jerky Turkey				1959	Starring: Jerky Turkey	7			FALSE
+566	Jerry Lewis Show, The				1967	Starring: Jerry Lewis	46			FALSE
+567	Jesse James At Bay				1941	Starring: Roy Rogers, Gabby Hayes & Trigger	53			FALSE
+568	Joe Louis Story, The				1953	Starring: Coley Wallace & Paul Stewart	87			FALSE
+569	Journey to the Center of Time				1967	Starring: Lyle Waggner	76			FALSE
+570	Journey Together				1945	Starring: Richard Attenborough & Edward G. Robinson	94			FALSE
+571	Juno and the Paycock				1929	Starring: Sara Allgood & Barry Fitzgerald	94			FALSE
+572	Just Rambling Along				1918	Starring: Stan Laurel & Bud Jamison	9			FALSE
+573	Kansan, The				1943	Starring: Richard Dix & Jane Wyatt	78			FALSE
+574	Kansas City Confidential				1952	Starring: John Payne, Coleen Gray & Dona Drake	99			FALSE
+575	Katherine aka The Radical				1975	Starring: Sissy Spacek, Henry Winkler, Art Carney	96			FALSE
+576	Kennel Murder Case				1933	Starring: William Powell, Mary Astor & Helen Vinson	73			FALSE
+577	Kid Dynamite				1943	Starring: Leo Gorcy, Huntz Hall & Bobby Jordan	66			FALSE
+578	Kid In Africa				1932	Starring: Shirley Temple	8			FALSE
+579	Kiddin' Hollywood				1932	Starring: Shirley Temple	10			FALSE
+580	Killer Crocodile 2				1990	Starring: Anthony Crenna & Debra Karr	83			FALSE
+581	Killers Eroticus				2000	Starring: N/A	80			FALSE
+582	Killers From Space				1954	Starring: Peter Graves & James Seay	69			FALSE
+583	King of the Cowboys				1943	Starring: Roy Rogers, Smiley Burnette & Trigger	56			FALSE
+584	King Solomon's Mines				1937	Starring: Paul Robeson & Cedric Hardwicke	79			FALSE
+585	Kinky Casting Couch				2000	Starring: Darian Caine, A.J. Kahn & Katie Jordon	53			TRUE
+601	Legend of the Lone Ranger				1949	Starring: Clayton Moore & Jay Silverheels	69			FALSE
+602	Lesbian Slaughter: The Phone Sex Strangler				1999	Starring: Misty Mundae & Liz Bathory	80			FALSE
+603	Lights of Old Santa Fe, The				1944	Starring: Roy Rogers, Dale Evans & Gabby Hayes	56			FALSE
+604	Lil' Abner				1940	Starring: Granville Owen, Martha Odriscoll & Edgar Kennedy	73			FALSE
+605	Lindsey Up Close				1988	Starring: Lindsey	30			TRUE
+606	Lingerie Dream Models				1999	Starring: Mason Marconi, Jeanie Rivers & Tiffany Holliday	55			TRUE
+607	Lipstick				1960	Starring: Laura Vivaldi, Pierre Brice & Giorgia Moll	90			FALSE
+608	Little Billy's Triumph				1914	Starring: N/A	13			FALSE
+609	Little Lost Sea Serpent				1994	Starring: N/A	80			FALSE
+610	Little Men				1940	Starring: Kay Francis, Jackie Oakie & George Bancroft	83			FALSE
+611	Little Men				1935	Starring: Frankie Darro, Frank Morgan & Erin Moore	50			FALSE
+612	Little Princess, The				1939	Starring: Shirley Temple	92			FALSE
+613	Little Shop of Horrors				1960	Starring: Jack Nicholson	71			FALSE
+614	Lock Up: Episode 11				1960	Starring: Macdonald Carey, John Doucette & Olive Carey	26			FALSE
+615	Lock Up: Episode 2				1959	Starring: Macdonald Carey, John Doucette & Olive Carey	26			FALSE
+661	Manhandlers, The				1973	Starring: Henry Brandon, Judith M. Brown & Cara Burgess	87			FALSE
+662	Mania				1960	Starring: Peter Cushing & June Laverick	91			FALSE
+663	Marilyn Monroe Story				1964	Starring: N/A	52			FALSE
+664	Marines Have Landed, The				1936	Starring: Lew Ayres & Isabel Jewell	10			FALSE
+665	Mark of Dracula				1997	Starring: Mark Allen, Roxanne Coyne & Tim Sullivan	85			FALSE
+666	Mark Of The Hawk, The				1958	Starring: Sidney Poitier, Eartha Kitt & John McIntire	85			FALSE
+667	Marked Trails				1944	Starring: Bob Steele & Hoot Gibson	59			FALSE
+668	Martin Luther				1953	Starring: Niall MacGinnis & John Ruddock	106			FALSE
+669	Massacre at Fort Holman				1972	Starring: James Coburn, Telly Savalas & Bud Spencer	88			FALSE
+670	McLintock!				1963	Starring: John Wayne & Maureen O'Hara	125			FALSE
+671	Medic: Dr. Impossible				1956	Starring: Richard Boone	25			FALSE
+672	Memphis Belle				1944	Starring: Robert Morgan & Vince Evans	42			FALSE
+673	Merrily Yours				1932	Starring: Shirley Temple	21			FALSE
+674	Mesa of Lost Women				1953	Starring: Jackie Coogan, Richard Travis & Alan Nixon	69			FALSE
+675	Metropolis				1926	Starring: Brigitte Helm, Alfred Abel & Gustav Froehlich	115			FALSE
+721	Night Court Episode 11				1959	Starring: N/A	26			FALSE
+722	Night Crawlers				1997	Starring: Mark Polonia, Armond Sposto & Maria Russo	67			FALSE
+723	Night Divides the Day, The				2001	Starring: Tiffany Richards, John Stump & Lynn Wolfbrandt	87			FALSE
+724	Night of the Living Dead				1968	Starring: Judith Day	96			FALSE
+725	Night Porter, The				1974	Starring: Dirk Bogarde	116			FALSE
+726	Night Train To Munich				1940	Starring: Rex Harrison, Margaret Lockwood & Paul Henreid	95			FALSE
+727	Nikki at Night				1998	Starring: Nikki Nova & Shelly Jones	55			TRUE
+728	Nina's Big O				2003	Starring: Nina	32			TRUE
+729	Ninja Champion				1979	Starring: Bruce Baron	87			FALSE
+730	Ninja Death				1975	Starring: Ninjas	83			FALSE
+731	No Sex Please We're British				1973	Starring: Ronnie Corbett, Beryl Reid & Arthur Lowe	88			FALSE
+732	North West Frontier				1959	Starring: Kenneth More & Lauren Bacall	130			FALSE
+733	Northwest Trail				1945	Starring: Bob Steele & Joan Woodbury	61			FALSE
+734	Nosferatu				1922	Starring: Max Schreck & Alexander Granach	79			FALSE
+735	Nuremberg Trials, The				1954	Starring: N/A	53			FALSE
+751	One Step Beyond: Dead Ringer				1960	Starring: John Newland	25			FALSE
+752	One Step Beyond: Epilogue				1960	Starring: John Newland	25			FALSE
+753	One Step Beyond: Howling Dog				1960	Starring: John Newland	26			FALSE
+754	One Step Beyond: Make Me Not A Witch				1959	Starring: John Newland	25			FALSE
+755	One Step Beyond: Night of April 14th				1959	Starring: John Newland	25			FALSE
+756	One Step Beyond: Night of Decision				1961	Starring: John Newland	25			FALSE
+757	One Step Beyond: Plane Crash				1959	Starring: John Newland	25			FALSE
+758	One Step Beyond: The Dark Room				1961	Starring: John Newland	25			FALSE
+759	One Step Beyond: The Dream				1960	Starring: John Newland	25			FALSE
+760	One Step Beyond: The Last Round				1959	Starring: John Newland	25			FALSE
+761	One Step Beyond: The Open Window				1961	Starring: John Newland	25			FALSE
+762	One Step Beyond: The Vision				1960	Starring: John Newland	25			FALSE
+763	Orphans of The Storm				1921	Starring: Monte Blue, Lillian Gish & Dorothy Gish	150			FALSE
+764	Our Gang - Bear Shooters				1930	Starring: Jackie Cooper & Norman 'Chubby' Chaney	20			FALSE
+765	Our Gang - School's Out				1930	Starring: Jackie Cooper & Matthew 'Stymie' Beard	21			FALSE
+766	Our Gang Follies of 1938				1937	Starring: Buckwheat Thomas, Darla Hood & Alfalfa	21			FALSE
+767	Friends	The One Where Rachel's Sister Baby-Sits	327		2003	Rachel convinces her sister (Christina Applegate) to baby-sit over Ross' protests; Joey writes a letter to an adoption agency on Monica and Chandler's behalf.	30			FALSE
+768	Out Of It				1969	Starring: Barry J. Gordon, Jon Voight & Lada Edmund Jr	88			FALSE
+769	Outback				1971	Starring: Donald Pleasence, Gary Bond & Sylvia Kay	97			FALSE
+770	Outlaw, The				1943	Starring: Walter Huston & Jane Russell	116			FALSE
+771	Outlaws Paradise				1939	Starring: Tim McCoy, Joan Barclay & Dave O'Brien	55			FALSE
+772	Ozzie & Harriet: A Cruise For Harriet				1952	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	24			FALSE
+773	Ozzie & Harriet: An Evening with Hamlet				1959	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	25			FALSE
+774	Ozzie & Harriet: An Old Friend Of June				1959	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	26			FALSE
+775	Ozzie & Harriet: Breakfast For Harriet				1952	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	23			FALSE
+776	Ozzie & Harriet: David Goofs Off				1952	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	24			FALSE
+777	Ozzie & Harriet: Kris Plays Cupid				1952	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	23			FALSE
+778	Ozzie & Harriet: Making Wally Study				1959	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	25			FALSE
+779	Ozzie & Harriet: Orchids and Violets				1960	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	25			FALSE
+780	Ozzie & Harriet: Pills				1962	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	26			FALSE
+781	Ozzie & Harriet: Rick and His Dinner Guest				1952	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	23			FALSE
+782	Ozzie & Harriet: Separate Rooms				1952	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	25			FALSE
+783	Ozzie & Harriet: The 14 Mile HIke				1953	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	25			FALSE
+784	Ozzie & Harriet: The Fraternity Rents A Room				1962	Starring: Ozzie Nelson, David Nelson & Ricky Nelson	26			FALSE
+785	Paleface, The - Buster Keaton Classic				1922	Starring: Buster Keaton & Joe Roberts	21			FALSE
+786	Panamints Bad Man				1938	Starring: Smith Ballew, Evelyn Daw & Noah Beery	60			FALSE
+787	Panic in the City				1968	Starring: Dennis Hopper & Howard Duff	97			FALSE
+788	Paradise in Harlem				1939	Starring: Edna Mae Harris, Mamie Smith & Frank Wilson	85			FALSE
+789	Pardon My Pups				1934	Starring: Shirley Temple & Kenneth Howell	18			FALSE
+790	Passion to Kill, A				1999	Starring: Stephanie Beaton & Ron Ford	89			FALSE
+791	Pearl Harbor				1945	Starring: N/A	8			FALSE
+792	Peeping in a Girl's Dormitory				2001	Starring: Tina Krause, Misty Mundae	22			FALSE
+793	Penny Serenade				1941	Starring: Irene Dunne & Cary Grant	117			FALSE
+794	Perfect Panties Contest				1997	Starring: Kelly Ashton & Eve Ellis	55			TRUE
+795	Phantom Creeps, The Episode 1				1939	Starring: Bela Lugosi, Robert Kent & Dorothy Arnold	21			FALSE
+826	Popeye: Spooky Swabs				1953	Starring: Popeye the Sailor	6			FALSE
+827	Priscilla Up Close				1986	Starring: Pricilla	25			TRUE
+828	Prisoner in the Middle				1974	Starring: David Janssen, Karin Dor & Pupik Arnon	87			FALSE
+829	Private Nurse				1978	Starring: Agnes Lemercier, Patrice Chéron & Gilbert Servien	63			FALSE
+830	Project Kill				1977	Starring: Leslie Nielsen, Gary Lockwood, Nancy Kwan	92			FALSE
+831	Proud and the Damned, The				1972	Starring: Chuck Conners & Cesar Romero	95			FALSE
+832	Psycho Sisters				1998	Starring: J.J. North, Theresa Lynn & Nancy Sirianni	88			FALSE
+833	Public Enemy				1998	Starring: Ike Gingrich, Dyrk Ashton & Don Bass	85			FALSE
+834	Queen Kathryn				1998	Starring: Kathryn Hudson, Bob Rudd & Todd Champagne	84			FALSE
+835	Queen of the Amazons				1947	Starring: Robert Lowery, Patricia Morison & J. Edward Brombe	60			FALSE
+836	Quicksand				1950	Starring: Mickey Rooney & Peter Lorre	78			FALSE
+837	Racket Squad: The Case of the Hearse Chasers				1950	Starring: Reed Hadley & Jack Larue	26			FALSE
+838	Rage of Paris				1938	Starring: Douglas Fairbanks Jr., Danielle Darrieux & Mischa	77			FALSE
+839	Railroaded				1947	Starring: John Ireland, Sheila Ryan & Hugh Beaumont	72			FALSE
+840	Raw Energy				1996	Starring: Robert Rundle & Amanda Rushing	86			FALSE
+841	Red Fury, The				1984	Starring: Wendy Lynne & Calvin Bartlett	104			FALSE
+842	Red Hot				1995	Starring: Johnny Luv	55			TRUE
+843	Red Light Stalker				1998	Starring: Stephanie Beaton, Janine Stillo & Sheila Redgrave	88			FALSE
+844	Red Rope, The				1937	Starring: Bob Steele	60			FALSE
+845	Reefer Madness				1938	Starring: Dave O'Brien	65			FALSE
+846	Resurrection of Zachary Wheeler, The				1971	Starring: Leslie Nielsen & Angie Dickinson	99			FALSE
+847	Revenge of the Wives				1997	Starring: Carolyn Smith, Joy Stanton & Marie Gutierrez	82			FALSE
+848	Revenge Quest				1996	Starring: Brian Gluhak, Christopher Michael Egger & Jennifer	82			FALSE
+849	Rhythm of Adventure				1968	Starring: Roberto Carlos, José Lewgoy & Reginaldo Farias	97			FALSE
+850	Riddled with Bullets				1998	Starring: Ron Ford & Wes Deitrick	84			FALSE
+851	Ride in the Whirlwind				1967	Starring: Jack Nicholson	82			FALSE
+852	Riders of Destiny				1933	Starring: John Wayne	55			FALSE
+853	Riders of the Desert				1932	Starring: Bob Steele, George	57			FALSE
+854	Riders of the Whistling Skull				1937	Starring: Robert Livingston, Max Terhune & Ray Corrigan	53			FALSE
+855	Rim of the Canyon				1949	Starring: Gene Autry & Alan Hale Jr	70			FALSE
+856	Road to Bali				1952	Starring: Bob Hope, Bing Crosby & Dorothy Lamour	90			FALSE
+857	Road to Hollywood, The				1938	Starring: Bing Crosby	51			FALSE
+858	Robin Hood - The Miser				1959	Starring: Richard Greene, Bernadette O'Farrell & Alexander G	26			FALSE
+859	Robin Hood - Brother Battle				1958	Starring: Richard Greene, Bernadette O'Farrell & Alexander G	26			FALSE
+860	Robin Hood - The Vandals				1955	Starring: Richard Greene, Bernadette O'Farrell & Alexander G	25			FALSE
+861	Robin Hood of the Pecos				1941	Starring: Roy Rogers, Gabby Hayes & Trigger	52			FALSE
+862	Robinson Crusoe Of Clipper Island Ep.1				1936	Starring: Mala, Mamo Clark & Herbert Rawlinson	29			FALSE
+863	Robinson Crusoe Of Clipper Island Ep.10				1936	Starring: Mala, Mamo Clark & Herbert Rawlinson	15			FALSE
+864	Robinson Crusoe Of Clipper Island Ep.11				1936	Starring: Mala, Mamo Clark & Herbert Rawlinson	15			FALSE
+865	Robinson Crusoe Of Clipper Island Ep.12				1936	Starring: Mala, Mamo Clark & Herbert Rawlinson	15			FALSE
+866	Robinson Crusoe Of Clipper Island Ep.13				1936	Starring: Mala, Mamo Clark & Herbert Rawlinson	17			FALSE
+867	Robinson Crusoe Of Clipper Island Ep.14				1936	Starring: Mala, Mamo Clark & Herbert Rawlinson	15			FALSE
+868	Robinson Crusoe Of Clipper Island Ep.2				1936	Starring: Mala, Mamo Clark & Herbert Rawlinson	19			FALSE
+869	Robinson Crusoe Of Clipper Island Ep.3				1936	Starring: Mala, Mamo Clark & Herbert Rawlinson	17			FALSE
+870	Robinson Crusoe Of Clipper Island Ep.4				1936	Starring: Mala, Mamo Clark & Herbert Rawlinson	16			FALSE
+901	Santa Claus				1959	Starring: Jose Elias Moreno	95			FALSE
+902	Santa Claus Conquers The Martians				1964	Starring: Pia Zadora	79			FALSE
+903	Santa Claws				1996	Starring: Debbie Rochon & Christine Cavilier	83			FALSE
+904	Satan's School for Lust				2002	Starring: Misty Mundae, Darian Caine, Barbara Joyce	65			FALSE
+905	Saurians				1996	Starring: Mark Alan Polonia & Mark Davis	77			FALSE
+906	Scar, The				1948	Starring: Paul Henreid & Joan Bennet	70			FALSE
+907	Scarlet Letter, The				1934	Starring: Colleen Moore, Hardie Albright & Alen Hale	68			FALSE
+908	Scarlet Pimpernel: Sword of Justice				1950	Starring: Marius Goring & Anthony Newlands	26			FALSE
+909	Scarlet Street				1945	Starring: Edward G. Robertson & Joan Bennett	103			FALSE
+910	School For Sex				1968	Starring: Derek Aylward & Rose Alba	77			FALSE
+911	School For Unclaimed Girls				1969	Starring: Madeleine Hinde, Renée Asherson & Dennis Waterman	93			FALSE
+912	School Girls Exposed				2002	Starring: N/A	35			TRUE
+913	Screaming Mimi				1958	Starring: Anita Ekberg, Philip Carey & Gypsy Rose Lee	78			FALSE
+914	Screaming, The				2000	Starring: Vincent Bilancio, John F. Goff & Elizabeth Barris	84			FALSE
+915	Scrooge				1935	Starring: Seymous Hicks, Donald Calthrop & Mary Glynne	60			FALSE
+916	Sea Raiders: Episode 1				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	20			FALSE
+917	Sea Raiders: Episode 10				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	18			FALSE
+918	Sea Raiders: Episode 11				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	17			FALSE
+919	Sea Raiders: Episode 12				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	17			FALSE
+920	Sea Raiders: Episode 2				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	18			FALSE
+921	Sea Raiders: Episode 3				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	20			FALSE
+922	Sea Raiders: Episode 4				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	21			FALSE
+923	Sea Raiders: Episode 5				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	19			FALSE
+924	Sea Raiders: Episode 6				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	20			FALSE
+925	Sea Raiders: Episode 7				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	18			FALSE
+926	Sea Raiders: Episode 8				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	18			FALSE
+927	Sea Raiders: Episode 9				1941	Starring: Billy Halop, Huntz Hall & Gabriel Dell	17			FALSE
+928	Search for the Pink Diamond				1968	Starring: Roberto Carlos, Erasmo Carlos & José Lewgoy	99			FALSE
+929	Second Woman, The				1951	Starring: Robert Young & Betsy Drake	91			FALSE
+930	Secret Agent, The				1936	Starring: Madeleine Carroll & Peter Lorre	83			FALSE
+1036	Surfer Dudes				1985	Starring: Nancy Carol, Bonnie Butler & Cheri Christen	81			FALSE
+1037	Suspiria				1977	Starring: Jessica Harper	97			FALSE
+1038	Svengali				1931	Starring: John Barrymore & Marian Marsh	81			FALSE
+1039	Sweet Dreams				1996	Starring: Summer Leigh & Ashleigh Taylor	55			TRUE
+1040	Sweet Evil				1995	Starring: Al Sapienza, Andrea Riave & Douglass De Marco	89			FALSE
+1041	Sweet Evil II: Sapphire				1998	Starring: Bruce Hammond, Alana Sosnova & Miranda O' Dell	83			FALSE
+1042	Swing Parade of 1946				1946	Starring: Gale Storm, Phil Regan & The Three Stooges	74			FALSE
+1043	Take, The				1974	Starring: Billy Dee Williams, Frankie Avalon & Eddie Albert	88			FALSE
+1044	Tales From the Three Stooges I				1962	Starring: Three Stooges	51			FALSE
+1045	Tales From the Three Stooges II				1962	Starring: Three Stooges	48			FALSE
+1046	Taming of the Shrew, The				1929	Pickford and Fairbanks do a fantasic job as Katharina and Petruchio, her playing the man hating, unmanagable woman and him playing her tough, strict and stern husband. Based on the Shakespearian play of the same name, this film is a comedy classic.	65			FALSE
+1047	Tangled				1996	Starring: Yolanda Androzzo, Alfredo Vicente & Rich Komenich	91			FALSE
+1048	Tanks A Million				1941	Starring: James Gleason, Noah Beery, Jr. & William Tracy	50			FALSE
+1049	Tarzan and the Green Goddess				1938	Starring: Bruce Bennett & Ula Holt	68			FALSE
+1050	Tarzan of the Apes				1918	Starring: Elmo Lincoln, Enid Markey & Gordon Griffith	60			FALSE
+1066	Three Stooges, The	Brideless Groom			1947	Starring: Moe Howard, Larry Fine, Shemp Howard	17			FALSE
+1067	The Three Stooges: Disorder in the Court				1936	Starring: Moe Howard, Larry Fine, Curly Howard	16			FALSE
+1068	The Three Stooges: Flatheads				1966	Starring: The Three Stooges	10			FALSE
+1069	The Three Stooges: Flycycle Built For Two				1964	Starring: The Three Stooges	7			FALSE
+1070	The Three Stooges: Gagster Dragster				1964	Starring: The Three Stooges	6			FALSE
+1071	The Three Stooges: Hair Brained Barbers				1966	Starring: The Three Stooges	6			FALSE
+1072	The Three Stooges: Malice in the Palace				1949	Starring: The Three Stooges	16			FALSE
+1073	The Three Stooges: Safari so Good				1965	Starring: The Three Stooges	5			FALSE
+1074	The Three Stooges: Sing a Song of Six Pants				1947	Starring: Moe Howard, Larry Fine & Shemp Howard	17			FALSE
+1075	The Three Stooges: Tee For Three				1966	Starring: The Three Stooges	6			FALSE
+1076	The Three Stooges: There Auto Be A Law				1965	Starring: The Three Stooges	3			FALSE
+1077	The Three Stooges: Thimk or Thwim				1965	Starring: The Three Stooges	7			FALSE
+1078	Theater of Blood				1973	Starring: Vincent Price	103			FALSE
+1079	Things				1995	Starring: Courtney Lercara & Neil Delama	81			FALSE
+1080	Things To Come				1936	Starring: Raymond Massey, Ann Todd & Ralph Richardson	91			FALSE
+1111	Trouble With Father - Father's Boy				1952	Starring: Stuart Erwin, June Collyer & Merry Anders	25			FALSE
+1112	Trouble With Father - Father's Pet				1952	Starring: Stuart Erwin, June Collyer & Merry Anders	25			FALSE
+1113	Trouble With Father - Jackie Knows All				1955	Starring: Stuart Erwin, June Collyer & Merry Anders	25			FALSE
+1114	Trouble With Father - Landlord				1954	Starring: Stuart Erwin, June Collyer & Merry Anders	25			FALSE
+1115	Trouble With Father - Leave It To Stu				1950	Starring: Stuart Erwin, June Collyer & Merry Anders	25			FALSE
+1116	Trouble With Father - Many Happy Returns				1954	Starring: Stuart Erwin, June Collyer & Merry Anders	26			FALSE
+1117	Trouble With Father - Nothing But The Truth				1953	Starring: Stuart Erwin, June Collyer & Merry Anders	25			FALSE
+1118	Trouble With Father - Spooks				1952	Starring: Stuart Erwin, June Collyer & Merry Anders	25			FALSE
+1119	Trouble With Father - Springtime For Father				1955	Starring: Stuart Erwin, June Collyer & Merry Anders	25			FALSE
+1120	Troy Up Close				1987	Starring: Troy	30			TRUE
+1121	Tumbleweed Trail				1942	Starring: Lee Powell, Art Davis & Bill Boyd	52			FALSE
+1122	Under California Stars				1948	Starring: Roy Rogers, Jane Frazee & andy Devine	69			FALSE
+1123	Under Western Stars				1938	Starring: Roy Rogers, Smiley Burnette & Trigger	57			FALSE
+1124	Underwear Affair, The				1998	Starring: Sam Phillips, Sara St. James & Mason Marconi	55			TRUE
+1125	Unknown World				1951	Starring: Bruce Kellogg, Marilyn Nash & Victor Kilian	70			FALSE
+1126	Up the Chastity Belt				1971	Starring: Frankie Howerd, Anne Aston & Graham Crowden	90			FALSE
+1127	Urban Combat				1996	Starring: Margie Rey, Gloria Lusiak & Julia A. Johnson	84			FALSE
+1128	Utah				1945	Starring: Roy Rogers, Dale Evans & Gabby Hayes	77			FALSE
+1129	Utopia				1950	Starring: Stan Laurel & Oliver Hardy	82			FALSE
+1130	Vampire Ecstasy				1973	Starring: N/A	103			FALSE
+1131	Vampire Obsession				2002	Starring: Darian Caine, Jade Duboir & Allanah Rhodes	75			FALSE
+1132	Vampire Queen				2002	Starring: Debbie Rochon, Darian Caine & Kelli Summers	21			FALSE
+1133	Vampire Vixens				2002	Starring: Mia Copia, Misty Mundae & A.J. Khan	79			FALSE
+1134	Vampire's Seduction				1998	Starring: Tina Krause & Debbie Rochon	55			FALSE
+1135	Vamps Deadly Dreamgirls				1996	Starring: Jennifer Huss Paul Morris	89			FALSE
+1136	Vampyr				1931	Starring: Julian West, Sybille Schmitz & Maurice Schutz	73			FALSE
+1137	Very Naked Discoveries				2000	Starring: Tyler Lynn	55			TRUE
+1138	Vibrating Maid, The				2001	Starring: Misty Mundae & Lily Tiger	26			FALSE
+1139	Vicious Sweet, The				1997	Starring: Sasha Graham, Theresa Constantine & Bob Licata	90			FALSE
+1140	Virginia Up Close				1988	Starring: Virginia	25			TRUE
