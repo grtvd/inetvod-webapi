@@ -29,11 +29,11 @@ public class IncludeAdult
 		if((value == null) || (value.length() == 0))
 			return null;
 
-		if(Never.fValue.matches(value))
+		if(Never.fValue.equals(value))
 			return Never;
-		if(PromptPassword.fValue.matches(value))
+		if(PromptPassword.fValue.equals(value))
 			return PromptPassword;
-		if(Always.fValue.matches(value))
+		if(Always.fValue.equals(value))
 			return Always;
 
 		throw new IllegalArgumentException("bad value(" + value + ")");

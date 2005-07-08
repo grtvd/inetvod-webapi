@@ -9,13 +9,6 @@ import com.inetvod.common.core.CtorUtil;
 
 import java.lang.reflect.Constructor;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Bob
- * Date: Jul 7, 2004
- * Time: 9:55:09 PM
- * To change this template use File | Settings | File Templates.
- */
 public class CategoryID extends StringID
 {
 	public static final Constructor CtorString = CtorUtil.getCtorString(CategoryID.class);

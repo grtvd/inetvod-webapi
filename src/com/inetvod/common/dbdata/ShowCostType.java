@@ -29,20 +29,20 @@ public class ShowCostType
 		if((value == null) || (value.length() == 0))
 			return null;
 
-		if(Free.fValue.matches(value))
+		if(Free.fValue.equals(value))
 			return Free;
-		if(Subscription.fValue.matches(value))
+		if(Subscription.fValue.equals(value))
 			return Subscription;
-		if(PayPerView.fValue.matches(value))
+		if(PayPerView.fValue.equals(value))
 			return PayPerView;
 
 		throw new IllegalArgumentException("bad value(" + value + ")");
 	}
 
-	public static String convertToString(ShowCostType showCostType)
+	public static String convertToString(ShowCostType value)
 	{
-		if(showCostType == null)
+		if(value == null)
 			return null;
-		return showCostType.toString();
+		return value.toString();
 	}
 }

@@ -1,8 +1,7 @@
 package com.inetvod.player.request;
 
-import com.inetvod.common.core.Writeable;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.player.rqdata.ShowDetailList;
+import com.inetvod.common.core.Writeable;
 import com.inetvod.player.rqdata.ShowSearchList;
 
 public class ShowSearchResp implements Writeable
