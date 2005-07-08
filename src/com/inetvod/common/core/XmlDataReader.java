@@ -12,7 +12,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -61,28 +60,31 @@ public class XmlDataReader extends DataReader
 		for(int i = 0; i < nodeList.getLength(); i++)
 		{
 			node = nodeList.item(i);
-			if(node.getNodeName().matches(fieldName))
+			if(node.getNodeName().equals(fieldName))
 				return node;
 		}
 
 		return null;
 	}
 
-//	protected ArrayList FindChildNodes(string fieldName)
-//	{
-//		if(fCurNodeList.Count == 0)
-//			throw new Exception("No current node");
-//
-//		ArrayList nodes = new ArrayList();
-//
-//		foreach(XmlNode node in ((XmlNode)(fCurNodeList[fCurNodeList.Count - 1])).ChildNodes)
-//		{
-//			if(node.LocalName.Equals(fieldName))
-//				nodes.Add(node);
-//		}
-//
-//		return nodes;
-//	}
+	protected ArrayList<Node> findChildNodes(String fieldName) throws Exception
+	{
+		if(fCurNodeList.size() == 0)
+			throw new Exception("No current node");
+
+		NodeList nodeList = ((Node)(fCurNodeList.get(fCurNodeList.size() - 1))).getChildNodes();
+		ArrayList<Node> nodes = new ArrayList<Node>();
+		Node node;
+
+		for(int i = 0; i < nodeList.getLength(); i++)
+		{
+			node = nodeList.item(i);
+			if(node.getNodeName().equals(fieldName))
+				nodes.add(node);
+		}
+
+		return nodes;
+	}
 
 	protected String getNodeText(Node node)
 	{
@@ -225,7 +227,7 @@ public class XmlDataReader extends DataReader
 		if(data == null)
 			return null;
 
-		return DateFormat.getDateInstance().parse(data);
+		return (new ISO8601DateFormat()).parse(data);
 	}
 
 	/**
@@ -235,7 +237,12 @@ public class XmlDataReader extends DataReader
 	 */
 	public Date readDateTime(String fieldName) throws Exception
 	{
-		throw new UnsupportedOperationException("need to implement");	//TODO: need to implement
+		String data = readString(fieldName);
+
+		if(data == null)
+			return null;
+
+		return (new ISO8601DateTimeFormat()).parse(data);
 	}
 
 	/**
@@ -304,20 +311,19 @@ public class XmlDataReader extends DataReader
 	 */
 	public List readStringList(String fieldName, int maxLength, Constructor listCtor, Constructor itemCtorString) throws Exception
 	{
-//		IList list = (IList)listCtor.Invoke(new object[] {});
-//
-//		ArrayList nodes = FindChildNodes(fieldName);
-//		if(nodes.Count == 0)
-//			return list;
-//
-//		foreach(XmlNode node in nodes)
-//		{
-//			Streamable streamable = (Streamable)itemCtorString.Invoke(new object[] { node.InnerText });
-//			list.Add(streamable);
-//		}
-//
-//		return list;
-		throw new UnsupportedOperationException("need to implement");	//TODO: need to implement
+		List list = (List)listCtor.newInstance(new Object[] {});
+
+		ArrayList<Node> nodes = findChildNodes(fieldName);
+		if(nodes.size() == 0)
+			return list;
+
+		for(Node node: nodes)
+		{
+			Object item = itemCtorString.newInstance(new Object[] { getNodeText(node) });
+			list.add(item);
+		}
+
+		return list;
 	}
 
 	/**
