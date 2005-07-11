@@ -315,9 +315,9 @@ CREATE TABLE [dbo].[Member] (
 	[AddrStreet1] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[AddrStreet2] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
 	[City] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[State] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[State] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[PostalCode] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[Country] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[Country] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[Phone] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[BirthDate] [datetime]
 ) ON [PRIMARY]
@@ -461,10 +461,13 @@ CREATE TABLE [dbo].[ShowProvider] (
 	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ProviderShowID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ShowCost_ShowCostType] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowCost_Money_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[ShowCost_Money_Amount] [decimal] (17,2) NULL ,
-	[ShowCost_Description] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowCost_Cost_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
+	[ShowCost_CostDisplay] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[RentalHours] [smallint] NULL
+--TODO: might be good to maintain a 'last updated' from provider field
+--TODO: forget that, this record should be deleted, but what happens if currently in somebodies rental queue
+--TODO: maybe instead we need an Available field, which would get set to false if removed from Provider's list.
 ) ON [PRIMARY]
 
 GO
@@ -550,9 +553,9 @@ CREATE TABLE [dbo].[RentedShow] (
 	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ShowURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ShowCost_ShowCostType] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowCost_Money_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[ShowCost_Money_Amount] [decimal] (17,2) NULL ,
-	[ShowCost_Description] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowCost_Cost_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
+	[ShowCost_CostDisplay] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[RentalHours] [smallint] NULL ,
 	[RentedOn] [datetime] NOT NULL ,
 	[AvailableUntil] [datetime] NULL ,

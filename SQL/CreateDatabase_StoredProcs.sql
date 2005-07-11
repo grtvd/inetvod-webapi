@@ -499,7 +499,7 @@ CREATE PROCEDURE dbo.ShowProvider_GetByShowIDProviderID
 	@ProviderID varchar(64)
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowCost_ShowCostType,
-		ShowCost_Money_CurrencyID, ShowCost_Money_Amount, ShowCost_Description, RentalHours
+		ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount, ShowCost_CostDisplay, RentalHours
 	from ShowProvider
 	where (ShowID = @ShowID)
 	and (ProviderID = @ProviderID)
@@ -511,8 +511,8 @@ CREATE PROCEDURE dbo.ShowProvider_Search
 	@PartialName varchar(64)
 AS
 	select sp.ShowProviderID, sp.ShowID, ProviderID, ProviderShowID,
-		ShowCost_ShowCostType, ShowCost_Money_CurrencyID, ShowCost_Money_Amount,
-		ShowCost_Description, RentalHours
+		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
+		ShowCost_CostDisplay, RentalHours
 	from ShowProvider sp
 	join Show s on s.ShowID = sp.ShowID
 	where s.Name like '%' + isnull(@PartialName, '') + '%'
@@ -524,8 +524,8 @@ CREATE PROCEDURE dbo.ShowProvider_GetByProviderID
 	@ProviderID varchar(32)
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderShowID,
-		ShowCost_ShowCostType, ShowCost_Money_CurrencyID, ShowCost_Money_Amount,
-		ShowCost_Description, RentalHours
+		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
+		ShowCost_CostDisplay, RentalHours
 	from ShowProvider
 	where ProviderID = @ProviderID
 GO
@@ -536,8 +536,8 @@ CREATE PROCEDURE dbo.ShowProvider_GetByCategoryID
 	@CategoryID varchar(32)
 AS
 	select sp.ShowProviderID, sp.ShowID, ProviderID, ProviderShowID,
-		ShowCost_ShowCostType, ShowCost_Money_CurrencyID, ShowCost_Money_Amount,
-		ShowCost_Description, RentalHours
+		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
+		ShowCost_CostDisplay, RentalHours
 	from ShowProvider sp
 	join ShowCategory sc on sc.ShowID = sp.ShowID
 	where sc.CategoryID = @CategoryID
@@ -598,9 +598,9 @@ AS
 		ProviderID,
 		ShowURL,
 		ShowCost_ShowCostType,
-		ShowCost_Money_CurrencyID,
-		ShowCost_Money_Amount,
-		ShowCost_Description,
+		ShowCost_Cost_CurrencyID,
+		ShowCost_Cost_Amount,
+		ShowCost_CostDisplay,
 		RentalHours,
 		RentedOn,
 		AvailableUntil
@@ -617,9 +617,9 @@ CREATE PROCEDURE dbo.RentedShow_Insert
 	@ProviderID varchar(64),
 	@ShowURL varchar(4096),
 	@ShowCost_ShowCostType varchar(32),
-	@ShowCost_Money_CurrencyID varchar(3),
-	@ShowCost_Money_Amount decimal(17,2),
-	@ShowCost_Description varchar(32),
+	@ShowCost_Cost_CurrencyID varchar(3),
+	@ShowCost_Cost_Amount decimal(17,2),
+	@ShowCost_CostDisplay varchar(32),
 	@RentalHours smallint,
 	@RentedOn datetime,
 	@AvailableUntil datetime
@@ -632,9 +632,9 @@ AS
 		ProviderID,
 		ShowURL,
 		ShowCost_ShowCostType,
-		ShowCost_Money_CurrencyID,
-		ShowCost_Money_Amount,
-		ShowCost_Description,
+		ShowCost_Cost_CurrencyID,
+		ShowCost_Cost_Amount,
+		ShowCost_CostDisplay,
 		RentalHours,
 		RentedOn,
 		AvailableUntil
@@ -647,9 +647,9 @@ AS
 		@ProviderID,
 		@ShowURL,
 		@ShowCost_ShowCostType,
-		@ShowCost_Money_CurrencyID,
-		@ShowCost_Money_Amount,
-		@ShowCost_Description,
+		@ShowCost_Cost_CurrencyID,
+		@ShowCost_Cost_Amount,
+		@ShowCost_CostDisplay,
 		@RentalHours,
 		@RentedOn,
 		@AvailableUntil
@@ -665,9 +665,9 @@ CREATE PROCEDURE dbo.RentedShow_Update
 	@ProviderID varchar(64),
 	@ShowURL varchar(4096),
 	@ShowCost_ShowCostType varchar(32),
-	@ShowCost_Money_CurrencyID varchar(3),
-	@ShowCost_Money_Amount decimal(17,2),
-	@ShowCost_Description varchar(32),
+	@ShowCost_Cost_CurrencyID varchar(3),
+	@ShowCost_Cost_Amount decimal(17,2),
+	@ShowCost_CostDisplay varchar(32),
 	@RentalHours smallint,
 	@RentedOn datetime,
 	@AvailableUntil datetime
@@ -678,9 +678,9 @@ AS
 		--ProviderID = @ProviderID,
 		ShowURL = @ShowURL,
 		ShowCost_ShowCostType = @ShowCost_ShowCostType,
-		ShowCost_Money_CurrencyID = @ShowCost_Money_CurrencyID,
-		ShowCost_Money_Amount = @ShowCost_Money_Amount,
-		ShowCost_Description = @ShowCost_Description,
+		ShowCost_Cost_CurrencyID = @ShowCost_Cost_CurrencyID,
+		ShowCost_Cost_Amount = @ShowCost_Cost_Amount,
+		ShowCost_CostDisplay = @ShowCost_CostDisplay,
 		RentalHours = @RentalHours,
 		RentedOn = @RentedOn,
 		AvailableUntil = @AvailableUntil
@@ -707,9 +707,9 @@ AS
 		ProviderID,
 		ShowURL,
 		ShowCost_ShowCostType,
-		ShowCost_Money_CurrencyID,
-		ShowCost_Money_Amount,
-		ShowCost_Description,
+		ShowCost_Cost_CurrencyID,
+		ShowCost_Cost_Amount,
+		ShowCost_CostDisplay,
 		RentalHours,
 		RentedOn,
 		AvailableUntil

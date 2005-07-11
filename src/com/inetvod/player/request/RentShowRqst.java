@@ -52,8 +52,8 @@ public class RentShowRqst extends SessionRequestable
 		rentedShow.setRentalHours(showProvider.getRentalHours());
 //		rentedShow.setShowCost(new ShowCost());
 //		rentedShow.getShowCost().setShowCostType(ShowCostType.PayPerView);
-//		rentedShow.getShowCost().setMoney(new Money(CurrencyID.USD, new Double(4.95)));
-//		rentedShow.getShowCost().setDescription("$4.95");
+//		rentedShow.getShowCost().setCost(new Money(CurrencyID.USD, new Double(4.95)));
+//		rentedShow.getShowCost().setCostDisplay("$4.95");
 //		rentedShow.setRentalHours(new Short((short)48));
 		rentedShow.setRentedOn(new Date());
 		Calendar cal = Calendar.getInstance();

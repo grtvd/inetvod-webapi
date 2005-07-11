@@ -14,22 +14,24 @@ import java.lang.reflect.Constructor;
 
 public class ShowCost implements Readable, Writeable
 {
+	/* Constants */
 	public static Constructor CtorDataReader = DataReader.getCtor(ShowCost.class);
+	public static final int DescriptionMaxLength = 32;
 
 	/* Properties */
 	protected ShowCostType fShowCostType;
-	protected Money fMoney;
-	protected String fDescription;
+	protected Money fCost;
+	protected String fCostDisplay;
 
 	/* Getters and Setters */
 	public ShowCostType getShowCostType() { return fShowCostType; }
 	public void setShowCostType(ShowCostType showCostType) { fShowCostType = showCostType; }
 
-	public Money getMoney() { return fMoney; }
-	public void setMoney(Money money) { fMoney = money; }
+	public Money getCost() { return fCost; }
+	public void setCost(Money cost) { fCost = cost; }
 
-	public String getDescription() { return fDescription; }
-	public void setDescription(String description) { fDescription = description; }
+	public String getCostDisplay() { return fCostDisplay; }
+	public void setCostDisplay(String description) { fCostDisplay = description; }
 
 	/* Constuction Methods */
 	public ShowCost()
@@ -44,14 +46,14 @@ public class ShowCost implements Readable, Writeable
 	public void readFrom(DataReader reader) throws Exception
 	{
 		fShowCostType = ShowCostType.convertFromString(reader.readString("ShowCostType", ShowCostType.MaxLength));
-		fMoney = (Money) reader.readObject("Money", Money.CtorDataFiler);
-		fDescription = reader.readString("Description", 32);
+		fCost = (Money) reader.readObject("Cost", Money.CtorDataFiler);
+		fCostDisplay = reader.readString("CostDisplay", DescriptionMaxLength);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
 		writer.writeString("ShowCostType", ShowCostType.convertToString(fShowCostType), ShowCostType.MaxLength);
-		writer.writeObject("Money", fMoney);
-		writer.writeString("Description", fDescription, 32);
+		writer.writeObject("Cost", fCost);
+		writer.writeString("CostDisplay", fCostDisplay, DescriptionMaxLength);
 	}
 }

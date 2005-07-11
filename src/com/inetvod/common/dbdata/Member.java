@@ -18,9 +18,9 @@ public class Member extends DatabaseObject
 	public static final int LastNameMaxLength = 32;
 	public static final int AddrStreetMaxLength = 64;
 	public static final int CityMaxLength = 64;
-	public static final int StateMaxLength = 32;
+	public static final int StateMaxLength = 64;
 	public static final int PostalCodeMaxLength = 32;
-	public static final int CountryMaxLength = 32;
+	public static final int CountryMaxLength = 64;
 	public static final int PhoneMaxLength = 32;
 
 	/* Properties */
