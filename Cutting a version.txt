@@ -1,0 +1,23 @@
+* webapi
+
+- In IDEA
+	- Open webapi.ipr
+	- Open "Settings -> J2EE Build Settings"
+		- Check "Create web modeule jar file"
+	- Run "Build -> Rebuild Project"
+	- Will create "C:\projects\iNetVOD\webapi\trunk\inetvod.war"
+	- Open "Settings -> J2EE Build Settings"
+		- Unheck "Create web modeule jar file"
+	- Close IDEA
+
+- Create ZIP Version
+	- Zip "C:\projects\iNetVOD\webapi\trunk\inetvod.war"
+		- to C:\projects\iNetVOD\webapi\trunk\versions\inetvod-CCYY-MM-DD.zip
+
+- Deploy to Server
+	- In Firefox, open: http://api.inetvod.com/manager/html
+
+	- In "Applications" section, Undeploy "inetvod"
+
+	- In "Deploy:WAR file to deploy", specify WAR file as:
+		- C:\projects\iNetVOD\webapi\trunk\inetvod.war

@@ -4,15 +4,15 @@
  */
 package com.inetvod.common.dbdata;
 
-import com.inetvod.common.core.StringID;
-import com.inetvod.common.core.CtorUtil;
-
 import java.lang.reflect.Constructor;
+
+import com.inetvod.common.core.CtorUtil;
+import com.inetvod.common.core.StringID;
 
 public class ProviderID extends StringID
 {
 	public static final Constructor CtorString = CtorUtil.getCtorString(ProviderID.class);
-	public static final int MaxLength = 64;
+	public static final int MaxLength = 32;
 
 	public ProviderID(String value)
 	{

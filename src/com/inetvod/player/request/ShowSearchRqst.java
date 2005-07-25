@@ -4,23 +4,23 @@
  */
 package com.inetvod.player.request;
 
-import com.inetvod.common.core.Writeable;
-import com.inetvod.common.core.StatusCode;
+import java.util.Iterator;
+
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.dbdata.ProviderID;
+import com.inetvod.common.core.StatusCode;
+import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.CategoryID;
-import com.inetvod.common.dbdata.RatingID;
-import com.inetvod.common.dbdata.ProviderIDList;
 import com.inetvod.common.dbdata.CategoryIDList;
+import com.inetvod.common.dbdata.ProviderID;
+import com.inetvod.common.dbdata.ProviderIDList;
+import com.inetvod.common.dbdata.RatingID;
 import com.inetvod.common.dbdata.RatingIDList;
 import com.inetvod.common.dbdata.Show;
+import com.inetvod.common.dbdata.ShowCategoryList;
 import com.inetvod.common.dbdata.ShowList;
 import com.inetvod.common.dbdata.ShowProviderList;
-import com.inetvod.common.dbdata.ShowCategoryList;
 import com.inetvod.player.rqdata.ShowSearch;
-
-import java.util.Iterator;
 
 public class ShowSearchRqst extends SessionRequestable
 {
@@ -49,8 +49,10 @@ public class ShowSearchRqst extends SessionRequestable
 		ShowProviderList thisShowProviderList;
 		ShowCategoryList showCategoryList = null;
 		Iterator iterator;
+		short numFound = 0;
 
 		response = new ShowSearchResp();
+		response.ReachedMax = false;
 
 		if(fPartialName != null)
 		{
@@ -93,6 +95,13 @@ public class ShowSearchRqst extends SessionRequestable
 		while(iterator.hasNext())
 		{
 			show = (Show)iterator.next();
+
+			if(numFound > fMaxResults)
+			{
+				response.ReachedMax = true;
+				break;
+			}
+			numFound++;
 
 			thisShowProviderList = showProviderList.findItemsByShowID(show.getShowID());
 			if(thisShowProviderList.size() == 0)

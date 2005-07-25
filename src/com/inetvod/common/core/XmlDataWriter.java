@@ -58,6 +58,20 @@ public class XmlDataWriter extends DataWriter
 			fPrintWriter.print(data);
 	}
 
+	protected String encodeString(String data)
+	{
+		String newVal = data;
+
+		if((data.indexOf("&") >= 0) || (data.indexOf("<") >= 0) || (data.indexOf("<") >= 0))
+		{
+			newVal = newVal.replaceAll("&", "&amp;");
+			newVal = newVal.replaceAll("<", "&lt;");
+			newVal = newVal.replaceAll(">", "&lt;");
+		}
+
+		return newVal;
+	}
+
 	/**
 	 * Write an opending XML element tag
 	 *
@@ -107,7 +121,7 @@ public class XmlDataWriter extends DataWriter
 			return;
 
 		writeStartElement(name);
-		writeString(value);	//TODO: need XML encoding
+		writeString(encodeString(value));
 		writeEndElement(name);
 	}
 
