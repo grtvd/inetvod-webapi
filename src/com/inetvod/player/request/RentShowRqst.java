@@ -4,6 +4,9 @@
  */
 package com.inetvod.player.request;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.StatusCode;
@@ -15,9 +18,6 @@ import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCost;
 import com.inetvod.common.dbdata.ShowID;
 import com.inetvod.common.dbdata.ShowProvider;
-
-import java.util.Calendar;
-import java.util.Date;
 
 public class RentShowRqst extends SessionRequestable
 {
@@ -47,7 +47,7 @@ public class RentShowRqst extends SessionRequestable
 		rentedShow = RentedShow.newInstance(fMember, show, provider);
 		showProvider = ShowProvider.getByShowIDProviderID(fShowID, fProviderID);
 		//TODO: fetch this from Provider API
-		rentedShow.setShowURL("http://www.inetvod.com/test/show.mov");
+		rentedShow.setShowURL("http://api.inetvod.com/mce/videos/TestVideo.wmv");
 		rentedShow.setShowCost(showProvider.getShowCost());
 		rentedShow.setRentalHours(showProvider.getRentalHours());
 //		rentedShow.setShowCost(new ShowCost());
