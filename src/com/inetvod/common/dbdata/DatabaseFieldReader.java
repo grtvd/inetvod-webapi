@@ -4,16 +4,16 @@
  */
 package com.inetvod.common.dbdata;
 
-import com.inetvod.common.core.DataID;
-import com.inetvod.common.core.DataReader;
-import com.inetvod.common.core.Readable;
-
 import java.lang.reflect.Constructor;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
+import com.inetvod.common.core.DataID;
+import com.inetvod.common.core.DataReader;
+import com.inetvod.common.core.Readable;
 
 public class DatabaseFieldReader extends DataReader
 {
@@ -153,7 +153,7 @@ public class DatabaseFieldReader extends DataReader
 	 */
 	public Date readDateTime(String fieldName) throws Exception
 	{
-		Date value = fResultSet.getDate(buildFullFieldName(fieldName));
+		Date value = fResultSet.getTimestamp(buildFullFieldName(fieldName));
 
 		if(fResultSet.wasNull())
 			return null;

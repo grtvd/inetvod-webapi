@@ -4,14 +4,15 @@
  */
 package com.inetvod.common.dbdata;
 
+import java.sql.PreparedStatement;
+import java.sql.Types;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.List;
+
 import com.inetvod.common.core.DataID;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-
-import java.sql.PreparedStatement;
-import java.sql.Types;
-import java.util.Date;
-import java.util.List;
 
 public class DatabaseFieldWriter extends DataWriter
 {
@@ -123,7 +124,7 @@ public class DatabaseFieldWriter extends DataWriter
 	 */
 	public void writeDateTime(String fieldName, Date data) throws Exception
 	{
-		fStatement.setDate(fCurParam++, (data != null) ? new java.sql.Date (data.getTime()) : null);
+		fStatement.setTimestamp(fCurParam++, (data != null) ? new Timestamp (data.getTime()) : null);
 	}
 
 	/**
