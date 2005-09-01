@@ -12,7 +12,7 @@ import com.inetvod.common.core.Writeable;
 public class EnableAdultAccessRqst extends SessionRequestable
 {
 	/* Constants */
-	public static final int PasswordMaxLength = 32;
+	public static final int EncryptedPasswordMaxLength = 32;
 
 	/* Fields */
 	protected String fPassword;
@@ -27,6 +27,8 @@ public class EnableAdultAccessRqst extends SessionRequestable
 	{
 		EnableAdultAccessResp response;
 
+		//TODO: decrypt Password based on SessionData:Player
+
 		response = new EnableAdultAccessResp();
 
 
@@ -36,11 +38,11 @@ public class EnableAdultAccessRqst extends SessionRequestable
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fPassword = reader.readString("Password", PasswordMaxLength);
+		fPassword = reader.readString("Password", EncryptedPasswordMaxLength);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
-		writer.writeString("Password", fPassword, PasswordMaxLength);
+		writer.writeString("Password", fPassword, EncryptedPasswordMaxLength);
 	}
 }

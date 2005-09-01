@@ -29,6 +29,8 @@ public class SetProviderRqst extends SessionRequestable
 		SetProviderResp response;
 		MemberProvider memberProvider;
 
+		//TODO: decrypt UserID and Password based on Player
+
 		response = new SetProviderResp();
 
 		memberProvider = MemberProvider.findByMemberIDProviderID(fMember.getMemberID(), fProviderID);

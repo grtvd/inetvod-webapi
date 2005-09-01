@@ -4,18 +4,18 @@
  */
 package com.inetvod.common.dbdata;
 
+import java.sql.Types;
+
 import com.inetvod.common.core.DataExists;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-
-import java.sql.Types;
 
 public class MemberProvider extends DatabaseObject
 {
 	/* Constants */
 	public static final int NumFields = 5;
 	public static final int EncryptedUserIDMaxLength = 128;
-	public static final int EncryptedPasswordMaxLength = 64;
+	public static final int EncryptedPasswordMaxLength = 32;
 
 	/* Properties */
 	protected MemberProviderID fMemberProviderID;

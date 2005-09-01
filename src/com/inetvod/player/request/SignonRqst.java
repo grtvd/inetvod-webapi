@@ -4,6 +4,9 @@
  */
 package com.inetvod.player.request;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Requestable;
@@ -15,9 +18,6 @@ import com.inetvod.player.rqdata.MemberPrefs;
 import com.inetvod.player.rqdata.MemberProviderList;
 import com.inetvod.player.rqdata.MemberState;
 import com.inetvod.player.rqdata.Player;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class SignonRqst implements Requestable
 {
@@ -38,6 +38,8 @@ public class SignonRqst implements Requestable
 	{
 		SignonResp response = new SignonResp();
 		SerialNumber serialNumber;
+
+		//TODO: decrypt UserID and Password based on Player
 
 		serialNumber = SerialNumber.find(fUserID);
 		if((serialNumber != null) && serialNumber.getActive())
@@ -73,14 +75,14 @@ public class SignonRqst implements Requestable
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fUserID = reader.readString("UserID", 64);
+		fUserID = reader.readString("UserID", 128);
 		fPassword = reader.readString("Password", 32);
 		fPlayer = (Player)reader.readObject("Player", Player.CtorDataFiler);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
-		writer.writeString("UserID", fUserID, 64);
+		writer.writeString("UserID", fUserID, 128);
 		writer.writeString("Password", fPassword, 32);
 		writer.writeObject("Player", fPlayer);
 	}
