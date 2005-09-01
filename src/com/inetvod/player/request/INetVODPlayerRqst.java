@@ -5,13 +5,13 @@
 package com.inetvod.player.request;
 
 
-import com.inetvod.common.core.Requestable;
+import java.lang.reflect.Constructor;
+
 import com.inetvod.common.core.DataReader;
+import com.inetvod.common.core.DataWriter;
+import com.inetvod.common.core.Requestable;
 import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.core.DataWriter;
-
-import java.lang.reflect.Constructor;
 
 public class INetVODPlayerRqst implements Requestable
 {
@@ -82,8 +82,6 @@ public class INetVODPlayerRqst implements Requestable
 			response.setStatusMessage(null);
 		else if(statusCode == StatusCode.sc_InvalidUserID)
 			response.setStatusMessage("We were unable to log you onto the system due to an invalid Logon ID or PIN.");
-//		else if(statusCode == StatusCode.sc_UserIDInUse)
-//			response.setStatusMessage("");
 		else if(statusCode == StatusCode.sc_UserIDPasswordMismatch)
 			response.setStatusMessage("We were unable to log you onto the system due to an invalid Logon ID or PIN.");
 		else if(statusCode == StatusCode.sc_InvalidProviderUserIDPassword)

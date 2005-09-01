@@ -9,7 +9,6 @@ public class StatusCode
 	public static final StatusCode sc_Success = new StatusCode(0);
 
 	public static final StatusCode sc_InvalidUserID = new StatusCode(1000);
-//	public static final StatusCode sc_UserIDInUse = new StatusCode(1001);
 	public static final StatusCode sc_UserIDPasswordMismatch = new StatusCode(1002);
 	public static final StatusCode sc_InvalidProviderUserIDPassword = new StatusCode(1003);
 
@@ -38,8 +37,6 @@ public class StatusCode
 			return sc_Success;
 		if(val == sc_InvalidUserID.fValue)
 			return sc_InvalidUserID;
-//		if(val == sc_UserIDInUse.fValue)
-//			return sc_UserIDInUse;
 		if(val == sc_UserIDPasswordMismatch.fValue)
 			return sc_UserIDPasswordMismatch;
 		if(val == sc_InvalidProviderUserIDPassword.fValue)
@@ -49,7 +46,7 @@ public class StatusCode
 
 		if(val == sc_ShowSearch_NeedCriteiia.fValue)
 			return sc_ShowSearch_NeedCriteiia;
-		
+
 		return sc_GeneralError;
 	}
 
