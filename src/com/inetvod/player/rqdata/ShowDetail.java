@@ -4,19 +4,19 @@
  */
 package com.inetvod.player.rqdata;
 
-import com.inetvod.common.core.Writeable;
+import java.util.Date;
+
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.dbdata.ShowID;
-import com.inetvod.common.dbdata.ProviderID;
+import com.inetvod.common.core.Writeable;
+import com.inetvod.common.dbdata.CategoryID;
 import com.inetvod.common.dbdata.CategoryIDList;
+import com.inetvod.common.dbdata.ProviderID;
 import com.inetvod.common.dbdata.RatingID;
-import com.inetvod.common.dbdata.ShowCost;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCategoryList;
-import com.inetvod.common.dbdata.CategoryID;
+import com.inetvod.common.dbdata.ShowCost;
+import com.inetvod.common.dbdata.ShowID;
 import com.inetvod.common.dbdata.ShowProvider;
-
-import java.util.Date;
 
 public class ShowDetail implements Writeable
 {
@@ -36,7 +36,7 @@ public class ShowDetail implements Writeable
 	protected RatingID fRatingID;
 	protected Boolean fIsAdult;
 
-	protected ShowCost fCost;
+	protected ShowCost fShowCost;
 	protected Short fRentalHours;
 
 	/* Constuction Methods */
@@ -58,7 +58,7 @@ public class ShowDetail implements Writeable
 		fRatingID = show.getRatingID();
 		fIsAdult = show.getIsAdult();
 
-		fCost = showProvider.getShowCost();
+		fShowCost = showProvider.getShowCost();
 		fRentalHours = showProvider.getRentalHours();
 	}
 
@@ -81,7 +81,7 @@ public class ShowDetail implements Writeable
 		writer.writeDataID("RatingID", fRatingID, RatingID.MaxLength);
 		writer.writeBoolean("IsAdult", fIsAdult);
 
-		writer.writeObject("Cost", fCost);
+		writer.writeObject("ShowCost", fShowCost);
 		writer.writeShort("RentalHours", fRentalHours);
 	}
 }
