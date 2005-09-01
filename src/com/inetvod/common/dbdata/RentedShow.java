@@ -4,11 +4,11 @@
  */
 package com.inetvod.common.dbdata;
 
+import java.util.Date;
+
 import com.inetvod.common.core.DataExists;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-
-import java.util.Date;
 
 public class RentedShow extends DatabaseObject
 {
@@ -23,7 +23,6 @@ public class RentedShow extends DatabaseObject
 
 	protected String fShowURL;
 	protected ShowCost fShowCost;
-	protected Short fRentalHours;
 	protected Date fRentedOn;
 	protected Date fAvailableUntil;
 
@@ -42,9 +41,6 @@ public class RentedShow extends DatabaseObject
 
 	public ShowCost getShowCost() { return fShowCost; }
 	public void setShowCost(ShowCost showCost) { fShowCost = showCost; }
-
-	public Short getRentalHours() { return fRentalHours; }
-	public void setRentalHours(Short rentalHours) { fRentalHours = rentalHours; }
 
 	public Date getRentedOn() { return fRentedOn; }
 	public void setRentedOn(Date rentedOn) { fRentedOn = rentedOn; }
@@ -93,7 +89,6 @@ public class RentedShow extends DatabaseObject
 
 		fShowURL = reader.readString("ShowURL", Show.ShowURLMaxLength);
 		fShowCost = (ShowCost)reader.readObject("ShowCost", ShowCost.CtorDataReader);
-		fRentalHours = reader.readShort("RentalHours");
 		fRentedOn = reader.readDateTime("RentedOn");
 		fAvailableUntil = reader.readDateTime("AvailableUntil");
 	}
@@ -107,7 +102,6 @@ public class RentedShow extends DatabaseObject
 
 		writer.writeString("ShowURL", fShowURL, Show.ShowURLMaxLength);
 		writer.writeObject("ShowCost", fShowCost);
-		writer.writeShort("RentalHours", fRentalHours);
 		writer.writeDateTime("RentedOn", fRentedOn);
 		writer.writeDateTime("AvailableUntil", fAvailableUntil);
 	}

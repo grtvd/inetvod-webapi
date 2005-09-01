@@ -34,7 +34,6 @@ public class CheckShowAvailRqst extends SessionRequestable
 		//TODO: fetch this from Provider API
 		showProvider = ShowProvider.getByShowIDProviderID(fShowID, fProviderID);
 		response.ShowCost = showProvider.getShowCost();
-		response.RentalHours = showProvider.getRentalHours();
 
 		fStatusCode = StatusCode.sc_Success;
 		return response;

@@ -4,13 +4,13 @@
  */
 package com.inetvod.common.dbdata;
 
+import java.lang.reflect.Constructor;
+
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Money;
 import com.inetvod.common.core.Readable;
 import com.inetvod.common.core.Writeable;
-
-import java.lang.reflect.Constructor;
 
 public class ShowCost implements Readable, Writeable
 {
@@ -22,6 +22,7 @@ public class ShowCost implements Readable, Writeable
 	protected ShowCostType fShowCostType;
 	protected Money fCost;
 	protected String fCostDisplay;
+	protected Short fRentalHours;
 
 	/* Getters and Setters */
 	public ShowCostType getShowCostType() { return fShowCostType; }
@@ -32,6 +33,9 @@ public class ShowCost implements Readable, Writeable
 
 	public String getCostDisplay() { return fCostDisplay; }
 	public void setCostDisplay(String description) { fCostDisplay = description; }
+
+	public Short getRentalHours() { return fRentalHours; }
+	public void setRentalHours(Short rentalHours) { fRentalHours = rentalHours; }
 
 	/* Constuction Methods */
 	public ShowCost()
@@ -48,6 +52,7 @@ public class ShowCost implements Readable, Writeable
 		fShowCostType = ShowCostType.convertFromString(reader.readString("ShowCostType", ShowCostType.MaxLength));
 		fCost = (Money) reader.readObject("Cost", Money.CtorDataFiler);
 		fCostDisplay = reader.readString("CostDisplay", DescriptionMaxLength);
+		fRentalHours = reader.readShort("RentalHours");
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
@@ -55,5 +60,6 @@ public class ShowCost implements Readable, Writeable
 		writer.writeString("ShowCostType", ShowCostType.convertToString(fShowCostType), ShowCostType.MaxLength);
 		writer.writeObject("Cost", fCost);
 		writer.writeString("CostDisplay", fCostDisplay, DescriptionMaxLength);
+		writer.writeShort("RentalHours", fRentalHours);
 	}
 }

@@ -11,11 +11,9 @@ import com.inetvod.common.dbdata.ShowCost;
 public class CheckShowAvailResp implements Writeable
 {
 	public ShowCost ShowCost;
-	public Short RentalHours;
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
 		writer.writeObject("ShowCost", ShowCost);
-		writer.writeShort("RentalHours", RentalHours);
 	}
 }

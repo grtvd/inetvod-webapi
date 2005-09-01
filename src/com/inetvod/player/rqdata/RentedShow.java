@@ -4,19 +4,19 @@
  */
 package com.inetvod.player.rqdata;
 
-import com.inetvod.common.core.Writeable;
+import java.util.Date;
+
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.dbdata.RentedShowID;
-import com.inetvod.common.dbdata.ShowID;
-import com.inetvod.common.dbdata.ProviderID;
+import com.inetvod.common.core.Writeable;
+import com.inetvod.common.dbdata.CategoryID;
 import com.inetvod.common.dbdata.CategoryIDList;
+import com.inetvod.common.dbdata.ProviderID;
 import com.inetvod.common.dbdata.RatingID;
-import com.inetvod.common.dbdata.ShowCost;
+import com.inetvod.common.dbdata.RentedShowID;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCategoryList;
-import com.inetvod.common.dbdata.CategoryID;
-
-import java.util.Date;
+import com.inetvod.common.dbdata.ShowCost;
+import com.inetvod.common.dbdata.ShowID;
 
 public class RentedShow implements Writeable
 {
@@ -39,8 +39,7 @@ public class RentedShow implements Writeable
 	protected RatingID fRatingID;
 	protected Boolean fIsAdult;
 
-	protected ShowCost fCost = new ShowCost();
-	public Short fRentalHours;
+	protected ShowCost fShowCost = new ShowCost();
 	public Date fRentedOn;
 	public Date fAvailableUntil;
 
@@ -55,7 +54,7 @@ public class RentedShow implements Writeable
 
 		fRentedShowID = rentedShow.getRentedShowID();
 		fShowID = rentedShow.getShowID();
-        fProviderID = rentedShow.getProviderID();
+		fProviderID = rentedShow.getProviderID();
 		fName = show.getName();
 		fEpisodeName = show.getEpisodeName();
 		fEpisodeNumber = show.getEpisodeNumber();
@@ -68,8 +67,7 @@ public class RentedShow implements Writeable
 		fRatingID = show.getRatingID();
 		fIsAdult = show.getIsAdult();
 
-		fCost = rentedShow.getShowCost();
-		fRentalHours = rentedShow.getRentalHours();
+		fShowCost = rentedShow.getShowCost();
 		fRentedOn = rentedShow.getRentedOn();
 		fAvailableUntil = rentedShow.getAvailableUntil();
 	}
@@ -95,8 +93,7 @@ public class RentedShow implements Writeable
 		writer.writeDataID("RatingID", fRatingID, RatingID.MaxLength);
 		writer.writeBoolean("IsAdult", fIsAdult);
 
-		writer.writeObject("ShowCost", fCost);
-		writer.writeShort("RentalHours", fRentalHours);
+		writer.writeObject("ShowCost", fShowCost);
 		writer.writeDateTime("RentedOn", fRentedOn);
 		writer.writeDateTime("AvailableUntil", fAvailableUntil);
 	}

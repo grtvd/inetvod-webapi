@@ -499,7 +499,7 @@ CREATE PROCEDURE dbo.ShowProvider_GetByShowIDProviderID
 	@ProviderID varchar(64)
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowCost_ShowCostType,
-		ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount, ShowCost_CostDisplay, RentalHours
+		ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount, ShowCost_CostDisplay, ShowCost_RentalHours
 	from ShowProvider
 	where (ShowID = @ShowID)
 	and (ProviderID = @ProviderID)
@@ -512,7 +512,7 @@ CREATE PROCEDURE dbo.ShowProvider_Search
 AS
 	select sp.ShowProviderID, sp.ShowID, ProviderID, ProviderShowID,
 		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
-		ShowCost_CostDisplay, RentalHours
+		ShowCost_CostDisplay, ShowCost_RentalHours
 	from ShowProvider sp
 	join Show s on s.ShowID = sp.ShowID
 	where s.Name like '%' + isnull(@PartialName, '') + '%'
@@ -525,7 +525,7 @@ CREATE PROCEDURE dbo.ShowProvider_GetByProviderID
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderShowID,
 		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
-		ShowCost_CostDisplay, RentalHours
+		ShowCost_CostDisplay, ShowCost_RentalHours
 	from ShowProvider
 	where ProviderID = @ProviderID
 GO
@@ -537,7 +537,7 @@ CREATE PROCEDURE dbo.ShowProvider_GetByCategoryID
 AS
 	select sp.ShowProviderID, sp.ShowID, ProviderID, ProviderShowID,
 		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
-		ShowCost_CostDisplay, RentalHours
+		ShowCost_CostDisplay, ShowCost_RentalHours
 	from ShowProvider sp
 	join ShowCategory sc on sc.ShowID = sp.ShowID
 	where sc.CategoryID = @CategoryID
@@ -601,7 +601,7 @@ AS
 		ShowCost_Cost_CurrencyID,
 		ShowCost_Cost_Amount,
 		ShowCost_CostDisplay,
-		RentalHours,
+		ShowCost_RentalHours,
 		RentedOn,
 		AvailableUntil
 	from RentedShow
@@ -620,7 +620,7 @@ CREATE PROCEDURE dbo.RentedShow_Insert
 	@ShowCost_Cost_CurrencyID varchar(3),
 	@ShowCost_Cost_Amount decimal(17,2),
 	@ShowCost_CostDisplay varchar(32),
-	@RentalHours smallint,
+	@ShowCost_RentalHours smallint,
 	@RentedOn datetime,
 	@AvailableUntil datetime
 AS
@@ -635,7 +635,7 @@ AS
 		ShowCost_Cost_CurrencyID,
 		ShowCost_Cost_Amount,
 		ShowCost_CostDisplay,
-		RentalHours,
+		ShowCost_RentalHours,
 		RentedOn,
 		AvailableUntil
 	)
@@ -650,7 +650,7 @@ AS
 		@ShowCost_Cost_CurrencyID,
 		@ShowCost_Cost_Amount,
 		@ShowCost_CostDisplay,
-		@RentalHours,
+		@ShowCost_RentalHours,
 		@RentedOn,
 		@AvailableUntil
 	)
@@ -668,7 +668,7 @@ CREATE PROCEDURE dbo.RentedShow_Update
 	@ShowCost_Cost_CurrencyID varchar(3),
 	@ShowCost_Cost_Amount decimal(17,2),
 	@ShowCost_CostDisplay varchar(32),
-	@RentalHours smallint,
+	@ShowCost_RentalHours smallint,
 	@RentedOn datetime,
 	@AvailableUntil datetime
 AS
@@ -681,7 +681,7 @@ AS
 		ShowCost_Cost_CurrencyID = @ShowCost_Cost_CurrencyID,
 		ShowCost_Cost_Amount = @ShowCost_Cost_Amount,
 		ShowCost_CostDisplay = @ShowCost_CostDisplay,
-		RentalHours = @RentalHours,
+		ShowCost_RentalHours = @ShowCost_RentalHours,
 		RentedOn = @RentedOn,
 		AvailableUntil = @AvailableUntil
 	where RentedShowID = @RentedShowID
@@ -710,7 +710,7 @@ AS
 		ShowCost_Cost_CurrencyID,
 		ShowCost_Cost_Amount,
 		ShowCost_CostDisplay,
-		RentalHours,
+		ShowCost_RentalHours,
 		RentedOn,
 		AvailableUntil
 	from RentedShow

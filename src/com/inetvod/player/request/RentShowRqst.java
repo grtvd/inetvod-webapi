@@ -49,7 +49,6 @@ public class RentShowRqst extends SessionRequestable
 		//TODO: fetch this from Provider API
 		rentedShow.setShowURL("http://api.inetvod.com/mce/videos/TestVideo.wmv");
 		rentedShow.setShowCost(showProvider.getShowCost());
-		rentedShow.setRentalHours(showProvider.getRentalHours());
 //		rentedShow.setShowCost(new ShowCost());
 //		rentedShow.getShowCost().setShowCostType(ShowCostType.PayPerView);
 //		rentedShow.getShowCost().setCost(new Money(CurrencyID.USD, new Double(4.95)));
@@ -58,7 +57,7 @@ public class RentShowRqst extends SessionRequestable
 		rentedShow.setRentedOn(new Date());
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
-		cal.add(Calendar.HOUR, showProvider.getRentalHours().intValue());
+		cal.add(Calendar.HOUR, showProvider.getShowCost().getRentalHours().intValue());
 		rentedShow.setAvailableUntil(cal.getTime());
 		//TODO: fetch this from Provider API
 		rentedShow.update();

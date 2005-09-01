@@ -1,4 +1,4 @@
-ShowProviderID	ShowID	ProviderID	ProviderShowID	ShowCost_ShowCostType	ShowCost_Money_CurrencyID	ShowCost_Money_Amount	ShowCost_Description	RentalHours
+ShowProviderID	ShowID	ProviderID	ProviderShowID	ShowCost_ShowCostType	ShowCost_Money_CurrencyID	ShowCost_Money_Amount	ShowCost_Description	ShowCost_RentalHours
 sp1	1	internetvideos	internetvideos1	PayPerView	USD	3.95	$3.95	72
 sp2	2	moviesmovies	moviesmovies2	Free			Free	72
 sp3	3	vodflicks	vodflicks3	Subscription			Subscription	72

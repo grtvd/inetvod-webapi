@@ -37,7 +37,6 @@ public class ShowDetail implements Writeable
 	protected Boolean fIsAdult;
 
 	protected ShowCost fShowCost;
-	protected Short fRentalHours;
 
 	/* Constuction Methods */
 	public ShowDetail(Show show, ShowProvider showProvider,
@@ -59,7 +58,6 @@ public class ShowDetail implements Writeable
 		fIsAdult = show.getIsAdult();
 
 		fShowCost = showProvider.getShowCost();
-		fRentalHours = showProvider.getRentalHours();
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
@@ -82,6 +80,5 @@ public class ShowDetail implements Writeable
 		writer.writeBoolean("IsAdult", fIsAdult);
 
 		writer.writeObject("ShowCost", fShowCost);
-		writer.writeShort("RentalHours", fRentalHours);
 	}
 }

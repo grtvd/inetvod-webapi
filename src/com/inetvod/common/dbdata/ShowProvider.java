@@ -4,11 +4,11 @@
  */
 package com.inetvod.common.dbdata;
 
-import com.inetvod.common.core.DataReader;
-import com.inetvod.common.core.DataExists;
-import com.inetvod.common.core.DataWriter;
-
 import java.sql.Types;
+
+import com.inetvod.common.core.DataExists;
+import com.inetvod.common.core.DataReader;
+import com.inetvod.common.core.DataWriter;
 
 public class ShowProvider extends DatabaseObject
 {
@@ -21,7 +21,6 @@ public class ShowProvider extends DatabaseObject
 	protected ProviderID fProviderID;
 	protected ProviderShowID fProviderShowID;
 	protected ShowCost fShowCost;
-	protected Short fRentalHours;
 
 	private static DatabaseAdaptor fDatabaseAdaptor = DatabaseAdaptor.newInstance(ShowProvider.class, ShowProviderList.class, NumFields);
 	public static DatabaseAdaptor getDatabaseAdaptor() { return fDatabaseAdaptor; }
@@ -36,8 +35,6 @@ public class ShowProvider extends DatabaseObject
 	public ProviderShowID getProviderShowID() { return fProviderShowID; }
 
 	public ShowCost getShowCost() { return fShowCost; }
-
-	public Short getRentalHours() { return fRentalHours; }
 
 	/* Constuction Methods */
 	public ShowProvider(DataReader reader) throws Exception
@@ -86,7 +83,6 @@ public class ShowProvider extends DatabaseObject
 
 		fProviderShowID = (ProviderShowID)reader.readDataID("ProviderShowID", ProviderShowID.MaxLength, ProviderShowID.CtorString);
 		fShowCost = (ShowCost)reader.readObject("ShowCost", ShowCost.CtorDataReader);
-		fRentalHours = reader.readShort("RentalHours");
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
