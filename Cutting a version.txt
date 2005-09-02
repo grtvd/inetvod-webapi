@@ -2,11 +2,11 @@
 
 - In IDEA
 	- Open webapi.ipr
-	- Open "Settings -> J2EE Build Settings"
+	- Open "Settings -> Paths -> J2EE Build Settings"
 		- Check "Create web modeule jar file"
 	- Run "Build -> Rebuild Project"
 	- Will create "C:\projects\iNetVOD\webapi\trunk\inetvod.war"
-	- Open "Settings -> J2EE Build Settings"
+	- Open "Settings -> Paths -> J2EE Build Settings"
 		- Unheck "Create web modeule jar file"
 	- Close IDEA
 
