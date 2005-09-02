@@ -18,6 +18,8 @@ import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCost;
 import com.inetvod.common.dbdata.ShowID;
 import com.inetvod.common.dbdata.ShowProvider;
+import com.inetvod.player.rqdata.License;
+import com.inetvod.player.rqdata.LicenseMethod;
 
 public class RentShowRqst extends SessionRequestable
 {
@@ -63,7 +65,10 @@ public class RentShowRqst extends SessionRequestable
 		rentedShow.update();
 
 		response.setRentedShowID(rentedShow.getRentedShowID());
-		response.setShowURL(rentedShow.getShowURL());
+		License license = new License();
+		license.setLicenseMethod(LicenseMethod.URLOnly);
+		license.setShowURL(rentedShow.getShowURL());
+		response.setLicense(license);
 
 		fStatusCode = StatusCode.sc_Success;
 		return response;

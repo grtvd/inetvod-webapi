@@ -10,6 +10,8 @@ import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.RentedShowID;
+import com.inetvod.player.rqdata.License;
+import com.inetvod.player.rqdata.LicenseMethod;
 
 public class WatchShowRqst extends SessionRequestable
 {
@@ -30,10 +32,11 @@ public class WatchShowRqst extends SessionRequestable
 		response = new WatchShowResp();
 
 		rentedShow = RentedShow.get(fRentedShowID);
-		response.setShowURL(rentedShow.getShowURL());
-
 		//TODO: fetch this from Provider API
-		response.setShowAccessKey("asmdlfkjskadfsfnsdfnlsfsfjksdfsfnsd");
+		License license = new License();
+		license.setLicenseMethod(LicenseMethod.URLOnly);
+		license.setShowURL(rentedShow.getShowURL());
+		response.setLicense(license);
 		//TODO: update rentedShow.setAvailableUntil(); from provider
 		//TODO: fetch this from Provider API
 

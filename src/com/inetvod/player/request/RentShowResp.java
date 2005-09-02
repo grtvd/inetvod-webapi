@@ -7,22 +7,22 @@ package com.inetvod.player.request;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.RentedShowID;
-import com.inetvod.common.dbdata.Show;
+import com.inetvod.player.rqdata.License;
 
 public class RentShowResp implements Writeable
 {
 	protected RentedShowID fRentedShowID;
-	protected String fShowURL;
+	protected License fLicense;
 
 	public RentedShowID getRentedShowID() { return fRentedShowID; }
 	public void setRentedShowID(RentedShowID rentedShowID) { fRentedShowID = rentedShowID; }
 
-	public String getShowURL() { return fShowURL; }
-	public void setShowURL(String showURL) { fShowURL = showURL; }
+	public License getLicense() { return fLicense; }
+	public void setLicense(License license) { fLicense = license; }
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
 		writer.writeDataID("RentedShowID", fRentedShowID, RentedShowID.MaxLength);
-		writer.writeString("ShowURL", fShowURL, Show.ShowURLMaxLength);
+		writer.writeObject("License", fLicense);
 	}
 }
