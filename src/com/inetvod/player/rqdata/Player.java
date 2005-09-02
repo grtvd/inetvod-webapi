@@ -4,13 +4,13 @@
  */
 package com.inetvod.player.rqdata;
 
+import java.lang.reflect.Constructor;
+
 import com.inetvod.common.core.DataReader;
+import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Readable;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.dbdata.ManufacturerID;
-
-import java.lang.reflect.Constructor;
 
 public class Player implements Readable, Writeable
 {
@@ -22,11 +22,19 @@ public class Player implements Readable, Writeable
 	protected String fSerialNo;
 	protected String fVersion;
 
+	/* Getters and Setters */
+	public ManufacturerID getManufacturerID() { return fManufacturerID; }
+	public String getModelNo() { return fModelNo; }
+	public String getSerialNo() { return fSerialNo; }
+	public String getVersion() { return fVersion; }
+
+	/* Construction */
 	public Player(DataReader filer) throws Exception
 	{
 		readFrom(filer);
 	}
 
+	/* Implementation */
 	public void readFrom(DataReader reader) throws Exception
 	{
 		fManufacturerID = (ManufacturerID)reader.readDataID("ManufacturerID", ManufacturerID.MaxLength,

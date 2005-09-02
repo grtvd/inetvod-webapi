@@ -14,6 +14,7 @@ import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.Member;
 import com.inetvod.common.dbdata.SerialNumber;
+import com.inetvod.common.dbdata.ManufacturerID;
 import com.inetvod.player.rqdata.MemberPrefs;
 import com.inetvod.player.rqdata.MemberProviderList;
 import com.inetvod.player.rqdata.MemberState;
@@ -38,6 +39,23 @@ public class SignonRqst implements Requestable
 	{
 		SignonResp response = new SignonResp();
 		SerialNumber serialNumber;
+
+		// get Player information
+		if(fPlayer == null)
+		{
+			fStatusCode = StatusCode.sc_Player_Missing;
+			return response;
+		}
+		//TODO: make standard Player-version check
+		if((new ManufacturerID("inetvod").equals(fPlayer.getManufacturerID()) && "ps2".equals(fPlayer.getModelNo())))
+		{
+			String version = fPlayer.getVersion();
+			if(!"1.0.1005".equals(version))
+			{
+				fStatusCode = StatusCode.sc_Player_OutOfDate;
+				return response;
+			}
+		}
 
 		//TODO: decrypt UserID and Password based on Player
 

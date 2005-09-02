@@ -15,6 +15,9 @@ public class StatusCode
 	public static final StatusCode sc_AlreadyEnrolledAtProvider = new StatusCode(1004);
 	public static final StatusCode sc_NoAutoProviderEnrollment = new StatusCode(1005);
 
+	public static final StatusCode sc_Player_Missing = new StatusCode(1006);
+	public static final StatusCode sc_Player_OutOfDate = new StatusCode(1007);
+
 	public static final StatusCode sc_ShowSearch_NeedCriteiia = new StatusCode(1020);
 
 	public static final StatusCode sc_GeneralError = new StatusCode(9999);
@@ -41,11 +44,19 @@ public class StatusCode
 			return sc_UserIDPasswordMismatch;
 		if(val == sc_InvalidProviderUserIDPassword.fValue)
 			return sc_InvalidProviderUserIDPassword;
+
 		if(val == sc_AlreadyEnrolledAtProvider.fValue)
 			return sc_AlreadyEnrolledAtProvider;
+		if(val == sc_NoAutoProviderEnrollment.fValue)
+			return sc_NoAutoProviderEnrollment;
 
-		if(val == sc_ShowSearch_NeedCriteiia.fValue)
-			return sc_ShowSearch_NeedCriteiia;
+		if(val == sc_NoAutoProviderEnrollment.fValue)
+			return sc_NoAutoProviderEnrollment;
+
+		if(val == sc_Player_Missing.fValue)
+			return sc_Player_Missing;
+		if(val == sc_Player_OutOfDate.fValue)
+			return sc_Player_OutOfDate;
 
 		return sc_GeneralError;
 	}
