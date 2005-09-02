@@ -14,7 +14,7 @@ import com.inetvod.common.dbdata.ProviderID;
 import com.inetvod.common.dbdata.RatingID;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCategoryList;
-import com.inetvod.common.dbdata.ShowCost;
+import com.inetvod.common.dbdata.ShowCostList;
 import com.inetvod.common.dbdata.ShowID;
 import com.inetvod.common.dbdata.ShowProvider;
 
@@ -36,7 +36,7 @@ public class ShowDetail implements Writeable
 	protected RatingID fRatingID;
 	protected Boolean fIsAdult;
 
-	protected ShowCost fShowCost;
+	protected ShowCostList fShowCostList;
 
 	/* Constuction Methods */
 	public ShowDetail(Show show, ShowProvider showProvider,
@@ -57,7 +57,8 @@ public class ShowDetail implements Writeable
 		fRatingID = show.getRatingID();
 		fIsAdult = show.getIsAdult();
 
-		fShowCost = showProvider.getShowCost();
+		fShowCostList = new ShowCostList();	//TODO: get list from provider
+		fShowCostList.add(showProvider.getShowCost());
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
@@ -79,6 +80,6 @@ public class ShowDetail implements Writeable
 		writer.writeDataID("RatingID", fRatingID, RatingID.MaxLength);
 		writer.writeBoolean("IsAdult", fIsAdult);
 
-		writer.writeObject("ShowCost", fShowCost);
+		writer.writeList("ShowCost", fShowCostList);
 	}
 }

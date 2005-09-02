@@ -11,6 +11,7 @@ import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.ProviderID;
 import com.inetvod.common.dbdata.ShowID;
 import com.inetvod.common.dbdata.ShowProvider;
+import com.inetvod.common.dbdata.ShowCostList;
 
 public class CheckShowAvailRqst extends SessionRequestable
 {
@@ -33,7 +34,9 @@ public class CheckShowAvailRqst extends SessionRequestable
 
 		//TODO: fetch this from Provider API
 		showProvider = ShowProvider.getByShowIDProviderID(fShowID, fProviderID);
-		response.ShowCost = showProvider.getShowCost();
+		ShowCostList showCostList = new ShowCostList();	//TODO: get list from provider
+		showCostList.add(showProvider.getShowCost());
+		response.ShowCostList = showCostList;
 
 		fStatusCode = StatusCode.sc_Success;
 		return response;
