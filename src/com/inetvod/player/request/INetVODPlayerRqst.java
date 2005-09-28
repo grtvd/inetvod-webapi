@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.request;
@@ -82,6 +82,8 @@ public class INetVODPlayerRqst implements Requestable
 			response.setStatusMessage(null);
 		else if(statusCode == StatusCode.sc_InvalidUserID)
 			response.setStatusMessage("We were unable to log you onto the system due to an invalid Logon ID or PIN.");
+		else if(statusCode == StatusCode.sc_InvalidSession)
+			response.setStatusMessage("Your session has expired and it no longer valid.  Please try again.");
 		else if(statusCode == StatusCode.sc_UserIDPasswordMismatch)
 			response.setStatusMessage("We were unable to log you onto the system due to an invalid Logon ID or PIN.");
 		else if(statusCode == StatusCode.sc_InvalidProviderUserIDPassword)

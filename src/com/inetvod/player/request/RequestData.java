@@ -1,12 +1,16 @@
+/**
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Confidential and Proprietary
+ */
 package com.inetvod.player.request;
 
-import com.inetvod.common.core.Requestable;
+import java.lang.reflect.Constructor;
+
 import com.inetvod.common.core.DataReader;
+import com.inetvod.common.core.DataWriter;
+import com.inetvod.common.core.Requestable;
 import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.core.DataWriter;
-
-import java.lang.reflect.Constructor;
 
 public class RequestData implements Requestable
 {
@@ -41,8 +45,12 @@ public class RequestData implements Requestable
 		}
 
 		Writeable response = fRequest.fulfillRequest();
+		ResponseData responseData = null;
+
 		fStatusCode = fRequest.getStatusCode();
-		ResponseData responseData = new ResponseData(response);
+
+		if(response != null)
+			responseData = new ResponseData(response);
 
 		return responseData;
 	}
