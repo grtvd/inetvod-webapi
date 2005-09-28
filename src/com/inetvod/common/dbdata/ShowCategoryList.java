@@ -128,9 +128,10 @@ public class ShowCategoryList extends ArrayList<ShowCategory>
 	/* Item Methods */
 	public ShowCategory getItem(int index)
 	{
-		return (ShowCategory)get(index);
+		return get(index);
 	}
 
+	@SuppressWarnings({"MethodOverloadsMethodOfSuperclass"})
 	public int indexOf(ShowCategoryID showCategoryID)
 	{
 		for(int i = 0; i < size(); i++)
@@ -140,6 +141,7 @@ public class ShowCategoryList extends ArrayList<ShowCategory>
 		return -1;
 	}
 
+	@SuppressWarnings({"MethodOverloadsMethodOfSuperclass"})
 	public ShowCategory get(ShowCategoryID showCategoryID) throws Exception
 	{
 		int pos = indexOf(showCategoryID);

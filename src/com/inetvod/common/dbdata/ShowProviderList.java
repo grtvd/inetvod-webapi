@@ -67,9 +67,10 @@ public class ShowProviderList extends ArrayList<ShowProvider>
 	/* Item Methods */
 	public ShowProvider getItem(int index)
 	{
-		return (ShowProvider)get(index);
+		return get(index);
 	}
 
+	@SuppressWarnings({"MethodOverloadsMethodOfSuperclass"})
 	public int indexOf(ShowProviderID showProviderID)
 	{
 		for(int i = 0; i < size(); i++)
@@ -79,6 +80,7 @@ public class ShowProviderList extends ArrayList<ShowProvider>
 		return -1;
 	}
 
+	@SuppressWarnings({"MethodOverloadsMethodOfSuperclass"})
 	public ShowProvider get(ShowProviderID showProviderID) throws Exception
 	{
 		int pos = indexOf(showProviderID);

@@ -1,4 +1,3 @@
 Possible ArrayList to ArrayList<T>: XmlDataReader, DatabaseFieldReader,
-Remove unneeded ArrayList methods: CategoryIDList, ProviderIDList, RatingIDList, ShowCategoryList, ShowList, ShowProviderList
 MaxLengths: remove magic numbers
 Update DatabaseAdaptor.selectManyByProc to return List<T>
