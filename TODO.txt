@@ -1,3 +1,2 @@
 Possible ArrayList to ArrayList<T>: XmlDataReader, DatabaseFieldReader,
 MaxLengths: remove magic numbers
-Update DatabaseAdaptor.selectManyByProc to return List<T>

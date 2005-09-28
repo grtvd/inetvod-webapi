@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
@@ -26,8 +26,9 @@ public class RentedShow extends DatabaseObject
 	protected Date fRentedOn;
 	protected Date fAvailableUntil;
 
-	private static DatabaseAdaptor fDatabaseAdaptor = DatabaseAdaptor.newInstance(RentedShow.class, RentedShowList.class, NumFields);
-	public static DatabaseAdaptor getDatabaseAdaptor() { return fDatabaseAdaptor; }
+	private static DatabaseAdaptor<RentedShow, RentedShowList> fDatabaseAdaptor =
+		new DatabaseAdaptor<RentedShow, RentedShowList>(RentedShow.class, RentedShowList.class, NumFields);
+	public static DatabaseAdaptor<RentedShow, RentedShowList> getDatabaseAdaptor() { return fDatabaseAdaptor; }
 
 	/* Getters and Setters */
 	public RentedShowID getRentedShowID() { return fRentedShowID; }
@@ -71,7 +72,7 @@ public class RentedShow extends DatabaseObject
 
 	protected static RentedShow load(RentedShowID rentedShowID, DataExists exists) throws Exception
 	{
-		return (RentedShow)fDatabaseAdaptor.selectByKey(rentedShowID, exists);
+		return fDatabaseAdaptor.selectByKey(rentedShowID, exists);
 	}
 
 	public static RentedShow get(RentedShowID rentedShowID) throws Exception

@@ -1,21 +1,25 @@
+/**
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Confidential and Proprietary
+ */
 package com.inetvod.common.dbdata;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 
-/**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
- * Confidential and Proprietary
- */
 public class ShowCategory extends  DatabaseObject
 {
+	/* Constants */
+	public static final int NumFields = 3;
+
 	/* Fields */
 	protected ShowCategoryID fShowCategoryID;
 	protected ShowID fShowID;
 	protected CategoryID fCategoryID;
 
-	private static DatabaseAdaptor fDatabaseAdaptor = DatabaseAdaptor.newInstance(ShowCategory.class, ShowCategoryList.class, 3);
-	public static DatabaseAdaptor getDatabaseAdaptor() { return fDatabaseAdaptor; }
+	private static DatabaseAdaptor<ShowCategory, ShowCategoryList> fDatabaseAdaptor =
+		new DatabaseAdaptor<ShowCategory, ShowCategoryList>(ShowCategory.class, ShowCategoryList.class, NumFields);
+	public static DatabaseAdaptor<ShowCategory, ShowCategoryList> getDatabaseAdaptor() { return fDatabaseAdaptor; }
 
 	/* Getters and Setters */
 	public ShowCategoryID getShowCategoryID() { return fShowCategoryID; }
@@ -39,7 +43,9 @@ public class ShowCategory extends  DatabaseObject
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
-		//TODO: needs to be implemented
+		writer.writeDataID("ShowCategoryID", fShowCategoryID, ShowCategoryID.MaxLength);
+		writer.writeDataID("ShowID", fShowID, ShowID.MaxLength);
+		writer.writeDataID("CategoryID", fCategoryID, CategoryID.MaxLength);
 	}
 
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
@@ -10,12 +10,17 @@ import com.inetvod.common.core.DataExists;
 
 public class Provider extends DatabaseObject
 {
+	/* Constants */
+	public static final int NumFields = 2;
+	public static final int NameMaxLength = 64;
+
 	/* Properties */
 	ProviderID fProviderID;
 	String fName;
 
-	private static DatabaseAdaptor fDatabaseAdaptor = DatabaseAdaptor.newInstance(Provider.class, ProviderList.class, 2);
-	public static DatabaseAdaptor getDatabaseAdaptor() { return fDatabaseAdaptor; }
+	private static DatabaseAdaptor<Provider, ProviderList> fDatabaseAdaptor =
+		new DatabaseAdaptor<Provider, ProviderList>(Provider.class, ProviderList.class, NumFields);
+	public static DatabaseAdaptor<Provider, ProviderList> getDatabaseAdaptor() { return fDatabaseAdaptor; }
 
 	/* Getters and Setters */
 	public ProviderID getProviderID() { return fProviderID; }
@@ -30,7 +35,7 @@ public class Provider extends DatabaseObject
 
 	protected static Provider load(ProviderID providerID, DataExists exists) throws Exception
 	{
-		return (Provider)fDatabaseAdaptor.selectByKey(providerID, exists);
+		return fDatabaseAdaptor.selectByKey(providerID, exists);
 	}
 
 	public static Provider get(ProviderID providerID) throws Exception
@@ -41,12 +46,12 @@ public class Provider extends DatabaseObject
 	public void readFrom(DataReader reader) throws Exception
 	{
 		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
-		fName = reader.readString("Name", 64);
+		fName = reader.readString("Name", NameMaxLength);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
 		writer.writeDataID("ProviderID", fProviderID, ProviderID.MaxLength);
-		writer.writeString("Name", fName, 64);
+		writer.writeString("Name", fName, NameMaxLength);
 	}
 }

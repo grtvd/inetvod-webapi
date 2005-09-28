@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
@@ -24,8 +24,9 @@ public class MemberProvider extends DatabaseObject
 	protected String fEncryptedUserName;
 	protected String fEncryptedPassword;
 
-	private static DatabaseAdaptor fDatabaseAdaptor = DatabaseAdaptor.newInstance(MemberProvider.class, MemberProviderList.class, NumFields);
-	public static DatabaseAdaptor getDatabaseAdaptor() { return fDatabaseAdaptor; }
+	private static DatabaseAdaptor<MemberProvider, MemberProviderList> fDatabaseAdaptor =
+		new DatabaseAdaptor<MemberProvider, MemberProviderList>(MemberProvider.class, MemberProviderList.class, NumFields);
+	public static DatabaseAdaptor<MemberProvider, MemberProviderList> getDatabaseAdaptor() { return fDatabaseAdaptor; }
 
 	/* Getters and Setters */
 	public MemberProviderID getMemberProviderID() { return fMemberProviderID; }
@@ -61,7 +62,7 @@ public class MemberProvider extends DatabaseObject
 
 	protected static MemberProvider load(MemberProviderID memberProviderID, DataExists exists) throws Exception
 	{
-		return (MemberProvider)fDatabaseAdaptor.selectByKey(memberProviderID, exists);
+		return fDatabaseAdaptor.selectByKey(memberProviderID, exists);
 	}
 
 	public static MemberProvider get(MemberProviderID memberProviderID) throws Exception
@@ -77,7 +78,7 @@ public class MemberProvider extends DatabaseObject
 		params[0] = new DatabaseProcParam(Types.VARCHAR, memberID.toString());
 		params[1] = new DatabaseProcParam(Types.VARCHAR, providerID.toString());
 
-		return (MemberProvider)fDatabaseAdaptor.selectByProc("MemberProvider_GetByMemberIDProviderID", params, dataExists);
+		return fDatabaseAdaptor.selectByProc("MemberProvider_GetByMemberIDProviderID", params, dataExists);
 	}
 
 	public static MemberProvider findByMemberIDProviderID(MemberID memberID, ProviderID providerID) throws Exception

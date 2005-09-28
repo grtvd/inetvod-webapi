@@ -1,14 +1,14 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
 
+import java.util.Date;
+
+import com.inetvod.common.core.DataExists;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.DataExists;
-
-import java.util.Date;
 
 public class Show extends DatabaseObject
 {
@@ -35,8 +35,9 @@ public class Show extends DatabaseObject
 	protected RatingID fRatingID;
 	protected Boolean fIsAdult;
 
-	private static DatabaseAdaptor fDatabaseAdaptor = DatabaseAdaptor.newInstance(Show.class, ShowList.class, NumFields);
-	public static DatabaseAdaptor getDatabaseAdaptor() { return fDatabaseAdaptor; }
+	private static DatabaseAdaptor<Show, ShowList> fDatabaseAdaptor =
+		new DatabaseAdaptor<Show, ShowList>(Show.class, ShowList.class, NumFields);
+	public static DatabaseAdaptor<Show, ShowList> getDatabaseAdaptor() { return fDatabaseAdaptor; }
 
 	/* Getters and Setters */
 	public ShowID getShowID() { return fShowID; }
@@ -80,7 +81,7 @@ public class Show extends DatabaseObject
 
 	protected static Show load(ShowID showID, DataExists exists) throws Exception
 	{
-		return (Show)fDatabaseAdaptor.selectByKey(showID, exists);
+		return fDatabaseAdaptor.selectByKey(showID, exists);
 	}
 
 	public static Show get(ShowID showID) throws Exception

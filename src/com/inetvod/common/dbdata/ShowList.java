@@ -21,7 +21,7 @@ public class ShowList extends ArrayList<Show>
 
 		params[0] = new DatabaseProcParam(Types.VARCHAR, partialName);
 
-		return (ShowList)Show.getDatabaseAdaptor().selectManyByProc("Show_Search", params);
+		return Show.getDatabaseAdaptor().selectManyByProc("Show_Search", params);
 	}
 
 	public static ShowList findByRentedShowMemberID(MemberID memberID) throws Exception
@@ -30,7 +30,7 @@ public class ShowList extends ArrayList<Show>
 
 		params[0] = new DatabaseProcParam(Types.VARCHAR, memberID.toString());
 
-		return (ShowList)Show.getDatabaseAdaptor().selectManyByProc("Show_GetByRentedShowMemberID", params);
+		return Show.getDatabaseAdaptor().selectManyByProc("Show_GetByRentedShowMemberID", params);
 	}
 
 	public static ShowList findByProviderIDList(ProviderIDList providerIDList) throws Exception
@@ -47,7 +47,7 @@ public class ShowList extends ArrayList<Show>
 
 			params[0] = new DatabaseProcParam(Types.VARCHAR, providerID.toString());
 
-			showList.merge((ShowList)Show.getDatabaseAdaptor().selectManyByProc("Show_GetByProviderID", params));
+			showList.merge(Show.getDatabaseAdaptor().selectManyByProc("Show_GetByProviderID", params));
 		}
 
 		return showList;
@@ -67,7 +67,7 @@ public class ShowList extends ArrayList<Show>
 
 			params[0] = new DatabaseProcParam(Types.VARCHAR, categoryID.toString());
 
-			showList.merge((ShowList)Show.getDatabaseAdaptor().selectManyByProc("Show_GetByCategoryID", params));
+			showList.merge(Show.getDatabaseAdaptor().selectManyByProc("Show_GetByCategoryID", params));
 		}
 
 		return showList;

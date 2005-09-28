@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
@@ -8,8 +8,6 @@ import com.inetvod.common.core.DataExists;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.player.rqdata.IncludeAdult;
-
-import java.util.ArrayList;
 
 public class MemberPrefs extends DatabaseObject
 {
@@ -20,8 +18,9 @@ public class MemberPrefs extends DatabaseObject
 	protected MemberID fMemberID;
 	protected IncludeAdult fIncludeAdult;
 
-	private static DatabaseAdaptor fDatabaseAdaptor = DatabaseAdaptor.newInstance(MemberPrefs.class, ArrayList.class, NumFields);
-	public static DatabaseAdaptor getDatabaseAdaptor() { return fDatabaseAdaptor; }
+	private static DatabaseAdaptor<MemberPrefs, MemberPrefsList> fDatabaseAdaptor =
+		new DatabaseAdaptor<MemberPrefs, MemberPrefsList>(MemberPrefs.class, MemberPrefsList.class, NumFields);
+	public static DatabaseAdaptor<MemberPrefs, MemberPrefsList> getDatabaseAdaptor() { return fDatabaseAdaptor; }
 
 	/* Getters and Setters */
 	public MemberID getMemberID() { return fMemberID; }
@@ -50,7 +49,7 @@ public class MemberPrefs extends DatabaseObject
 
 	protected static MemberPrefs load(MemberID memberID, DataExists exists) throws Exception
 	{
-		return (MemberPrefs)fDatabaseAdaptor.selectByKey(memberID, exists);
+		return fDatabaseAdaptor.selectByKey(memberID, exists);
 	}
 
 	public static MemberPrefs getCreate(MemberID memberID) throws Exception

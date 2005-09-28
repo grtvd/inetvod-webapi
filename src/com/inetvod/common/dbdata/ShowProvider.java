@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
@@ -22,8 +22,9 @@ public class ShowProvider extends DatabaseObject
 	protected ProviderShowID fProviderShowID;
 	protected ShowCost fShowCost;
 
-	private static DatabaseAdaptor fDatabaseAdaptor = DatabaseAdaptor.newInstance(ShowProvider.class, ShowProviderList.class, NumFields);
-	public static DatabaseAdaptor getDatabaseAdaptor() { return fDatabaseAdaptor; }
+	private static DatabaseAdaptor<ShowProvider, ShowProviderList> fDatabaseAdaptor =
+		new DatabaseAdaptor<ShowProvider, ShowProviderList>(ShowProvider.class, ShowProviderList.class, NumFields);
+	public static DatabaseAdaptor<ShowProvider, ShowProviderList> getDatabaseAdaptor() { return fDatabaseAdaptor; }
 
 	/* Getters and Setters */
 	public ShowProviderID getShowProviderID() { return fShowProviderID; }
@@ -67,7 +68,7 @@ public class ShowProvider extends DatabaseObject
 		params[0] = new DatabaseProcParam(Types.VARCHAR, showID.toString());
 		params[1] = new DatabaseProcParam(Types.VARCHAR, providerID.toString());
 
-		return (ShowProvider)fDatabaseAdaptor.selectByProc("ShowProvider_GetByShowIDProviderID", params, dataExists);
+		return fDatabaseAdaptor.selectByProc("ShowProvider_GetByShowIDProviderID", params, dataExists);
 	}
 
 	public static ShowProvider getByShowIDProviderID(ShowID showID, ProviderID providerID) throws Exception
@@ -87,6 +88,11 @@ public class ShowProvider extends DatabaseObject
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
-		throw new Exception("needs to be implemented");	//TODO:
+		writer.writeDataID("ShowProviderID", fShowProviderID, ShowProviderID.MaxLength);
+		writer.writeDataID("ShowID", fShowID, ShowID.MaxLength);
+		writer.writeDataID("ProviderID", fProviderID, ProviderID.MaxLength);
+
+		writer.writeDataID("ProviderShowID", fProviderShowID, ProviderShowID.MaxLength);
+		writer.writeObject("ShowCost", fShowCost);
 	}
 }

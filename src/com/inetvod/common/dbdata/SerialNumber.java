@@ -1,28 +1,29 @@
+/**
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Confidential and Proprietary
+ */
 package com.inetvod.common.dbdata;
 
+import com.inetvod.common.core.DataExists;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.DataExists;
 
-import java.util.ArrayList;
-
-/**
- * Created by IntelliJ IDEA.
- * User: Bob
- * Date: Jul 6, 2004
- * Time: 11:43:24 PM
- * To change this template use File | Settings | File Templates.
- */
 public class SerialNumber extends DatabaseObject
 {
+	/* Constants */
+	public static final int NumFields = 4;
+	public static final int SerialNumberIDMaxLength = 64;
+	public static final int PINMaxLength = 16;
+
 	/* Fields */
 	protected String fSerialNumberID;
 	protected boolean fActive;
 	protected MemberID fMemberID;
 	protected String fPIN;
 
-	private static DatabaseAdaptor fDatabaseAdaptor = DatabaseAdaptor.newInstance(SerialNumber.class, ArrayList.class, 4);
-	public static DatabaseAdaptor getDatabaseAdaptor() { return fDatabaseAdaptor; }
+	private static DatabaseAdaptor<SerialNumber, SerialNumberList> fDatabaseAdaptor =
+		new DatabaseAdaptor<SerialNumber, SerialNumberList>(SerialNumber.class, SerialNumberList.class, NumFields);
+	public static DatabaseAdaptor<SerialNumber, SerialNumberList> getDatabaseAdaptor() { return fDatabaseAdaptor; }
 
 	/* Getters and Setters */
 	public String getSerialNumberID() { return fSerialNumberID; }
@@ -43,7 +44,7 @@ public class SerialNumber extends DatabaseObject
 
 	protected static SerialNumber load(String serialNumberID, DataExists exists) throws Exception
 	{
-		return (SerialNumber)fDatabaseAdaptor.selectByKey(serialNumberID, exists);
+		return fDatabaseAdaptor.selectByKey(serialNumberID, exists);
 	}
 
 	public static SerialNumber get(String serialNumberID) throws Exception
@@ -73,18 +74,18 @@ public class SerialNumber extends DatabaseObject
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fSerialNumberID = reader.readString("SerialNumberID", 64);
+		fSerialNumberID = reader.readString("SerialNumberID", SerialNumberIDMaxLength);
 		fActive = reader.readBooleanValue("Active");
 		fMemberID = (MemberID)reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
-		fPIN = reader.readString("PIN", 16);
+		fPIN = reader.readString("PIN", PINMaxLength);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
-		writer.writeString("SerialNumberID", fSerialNumberID, 64);
+		writer.writeString("SerialNumberID", fSerialNumberID, SerialNumberIDMaxLength);
 		writer.writeBooleanValue("Active", fActive);
 		writer.writeDataID("MemberID", fMemberID, MemberID.MaxLength);
-		writer.writeString("PIN", fPIN, 16);
+		writer.writeString("PIN", fPIN, PINMaxLength);
 	}
 
 	public void update() throws Exception

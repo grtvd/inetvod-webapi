@@ -1,14 +1,14 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
 
+import java.util.Date;
+
+import com.inetvod.common.core.DataExists;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.DataExists;
-
-import java.util.Date;
 
 public class Member extends DatabaseObject
 {
@@ -36,8 +36,9 @@ public class Member extends DatabaseObject
 	protected String fPhone;
 	protected Date fBirthDate;
 
-	private static DatabaseAdaptor fDatabaseAdaptor = DatabaseAdaptor.newInstance(Member.class, MemberList.class, NumFields);
-	public static DatabaseAdaptor getDatabaseAdaptor() { return fDatabaseAdaptor; }
+	private static DatabaseAdaptor<Member, MemberList> fDatabaseAdaptor
+		= new DatabaseAdaptor<Member, MemberList>(Member.class, MemberList.class, NumFields);
+	public static DatabaseAdaptor<Member, MemberList> getDatabaseAdaptor() { return fDatabaseAdaptor; }
 
 	/* Getters and Setters */
 	public MemberID getMemberID() { return fMemberID; }
@@ -92,7 +93,7 @@ public class Member extends DatabaseObject
 
 	protected static Member load(MemberID memberID, DataExists exists) throws Exception
 	{
-		return (Member)fDatabaseAdaptor.selectByKey(memberID, exists);
+		return fDatabaseAdaptor.selectByKey(memberID, exists);
 	}
 
 	public static Member get(MemberID memberID) throws Exception

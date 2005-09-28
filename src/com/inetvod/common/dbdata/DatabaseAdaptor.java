@@ -1,30 +1,30 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
 
-import com.inetvod.common.core.DataReader;
-import com.inetvod.common.core.DataExists;
-
 import java.lang.reflect.Constructor;
-import java.util.List;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
+import java.util.List;
 
-public class DatabaseAdaptor
+import com.inetvod.common.core.DataExists;
+import com.inetvod.common.core.DataReader;
+
+public class DatabaseAdaptor<T extends DatabaseObject, L extends List<T>>
 {
-	protected Class fObjectType;
+	protected Class<T> fObjectType;
 	protected String fObjectName;
-	protected Constructor fObjectCtor;
-	protected Class fListType;
-	protected Constructor fListCtor;
+	protected Constructor<T> fObjectCtor;
+	protected Class<L> fListType;
+	protected Constructor<L> fListCtor;
 //	protected String fKeyFieldName;
 
 	//protected Connection fSqlConnection;
@@ -33,14 +33,21 @@ public class DatabaseAdaptor
 	protected String fUpdateStoredProcedure;
 	protected String fDeleteStoredProcedure;
 
-	protected DatabaseAdaptor(Class objectType, Class listType, int numFields) throws Exception
+	protected DatabaseAdaptor(Class<T> objectType, Class<L> listType, int numFields)
 	{
 		fObjectType = objectType;
 		fListType = listType;
 //		fKeyFieldName = keyFieldName;
 
-		fObjectCtor = fObjectType.getConstructor(new Class[] { DataReader.class } );
-		fListCtor = fListType.getConstructor(new Class[]{});
+		try
+		{
+			fObjectCtor = fObjectType.getConstructor(new Class[] { DataReader.class } );
+			fListCtor = fListType.getConstructor(new Class[]{});
+		}
+		catch(NoSuchMethodException e)
+		{
+			//TODO: add message to logger
+		}
 
 		//Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver");
 		//fSqlConnection = DriverManager.getConnection("jdbc:microsoft:sqlserver://DAVIDSON03\\INETVOD","sa","");
@@ -55,19 +62,6 @@ public class DatabaseAdaptor
 		fDeleteStoredProcedure = buildProcName(fObjectName + "_Delete", 1);
 	}
 
-	public static DatabaseAdaptor newInstance(Class objectType, Class listType, int numFields)
-	{
-		try
-		{
-			return new DatabaseAdaptor(objectType, listType, numFields);
-		}
-		catch(Exception e)
-		{
-		}
-
-		return null;
-	}
-
 	public Connection getConnection() throws Exception
 	{
 		Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver");
@@ -76,7 +70,7 @@ public class DatabaseAdaptor
 		return conn;
 	}
 
-	public DatabaseObject selectByKey(Object key, DataExists exists) throws Exception
+	public T selectByKey(Object key, DataExists exists) throws Exception
 	{
 		Connection connection = null;
 		CallableStatement statement = null;
@@ -101,7 +95,7 @@ public class DatabaseAdaptor
 		}
 	}
 
-	public DatabaseObject select(String command, DataExists exists) throws Exception
+	public T select(String command, DataExists exists) throws Exception
 	{
 		Connection connection = null;
 		Statement statement = null;
@@ -124,12 +118,11 @@ public class DatabaseAdaptor
 		}
 	}
 
-	public DatabaseObject selectByProc(String prodecure, DatabaseProcParam[] params, DataExists exists) throws Exception
+	public T selectByProc(String prodecure, DatabaseProcParam[] params, DataExists exists) throws Exception
 	{
 		Connection connection = null;
 		CallableStatement statement = null;
 		ResultSet resultSet;
-		DatabaseObject newObject;
 
 		try
 		{
@@ -150,13 +143,13 @@ public class DatabaseAdaptor
 		}
 	}
 
-	public List selectManyByProc(String prodecure, DatabaseProcParam[] params) throws Exception
+	public L selectManyByProc(String prodecure, DatabaseProcParam[] params) throws Exception
 	{
-		List newList = (List)fListCtor.newInstance(new Object[] {});
+		L newList = fListCtor.newInstance(new Object[] {});
 		Connection connection = null;
 		CallableStatement statement = null;
 		ResultSet resultSet;
-		DatabaseObject newObject;
+		T newObject;
 
 		try
 		{
@@ -215,11 +208,11 @@ public class DatabaseAdaptor
 		}
 	}
 
-	protected DatabaseObject readOne(ResultSet resultSet, DataExists exists) throws SQLException, SearchException
+	protected T readOne(ResultSet resultSet, DataExists exists) throws SQLException, SearchException
 	{
 		if(!resultSet.next())
 		{
-			if(exists == DataExists.MayNotExist)
+			if(exists.equals(DataExists.MayNotExist))
 				return null;
 			throw new SearchException("No Record Found");
 		}
@@ -227,7 +220,7 @@ public class DatabaseAdaptor
 		try
 		{
 			DatabaseFieldReader reader = new DatabaseFieldReader(resultSet);
-			DatabaseObject newObject = (DatabaseObject) fObjectCtor.newInstance(new Object[] { reader });
+			T newObject = fObjectCtor.newInstance(new Object[] { reader });
 			newObject.setNewRecord(false);
 			return newObject;
 		}
@@ -237,7 +230,7 @@ public class DatabaseAdaptor
 		}
 	}
 
-	public void update(DatabaseObject databaseObject) throws Exception
+	public void update(T databaseObject) throws Exception
 	{
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -295,6 +288,7 @@ public class DatabaseAdaptor
 		}
 	}
 
+/*
 	private void metaDataCheck() throws Exception
 	{
 		Connection connection = null;
@@ -312,4 +306,5 @@ public class DatabaseAdaptor
 			System.out.println();
 		}
 	}
+*/
 }
