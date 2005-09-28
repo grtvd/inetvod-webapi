@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.core;
@@ -52,7 +52,7 @@ public class BinaryDataReader extends DataReader
 		if(data == UndefinedShortValue)
 			return null;
 
-		return new Short(data);
+		return data;
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class BinaryDataReader extends DataReader
 		if(data == UndefinedDoubleValue)
 			return null;
 
-		return new Double(data);
+		return data;
 	}
 
 	/**
@@ -148,7 +148,7 @@ public class BinaryDataReader extends DataReader
 		if(data == UndefinedBooleanValue)
 			return null;
 
-		return new Boolean((data == 0) ? false : true);
+		return (data != 0);
 	}
 
 	/**

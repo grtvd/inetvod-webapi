@@ -4,8 +4,8 @@
  */
 package com.inetvod.common.dbdata;
 
-import java.util.ArrayList;
 import java.sql.Types;
+import java.util.ArrayList;
 
 public class MemberProviderList extends ArrayList<MemberProvider>
 {
@@ -16,6 +16,6 @@ public class MemberProviderList extends ArrayList<MemberProvider>
 
 		params[0] = new DatabaseProcParam(Types.VARCHAR, memberID.toString());
 
-		return (MemberProviderList)MemberProvider.getDatabaseAdaptor().selectManyByProc("MemberProvider_GetByMemberID", params);
+		return MemberProvider.getDatabaseAdaptor().selectManyByProc("MemberProvider_GetByMemberID", params);
 	}
 }

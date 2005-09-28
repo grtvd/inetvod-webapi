@@ -19,7 +19,7 @@ public class DownloadShow implements Writeable
 	protected String fShowURL;
 
 	/* Construction */
-	public DownloadShow(RentedShow rentedShow) throws Exception
+	public DownloadShow(RentedShow rentedShow)
 	{
 		fRentedShowID = rentedShow.getRentedShowID();
 		fShowURL = rentedShow.getShowURL();

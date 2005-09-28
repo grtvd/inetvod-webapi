@@ -21,7 +21,7 @@ public class ShowProviderList extends ArrayList<ShowProvider>
 
 		params[0] = new DatabaseProcParam(Types.VARCHAR, partialName);
 
-		return (ShowProviderList)ShowProvider.getDatabaseAdaptor().selectManyByProc("ShowProvider_Search", params);
+		return ShowProvider.getDatabaseAdaptor().selectManyByProc("ShowProvider_Search", params);
 	}
 
 	public static ShowProviderList findByProviderIDList(ProviderIDList providerIDList) throws Exception
@@ -38,7 +38,7 @@ public class ShowProviderList extends ArrayList<ShowProvider>
 
 			params[0] = new DatabaseProcParam(Types.VARCHAR, providerID.toString());
 
-			showProviderList.merge((ShowProviderList)ShowProvider.getDatabaseAdaptor().selectManyByProc("ShowProvider_GetByProviderID", params));
+			showProviderList.merge(ShowProvider.getDatabaseAdaptor().selectManyByProc("ShowProvider_GetByProviderID", params));
 		}
 
 		return showProviderList;
@@ -58,7 +58,7 @@ public class ShowProviderList extends ArrayList<ShowProvider>
 
 			params[0] = new DatabaseProcParam(Types.VARCHAR, categoryID.toString());
 
-			showProviderList.merge((ShowProviderList)ShowProvider.getDatabaseAdaptor().selectManyByProc("ShowProvider_GetByCategoryID", params));
+			showProviderList.merge(ShowProvider.getDatabaseAdaptor().selectManyByProc("ShowProvider_GetByCategoryID", params));
 		}
 
 		return showProviderList;

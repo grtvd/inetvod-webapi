@@ -78,25 +78,25 @@ public class INetVODPlayerRqst implements Requestable
 		//TODO: move this a config file or DB
 		response.setStatusCode(statusCode);
 
-		if(statusCode == StatusCode.sc_Success)
+		if(StatusCode.sc_Success.equals(statusCode))
 			response.setStatusMessage(null);
-		else if(statusCode == StatusCode.sc_InvalidUserID)
+		else if(StatusCode.sc_InvalidUserID.equals(statusCode))
 			response.setStatusMessage("We were unable to log you onto the system due to an invalid Logon ID or PIN.");
-		else if(statusCode == StatusCode.sc_InvalidSession)
+		else if(StatusCode.sc_InvalidSession.equals(statusCode))
 			response.setStatusMessage("Your session has expired and it no longer valid.  Please try again.");
-		else if(statusCode == StatusCode.sc_UserIDPasswordMismatch)
+		else if(StatusCode.sc_UserIDPasswordMismatch.equals(statusCode))
 			response.setStatusMessage("We were unable to log you onto the system due to an invalid Logon ID or PIN.");
-		else if(statusCode == StatusCode.sc_InvalidProviderUserIDPassword)
+		else if(StatusCode.sc_InvalidProviderUserIDPassword.equals(statusCode))
 			response.setStatusMessage("TODO: need message");
-		else if(statusCode == StatusCode.sc_AlreadyEnrolledAtProvider)
+		else if(StatusCode.sc_AlreadyEnrolledAtProvider.equals(statusCode))
 			response.setStatusMessage("TODO: need message");
-		else if(statusCode == StatusCode.sc_NoAutoProviderEnrollment)
+		else if(StatusCode.sc_NoAutoProviderEnrollment.equals(statusCode))
 			response.setStatusMessage("TODO: need message");
-		else if(statusCode == StatusCode.sc_Player_Missing)
+		else if(StatusCode.sc_Player_Missing.equals(statusCode))
 			response.setStatusMessage("Player information was not specified.");
-		else if(statusCode == StatusCode.sc_Player_OutOfDate)
+		else if(StatusCode.sc_Player_OutOfDate.equals(statusCode))
 			response.setStatusMessage("This version of the player is no longer supported. A newer version of this player is available.");
-		else if(statusCode == StatusCode.sc_ShowSearch_NeedCriteiia)
+		else if(StatusCode.sc_ShowSearch_NeedCriteiia.equals(statusCode))
 			response.setStatusMessage("A partial title, provider, or category must be provided for searching.");
 		else
 			response.setStatusMessage("An unknown error has occurred. Please try again. If the problem persists, please contact customer service.");	//TODO: better messages

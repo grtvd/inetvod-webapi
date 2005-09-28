@@ -4,8 +4,8 @@
  */
 package com.inetvod.common.dbdata;
 
-import java.util.ArrayList;
 import java.sql.Types;
+import java.util.ArrayList;
 
 public class RentedShowList extends ArrayList<RentedShow>
 {
@@ -20,6 +20,6 @@ public class RentedShowList extends ArrayList<RentedShow>
 
 		params[0] = new DatabaseProcParam(Types.VARCHAR, memberID.toString());
 
-		return (RentedShowList)RentedShow.getDatabaseAdaptor().selectManyByProc("RentedShow_GetByMemberID", params);
+		return RentedShow.getDatabaseAdaptor().selectManyByProc("RentedShow_GetByMemberID", params);
 	}
 }

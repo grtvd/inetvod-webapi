@@ -1,3 +1,7 @@
+/**
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Confidential and Proprietary
+ */
 package com.inetvod.player.request;
 
 import com.inetvod.common.dbdata.MemberID;
@@ -15,7 +19,7 @@ public class SessionData
 	//public string UserID = "";
 	//public string Password = "";
 
-	protected String fDataEncoded = null;
+	protected String fDataEncoded;
 
 	public MemberID getMemberID() { return fMemberID; }
 

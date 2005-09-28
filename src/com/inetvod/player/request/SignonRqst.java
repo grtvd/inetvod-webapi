@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.request;
@@ -22,6 +22,11 @@ import com.inetvod.player.rqdata.Player;
 
 public class SignonRqst implements Requestable
 {
+	/* Constants */
+	public static final int UserIDMaxLength = 128;
+	public static final int PasswordMaxLength = 32;
+
+	/* Fields */
 	protected String fUserID;
 	protected String fPassword;
 	protected Player fPlayer;
@@ -93,15 +98,15 @@ public class SignonRqst implements Requestable
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fUserID = reader.readString("UserID", 128);
-		fPassword = reader.readString("Password", 32);
+		fUserID = reader.readString("UserID", UserIDMaxLength);
+		fPassword = reader.readString("Password", PasswordMaxLength);
 		fPlayer = (Player)reader.readObject("Player", Player.CtorDataFiler);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
-		writer.writeString("UserID", fUserID, 128);
-		writer.writeString("Password", fPassword, 32);
+		writer.writeString("UserID", fUserID, UserIDMaxLength);
+		writer.writeString("Password", fPassword, PasswordMaxLength);
 		writer.writeObject("Player", fPlayer);
 	}
 }

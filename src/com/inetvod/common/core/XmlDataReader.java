@@ -4,17 +4,17 @@
  */
 package com.inetvod.common.core;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class XmlDataReader extends DataReader
 {
@@ -30,23 +30,6 @@ public class XmlDataReader extends DataReader
 		fDocument = db.parse(stream);
 		fCurNodeList = new ArrayList();
 		fCurNodeList.add(fDocument);
-	}
-
-	public void close()
-	{
-		//TODO:
-//		if(fXmlTextWriter != null)
-//		{
-//			fXmlTextWriter.WriteEndDocument();
-//			fXmlTextWriter.Close();
-//		}
-	}
-
-	public void flush()
-	{
-		//TODO:
-//		if(fXmlTextWriter != null)
-//			fXmlTextWriter.Flush();
 	}
 
 	protected Node findChildNode(String fieldName) throws Exception

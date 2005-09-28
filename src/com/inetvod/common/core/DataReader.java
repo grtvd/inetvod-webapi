@@ -100,7 +100,7 @@ public abstract class DataReader
 		if(value == null)
 			throw new Exception("value is null");
 
-		return value.booleanValue();
+		return value;
 	}
 
 	/**

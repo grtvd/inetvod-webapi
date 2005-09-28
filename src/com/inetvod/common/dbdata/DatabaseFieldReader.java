@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
@@ -63,7 +63,7 @@ public class DatabaseFieldReader extends DataReader
 		if(fResultSet.wasNull())
 			return null;
 
-		return new Short(value);
+		return value;
 	}
 
 	/**
@@ -90,7 +90,7 @@ public class DatabaseFieldReader extends DataReader
 		if(fResultSet.wasNull())
 			return null;
 
-		return new Float(value);
+		return value;
 	}
 
 	/**
@@ -106,7 +106,7 @@ public class DatabaseFieldReader extends DataReader
 		if(fResultSet.wasNull())
 			return null;
 
-		return new Double(value);
+		return value;
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class DatabaseFieldReader extends DataReader
 		if(fResultSet.wasNull())
 			return null;
 
-		return new Boolean(value);
+		return value;
 	}
 
 	/**

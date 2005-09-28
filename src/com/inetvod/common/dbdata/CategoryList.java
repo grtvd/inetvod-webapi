@@ -11,6 +11,6 @@ public class CategoryList extends ArrayList<Category>
 	/* Constuction Methods */
 	public static CategoryList find() throws Exception
 	{
-		return (CategoryList)Category.getDatabaseAdaptor().selectManyByProc("Category_GetAll", null);
+		return Category.getDatabaseAdaptor().selectManyByProc("Category_GetAll", null);
 	}
 }

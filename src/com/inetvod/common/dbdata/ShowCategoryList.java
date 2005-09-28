@@ -4,9 +4,9 @@
  */
 package com.inetvod.common.dbdata;
 
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.sql.Types;
 
 public class ShowCategoryList extends ArrayList<ShowCategory>
 {
@@ -21,7 +21,7 @@ public class ShowCategoryList extends ArrayList<ShowCategory>
 
 		params[0] = new DatabaseProcParam(Types.VARCHAR, partialName);
 
-		return (ShowCategoryList)ShowCategory.getDatabaseAdaptor().selectManyByProc("ShowCategory_Search", params);
+		return ShowCategory.getDatabaseAdaptor().selectManyByProc("ShowCategory_Search", params);
 	}
 
 	public static ShowCategoryList findByShowID(ShowID showID) throws Exception
@@ -30,7 +30,7 @@ public class ShowCategoryList extends ArrayList<ShowCategory>
 
 		params[0] = new DatabaseProcParam(Types.VARCHAR, showID.toString());
 
-		return (ShowCategoryList)ShowCategory.getDatabaseAdaptor().selectManyByProc("ShowCategory_GetByShowID", params);
+		return ShowCategory.getDatabaseAdaptor().selectManyByProc("ShowCategory_GetByShowID", params);
 	}
 
 	public static ShowCategoryList findByCategoryIDList(CategoryIDList categoryIDList) throws Exception
@@ -47,7 +47,7 @@ public class ShowCategoryList extends ArrayList<ShowCategory>
 
 			params[0] = new DatabaseProcParam(Types.VARCHAR, categoryID.toString());
 
-			showCategoryList.merge((ShowCategoryList)ShowCategory.getDatabaseAdaptor().selectManyByProc("ShowCategory_GetByCategoryID", params));
+			showCategoryList.merge(ShowCategory.getDatabaseAdaptor().selectManyByProc("ShowCategory_GetByCategoryID", params));
 		}
 
 		return showCategoryList;
@@ -59,7 +59,7 @@ public class ShowCategoryList extends ArrayList<ShowCategory>
 
 		params[0] = new DatabaseProcParam(Types.VARCHAR, memberID.toString());
 
-		return (ShowCategoryList)ShowCategory.getDatabaseAdaptor().selectManyByProc("ShowCategory_GetByRentedShowMemberID", params);
+		return ShowCategory.getDatabaseAdaptor().selectManyByProc("ShowCategory_GetByRentedShowMemberID", params);
 	}
 
 	/* Group Methods */

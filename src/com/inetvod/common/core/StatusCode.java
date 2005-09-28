@@ -4,6 +4,7 @@
  */
 package com.inetvod.common.core;
 
+@SuppressWarnings({"MagicNumber"})
 public class StatusCode
 {
 	public static final StatusCode sc_Success = new StatusCode(0);
@@ -35,28 +36,26 @@ public class StatusCode
 		if(value == null)
 			return sc_Success;
 
-		int val = value.intValue();
-
-		if(val == sc_Success.fValue)
+		if(value == sc_Success.fValue)
 			return sc_Success;
-		if(val == sc_InvalidUserID.fValue)
+		if(value == sc_InvalidUserID.fValue)
 			return sc_InvalidUserID;
-		if(val == sc_UserIDPasswordMismatch.fValue)
+		if(value == sc_UserIDPasswordMismatch.fValue)
 			return sc_UserIDPasswordMismatch;
-		if(val == sc_InvalidProviderUserIDPassword.fValue)
+		if(value == sc_InvalidProviderUserIDPassword.fValue)
 			return sc_InvalidProviderUserIDPassword;
 
-		if(val == sc_AlreadyEnrolledAtProvider.fValue)
+		if(value == sc_AlreadyEnrolledAtProvider.fValue)
 			return sc_AlreadyEnrolledAtProvider;
-		if(val == sc_NoAutoProviderEnrollment.fValue)
+		if(value == sc_NoAutoProviderEnrollment.fValue)
 			return sc_NoAutoProviderEnrollment;
 
-		if(val == sc_NoAutoProviderEnrollment.fValue)
+		if(value == sc_NoAutoProviderEnrollment.fValue)
 			return sc_NoAutoProviderEnrollment;
 
-		if(val == sc_Player_Missing.fValue)
+		if(value == sc_Player_Missing.fValue)
 			return sc_Player_Missing;
-		if(val == sc_Player_OutOfDate.fValue)
+		if(value == sc_Player_OutOfDate.fValue)
 			return sc_Player_OutOfDate;
 
 		return sc_GeneralError;
@@ -65,8 +64,8 @@ public class StatusCode
 	public static Integer convertToInt(StatusCode statusCode)
 	{
 		if(statusCode == null)
-			return new Integer(sc_Success.fValue);
+			return sc_Success.fValue;
 
-		return new Integer(statusCode.fValue);
+		return statusCode.fValue;
 	}
 }

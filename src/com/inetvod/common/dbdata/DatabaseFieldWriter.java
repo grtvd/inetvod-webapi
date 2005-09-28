@@ -1,12 +1,12 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
 
 import java.sql.PreparedStatement;
-import java.sql.Types;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.Date;
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class DatabaseFieldWriter extends DataWriter
 	public void writeShort(String fieldName, Short data) throws Exception
 	{
 		if (data != null)
-			fStatement.setShort(fCurParam++, data.shortValue());
+			fStatement.setShort(fCurParam++, data);
 		else
 			fStatement.setNull(fCurParam++, Types.SMALLINT);
 	}
@@ -82,7 +82,7 @@ public class DatabaseFieldWriter extends DataWriter
 	public void writeDouble(String fieldName, Double data) throws Exception
 	{
 		if (data != null)
-			fStatement.setDouble(fCurParam++, data.doubleValue());
+			fStatement.setDouble(fCurParam++, data);
 		else
 			fStatement.setNull(fCurParam++, Types.DOUBLE);
 	}
@@ -137,7 +137,7 @@ public class DatabaseFieldWriter extends DataWriter
 	public void writeBoolean(String fieldName, Boolean data) throws Exception
 	{
 		if(data != null)
-			fStatement.setBoolean(fCurParam++, data.booleanValue());
+			fStatement.setBoolean(fCurParam++, data);
 		else
 			fStatement.setNull(fCurParam, Types.BOOLEAN);
 	}

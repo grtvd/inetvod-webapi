@@ -1,2 +1,3 @@
 Possible ArrayList to ArrayList<T>: XmlDataReader, DatabaseFieldReader,
-MaxLengths: remove magic numbers
+Support Session
+Filter Adult content

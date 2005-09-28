@@ -41,8 +41,8 @@ public class ShowSearch implements Writeable
 	public void writeTo(DataWriter writer) throws Exception
 	{
 		writer.writeDataID("ShowID", fShowID, ShowID.MaxLength);
-		writer.writeString("Name", fName, 64);
-		writer.writeString("EpisodeName", fEpisodeName, 64);
+		writer.writeString("Name", fName, Show.NameMaxLength);
+		writer.writeString("EpisodeName", fEpisodeName, Show.EpisodeNameMaxLength);
 		writer.writeShort("ReleasedYear", fReleasedYear);
 		writer.writeList("ShowProvider", fShowProviderList);
 	}

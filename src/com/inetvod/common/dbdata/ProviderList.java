@@ -11,6 +11,6 @@ public class ProviderList extends ArrayList<Provider>
 	/* Constuction Methods */
 	public static ProviderList find() throws Exception
 	{
-		return (ProviderList)Provider.getDatabaseAdaptor().selectManyByProc("Provider_GetAll", null);
+		return Provider.getDatabaseAdaptor().selectManyByProc("Provider_GetAll", null);
 	}
 }

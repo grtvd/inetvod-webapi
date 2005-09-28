@@ -11,6 +11,6 @@ public class RatingList extends ArrayList<Rating>
 	/* Constuction Methods */
 	public static RatingList find() throws Exception
 	{
-		return (RatingList)Rating.getDatabaseAdaptor().selectManyByProc("Rating_GetAll", null);
+		return Rating.getDatabaseAdaptor().selectManyByProc("Rating_GetAll", null);
 	}
 }
