@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.rqdata;
@@ -7,7 +7,7 @@ package com.inetvod.player.rqdata;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class MemberProviderList extends ArrayList
+public class MemberProviderList extends ArrayList<MemberProvider>
 {
 	public MemberProviderList(com.inetvod.common.dbdata.MemberProviderList memberProviderList)
 	{

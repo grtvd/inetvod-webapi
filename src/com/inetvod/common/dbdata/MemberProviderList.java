@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
@@ -7,7 +7,7 @@ package com.inetvod.common.dbdata;
 import java.util.ArrayList;
 import java.sql.Types;
 
-public class MemberProviderList extends ArrayList
+public class MemberProviderList extends ArrayList<MemberProvider>
 {
 	/* Constuction Methods */
 	public static MemberProviderList findByMemberID(MemberID memberID) throws Exception

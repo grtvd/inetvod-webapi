@@ -1,10 +1,13 @@
+/**
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Confidential and Proprietary
+ */
 package com.inetvod.player.rqdata;
 
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowID;
-import com.inetvod.common.dbdata.ShowProviderList;
 
 public class ShowSearch implements Writeable
 {

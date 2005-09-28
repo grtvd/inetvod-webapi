@@ -1,9 +1,13 @@
+/**
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Confidential and Proprietary
+ */
 package com.inetvod.player.rqdata;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class ShowProviderList extends ArrayList
+public class ShowProviderList extends ArrayList<ShowProvider>
 {
 	/* Construction Methods */
 	public ShowProviderList()

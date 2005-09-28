@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.sql.Types;
 
-public class ShowCategoryList extends ArrayList
+public class ShowCategoryList extends ArrayList<ShowCategory>
 {
 	/* Constuction Methods */
 	public ShowCategoryList()
@@ -67,7 +67,7 @@ public class ShowCategoryList extends ArrayList
 	/**
 	 * Returns a sub-set of items from this list that have the specified ShowID
 	 * @param showID
-	 * @return
+	 * @return ShowCategoryList
 	 */
 	public ShowCategoryList findItemsByShowID(ShowID showID)
 	{
@@ -88,7 +88,7 @@ public class ShowCategoryList extends ArrayList
 	/**
 	 * Returns a sub-set of items from this list that have the specified CategoryID
 	 * @param categoryIDList
-	 * @return
+	 * @return ShowCategoryList
 	 */
 	public ShowCategoryList findItemsByCategoryIDList(CategoryIDList categoryIDList)
 	{
@@ -108,7 +108,7 @@ public class ShowCategoryList extends ArrayList
 
 	/**
 	 * Returns a list of CategoryID from the items in this list.
-	 * @return
+	 * @return ShowCategoryList
 	 */
 	public CategoryIDList getCategoryIDList()
 	{

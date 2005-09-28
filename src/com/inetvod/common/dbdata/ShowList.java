@@ -1,14 +1,14 @@
+/**
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Confidential and Proprietary
+ */
 package com.inetvod.common.dbdata;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.sql.Types;
 
-/**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
- * Confidential and Proprietary
- */
-public class ShowList extends ArrayList
+public class ShowList extends ArrayList<Show>
 {
 	/* Construction Methods */
 	public ShowList()

@@ -1,15 +1,12 @@
+/**
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Confidential and Proprietary
+ */
 package com.inetvod.common.dbdata;
 
 import java.util.ArrayList;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Bob
- * Date: Jul 7, 2004
- * Time: 10:16:39 PM
- * To change this template use File | Settings | File Templates.
- */
-public class RatingList extends ArrayList
+public class RatingList extends ArrayList<Rating>
 {
 	/* Constuction Methods */
 	public static RatingList find() throws Exception
