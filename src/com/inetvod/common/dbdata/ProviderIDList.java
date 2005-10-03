@@ -11,5 +11,5 @@ import com.inetvod.common.core.CtorUtil;
 
 public class ProviderIDList extends ArrayList<ProviderID>
 {
-	public static final Constructor Ctor = CtorUtil.getCtorDefault(ProviderIDList.class);
+	public static final Constructor<ProviderIDList> Ctor = CtorUtil.getCtorDefault(ProviderIDList.class);
 }

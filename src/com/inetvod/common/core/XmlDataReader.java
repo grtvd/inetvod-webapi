@@ -19,7 +19,7 @@ import org.w3c.dom.NodeList;
 public class XmlDataReader extends DataReader
 {
 	protected Document fDocument;
-	protected ArrayList fCurNodeList;
+	protected ArrayList<Node> fCurNodeList;
 
 	public XmlDataReader(InputStream stream) throws Exception
 	{
@@ -28,7 +28,7 @@ public class XmlDataReader extends DataReader
 		//dbf.setNamespaceAware(true);
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		fDocument = db.parse(stream);
-		fCurNodeList = new ArrayList();
+		fCurNodeList = new ArrayList<Node>();
 		fCurNodeList.add(fDocument);
 	}
 
@@ -37,7 +37,7 @@ public class XmlDataReader extends DataReader
 		if(fCurNodeList.size() == 0)
 			throw new Exception("No current node");
 
-		NodeList nodeList = ((Node)(fCurNodeList.get(fCurNodeList.size() - 1))).getChildNodes();
+		NodeList nodeList = fCurNodeList.get(fCurNodeList.size() - 1).getChildNodes();
 		Node node;
 
 		for(int i = 0; i < nodeList.getLength(); i++)
@@ -55,7 +55,7 @@ public class XmlDataReader extends DataReader
 		if(fCurNodeList.size() == 0)
 			throw new Exception("No current node");
 
-		NodeList nodeList = ((Node)(fCurNodeList.get(fCurNodeList.size() - 1))).getChildNodes();
+		NodeList nodeList = fCurNodeList.get(fCurNodeList.size() - 1).getChildNodes();
 		ArrayList<Node> nodes = new ArrayList<Node>();
 		Node node;
 
@@ -244,17 +244,17 @@ public class XmlDataReader extends DataReader
 	 * @param ctorDataFiler
 	 * @return may return null
 	 */
-	public Readable readObject(String fieldName, Constructor ctorDataFiler) throws Exception
+	public <T extends Readable> T readObject(String fieldName, Constructor<T> ctorDataFiler) throws Exception
 	{
 		Node node = findChildNode(fieldName);
 		if(node == null)
 			return null;
 
 		fCurNodeList.add(node);
-		Readable streamable = (Readable)ctorDataFiler.newInstance(new Object[] { this });
+		T readable = ctorDataFiler.newInstance(new Object[] { this });
 		fCurNodeList.remove(fCurNodeList.size() - 1);
 
-		return streamable;
+		return readable;
 	}
 
 	/**
@@ -264,7 +264,7 @@ public class XmlDataReader extends DataReader
 	 * @param itemCtorDataFiler
 	 * @return will never return null, may return an empty list
 	 */
-	public List readList(String fieldName, Constructor listCtor, Constructor itemCtorDataFiler) throws Exception
+	public <T, L extends List<T>> L readList(String fieldName, Constructor<L> listCtor, Constructor<T> itemCtorDataFiler) throws Exception
 	{
 //		IList list = (IList)listCtor.Invoke(new object[] {});
 //
@@ -292,9 +292,10 @@ public class XmlDataReader extends DataReader
 	 * @param itemCtorString
 	 * @return will never return null, may return an empty list
 	 */
-	public List readStringList(String fieldName, int maxLength, Constructor listCtor, Constructor itemCtorString) throws Exception
+	public <T, L extends List<T>> L readStringList(String fieldName, int maxLength, Constructor<L> listCtor,
+		Constructor<T> itemCtorString) throws Exception
 	{
-		List list = (List)listCtor.newInstance(new Object[] {});
+		L list = listCtor.newInstance(new Object[] {});
 
 		ArrayList<Node> nodes = findChildNodes(fieldName);
 		if(nodes.size() == 0)
@@ -302,7 +303,7 @@ public class XmlDataReader extends DataReader
 
 		for(Node node: nodes)
 		{
-			Object item = itemCtorString.newInstance(new Object[] { getNodeText(node) });
+			T item = itemCtorString.newInstance(new Object[] { getNodeText(node) });
 			list.add(item);
 		}
 

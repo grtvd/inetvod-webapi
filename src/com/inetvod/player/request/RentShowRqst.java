@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.request;
@@ -78,7 +78,7 @@ public class RentShowRqst extends SessionRequestable
 	{
 		fShowID = (ShowID)reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
 		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
-		fApprovedCost = (ShowCost)reader.readObject("ApprovedCost", ShowCost.CtorDataReader);
+		fApprovedCost = reader.readObject("ApprovedCost", ShowCost.CtorDataReader);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception

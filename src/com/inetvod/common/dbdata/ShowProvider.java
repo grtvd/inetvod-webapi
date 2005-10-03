@@ -83,7 +83,7 @@ public class ShowProvider extends DatabaseObject
 		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
 
 		fProviderShowID = (ProviderShowID)reader.readDataID("ProviderShowID", ProviderShowID.MaxLength, ProviderShowID.CtorString);
-		fShowCost = (ShowCost)reader.readObject("ShowCost", ShowCost.CtorDataReader);
+		fShowCost = reader.readObject("ShowCost", ShowCost.CtorDataReader);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception

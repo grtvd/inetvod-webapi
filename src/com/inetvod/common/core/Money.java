@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.core;
@@ -8,7 +8,7 @@ import java.lang.reflect.Constructor;
 
 public class Money implements Readable, Writeable
 {
-	public static final Constructor CtorDataFiler = DataReader.getCtor(Money.class);
+	public static final Constructor<Money> CtorDataFiler = DataReader.getCtor(Money.class);
 
 	/* Properties */
 	protected CurrencyID fCurrencyID;

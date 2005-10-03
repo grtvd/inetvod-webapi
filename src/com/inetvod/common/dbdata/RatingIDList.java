@@ -11,5 +11,5 @@ import com.inetvod.common.core.CtorUtil;
 
 public class RatingIDList extends ArrayList<RatingID>
 {
-	public static final Constructor Ctor = CtorUtil.getCtorDefault(RatingIDList.class);
+	public static final Constructor<RatingIDList> Ctor = CtorUtil.getCtorDefault(RatingIDList.class);
 }

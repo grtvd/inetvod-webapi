@@ -89,7 +89,7 @@ public class RentedShow extends DatabaseObject
 		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
 
 		fShowURL = reader.readString("ShowURL", Show.ShowURLMaxLength);
-		fShowCost = (ShowCost)reader.readObject("ShowCost", ShowCost.CtorDataReader);
+		fShowCost = reader.readObject("ShowCost", ShowCost.CtorDataReader);
 		fRentedOn = reader.readDateTime("RentedOn");
 		fAvailableUntil = reader.readDateTime("AvailableUntil");
 	}

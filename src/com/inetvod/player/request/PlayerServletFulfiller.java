@@ -47,6 +47,6 @@ public class PlayerServletFulfiller extends ServletFulfiller
 	/// <returns></returns>
 	protected Requestable readRequestableFromReader(DataReader dataFiler) throws Exception
 	{
-		return (Requestable)dataFiler.readObject("INetVODPlayerRqst", INetVODPlayerRqst.CtorDataFiler);
+		return dataFiler.readObject("INetVODPlayerRqst", INetVODPlayerRqst.CtorDataFiler);
 	}
 }

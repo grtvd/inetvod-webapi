@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.common.dbdata;
@@ -15,7 +15,7 @@ import com.inetvod.common.core.Writeable;
 public class ShowCost implements Readable, Writeable
 {
 	/* Constants */
-	public static Constructor CtorDataReader = DataReader.getCtor(ShowCost.class);
+	public static Constructor<ShowCost> CtorDataReader = DataReader.getCtor(ShowCost.class);
 	public static final int DescriptionMaxLength = 32;
 
 	/* Properties */
@@ -50,7 +50,7 @@ public class ShowCost implements Readable, Writeable
 	public void readFrom(DataReader reader) throws Exception
 	{
 		fShowCostType = ShowCostType.convertFromString(reader.readString("ShowCostType", ShowCostType.MaxLength));
-		fCost = (Money) reader.readObject("Cost", Money.CtorDataFiler);
+		fCost = reader.readObject("Cost", Money.CtorDataFiler);
 		fCostDisplay = reader.readString("CostDisplay", DescriptionMaxLength);
 		fRentalHours = reader.readShort("RentalHours");
 	}

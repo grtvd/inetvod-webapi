@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.request;
@@ -128,12 +128,11 @@ public class ShowSearchRqst extends SessionRequestable
 	{
 		fPartialName = reader.readString("PartialName", Show.NameMaxLength);
 
-		fProviderIDList = (ProviderIDList)reader.readStringList("ProviderID",
-			ProviderID.MaxLength, ProviderIDList.Ctor, ProviderID.CtorString);
-		fCategoryIDList = (CategoryIDList)reader.readStringList("CategoryID",
-			CategoryID.MaxLength, CategoryIDList.Ctor, CategoryID.CtorString);
-		fRatingIDList = (RatingIDList)reader.readStringList("RatingID",
-			RatingID.MaxLength, RatingIDList.Ctor, RatingID.CtorString);
+		fProviderIDList = reader.readStringList("ProviderID", ProviderID.MaxLength, ProviderIDList.Ctor,
+			ProviderID.CtorString);
+		fCategoryIDList = reader.readStringList("CategoryID", CategoryID.MaxLength, CategoryIDList.Ctor,
+			CategoryID.CtorString);
+		fRatingIDList = reader.readStringList("RatingID", RatingID.MaxLength, RatingIDList.Ctor, RatingID.CtorString);
 
 		fMaxResults = reader.readShort("MaxResults");
 	}

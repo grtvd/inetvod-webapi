@@ -15,7 +15,7 @@ import com.inetvod.common.core.Writeable;
 public class RequestData implements Requestable
 {
 	/* Constants */
-	public static final Constructor CtorDataFiler = DataReader.getCtor(RequestData.class);
+	public static final Constructor<RequestData> CtorDataFiler = DataReader.getCtor(RequestData.class);
 	public static final int RequestTypeMaxLength = 64;
 
 	/* Properties */
@@ -55,13 +55,14 @@ public class RequestData implements Requestable
 		return responseData;
 	}
 
+	@SuppressWarnings({"unchecked"})
 	public void readFrom(DataReader reader) throws Exception
 	{
 		fRequestType = reader.readString("RequestType", RequestTypeMaxLength);
 
-		Class cl = Class.forName(getClass().getPackage().getName() + "." + fRequestType);
-		Constructor ctor = cl.getConstructor(new Class[] { DataReader.class });
-		fRequest = (Requestable)reader.readObject(fRequestType, ctor);
+		Class<Requestable> cl = (Class<Requestable>)Class.forName(getClass().getPackage().getName() + "." + fRequestType);
+		Constructor<Requestable> ctor = cl.getConstructor(new Class[] { DataReader.class });
+		fRequest = reader.readObject(fRequestType, ctor);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
