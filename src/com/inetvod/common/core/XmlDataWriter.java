@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class XmlDataWriter extends DataWriter
@@ -283,10 +282,8 @@ public class XmlDataWriter extends DataWriter
 	 */
 	public void writeList(String fieldName, List data) throws Exception
 	{
-		Iterator iter = data.iterator();
-
-		while(iter.hasNext())
-			writeObject(fieldName, (Writeable)iter.next());
+		for(Object item : data)
+			writeObject(fieldName, (Writeable)item);
 	}
 
 	/**
@@ -298,10 +295,8 @@ public class XmlDataWriter extends DataWriter
 	 */
 	public void writeStringList(String fieldName, List data, int maxLength) throws Exception
 	{
-		Iterator iter = data.iterator();
-
-		while(iter.hasNext())
-			writeString(fieldName, iter.next().toString(), maxLength);
+		for(Object item : data)
+			writeString(fieldName, item.toString(), maxLength);
 	}
 
 	/**

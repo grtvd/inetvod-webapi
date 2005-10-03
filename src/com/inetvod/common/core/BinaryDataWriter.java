@@ -205,10 +205,8 @@ public class BinaryDataWriter extends DataWriter
 	{
 		writeIntValue(fieldName, data.size());
 
-		Iterator iter = data.iterator();
-
-		while(iter.hasNext())
-			((Writeable)iter.next()).writeTo(this);
+		for(Object item : data)
+			((Writeable)item).writeTo(this);
 	}
 
 	/**
