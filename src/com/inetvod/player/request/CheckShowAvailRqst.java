@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.request;
@@ -44,8 +44,8 @@ public class CheckShowAvailRqst extends SessionRequestable
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fShowID = (ShowID)reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
-		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
+		fShowID = reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
+		fProviderID = reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception

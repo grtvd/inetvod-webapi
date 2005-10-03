@@ -141,5 +141,5 @@ public abstract class DataReader
 	 * @param ctorString
 	 * @return may return null
 	 */
-	public abstract DataID readDataID(String fieldName, int maxLength, Constructor ctorString) throws Exception;
+	public abstract <T extends DataID> T readDataID(String fieldName, int maxLength, Constructor<T> ctorString) throws Exception;
 }

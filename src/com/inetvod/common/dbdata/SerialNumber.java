@@ -76,7 +76,7 @@ public class SerialNumber extends DatabaseObject
 	{
 		fSerialNumberID = reader.readString("SerialNumberID", SerialNumberIDMaxLength);
 		fActive = reader.readBooleanValue("Active");
-		fMemberID = (MemberID)reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
+		fMemberID = reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
 		fPIN = reader.readString("PIN", PINMaxLength);
 	}
 

@@ -36,9 +36,9 @@ public class ShowCategory extends  DatabaseObject
 	/* Streamable Members */
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fShowCategoryID = (ShowCategoryID)reader.readDataID("ShowCategoryID", ShowCategoryID.MaxLength, ShowCategoryID.CtorString);
-		fShowID = (ShowID)reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
-		fCategoryID = (CategoryID)reader.readDataID("CategoryID", CategoryID.MaxLength, CategoryID.CtorString);
+		fShowCategoryID = reader.readDataID("ShowCategoryID", ShowCategoryID.MaxLength, ShowCategoryID.CtorString);
+		fShowID = reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
+		fCategoryID = reader.readDataID("CategoryID", CategoryID.MaxLength, CategoryID.CtorString);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception

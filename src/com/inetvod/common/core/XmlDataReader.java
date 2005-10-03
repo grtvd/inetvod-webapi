@@ -317,13 +317,13 @@ public class XmlDataReader extends DataReader
 	 * @param ctorString
 	 * @return may return null
 	 */
-	public DataID readDataID(String fieldName, int maxLength, Constructor ctorString) throws Exception
+	public <T extends DataID> T readDataID(String fieldName, int maxLength, Constructor<T> ctorString) throws Exception
 	{
 		String data = readString(fieldName, maxLength);
 
 		if (data == null)
 			return null;
 
-		return (DataID)ctorString.newInstance(new Object[] { data });
+		return ctorString.newInstance(new Object[] { data });
 	}
 }

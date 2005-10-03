@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.request;
@@ -48,7 +48,7 @@ public class SetProviderRqst extends SessionRequestable
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
+		fProviderID = reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
 		fUserID = reader.readString("UserID", MemberProvider.EncryptedUserIDMaxLength);
 		fPassword = reader.readString("Password", MemberProvider.EncryptedPasswordMaxLength);
 	}

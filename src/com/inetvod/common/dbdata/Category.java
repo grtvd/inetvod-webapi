@@ -44,7 +44,7 @@ public class Category extends DatabaseObject
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fCategoryID = (CategoryID)reader.readDataID("CategoryID", CategoryID.MaxLength, CategoryID.CtorString);
+		fCategoryID = reader.readDataID("CategoryID", CategoryID.MaxLength, CategoryID.CtorString);
 		fName = reader.readString("Name", NameMaxLength);
 	}
 

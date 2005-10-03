@@ -64,7 +64,7 @@ public class MemberPrefs extends DatabaseObject
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fMemberID = (MemberID)reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
+		fMemberID = reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
 		fIncludeAdult = IncludeAdult.convertFromString(reader.readString("IncludeAdult", IncludeAdult.MaxLength));
 	}
 

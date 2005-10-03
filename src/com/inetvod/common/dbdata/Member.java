@@ -103,7 +103,7 @@ public class Member extends DatabaseObject
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fMemberID = (MemberID)reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
+		fMemberID = reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
 		fFirstName = reader.readString("FirstName", FirstNameMaxLength);
 		fLastName = reader.readString("LastName", LastNameMaxLength);
 		fAddrStreet1 = reader.readString("AddrStreet1", AddrStreetMaxLength);

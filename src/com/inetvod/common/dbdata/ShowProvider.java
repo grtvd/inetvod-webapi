@@ -78,11 +78,11 @@ public class ShowProvider extends DatabaseObject
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fShowProviderID = (ShowProviderID)reader.readDataID("ShowProviderID", ShowProviderID.MaxLength, ShowProviderID.CtorString);
-		fShowID = (ShowID)reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
-		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
+		fShowProviderID = reader.readDataID("ShowProviderID", ShowProviderID.MaxLength, ShowProviderID.CtorString);
+		fShowID = reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
+		fProviderID = reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
 
-		fProviderShowID = (ProviderShowID)reader.readDataID("ProviderShowID", ProviderShowID.MaxLength, ProviderShowID.CtorString);
+		fProviderShowID = reader.readDataID("ProviderShowID", ProviderShowID.MaxLength, ProviderShowID.CtorString);
 		fShowCost = reader.readObject("ShowCost", ShowCost.CtorDataReader);
 	}
 

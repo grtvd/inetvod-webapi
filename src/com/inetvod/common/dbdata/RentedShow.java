@@ -83,10 +83,10 @@ public class RentedShow extends DatabaseObject
 	/* DatabaseObject Members */
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fRentedShowID = (RentedShowID)reader.readDataID("RentedShowID", RentedShowID.MaxLength, RentedShowID.CtorString);
-		fMemberID = (MemberID)reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
-		fShowID = (ShowID)reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
-		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
+		fRentedShowID = reader.readDataID("RentedShowID", RentedShowID.MaxLength, RentedShowID.CtorString);
+		fMemberID = reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
+		fShowID = reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
+		fProviderID = reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
 
 		fShowURL = reader.readString("ShowURL", Show.ShowURLMaxLength);
 		fShowCost = reader.readObject("ShowCost", ShowCost.CtorDataReader);

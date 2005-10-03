@@ -89,10 +89,10 @@ public class MemberProvider extends DatabaseObject
 	/* DatabaseObject Members */
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fMemberProviderID = (MemberProviderID)reader.readDataID("MemberProviderID", MemberProviderID.MaxLength,
+		fMemberProviderID = reader.readDataID("MemberProviderID", MemberProviderID.MaxLength,
 			MemberProviderID.CtorString);
-		fMemberID = (MemberID)reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
-		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
+		fMemberID = reader.readDataID("MemberID", MemberID.MaxLength, MemberID.CtorString);
+		fProviderID = reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
 		fEncryptedUserName = reader.readString("EncryptedUserName", EncryptedUserIDMaxLength);
 		fEncryptedPassword = reader.readString("EncryptedPassword", EncryptedPasswordMaxLength);
 	}

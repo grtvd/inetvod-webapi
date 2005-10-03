@@ -76,8 +76,8 @@ public class RentShowRqst extends SessionRequestable
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fShowID = (ShowID)reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
-		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
+		fShowID = reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
+		fProviderID = reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
 		fApprovedCost = reader.readObject("ApprovedCost", ShowCost.CtorDataReader);
 	}
 

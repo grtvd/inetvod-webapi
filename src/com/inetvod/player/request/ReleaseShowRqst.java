@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.request;
@@ -39,7 +39,7 @@ public class ReleaseShowRqst extends SessionRequestable
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fRentedShowID = (RentedShowID)reader.readDataID("RentedShowID", RentedShowID.MaxLength, RentedShowID.CtorString);
+		fRentedShowID = reader.readDataID("RentedShowID", RentedShowID.MaxLength, RentedShowID.CtorString);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception

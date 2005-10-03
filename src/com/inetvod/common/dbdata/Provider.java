@@ -45,7 +45,7 @@ public class Provider extends DatabaseObject
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fProviderID = (ProviderID)reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
+		fProviderID = reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
 		fName = reader.readString("Name", NameMaxLength);
 	}
 

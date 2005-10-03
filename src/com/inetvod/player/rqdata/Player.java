@@ -41,8 +41,7 @@ public class Player implements Readable, Writeable
 	/* Implementation */
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fManufacturerID = (ManufacturerID)reader.readDataID("ManufacturerID", ManufacturerID.MaxLength,
-			ManufacturerID.CtorString);
+		fManufacturerID = reader.readDataID("ManufacturerID", ManufacturerID.MaxLength, ManufacturerID.CtorString);
 		fModelNo = reader.readString("ModelNo", ModelNoMaxLength);
 		fSerialNo = reader.readString("SerialNo", SerialNoMaxLength);
 		fVersion = reader.readString("Version", VersionMaxLength);

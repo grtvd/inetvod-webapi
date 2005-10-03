@@ -92,7 +92,7 @@ public class Show extends DatabaseObject
 	/* DatabaseObject Members */
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fShowID = (ShowID)reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
+		fShowID = reader.readDataID("ShowID", ShowID.MaxLength, ShowID.CtorString);
 		fName = reader.readString("Name", NameMaxLength);
 		fEpisodeName = reader.readString("EpisodeName", EpisodeNameMaxLength);
 		fEpisodeNumber = reader.readString("EpisodeNumber", EpisodeNumberMaxLength);
@@ -101,7 +101,7 @@ public class Show extends DatabaseObject
 		fDescription = reader.readString("Description", DescriptionMaxLength);
 		fRunningMins = reader.readShort("RunningMins");
 		fPictureURL = reader.readString("PictureURL", PictureURLMaxLength);
-		fRatingID = (RatingID)reader.readDataID("RatingID", RatingID.MaxLength, RatingID.CtorString);
+		fRatingID = reader.readDataID("RatingID", RatingID.MaxLength, RatingID.CtorString);
 		fIsAdult = reader.readBoolean("IsAdult");
 	}
 

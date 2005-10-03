@@ -44,7 +44,7 @@ public class Rating extends DatabaseObject
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fRatingID = (RatingID)reader.readDataID("RatingID", RatingID.MaxLength, RatingID.CtorString);
+		fRatingID = reader.readDataID("RatingID", RatingID.MaxLength, RatingID.CtorString);
 		fName = reader.readString("Name", NameMaxLength);
 	}
 
