@@ -203,7 +203,7 @@ public class DatabaseFieldReader extends DataReader
 	 */
 	public List readList(String fieldName, Constructor listCtor, Constructor itemCtorDataFiler) throws Exception
 	{
-		return null;  //To change body of implemented methods use File | Settings | File Templates.
+		throw new UnsupportedOperationException("need to implement");	//TODO: need to implement
 	}
 
 	/**
