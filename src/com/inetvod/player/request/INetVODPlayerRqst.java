@@ -47,9 +47,12 @@ public class INetVODPlayerRqst implements Requestable
 		// fulfull request
 		response.setRequestID(fRequestID);
 
-		fRequestData.setRequest(fVersion, fRequestID, fSessionData);
-		response.setResponseData((ResponseData)fRequestData.fulfillRequest());
-		fStatusCode = fRequestData.getStatusCode();
+		fStatusCode = fRequestData.setRequest(fVersion, fRequestID, fSessionData);
+		if(StatusCode.sc_Success.equals(fStatusCode))
+		{
+			response.setResponseData((ResponseData)fRequestData.fulfillRequest());
+			fStatusCode = fRequestData.getStatusCode();
+		}
 		setStatus(response, fStatusCode);
 
 		return response;

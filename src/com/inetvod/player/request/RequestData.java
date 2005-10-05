@@ -30,10 +30,12 @@ public class RequestData implements Requestable
 		readFrom(filer);
 	}
 
-	public void setRequest(String version, String requestID, SessionData sessionData) throws Exception
+	public StatusCode setRequest(String version, String requestID, SessionData sessionData) throws Exception
 	{
 		if(fRequest instanceof SessionRequestable)
-			((SessionRequestable)fRequest).setRequest(version, requestID, sessionData);
+			return ((SessionRequestable)fRequest).setRequest(version, requestID, sessionData);
+
+		return StatusCode.sc_Success;
 	}
 
 	public Writeable fulfillRequest() throws Exception

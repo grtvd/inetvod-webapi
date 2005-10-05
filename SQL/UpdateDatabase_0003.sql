@@ -23,18 +23,41 @@ COMMIT
 
 BEGIN TRANSACTION
 
---//////////////////////////////////////////////////////////////////////////////
-
-EXECUTE sp_rename N'dbo.ShowProvider.RentalHours', N'Tmp_RentalHours', 'COLUMN'
-GO
-EXECUTE sp_rename N'dbo.ShowProvider.Tmp_RentalHours', N'ShowCost_RentalHours', 'COLUMN'
-GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
-EXECUTE sp_rename N'dbo.RentedShow.RentalHours', N'Tmp_RentalHours', 'COLUMN'
+DROP TABLE [dbo].[MemberSession]
 GO
-EXECUTE sp_rename N'dbo.RentedShow.Tmp_RentalHours', N'ShowCost_RentalHours', 'COLUMN'
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE TABLE [dbo].[MemberSession] (
+	[MemberSessionID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[MemberID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[PlayerID] uniqueidentifier NOT NULL ,
+	[StartedOn] [datetime] NOT NULL ,
+	[ExpiresAt] [datetime] NOT NULL ,
+	[ShowAdult] [bit] NOT NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[MemberSession] ADD
+	CONSTRAINT [PK_MemberSession] PRIMARY KEY  CLUSTERED
+	(
+		[MemberSessionID]
+	)  ON [PRIMARY]
+GO
+
+CREATE  INDEX [IX_MemberSession_MemberID] ON [dbo].[MemberSession]([MemberID]) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[MemberSession] ADD
+	CONSTRAINT [FK_MemberSession_Member] FOREIGN KEY
+	(
+		[MemberID]
+	) REFERENCES [dbo].[Member] (
+		[MemberID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE
 GO
 
 --//////////////////////////////////////////////////////////////////////////////

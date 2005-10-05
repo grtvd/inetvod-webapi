@@ -1,3 +1,8 @@
+--//////////////////////////////////////////////////////////////////////////////
+-- Copyright © 2005 iNetVOD, Inc. All Rights Reserved.
+-- Confidential and Proprietary
+--//////////////////////////////////////////////////////////////////////////////
+
 use master
 IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'iNetVOD')
 	DROP DATABASE [iNetVOD]
@@ -237,6 +242,10 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberProv
 drop table [dbo].[MemberProvider]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberSession]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[MemberSession]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[SerialNumber]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
 drop table [dbo].[SerialNumber]
 GO
@@ -386,6 +395,39 @@ GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
+CREATE TABLE [dbo].[MemberSession] (
+	[MemberSessionID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[MemberID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[PlayerID] uniqueidentifier NOT NULL ,
+	[StartedOn] [datetime] NOT NULL ,
+	[ExpiresAt] [datetime] NOT NULL ,
+	[ShowAdult] [bit] NOT NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[MemberSession] ADD
+	CONSTRAINT [PK_MemberSession] PRIMARY KEY  CLUSTERED
+	(
+		[MemberSessionID]
+	)  ON [PRIMARY]
+GO
+
+CREATE  INDEX [IX_MemberSession_MemberID] ON [dbo].[MemberSession]([MemberID]) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[MemberSession] ADD
+	CONSTRAINT [FK_MemberSession_Member] FOREIGN KEY
+	(
+		[MemberID]
+	) REFERENCES [dbo].[Member] (
+		[MemberID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE
+GO
+
+-- TODO: Foreign key to Player
+
+--//////////////////////////////////////////////////////////////////////////////
+
 CREATE TABLE [dbo].[MemberProvider] (
 	[MemberProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[MemberID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
@@ -408,7 +450,6 @@ GO
 
 CREATE  INDEX [IX_MemberProvider_ProviderID] ON [dbo].[MemberProvider]([ProviderID]) ON [PRIMARY]
 GO
-
 
 ALTER TABLE [dbo].[MemberProvider] ADD
 	CONSTRAINT [FK_MemberProvider_Member] FOREIGN KEY

@@ -4,17 +4,19 @@
  */
 package com.inetvod.player.request;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.UUID;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Requestable;
 import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.dbdata.Member;
-import com.inetvod.common.dbdata.SerialNumber;
 import com.inetvod.common.dbdata.ManufacturerID;
+import com.inetvod.common.dbdata.Member;
+import com.inetvod.common.dbdata.MemberSession;
+import com.inetvod.common.dbdata.PlayerID;
+import com.inetvod.common.dbdata.SerialNumber;
+import com.inetvod.player.rqdata.IncludeAdult;
 import com.inetvod.player.rqdata.MemberPrefs;
 import com.inetvod.player.rqdata.MemberProviderList;
 import com.inetvod.player.rqdata.MemberState;
@@ -23,16 +25,15 @@ import com.inetvod.player.rqdata.Player;
 public class SignonRqst implements Requestable
 {
 	/* Constants */
-	public static final int UserIDMaxLength = 128;
-	public static final int PasswordMaxLength = 32;
+	private static final int UserIDMaxLength = 128;
+	private static final int PasswordMaxLength = 32;
 
 	/* Fields */
-	protected String fUserID;
-	protected String fPassword;
-	protected Player fPlayer;
-	public Player getPlayer() { return fPlayer; }
+	private String fUserID;
+	private String fPassword;
+	private Player fPlayer;
 
-	protected StatusCode fStatusCode = StatusCode.sc_GeneralError;
+	private StatusCode fStatusCode = StatusCode.sc_GeneralError;
 	public StatusCode getStatusCode() { return fStatusCode; }
 
 	public SignonRqst(DataReader reader) throws Exception
@@ -62,6 +63,9 @@ public class SignonRqst implements Requestable
 			}
 		}
 
+		//TODO: this should be using a UUID from a database of players based on Manufacturer, ModelNo, Version
+		PlayerID playerID = new PlayerID(UUID.randomUUID().toString());
+
 		//TODO: decrypt UserID and Password based on Player
 
 		serialNumber = SerialNumber.find(fUserID);
@@ -70,20 +74,21 @@ public class SignonRqst implements Requestable
 			if(serialNumber.getPIN().matches(fPassword))
 			{
 				Member member = Member.get(serialNumber.getMemberID());
-				SessionData sessionData = new SessionData(member.getMemberID());
-//					sessionData.UserID = fUserID;
-//					sessionData.Password = fPassword;
-				response.setSessionData(sessionData);
+				MemberSession memberSession = MemberSession.newInstance(serialNumber.getMemberID(), playerID);
 
-				GregorianCalendar cal = new GregorianCalendar();
-				cal.add(Calendar.DATE, 1);
-				response.setSessionExpires(cal.getTime());
+				SessionData sessionData = new SessionData(memberSession.getMemberSessionID());
+				response.setSessionData(sessionData);
+				response.setSessionExpires(memberSession.getExpiresAt());
 
 				MemberState memberState = new MemberState();
-				memberState.setMemberPrefs(new MemberPrefs(com.inetvod.common.dbdata.MemberPrefs.getCreate(member.getMemberID())));
+				com.inetvod.common.dbdata.MemberPrefs dbMemberPrefs = com.inetvod.common.dbdata.MemberPrefs.getCreate(member.getMemberID());
+				memberState.setMemberPrefs(new MemberPrefs(dbMemberPrefs));
 				memberState.setMemberProviderList(new MemberProviderList(
 					com.inetvod.common.dbdata.MemberProviderList.findByMemberID(member.getMemberID())));
 				response.setMemberState(memberState);
+
+				memberSession.setShowAdult(IncludeAdult.Always.equals(dbMemberPrefs.getIncludeAdult()));
+				memberSession.update();
 
 				fStatusCode = StatusCode.sc_Success;
 			}

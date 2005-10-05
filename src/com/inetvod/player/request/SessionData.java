@@ -4,30 +4,29 @@
  */
 package com.inetvod.player.request;
 
-import com.inetvod.common.dbdata.MemberID;
+import java.util.UUID;
 
-/**
- * Summary description for SessionData.
- */
+import com.inetvod.common.dbdata.MemberSessionID;
+
 public class SessionData
 {
 	/* Constants */
 	public static final int SessionDataMaxLength = Short.MAX_VALUE;
 
 	/* Fields */
-	protected MemberID fMemberID;
+	protected MemberSessionID fMemberSessionID;
 	//public string UserID = "";
 	//public string Password = "";
 
 	protected String fDataEncoded;
 
-	public MemberID getMemberID() { return fMemberID; }
+	public MemberSessionID getMemberSessionID() { return fMemberSessionID; }
 
-	public SessionData(MemberID memberID)
+	public SessionData(MemberSessionID memberSessionID)
 	{
-		fMemberID = memberID;
-		if(fMemberID != null)
-			fDataEncoded = "xxx|" + fMemberID.toString() + "|xxx";
+		fMemberSessionID = memberSessionID;
+		if(fMemberSessionID != null)
+			fDataEncoded = UUID.randomUUID().toString() + "|" + fMemberSessionID.toString() + "|" + UUID.randomUUID().toString();
 	}
 
 	public SessionData(String value)
@@ -42,7 +41,7 @@ public class SessionData
 		{
 			String[] parts = fDataEncoded.split("\\|");
 			if(parts.length > 1)
-				fMemberID = new MemberID(parts[1]);
+				fMemberSessionID = new MemberSessionID(parts[1]);
 		//			if(parts.Length > 0)
 		//				UserID = parts[0];
 		//			if(parts.Length > 1)

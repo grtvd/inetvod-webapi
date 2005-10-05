@@ -1,3 +1,8 @@
+--//////////////////////////////////////////////////////////////////////////////
+-- Copyright © 2005 iNetVOD, Inc. All Rights Reserved.
+-- Confidential and Proprietary
+--//////////////////////////////////////////////////////////////////////////////
+
 use [iNetVOD]
 GO
 
@@ -53,6 +58,22 @@ GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[SerialNumber_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[SerialNumber_Update]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberSession_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberSession_Get]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberSession_Insert]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberSession_Insert]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberSession_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberSession_Update]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberSession_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberSession_Delete]
 GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberProvider_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
@@ -353,6 +374,79 @@ AS
 		MemberID = @MemberID,
 		PIN = @PIN
 	where SerialNumberID = @SerialNumberID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberSession_Get
+	@MemberSessionID uniqueidentifier
+AS
+	select
+		MemberSessionID,
+		MemberID,
+		PlayerID,
+		StartedOn,
+		ExpiresAt,
+		ShowAdult
+	from MemberSession
+	where MemberSessionID = @MemberSessionID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberSession_Insert
+	@MemberSessionID uniqueidentifier,
+	@MemberID varchar(64),
+	@PlayerID uniqueidentifier,
+	@StartedOn datetime,
+	@ExpiresAt datetime,
+	@ShowAdult bit
+AS
+	insert into MemberSession
+	(
+		MemberSessionID,
+		MemberID,
+		PlayerID,
+		StartedOn,
+		ExpiresAt,
+		ShowAdult
+	)
+	values
+	(
+		@MemberSessionID,
+		@MemberID,
+		@PlayerID,
+		@StartedOn,
+		@ExpiresAt,
+		@ShowAdult
+	)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberSession_Update
+	@MemberSessionID uniqueidentifier,
+	@MemberID varchar(64),
+	@PlayerID uniqueidentifier,
+	@StartedOn datetime,
+	@ExpiresAt datetime,
+	@ShowAdult bit
+AS
+	update MemberSession set
+		MemberID = @MemberID,
+		PlayerID = @PlayerID,
+		StartedOn = @StartedOn,
+		ExpiresAt = @ExpiresAt,
+		ShowAdult = @ShowAdult
+	where MemberSessionID = @MemberSessionID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberSession_Delete
+	@MemberSessionID uniqueidentifier
+AS
+	delete from MemberSession where MemberSessionID = @MemberSessionID
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
