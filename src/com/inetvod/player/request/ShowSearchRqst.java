@@ -4,8 +4,6 @@
  */
 package com.inetvod.player.request;
 
-import java.util.Iterator;
-
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.StatusCode;
@@ -25,13 +23,13 @@ import com.inetvod.player.rqdata.ShowSearch;
 public class ShowSearchRqst extends SessionRequestable
 {
 	/* Fields */
-	protected String fPartialName;
+	private String fPartialName;
 
-	protected ProviderIDList fProviderIDList = new ProviderIDList();
-	protected CategoryIDList fCategoryIDList = new CategoryIDList();
-	protected RatingIDList fRatingIDList = new RatingIDList();
+	private ProviderIDList fProviderIDList = new ProviderIDList();
+	private CategoryIDList fCategoryIDList = new CategoryIDList();
+	private RatingIDList fRatingIDList = new RatingIDList();
 
-	protected Short fMaxResults;
+	private Short fMaxResults;
 
 	/* Constuction Methods */
 	public ShowSearchRqst(DataReader reader) throws Exception
@@ -43,13 +41,14 @@ public class ShowSearchRqst extends SessionRequestable
 	{
 		ShowSearchResp response;
 		ShowSearch showSearch;
-		Show show;
 		ShowList showList;
 		ShowProviderList showProviderList;
 		ShowProviderList thisShowProviderList;
 		ShowCategoryList showCategoryList = null;
-		Iterator iterator;
+		boolean includeAdult;
 		short numFound = 0;
+
+		includeAdult = fMemberSession.getShowAdult();
 
 		response = new ShowSearchResp();
 		response.ReachedMax = false;
@@ -91,17 +90,10 @@ public class ShowSearchRqst extends SessionRequestable
 			return response;
 		}
 
-		iterator = showList.iterator();
-		while(iterator.hasNext())
+		for(Show show : showList)
 		{
-			show = (Show)iterator.next();
-
-			if(numFound > fMaxResults)
-			{
-				response.ReachedMax = true;
-				break;
-			}
-			numFound++;
+			if(!includeAdult && show.getIsAdult())
+				continue;
 
 			thisShowProviderList = showProviderList.findItemsByShowID(show.getShowID());
 			if(thisShowProviderList.size() == 0)
@@ -114,6 +106,15 @@ public class ShowSearchRqst extends SessionRequestable
 			if(fRatingIDList.size() > 0)
 				if(!fRatingIDList.contains(show.getRatingID()))
 					continue;
+
+			// Test max results BEFORE adding to response list so response.ReachedMax is only set to true if the max
+			// would have been exceeded (not just reached).
+			numFound++;
+			if(numFound > fMaxResults)
+			{
+				response.ReachedMax = true;
+				break;
+			}
 
 			showSearch = new ShowSearch(show);
 			response.ShowSearchList.add(showSearch);

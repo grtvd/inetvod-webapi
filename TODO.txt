@@ -1,6 +1,6 @@
 Possible ArrayList to ArrayList<T>: DatabaseFieldReader,
-Support Session
-Filter Adult content
 Convert MemberID to a UUID
+Split Address out of Member
 Create Player database table
 Rename SerialNumber to MemberLogon
+-- Add fields: UserName, Password, AdultPIN

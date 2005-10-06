@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.request;
@@ -8,14 +8,16 @@ import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.common.dbdata.MemberPrefs;
+import com.inetvod.player.rqdata.IncludeAdult;
 
 public class EnableAdultAccessRqst extends SessionRequestable
 {
 	/* Constants */
-	public static final int EncryptedPasswordMaxLength = 32;
+	private static final int EncryptedPasswordMaxLength = 32;
 
 	/* Fields */
-	protected String fPassword;
+	private String fPassword;
 
 	/* Constuction Methods */
 	public EnableAdultAccessRqst(DataReader reader) throws Exception
@@ -26,13 +28,23 @@ public class EnableAdultAccessRqst extends SessionRequestable
 	public Writeable fulfillRequest() throws Exception
 	{
 		EnableAdultAccessResp response;
+		MemberPrefs memberPrefs;
 
 		//TODO: decrypt Password based on SessionData:Player
 
 		response = new EnableAdultAccessResp();
 
+		// Confirm user desires to see Adult content
+		memberPrefs = MemberPrefs.getCreate(fMember.getMemberID());
+		if(!IncludeAdult.Never.equals(memberPrefs.getIncludeAdult()))
+		{
+			// Update session to show adult
+			fMemberSession.setShowAdult(true);
+			fMemberSession.update();
 
-		fStatusCode = StatusCode.sc_Success;
+			fStatusCode = StatusCode.sc_Success;
+		}
+
 		return response;
 	}
 
