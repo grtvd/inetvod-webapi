@@ -35,7 +35,7 @@ public class EnableAdultAccessRqst extends SessionRequestable
 		response = new EnableAdultAccessResp();
 
 		// Confirm user desires to see Adult content
-		memberPrefs = MemberPrefs.getCreate(fMember.getMemberID());
+		memberPrefs = MemberPrefs.getCreate(fMemberID);
 		if(!IncludeAdult.Never.equals(memberPrefs.getIncludeAdult()))
 		{
 			// Update session to show adult

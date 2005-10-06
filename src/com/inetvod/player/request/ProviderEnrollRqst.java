@@ -14,7 +14,7 @@ import com.inetvod.common.dbdata.ProviderID;
 public class ProviderEnrollRqst extends SessionRequestable
 {
 	/* Fields */
-	protected ProviderID fProviderID;
+	private ProviderID fProviderID;
 
 	/* Constuction Methods */
 	public ProviderEnrollRqst(DataReader reader) throws Exception
@@ -29,12 +29,12 @@ public class ProviderEnrollRqst extends SessionRequestable
 
 		response = new ProviderEnrollResp();
 
-		memberProvider = MemberProvider.findByMemberIDProviderID(fMember.getMemberID(), fProviderID);
+		memberProvider = MemberProvider.findByMemberIDProviderID(fMemberID, fProviderID);
 		if (memberProvider == null)
 		{
 			//TODO: Enroll user at provider
 
-			memberProvider = MemberProvider.newInstance(fMember.getMemberID(), fProviderID);
+			memberProvider = MemberProvider.newInstance(fMemberID, fProviderID);
 			//TODO: set UserID, Password
 			memberProvider.update();
 

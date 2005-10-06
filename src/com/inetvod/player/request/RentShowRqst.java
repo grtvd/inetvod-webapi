@@ -11,10 +11,8 @@ import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.dbdata.Provider;
 import com.inetvod.common.dbdata.ProviderID;
 import com.inetvod.common.dbdata.RentedShow;
-import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCost;
 import com.inetvod.common.dbdata.ShowID;
 import com.inetvod.common.dbdata.ShowProvider;
@@ -24,9 +22,9 @@ import com.inetvod.player.rqdata.LicenseMethod;
 public class RentShowRqst extends SessionRequestable
 {
 	/* Fields */
-	protected ShowID fShowID;
-	protected ProviderID fProviderID;
-	protected ShowCost fApprovedCost;
+	private ShowID fShowID;
+	private ProviderID fProviderID;
+	private ShowCost fApprovedCost;
 
 	/* Constuction Methods */
 	public RentShowRqst(DataReader reader) throws Exception
@@ -37,16 +35,12 @@ public class RentShowRqst extends SessionRequestable
 	public Writeable fulfillRequest() throws Exception
 	{
 		RentShowResp response;
-		Show show;
-		Provider provider;
 		ShowProvider showProvider;
 		RentedShow rentedShow;
 
 		response = new RentShowResp();
 
-		show = Show.get(fShowID);
-		provider = Provider.get(fProviderID);
-		rentedShow = RentedShow.newInstance(fMember, show, provider);
+		rentedShow = RentedShow.newInstance(fMemberID, fShowID, fProviderID);
 		showProvider = ShowProvider.getByShowIDProviderID(fShowID, fProviderID);
 		//TODO: fetch this from Provider API
 		rentedShow.setShowURL("http://api.inetvod.com/mce/videos/TestVideo.wmv");

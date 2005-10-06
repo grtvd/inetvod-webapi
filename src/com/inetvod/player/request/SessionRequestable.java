@@ -6,7 +6,7 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.Requestable;
 import com.inetvod.common.core.StatusCode;
-import com.inetvod.common.dbdata.Member;
+import com.inetvod.common.dbdata.MemberID;
 import com.inetvod.common.dbdata.MemberSession;
 
 /**
@@ -14,26 +14,25 @@ import com.inetvod.common.dbdata.MemberSession;
  */
 public abstract class SessionRequestable implements Requestable
 {
-	protected String fVersion;
-	protected String fRequestID;
-	protected SessionData fSessionData;
+	//private String fVersion;
+	//private String fRequestID;
 
 	protected MemberSession fMemberSession;
-	protected Member fMember;
+	protected MemberID fMemberID;
+	//protected Member fMember;
 
 	protected StatusCode fStatusCode = StatusCode.sc_GeneralError;
 	public StatusCode getStatusCode() { return fStatusCode; }
 
 	public StatusCode setRequest(String version, String requestID, SessionData sessionData) throws Exception
 	{
-		fVersion = version;
-		fRequestID = requestID;
-		fSessionData = sessionData;
+		//fVersion = version;
+		//fRequestID = requestID;
 
-		if((fSessionData == null) || (fSessionData.getMemberSessionID() == null))
+		if((sessionData == null) || (sessionData.getMemberSessionID() == null))
 			return StatusCode.sc_GeneralError;
 
-		fMemberSession = MemberSession.find(fSessionData.getMemberSessionID());
+		fMemberSession = MemberSession.find(sessionData.getMemberSessionID());
 		if((fMemberSession == null) || (System.currentTimeMillis() > fMemberSession.getExpiresAt().getTime()))
 		{
 			if(fMemberSession != null)
@@ -41,7 +40,8 @@ public abstract class SessionRequestable implements Requestable
 			return StatusCode.sc_InvalidSession;
 		}
 
-		fMember = Member.get(fMemberSession.getMemberID());
+		fMemberID = fMemberSession.getMemberID();
+		//fMember = Member.get(fMemberSession.getMemberID());
 		return StatusCode.sc_Success;
 	}
 }

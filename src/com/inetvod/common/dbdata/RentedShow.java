@@ -50,13 +50,13 @@ public class RentedShow extends DatabaseObject
 	public void setAvailableUntil(Date availableUntil) { fAvailableUntil = availableUntil; }
 
 	/* Constuction Methods */
-	public RentedShow(Member member, Show show, Provider provider)
+	public RentedShow(MemberID memberID, ShowID showID, ProviderID providerID)
 	{
 		super(true);
 		fRentedShowID = RentedShowID.newInstance();
-		fMemberID = member.getMemberID();
-		fShowID = show.getShowID();
-		fProviderID = provider.getProviderID();
+		fMemberID = memberID;
+		fShowID = showID;
+		fProviderID = providerID;
 	}
 
 	public RentedShow(DataReader reader) throws Exception
@@ -65,9 +65,9 @@ public class RentedShow extends DatabaseObject
 		readFrom(reader);
 	}
 
-	public static RentedShow newInstance(Member member, Show show, Provider provider)
+	public static RentedShow newInstance(MemberID memberID, ShowID showID, ProviderID providerID)
 	{
-		return new RentedShow(member, show, provider);
+		return new RentedShow(memberID, showID, providerID);
 	}
 
 	protected static RentedShow load(RentedShowID rentedShowID, DataExists exists) throws Exception

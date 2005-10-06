@@ -14,9 +14,9 @@ import com.inetvod.common.dbdata.ProviderID;
 public class SetProviderRqst extends SessionRequestable
 {
 	/* Fields */
-	protected ProviderID fProviderID;
-	protected String fUserID;
-	protected String fPassword;
+	private ProviderID fProviderID;
+	private String fUserID;
+	private String fPassword;
 
 	/* Constuction Methods */
 	public SetProviderRqst(DataReader reader) throws Exception
@@ -33,9 +33,9 @@ public class SetProviderRqst extends SessionRequestable
 
 		response = new SetProviderResp();
 
-		memberProvider = MemberProvider.findByMemberIDProviderID(fMember.getMemberID(), fProviderID);
+		memberProvider = MemberProvider.findByMemberIDProviderID(fMemberID, fProviderID);
 		if(memberProvider == null)
-			memberProvider = MemberProvider.newInstance(fMember.getMemberID(), fProviderID);
+			memberProvider = MemberProvider.newInstance(fMemberID, fProviderID);
 
 		memberProvider.setEncryptedUserName(fUserID);
 		memberProvider.setEncryptedPassword(fPassword);

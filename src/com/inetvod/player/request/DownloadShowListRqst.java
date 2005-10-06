@@ -32,7 +32,7 @@ public class DownloadShowListRqst extends SessionRequestable
 
 		response = new DownloadShowListResp();
 
-		rentedShowList = RentedShowList.findByMemberID(fMember.getMemberID());
+		rentedShowList = RentedShowList.findByMemberID(fMemberID);
 
 		iterator = rentedShowList.iterator();
 		while(iterator.hasNext())
