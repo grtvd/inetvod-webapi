@@ -1,4 +1,5 @@
 Possible ArrayList to ArrayList<T>: DatabaseFieldReader,
+Change Show:indexOf, get, find to indexOfByID, getByID, findByID
 Convert MemberID to a UUID
 Split Address out of Member
 Create Player database table
