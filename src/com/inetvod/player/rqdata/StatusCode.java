@@ -4,6 +4,9 @@
  */
 package com.inetvod.player.rqdata;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SuppressWarnings({"MagicNumber"})
 public class StatusCode
 {
@@ -24,6 +27,21 @@ public class StatusCode
 
 	public static final StatusCode sc_GeneralError = new StatusCode(9999);
 
+	private static List<StatusCode> fAllValues = Arrays.asList(new StatusCode[]
+		{
+			sc_Success,
+			sc_InvalidUserID,
+			sc_InvalidSession,
+			sc_UserIDPasswordMismatch,
+			sc_InvalidProviderUserIDPassword,
+			sc_AlreadyEnrolledAtProvider,
+			sc_NoAutoProviderEnrollment,
+			sc_Player_Missing,
+			sc_Player_OutOfDate,
+			sc_ShowSearch_NeedCriteiia,
+			sc_GeneralError
+		});
+
 	protected int fValue;
 
 	private StatusCode(int value)
@@ -36,27 +54,9 @@ public class StatusCode
 		if(value == null)
 			return sc_Success;
 
-		if(value == sc_Success.fValue)
-			return sc_Success;
-		if(value == sc_InvalidUserID.fValue)
-			return sc_InvalidUserID;
-		if(value == sc_UserIDPasswordMismatch.fValue)
-			return sc_UserIDPasswordMismatch;
-		if(value == sc_InvalidProviderUserIDPassword.fValue)
-			return sc_InvalidProviderUserIDPassword;
-
-		if(value == sc_AlreadyEnrolledAtProvider.fValue)
-			return sc_AlreadyEnrolledAtProvider;
-		if(value == sc_NoAutoProviderEnrollment.fValue)
-			return sc_NoAutoProviderEnrollment;
-
-		if(value == sc_NoAutoProviderEnrollment.fValue)
-			return sc_NoAutoProviderEnrollment;
-
-		if(value == sc_Player_Missing.fValue)
-			return sc_Player_Missing;
-		if(value == sc_Player_OutOfDate.fValue)
-			return sc_Player_OutOfDate;
+		for(StatusCode statusCode : fAllValues)
+			if(statusCode.fValue == value)
+				return statusCode;
 
 		return sc_GeneralError;
 	}
