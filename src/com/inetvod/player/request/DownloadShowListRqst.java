@@ -8,11 +8,11 @@ import java.util.Iterator;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.RentedShowList;
 import com.inetvod.player.rqdata.DownloadShow;
+import com.inetvod.player.rqdata.StatusCode;
 
 
 public class DownloadShowListRqst extends SessionRequestable

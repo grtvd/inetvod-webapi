@@ -6,13 +6,13 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.RentedShowList;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowList;
 import com.inetvod.player.rqdata.RentedShowSearch;
+import com.inetvod.player.rqdata.StatusCode;
 
 public class RentedShowListRqst extends SessionRequestable
 {

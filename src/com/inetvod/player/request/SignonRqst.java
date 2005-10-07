@@ -8,10 +8,8 @@ import java.util.UUID;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.Requestable;
-import com.inetvod.common.core.StatusCode;
-import com.inetvod.common.core.Writeable;
 import com.inetvod.common.core.Logger;
+import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.ManufacturerID;
 import com.inetvod.common.dbdata.Member;
 import com.inetvod.common.dbdata.MemberSession;
@@ -22,8 +20,10 @@ import com.inetvod.player.rqdata.MemberPrefs;
 import com.inetvod.player.rqdata.MemberProviderList;
 import com.inetvod.player.rqdata.MemberState;
 import com.inetvod.player.rqdata.Player;
+import com.inetvod.player.rqdata.PlayerRequestable;
+import com.inetvod.player.rqdata.StatusCode;
 
-public class SignonRqst implements Requestable
+public class SignonRqst implements PlayerRequestable
 {
 	/* Constants */
 	private static final int UserIDMaxLength = 128;

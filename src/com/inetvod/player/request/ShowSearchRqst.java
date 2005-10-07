@@ -6,7 +6,6 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.CategoryID;
 import com.inetvod.common.dbdata.CategoryIDList;
@@ -19,6 +18,7 @@ import com.inetvod.common.dbdata.ShowCategoryList;
 import com.inetvod.common.dbdata.ShowList;
 import com.inetvod.common.dbdata.ShowProviderList;
 import com.inetvod.player.rqdata.ShowSearch;
+import com.inetvod.player.rqdata.StatusCode;
 
 public class ShowSearchRqst extends SessionRequestable
 {

@@ -8,11 +8,11 @@ import java.lang.reflect.Constructor;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.Requestable;
-import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.player.rqdata.PlayerRequestable;
+import com.inetvod.player.rqdata.StatusCode;
 
-public class RequestData implements Requestable
+public class RequestData implements PlayerRequestable
 {
 	/* Constants */
 	public static final Constructor<RequestData> CtorDataFiler = DataReader.getCtor(RequestData.class);
@@ -22,7 +22,7 @@ public class RequestData implements Requestable
 	private String fRequestType;
 	public String getRequestType() { return fRequestType; }
 
-	private Requestable fRequest;
+	private PlayerRequestable fRequest;
 
 	protected StatusCode fStatusCode = StatusCode.sc_GeneralError;
 	public StatusCode getStatusCode() { return fStatusCode; }
@@ -64,8 +64,8 @@ public class RequestData implements Requestable
 	{
 		fRequestType = reader.readString("RequestType", RequestTypeMaxLength);
 
-		Class<Requestable> cl = (Class<Requestable>)Class.forName(getClass().getPackage().getName() + "." + fRequestType);
-		Constructor<Requestable> ctor = cl.getConstructor(new Class[] { DataReader.class });
+		Class<PlayerRequestable> cl = (Class<PlayerRequestable>)Class.forName(getClass().getPackage().getName() + "." + fRequestType);
+		Constructor<PlayerRequestable> ctor = cl.getConstructor(new Class[] { DataReader.class });
 		fRequest = reader.readObject(fRequestType, ctor);
 	}
 

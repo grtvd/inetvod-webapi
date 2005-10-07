@@ -6,12 +6,12 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.ProviderID;
+import com.inetvod.common.dbdata.ShowCostList;
 import com.inetvod.common.dbdata.ShowID;
 import com.inetvod.common.dbdata.ShowProvider;
-import com.inetvod.common.dbdata.ShowCostList;
+import com.inetvod.player.rqdata.StatusCode;
 
 public class CheckShowAvailRqst extends SessionRequestable
 {

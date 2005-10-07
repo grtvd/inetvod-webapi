@@ -6,10 +6,10 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.MemberProvider;
 import com.inetvod.common.dbdata.ProviderID;
+import com.inetvod.player.rqdata.StatusCode;
 
 public class SetProviderRqst extends SessionRequestable
 {

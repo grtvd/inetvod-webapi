@@ -9,7 +9,6 @@ import java.util.Date;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
-import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.ProviderID;
 import com.inetvod.common.dbdata.RentedShow;
@@ -18,6 +17,7 @@ import com.inetvod.common.dbdata.ShowID;
 import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.player.rqdata.License;
 import com.inetvod.player.rqdata.LicenseMethod;
+import com.inetvod.player.rqdata.StatusCode;
 
 public class RentShowRqst extends SessionRequestable
 {

@@ -4,15 +4,15 @@
  */
 package com.inetvod.player.request;
 
-import com.inetvod.common.core.Requestable;
-import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.dbdata.MemberID;
 import com.inetvod.common.dbdata.MemberSession;
+import com.inetvod.player.rqdata.PlayerRequestable;
+import com.inetvod.player.rqdata.StatusCode;
 
 /**
  * A Requestable that understands SessionData.
  */
-public abstract class SessionRequestable implements Requestable
+public abstract class SessionRequestable implements PlayerRequestable
 {
 	//private String fVersion;
 	//private String fRequestID;

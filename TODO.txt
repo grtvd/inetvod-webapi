@@ -5,3 +5,4 @@ Split Address out of Member
 Create Player database table
 Rename SerialNumber to MemberLogon
 -- Add fields: UserName, Password, AdultPIN
+Use HTTPS when calling webprovider
