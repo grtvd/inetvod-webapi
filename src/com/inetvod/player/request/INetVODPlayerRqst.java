@@ -16,20 +16,22 @@ import com.inetvod.common.core.Writeable;
 public class INetVODPlayerRqst implements Requestable
 {
 	/* Constants */
-	public static final int VersionMaxLength = 16;
-	public static final int RequestIDMaxLength = 64;
+	private static final int VersionMaxLength = 16;
+	private static final int RequestIDMaxLength = 64;
 
 	public static final Constructor<INetVODPlayerRqst> CtorDataFiler = DataReader.getCtor(INetVODPlayerRqst.class);
 
 	/* Fields */
-	protected String fVersion;
-	protected String fRequestID;
+	private String fVersion;
+	private String fRequestID;
 	public String getRequestID() { return fRequestID; }
 
-	protected SessionData fSessionData;
-	protected RequestData fRequestData;
+	private SessionData fSessionData;
 
-	protected StatusCode fStatusCode = StatusCode.sc_GeneralError;
+	private RequestData fRequestData;
+	public RequestData getRequestData() { return fRequestData; }
+
+	private StatusCode fStatusCode = StatusCode.sc_GeneralError;
 	public StatusCode getStatusCode() { return fStatusCode; }
 
 	public INetVODPlayerRqst(DataReader reader) throws Exception

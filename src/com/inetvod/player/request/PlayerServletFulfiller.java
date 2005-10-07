@@ -49,4 +49,18 @@ public class PlayerServletFulfiller extends ServletFulfiller
 	{
 		return dataFiler.readObject("INetVODPlayerRqst", INetVODPlayerRqst.CtorDataFiler);
 	}
+
+	protected String getRequestType(Requestable requestable)
+	{
+		String requestType = null;
+
+		if(requestable instanceof INetVODPlayerRqst)
+		{
+			INetVODPlayerRqst iNetVODPlayerRqst = (INetVODPlayerRqst)requestable;
+			if(iNetVODPlayerRqst.getRequestData() != null)
+				requestType = iNetVODPlayerRqst.getRequestData().getRequestType();
+		}
+
+		return requestType;
+	}
 }

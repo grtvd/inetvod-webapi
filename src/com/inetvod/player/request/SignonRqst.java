@@ -11,6 +11,7 @@ import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Requestable;
 import com.inetvod.common.core.StatusCode;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.common.core.Logger;
 import com.inetvod.common.dbdata.ManufacturerID;
 import com.inetvod.common.dbdata.Member;
 import com.inetvod.common.dbdata.MemberSession;
@@ -98,6 +99,7 @@ public class SignonRqst implements Requestable
 		else
 			fStatusCode = StatusCode.sc_InvalidUserID;
 
+		Logger.logInfo(this, "fulfillRequest", String.format("UserID:%s; StatusCode:%d;", fUserID, StatusCode.convertToInt(fStatusCode)));
 		return response;
 	}
 

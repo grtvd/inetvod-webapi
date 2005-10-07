@@ -16,11 +16,13 @@ public class RequestData implements Requestable
 {
 	/* Constants */
 	public static final Constructor<RequestData> CtorDataFiler = DataReader.getCtor(RequestData.class);
-	public static final int RequestTypeMaxLength = 64;
+	private static final int RequestTypeMaxLength = 64;
 
 	/* Properties */
-	protected String fRequestType;
-	protected Requestable fRequest;
+	private String fRequestType;
+	public String getRequestType() { return fRequestType; }
+
+	private Requestable fRequest;
 
 	protected StatusCode fStatusCode = StatusCode.sc_GeneralError;
 	public StatusCode getStatusCode() { return fStatusCode; }
