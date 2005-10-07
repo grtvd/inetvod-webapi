@@ -102,6 +102,8 @@ public class INetVODPlayerRqst implements PlayerRequestable
 			response.setStatusMessage("This version of the player is no longer supported. A newer version of this player is available.");
 		else if(StatusCode.sc_ShowSearch_NeedCriteiia.equals(statusCode))
 			response.setStatusMessage("A partial title, provider, or category must be provided for searching.");
+		else if(StatusCode.sc_CantPingProvider.equals(statusCode))
+			response.setStatusMessage("This Provider cannot be communicated with at this time. Please try again later.");
 		else
 			response.setStatusMessage("An unknown error has occurred. Please try again. If the problem persists, please contact customer service.");	//TODO: better messages
 	}
