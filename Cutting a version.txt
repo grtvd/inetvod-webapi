@@ -10,10 +10,6 @@
 		- Unheck "Create web modeule jar file"
 	- Close IDEA
 
-- Create ZIP Version
-	- Zip "C:\projects\iNetVOD\webapi\trunk\inetvod.war"
-		- to C:\projects\iNetVOD\webapi\trunk\versions\inetvod-CCYY-MM-DD.zip
-
 - Commit all changed files, use label: "webapi: Cut version CCYY-MM-DD."
 
 - Deploy to Server
