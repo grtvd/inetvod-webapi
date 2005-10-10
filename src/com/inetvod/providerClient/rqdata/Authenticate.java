@@ -28,10 +28,12 @@ public class Authenticate implements Readable, Writeable
 	private String fMemberPassword;
 
 	/* Construction */
-	private Authenticate(String adminUserID, String adminPassword)
+	private Authenticate(String adminUserID, String adminPassword, String memberUserID, String memberPassword)
 	{
 		fAdminUserID = adminUserID;
 		fAdminPassword = adminPassword;
+		fMemberUserID = memberUserID;
+		fMemberPassword = memberPassword;
 	}
 
 	public Authenticate(DataReader reader) throws Exception
@@ -39,12 +41,12 @@ public class Authenticate implements Readable, Writeable
 		readFrom(reader);
 	}
 
-	public static Authenticate newInstance(String adminUserID, String adminPassword)
+	public static Authenticate newInstance(String adminUserID, String adminPassword, String memberUserID, String memberPassword)
 	{
-		return new Authenticate(adminUserID, adminPassword);
+		return new Authenticate(adminUserID, adminPassword, memberUserID, memberPassword);
 	}
 
-	/* Getters/Setters */
+	/* Getters and Setters */
 	public void setMemberUser(String memberUserID, String memberPassword)
 	{
 		fMemberUserID = memberUserID;

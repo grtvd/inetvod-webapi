@@ -16,21 +16,25 @@ public class ResponseData implements Readable
 	private static final int ResponseTypeMaxLength = 64;
 
 	/* Properties */
-	private String fResponseType;
 	private Readable fResponse;
 
+	/* Construction */
 	public ResponseData(DataReader reader) throws Exception
 	{
 		readFrom(reader);
 	}
 
+	/* Getters and Setters */
+	public Readable getResponse() { return fResponse; }
+
+	/* Implementation */
 	@SuppressWarnings({"unchecked"})
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fResponseType = reader.readString("ResponseType", ResponseTypeMaxLength);
+		String responseType = reader.readString("ResponseType", ResponseTypeMaxLength);
 
-		Class<Readable> cl = (Class<Readable>)Class.forName(getClass().getPackage().getName() + "." + fResponseType);
+		Class<Readable> cl = (Class<Readable>)Class.forName(getClass().getPackage().getName() + "." + responseType);
 		Constructor<Readable> ctor = cl.getConstructor(new Class[] { DataReader.class });
-		fResponse = reader.readObject(fResponseType, ctor);
+		fResponse = reader.readObject(responseType, ctor);
 	}
 }

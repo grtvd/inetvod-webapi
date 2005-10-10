@@ -91,7 +91,7 @@ public class INetVODPlayerRqst implements PlayerRequestable
 		else if(StatusCode.sc_UserIDPasswordMismatch.equals(statusCode))
 			response.setStatusMessage("We were unable to log you onto the system due to an invalid Logon ID or PIN.");
 		else if(StatusCode.sc_InvalidProviderUserIDPassword.equals(statusCode))
-			response.setStatusMessage("TODO: need message");
+			response.setStatusMessage("This Provider has reported that your User ID or Password is invalid. Please submit them again.");
 		else if(StatusCode.sc_AlreadyEnrolledAtProvider.equals(statusCode))
 			response.setStatusMessage("TODO: need message");
 		else if(StatusCode.sc_NoAutoProviderEnrollment.equals(statusCode))

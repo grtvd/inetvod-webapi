@@ -5,6 +5,10 @@
 package com.inetvod.providerClient;
 
 import com.inetvod.common.dbdata.Provider;
+import com.inetvod.common.dbdata.ProviderShowID;
+import com.inetvod.common.dbdata.ShowCostList;
+import com.inetvod.providerClient.request.CheckShowAvailResp;
+import com.inetvod.providerClient.request.CheckShowAvailRqst;
 import com.inetvod.providerClient.request.DataRequestor;
 import com.inetvod.providerClient.rqdata.StatusCode;
 
@@ -15,6 +19,19 @@ public class ProviderRequestor
 	private String fProviderRequestURL;
 	private String fProviderAdminUserID;
 	private String fProviderAdminPassword;
+	private String fProviderMemberUserID;
+	private String fProviderMemberPassword;
+
+	private StatusCode fStatusCode;
+
+	/* Getters and Setters */
+	public void setMemberUser(String memberUserID, String memberPassword)
+	{
+		fProviderMemberUserID = memberUserID;
+		fProviderMemberPassword = memberPassword;
+	}
+
+	public StatusCode getStatusCode() { return fStatusCode; }
 
 	/* Construction */
 	private ProviderRequestor(Provider provider)
@@ -33,7 +50,8 @@ public class ProviderRequestor
 	/* Implementation */
 	private DataRequestor newDataRequestor()
 	{
-		return DataRequestor.newInstance(fProviderRequestURL, fProviderAdminUserID, fProviderAdminPassword);
+		return DataRequestor.newInstance(fProviderRequestURL, fProviderAdminUserID, fProviderAdminPassword,
+			fProviderMemberUserID, fProviderMemberPassword);
 	}
 
 	public boolean pingServer()
@@ -41,6 +59,19 @@ public class ProviderRequestor
 		DataRequestor dataRequestor = newDataRequestor();
 		dataRequestor.pingServer();
 
-		return StatusCode.sc_Success.equals(dataRequestor.getStatusCode());
+		fStatusCode = dataRequestor.getStatusCode();
+		return StatusCode.sc_Success.equals(fStatusCode);
+	}
+
+	public ShowCostList checkShowAvail(ProviderShowID providerShowID)
+	{
+		DataRequestor dataRequestor = newDataRequestor();
+		CheckShowAvailRqst checkShowAvailRqst = CheckShowAvailRqst.newInstance(providerShowID);
+		CheckShowAvailResp checkShowAvailResp = dataRequestor.checkShowAvail(checkShowAvailRqst);
+
+		fStatusCode = dataRequestor.getStatusCode();
+		if(checkShowAvailResp != null)
+			return checkShowAvailResp.getShowCostList();
+		return null;
 	}
 }

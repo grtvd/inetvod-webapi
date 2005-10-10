@@ -31,22 +31,28 @@ public class DataRequestor
 	private String fRequestURL;
 	private String fAdminUserID;
 	private String fAdminPassword;
+	private String fMemberUserID;
+	private String fMemberPassword;
 	private StatusCode fStatusCode;
 
-	/* Getters & Setters */
+	/* Getters and Setters */
 	public StatusCode getStatusCode() { return fStatusCode; }
 
 	/* Construction */
-	private DataRequestor(String requestURL, String adminUserID, String adminPassword)
+	private DataRequestor(String requestURL, String adminUserID, String adminPassword, String memberUserID,
+		String memberPassword)
 	{
 		fRequestURL = requestURL;
 		fAdminUserID = adminUserID;
 		fAdminPassword = adminPassword;
+		fMemberUserID = memberUserID;
+		fMemberPassword = memberPassword;
 	}
 
-	public static DataRequestor newInstance(String requestURL, String adminUserID, String adminPassword)
+	public static DataRequestor newInstance(String requestURL, String adminUserID, String adminPassword,
+		String memberUserID, String memberPassword)
 	{
-		return new DataRequestor(requestURL, adminUserID, adminPassword);
+		return new DataRequestor(requestURL, adminUserID, adminPassword, memberUserID, memberPassword);
 	}
 
 	/* Implementation */
@@ -54,7 +60,7 @@ public class DataRequestor
 	{
 		INetVODProviderRqst request = INetVODProviderRqst.newInstance(Version, UUID.randomUUID().toString());
 
-		Authenticate authenticate = Authenticate.newInstance(fAdminUserID, fAdminPassword);
+		Authenticate authenticate = Authenticate.newInstance(fAdminUserID, fAdminPassword, fMemberUserID, fMemberPassword);
 		request.setAuthenticate(authenticate);
 
 		RequestData requestData = RequestData.newInstance(payload);
@@ -101,7 +107,8 @@ public class DataRequestor
 				iNetVODProviderResp = dataReader.readObject(responseName, INetVODProviderResp.CtorDataReader);
 				fStatusCode = iNetVODProviderResp.getStatusCode();
 
-				return iNetVODProviderResp.getResponseData();
+				if(iNetVODProviderResp.getResponseData() != null)
+					return iNetVODProviderResp.getResponseData().getResponse();
 			}
 			finally
 			{
@@ -124,5 +131,10 @@ public class DataRequestor
 		if(!StatusCode.sc_Success.equals(fStatusCode))
 			Logger.logInfo(this, "pingServer", String.format("bad StatusCode(%d) returned", StatusCode.convertToInt(fStatusCode)));
 		return fStatusCode;
+	}
+
+	public CheckShowAvailResp checkShowAvail(CheckShowAvailRqst checkShowAvailRqst)
+	{
+		return (CheckShowAvailResp)sendRequest(checkShowAvailRqst, fRequestTimeoutMillis);
 	}
 }
