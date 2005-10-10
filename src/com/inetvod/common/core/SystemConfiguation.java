@@ -13,7 +13,7 @@ public class SystemConfiguation
 	@SuppressWarnings({"MagicNumber"})
 	private long fSessionTimeoutMillis = (24 * 60 * 60 * 1000);		// 24 hours
 
-	/* Getters & Setters */
+	/* Getters and Setters */
 	public long getSessionTimeoutMillis() { return fSessionTimeoutMillis; }
 
 	/* Construction */

@@ -21,7 +21,7 @@ public class MemberProvider extends DatabaseObject
 	protected MemberProviderID fMemberProviderID;
 	protected MemberID fMemberID;
 	protected ProviderID fProviderID;
-	protected String fEncryptedUserName;
+	protected String fEncryptedUserName;	//TODO: rename to UserID
 	protected String fEncryptedPassword;
 
 	private static DatabaseAdaptor<MemberProvider, MemberProviderList> fDatabaseAdaptor =

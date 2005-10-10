@@ -20,7 +20,7 @@ public class INetVODProviderResp implements Readable
 	private StatusCode fStatusCode;
 	private ResponseData fResponseData;
 
-	/* Getters & Setters */
+	/* Getters and Setters */
 	public StatusCode getStatusCode() { return fStatusCode; }
 	public ResponseData getResponseData() { return fResponseData; }
 

@@ -21,7 +21,7 @@ public class INetVODProviderRqst implements Writeable
 	private Authenticate fAuthenticate;
 	private RequestData fRequestData;
 
-	/* Getters & Setters */
+	/* Getters and Setters */
 	public void setVersion(String version) { fVersion = version; }
 	public void setRequestID(String requestID) { fRequestID = requestID; }
 	public void setAuthenticate(Authenticate authenticate) { fAuthenticate = authenticate; }
