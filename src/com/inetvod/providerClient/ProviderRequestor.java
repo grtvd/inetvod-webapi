@@ -10,7 +10,7 @@ import com.inetvod.common.dbdata.ShowCostList;
 import com.inetvod.providerClient.request.CheckShowAvailResp;
 import com.inetvod.providerClient.request.CheckShowAvailRqst;
 import com.inetvod.providerClient.request.DataRequestor;
-import com.inetvod.providerClient.rqdata.StatusCode;
+import com.inetvod.providerClient.rqdata.ProviderStatusCode;
 
 public class ProviderRequestor
 {
@@ -22,7 +22,7 @@ public class ProviderRequestor
 	private String fProviderMemberUserID;
 	private String fProviderMemberPassword;
 
-	private StatusCode fStatusCode;
+	private ProviderStatusCode fStatusCode;
 
 	/* Getters and Setters */
 	public void setMemberUser(String memberUserID, String memberPassword)
@@ -31,7 +31,7 @@ public class ProviderRequestor
 		fProviderMemberPassword = memberPassword;
 	}
 
-	public StatusCode getStatusCode() { return fStatusCode; }
+	public ProviderStatusCode getStatusCode() { return fStatusCode; }
 
 	/* Construction */
 	private ProviderRequestor(Provider provider)
@@ -60,7 +60,7 @@ public class ProviderRequestor
 		dataRequestor.pingServer();
 
 		fStatusCode = dataRequestor.getStatusCode();
-		return StatusCode.sc_Success.equals(fStatusCode);
+		return ProviderStatusCode.sc_Success.equals(fStatusCode);
 	}
 
 	public ShowCostList checkShowAvail(ProviderShowID providerShowID)

@@ -7,14 +7,15 @@ package com.inetvod.player.request;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.common.dbdata.MemberProvider;
 import com.inetvod.common.dbdata.Provider;
 import com.inetvod.common.dbdata.ProviderID;
 import com.inetvod.common.dbdata.ShowCostList;
 import com.inetvod.common.dbdata.ShowID;
-import com.inetvod.common.dbdata.MemberProvider;
 import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
+import com.inetvod.providerClient.rqdata.ProviderStatusCode;
 
 public class CheckShowAvailRqst extends SessionRequestable
 {
@@ -50,11 +51,11 @@ public class CheckShowAvailRqst extends SessionRequestable
 
 		// Send request to Provider
 		ShowCostList showCostList = providerRequestor.checkShowAvail(showProvider.getProviderShowID());
-		com.inetvod.providerClient.rqdata.StatusCode providerStatusCode = providerRequestor.getStatusCode();
-		if(!com.inetvod.providerClient.rqdata.StatusCode.sc_Success.equals(providerStatusCode)
+		ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
+		if(!ProviderStatusCode.sc_Success.equals(providerStatusCode)
 			|| (showCostList == null))
 		{
-			if(com.inetvod.providerClient.rqdata.StatusCode.sc_InvalidMemberUserID.equals(providerStatusCode))
+			if(ProviderStatusCode.sc_InvalidMemberUserID.equals(providerStatusCode))
 				fStatusCode = StatusCode.sc_InvalidProviderUserIDPassword;
 			else
 				fStatusCode = StatusCode.sc_NoProviderResponse;

@@ -8,7 +8,7 @@ import java.lang.reflect.Constructor;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.Readable;
-import com.inetvod.providerClient.rqdata.StatusCode;
+import com.inetvod.providerClient.rqdata.ProviderStatusCode;
 
 public class INetVODProviderResp implements Readable
 {
@@ -17,11 +17,11 @@ public class INetVODProviderResp implements Readable
 
 	/* Fields */
 	private String fRequestID;
-	private StatusCode fStatusCode;
+	private ProviderStatusCode fStatusCode;
 	private ResponseData fResponseData;
 
 	/* Getters and Setters */
-	public StatusCode getStatusCode() { return fStatusCode; }
+	public ProviderStatusCode getStatusCode() { return fStatusCode; }
 	public ResponseData getResponseData() { return fResponseData; }
 
 	/* Construction */
@@ -34,7 +34,7 @@ public class INetVODProviderResp implements Readable
 	public void readFrom(DataReader reader) throws Exception
 	{
 		fRequestID = reader.readString("RequestID", INetVODProviderRqst.RequestIDMaxLength);
-		fStatusCode = StatusCode.convertFromInt(reader.readInt("StatusCode"));
+		fStatusCode = ProviderStatusCode.convertFromInt(reader.readInt("StatusCode"));
 		fResponseData = reader.readObject("ResponseData", ResponseData.CtorDataFiler);
 	}
 }

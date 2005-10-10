@@ -15,7 +15,7 @@ import com.inetvod.common.core.Writeable;
 import com.inetvod.common.core.XmlDataReader;
 import com.inetvod.common.core.XmlDataWriter;
 import com.inetvod.providerClient.rqdata.Authenticate;
-import com.inetvod.providerClient.rqdata.StatusCode;
+import com.inetvod.providerClient.rqdata.ProviderStatusCode;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
@@ -33,10 +33,10 @@ public class DataRequestor
 	private String fAdminPassword;
 	private String fMemberUserID;
 	private String fMemberPassword;
-	private StatusCode fStatusCode;
+	private ProviderStatusCode fStatusCode;
 
 	/* Getters and Setters */
-	public StatusCode getStatusCode() { return fStatusCode; }
+	public ProviderStatusCode getStatusCode() { return fStatusCode; }
 
 	/* Construction */
 	private DataRequestor(String requestURL, String adminUserID, String adminPassword, String memberUserID,
@@ -118,18 +118,18 @@ public class DataRequestor
 		catch(Exception e)
 		{
 			Logger.logInfo(this, "sendRequest", e);
-			fStatusCode = StatusCode.sc_ProviderConnectionError;
+			fStatusCode = ProviderStatusCode.sc_ProviderConnectionError;
 		}
 
 		return null;
 	}
 
-	public StatusCode pingServer()
+	public ProviderStatusCode pingServer()
 	{
 		sendRequest(PingRqst.newInstance(), fPingTimeoutMillis);
 
-		if(!StatusCode.sc_Success.equals(fStatusCode))
-			Logger.logInfo(this, "pingServer", String.format("bad StatusCode(%d) returned", StatusCode.convertToInt(fStatusCode)));
+		if(!ProviderStatusCode.sc_Success.equals(fStatusCode))
+			Logger.logInfo(this, "pingServer", String.format("bad StatusCode(%d) returned", ProviderStatusCode.convertToInt(fStatusCode)));
 		return fStatusCode;
 	}
 
