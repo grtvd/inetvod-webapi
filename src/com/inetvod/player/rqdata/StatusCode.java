@@ -25,7 +25,7 @@ public class StatusCode
 
 	public static final StatusCode sc_ShowSearch_NeedCriteiia = new StatusCode(1020);
 
-	public static final StatusCode sc_CantPingProvider = new StatusCode(1030);
+	public static final StatusCode sc_NoProviderResponse = new StatusCode(1030);
 
 	public static final StatusCode sc_GeneralError = new StatusCode(9999);
 
@@ -41,7 +41,7 @@ public class StatusCode
 			sc_Player_Missing,
 			sc_Player_OutOfDate,
 			sc_ShowSearch_NeedCriteiia,
-			sc_CantPingProvider,
+			sc_NoProviderResponse,
 			sc_GeneralError
 		});
 
