@@ -1,3 +1,4 @@
+Move common/dbdata classes that are not tied to db into common/data
 Possible ArrayList to ArrayList<T>: DatabaseFieldReader,
 Change Show:indexOf, get, find to indexOfByID, getByID, findByID
 Convert MemberID to a UUID
@@ -7,4 +8,3 @@ Rename SerialNumber to MemberLogon
 -- Add fields: UserName, Password, AdultPIN
 Use HTTPS when calling webprovider
 PlayerServletFulfiller.logRequest should consider StatusCode for 'result' message
-Need to set timeouts in DataRequestor, what happens if provider web server is down.

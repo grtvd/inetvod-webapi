@@ -26,6 +26,10 @@ public class StatusCode
 	public static final StatusCode sc_ShowRentExpired = new StatusCode(1103);
 	public static final StatusCode sc_ShowPaymentDenied = new StatusCode(1104);
 
+	// NOTE: These errors are not returned by from the Provider
+	public static final StatusCode sc_ProviderConnectionError = new StatusCode(9000);
+	// NOTE: These errors are not returned by from the Provider
+
 	public static final StatusCode sc_GeneralError = new StatusCode(9999);
 
 	private static List<StatusCode> fAllValues = Arrays.asList(new StatusCode[]
@@ -42,6 +46,7 @@ public class StatusCode
 			sc_ShowNotRented,
 			sc_ShowRentExpired,
 			sc_ShowPaymentDenied,
+			sc_ProviderConnectionError,
 			sc_GeneralError
 		});
 

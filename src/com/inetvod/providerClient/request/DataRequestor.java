@@ -24,6 +24,8 @@ public class DataRequestor
 {
 	/* Constants */
 	private static final String Version = "1.0.0";
+	private static final int fPingTimeoutMillis = 5000;			// (5 seconds) Timeout for PingRqst - TODO: move to config file
+	private static final int fRequestTimeoutMillis = 30000;		// (30 seconds) Default timeout for requests - TODO: move to config file
 
 	/* Fields */
 	private String fRequestURL;
@@ -61,7 +63,7 @@ public class DataRequestor
 		return request;
 	}
 
-	private Readable sendRequest(Writeable payload)
+	private Readable sendRequest(Writeable payload, int timeoutMillis)
 	{
 		INetVODProviderRqst iNetVODProviderRqst;
 		INetVODProviderResp iNetVODProviderResp;
@@ -83,6 +85,7 @@ public class DataRequestor
 
 			// Send HTTP request to server
 			HttpClient httpClient = new HttpClient();
+			httpClient.getParams().setParameter("http.socket.timeout", timeoutMillis);
 			String contentType = "text/xml; charset=ISO-8859-1";
 			PostMethod postMethod = new PostMethod(fRequestURL);
 			postMethod.setRequestEntity(new StringRequestEntity(requestXml, contentType, null));
@@ -108,7 +111,7 @@ public class DataRequestor
 		catch(Exception e)
 		{
 			Logger.logInfo(this, "sendRequest", e);
-			fStatusCode = StatusCode.sc_GeneralError;
+			fStatusCode = StatusCode.sc_ProviderConnectionError;
 		}
 
 		return null;
@@ -116,7 +119,7 @@ public class DataRequestor
 
 	public StatusCode pingServer()
 	{
-		sendRequest(PingRqst.newInstance());
+		sendRequest(PingRqst.newInstance(), fPingTimeoutMillis);
 
 		if(!StatusCode.sc_Success.equals(fStatusCode))
 			Logger.logInfo(this, "pingServer", String.format("bad StatusCode(%d) returned", StatusCode.convertToInt(fStatusCode)));
