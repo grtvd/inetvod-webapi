@@ -235,7 +235,12 @@ public class XmlDataReader extends DataReader
 	 */
 	public Boolean readBoolean(String fieldName) throws Exception
 	{
-		throw new UnsupportedOperationException("need to implement");	//TODO: need to implement
+		String data = readString(fieldName);
+
+		if(data == null)
+			return null;
+
+		return Boolean.parseBoolean(data);
 	}
 
 	/**
