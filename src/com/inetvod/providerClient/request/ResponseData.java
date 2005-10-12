@@ -12,7 +12,7 @@ import com.inetvod.common.core.Readable;
 public class ResponseData implements Readable
 {
 	/* Constants */
-	public static final Constructor<ResponseData> CtorDataFiler = DataReader.getCtor(ResponseData.class);
+	public static final Constructor<ResponseData> CtorDataReader = DataReader.getCtor(ResponseData.class);
 	private static final int ResponseTypeMaxLength = 64;
 
 	/* Properties */

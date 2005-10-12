@@ -14,7 +14,7 @@ import com.inetvod.common.core.Writeable;
 public class Authenticate implements Readable, Writeable
 {
 	/* Constants */
-	public static final Constructor<Authenticate> CtorDataFiler = DataReader.getCtor(Authenticate.class);
+	public static final Constructor<Authenticate> CtorDataReader = DataReader.getCtor(Authenticate.class);
 
 	private static final int AdminUserIDMaxLength = 64;
 	private static final int AdminPasswordMaxLength = 32;

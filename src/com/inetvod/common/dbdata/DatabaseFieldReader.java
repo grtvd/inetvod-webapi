@@ -181,13 +181,13 @@ public class DatabaseFieldReader extends DataReader
 	 * Read an Object.
 	 *
 	 * @param fieldName
-	 * @param ctorDataFiler
+	 * @param ctorDataReader
 	 * @return may return null
 	 */
-	public Readable readObject(String fieldName, Constructor ctorDataFiler) throws Exception
+	public Readable readObject(String fieldName, Constructor ctorDataReader) throws Exception
 	{
 		fFieldNamePrefixList.add(fieldName + "_");
-		Readable readable = (Readable)ctorDataFiler.newInstance(new Object[] { this });
+		Readable readable = (Readable)ctorDataReader.newInstance(new Object[] { this });
 		fFieldNamePrefixList.remove(fFieldNamePrefixList.size() - 1);
 
 		return readable;
@@ -198,10 +198,10 @@ public class DatabaseFieldReader extends DataReader
 	 *
 	 * @param fieldName
 	 * @param listCtor
-	 * @param itemCtorDataFiler
+	 * @param itemCtorDataReader
 	 * @return will never return null, may return an empty list
 	 */
-	public List readList(String fieldName, Constructor listCtor, Constructor itemCtorDataFiler) throws Exception
+	public List readList(String fieldName, Constructor listCtor, Constructor itemCtorDataReader) throws Exception
 	{
 		throw new UnsupportedOperationException("need to implement");	//TODO: need to implement
 	}

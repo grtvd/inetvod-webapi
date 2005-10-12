@@ -15,9 +15,9 @@ public class PingRqst implements PlayerRequestable
 	protected StatusCode fStatusCode = StatusCode.sc_GeneralError;
 	public StatusCode getStatusCode() { return fStatusCode; }
 
-	public PingRqst(DataReader filer)
+	public PingRqst(DataReader reader)
 	{
-		readFrom(filer);
+		readFrom(reader);
 	}
 	public Writeable fulfillRequest()
 	{
@@ -25,12 +25,12 @@ public class PingRqst implements PlayerRequestable
 		return new PingResp();
 	}
 
-	public void readFrom(DataReader filer)
+	public void readFrom(DataReader reader)
 	{
 		// No Fields
 	}
 
-	public void writeTo(DataWriter filer)
+	public void writeTo(DataWriter writer)
 	{
 		// No Fields
 	}

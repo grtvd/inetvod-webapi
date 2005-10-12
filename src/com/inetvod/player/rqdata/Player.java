@@ -15,7 +15,7 @@ import com.inetvod.common.dbdata.ManufacturerID;
 public class Player implements Readable, Writeable
 {
 	/* Constants */
-	public static final Constructor<Player> CtorDataFiler = DataReader.getCtor(Player.class);
+	public static final Constructor<Player> CtorDataReader = DataReader.getCtor(Player.class);
 	public static final int ModelNoMaxLength = 32;
 	public static final int SerialNoMaxLength = 64;
 	public static final int VersionMaxLength = 16;
@@ -33,9 +33,9 @@ public class Player implements Readable, Writeable
 	public String getVersion() { return fVersion; }
 
 	/* Construction */
-	public Player(DataReader filer) throws Exception
+	public Player(DataReader reader) throws Exception
 	{
-		readFrom(filer);
+		readFrom(reader);
 	}
 
 	/* Implementation */

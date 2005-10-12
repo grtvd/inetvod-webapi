@@ -16,7 +16,7 @@ public class PingRqst implements Writeable
 	}
 
 	/* Implementation */
-	public void writeTo(DataWriter filer)
+	public void writeTo(DataWriter writer)
 	{
 		// No Fields
 	}

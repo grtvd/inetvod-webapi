@@ -18,9 +18,9 @@ public class CheckShowAvailResp implements Readable
 	public ShowCostList getShowCostList() { return fShowCostList; }
 
 	/* Construction */
-	public CheckShowAvailResp(DataReader filer) throws Exception
+	public CheckShowAvailResp(DataReader reader) throws Exception
 	{
-		readFrom(filer);
+		readFrom(reader);
 	}
 
 	/* Implementation */

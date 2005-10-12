@@ -35,6 +35,6 @@ public class INetVODProviderResp implements Readable
 	{
 		fRequestID = reader.readString("RequestID", INetVODProviderRqst.RequestIDMaxLength);
 		fStatusCode = ProviderStatusCode.convertFromInt(reader.readInt("StatusCode"));
-		fResponseData = reader.readObject("ResponseData", ResponseData.CtorDataFiler);
+		fResponseData = reader.readObject("ResponseData", ResponseData.CtorDataReader);
 	}
 }

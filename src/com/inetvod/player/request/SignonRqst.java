@@ -107,7 +107,7 @@ public class SignonRqst implements PlayerRequestable
 	{
 		fUserID = reader.readString("UserID", UserIDMaxLength);
 		fPassword = reader.readString("Password", PasswordMaxLength);
-		fPlayer = reader.readObject("Player", Player.CtorDataFiler);
+		fPlayer = reader.readObject("Player", Player.CtorDataReader);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception

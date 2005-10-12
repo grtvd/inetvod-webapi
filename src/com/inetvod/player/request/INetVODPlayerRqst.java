@@ -18,7 +18,7 @@ public class INetVODPlayerRqst implements PlayerRequestable
 	private static final int VersionMaxLength = 16;
 	private static final int RequestIDMaxLength = 64;
 
-	public static final Constructor<INetVODPlayerRqst> CtorDataFiler = DataReader.getCtor(INetVODPlayerRqst.class);
+	public static final Constructor<INetVODPlayerRqst> CtorDataReader = DataReader.getCtor(INetVODPlayerRqst.class);
 
 	/* Fields */
 	private String fVersion;
@@ -65,7 +65,7 @@ public class INetVODPlayerRqst implements PlayerRequestable
 		fRequestID = reader.readString("RequestID", RequestIDMaxLength);
 		fSessionData = new SessionData(reader.readString("SessionData", SessionData.SessionDataMaxLength));
 
-		fRequestData = reader.readObject("RequestData", RequestData.CtorDataFiler);
+		fRequestData = reader.readObject("RequestData", RequestData.CtorDataReader);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception

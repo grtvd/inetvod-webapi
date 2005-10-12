@@ -9,7 +9,7 @@ import com.inetvod.common.core.Writeable;
 
 public class PingResp implements Writeable
 {
-	public void writeTo(DataWriter filer)
+	public void writeTo(DataWriter writer)
 	{
 		// No Fields
 	}
