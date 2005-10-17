@@ -8,7 +8,7 @@ import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.MemberPrefs;
-import com.inetvod.player.rqdata.IncludeAdult;
+import com.inetvod.common.dbdata.IncludeAdult;
 import com.inetvod.player.rqdata.StatusCode;
 
 public class EnableAdultAccessRqst extends SessionRequestable

@@ -6,6 +6,7 @@ package com.inetvod.player.rqdata;
 
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.core.DataWriter;
+import com.inetvod.common.dbdata.IncludeAdult;
 
 public class MemberPrefs implements Writeable
 {

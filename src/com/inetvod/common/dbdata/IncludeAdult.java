@@ -1,8 +1,8 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
-package com.inetvod.player.rqdata;
+package com.inetvod.common.dbdata;
 
 public class IncludeAdult
 {

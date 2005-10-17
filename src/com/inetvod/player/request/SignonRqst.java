@@ -15,7 +15,7 @@ import com.inetvod.common.dbdata.Member;
 import com.inetvod.common.dbdata.MemberSession;
 import com.inetvod.common.dbdata.PlayerID;
 import com.inetvod.common.dbdata.SerialNumber;
-import com.inetvod.player.rqdata.IncludeAdult;
+import com.inetvod.common.dbdata.IncludeAdult;
 import com.inetvod.player.rqdata.MemberPrefs;
 import com.inetvod.player.rqdata.MemberProviderList;
 import com.inetvod.player.rqdata.MemberState;
