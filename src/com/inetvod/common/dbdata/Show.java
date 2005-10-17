@@ -110,7 +110,7 @@ public class Show extends DatabaseObject
 		writer.writeDataID("ShowID", fShowID, ShowID.MaxLength);
 		writer.writeString("Name", fName, NameMaxLength);
 		writer.writeString("EpisodeName", fEpisodeName, EpisodeNameMaxLength);
-		writer.writeString("fEpisodeNumber", fEpisodeNumber, EpisodeNumberMaxLength);
+		writer.writeString("EpisodeNumber", fEpisodeNumber, EpisodeNumberMaxLength);
 		writer.writeDate("ReleasedOn", fReleasedOn);
 		writer.writeShort("ReleasedYear", fReleasedYear);
 		writer.writeString("Description", fDescription, DescriptionMaxLength);
