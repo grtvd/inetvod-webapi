@@ -92,7 +92,7 @@ values ('tvpg', 'TV-PG')
 insert into Rating (RatingID, Name)
 values ('tv14', 'TV-14')
 insert into Rating (RatingID, Name)
-values ('tv-ma', 'TVMA')
+values ('tvma', 'TV-MA')
 go
 
 --//////////////////////////////////////////////////////////////////////////////
