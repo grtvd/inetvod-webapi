@@ -212,7 +212,7 @@ GO
 CREATE PROCEDURE dbo.Provider_Get
 	@ProviderID varchar(64)
 AS
-	select ProviderID, Name
+	select ProviderID, Name, RequestURL, AdminUserID, AdminPassword
 	from Provider
 	where ProviderID = @ProviderID
 GO
@@ -221,7 +221,7 @@ GO
 
 CREATE PROCEDURE dbo.Provider_GetAll
 AS
-	select ProviderID, Name
+	select ProviderID, Name, RequestURL, AdminUserID, AdminPassword
 	from Provider
 	order by Name
 GO

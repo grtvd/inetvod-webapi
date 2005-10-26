@@ -131,6 +131,9 @@ GO
 CREATE TABLE [dbo].[Provider] (
 	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[Name] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL
+	[RequestURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[AdminUserID] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[AdminPassword] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
 ) ON [PRIMARY]
 GO
 
