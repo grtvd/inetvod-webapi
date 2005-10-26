@@ -100,6 +100,14 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Show_Get]'
 drop procedure [dbo].[Show_Get]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Show_Insert]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[Show_Insert]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Show_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[Show_Update]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Show_Search]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[Show_Search]
 GO
@@ -116,8 +124,24 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Show_GetBy
 drop procedure [dbo].[Show_GetByRentedShowMemberID]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Show_GetByNameReleasedYear]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[Show_GetByNameReleasedYear]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider_Insert]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ShowProvider_Insert]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ShowProvider_Update]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider_GetByShowIDProviderID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[ShowProvider_GetByShowIDProviderID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider_GetByProviderIDProviderShowID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ShowProvider_GetByProviderIDProviderShowID]
 GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider_Search]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
@@ -130,6 +154,14 @@ GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider_GetByCategoryID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[ShowProvider_GetByCategoryID]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowCategory_Insert]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ShowCategory_Insert]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowCategory_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ShowCategory_Delete]
 GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowCategory_Search]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
@@ -538,6 +570,80 @@ GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
+CREATE PROCEDURE dbo.Show_Insert
+	@ShowID varchar(64),
+	@Name varchar(64),
+	@EpisodeName varchar(64),
+	@EpisodeNumber varchar(32),
+	@ReleasedOn datetime,
+	@ReleasedYear smallint,
+	@Description text,
+	@RunningMins smallint,
+	@PictureURL varchar(4096),
+	@RatingID varchar(32),
+	@IsAdult bit
+AS
+	insert into Show
+	(
+		ShowID,
+		Name,
+		EpisodeName,
+		EpisodeNumber,
+		ReleasedOn,
+		ReleasedYear,
+		Description,
+		RunningMins,
+		PictureURL,
+		RatingID,
+		IsAdult
+	)
+	values
+	(
+		@ShowID,
+		@Name,
+		@EpisodeName,
+		@EpisodeNumber,
+		@ReleasedOn,
+		@ReleasedYear,
+		@Description,
+		@RunningMins,
+		@PictureURL,
+		@RatingID,
+		@IsAdult
+	)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.Show_Update
+	@ShowID varchar(64),
+	@Name varchar(64),
+	@EpisodeName varchar(64),
+	@EpisodeNumber varchar(32),
+	@ReleasedOn datetime,
+	@ReleasedYear smallint,
+	@Description text,
+	@RunningMins smallint,
+	@PictureURL varchar(4096),
+	@RatingID varchar(32),
+	@IsAdult bit
+AS
+	update Show set
+		Name = @Name,
+		EpisodeName = @EpisodeName,
+		EpisodeNumber = @EpisodeNumber,
+		ReleasedOn = @ReleasedOn,
+		ReleasedYear = @ReleasedYear,
+		Description = @Description,
+		RunningMins = @RunningMins,
+		PictureURL = @PictureURL,
+		RatingID = @RatingID,
+		IsAdult = @IsAdult
+	where ShowID = @ShowID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
 CREATE PROCEDURE dbo.Show_Search
 	@PartialName varchar(64)
 AS
@@ -588,6 +694,89 @@ GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
+CREATE PROCEDURE dbo.Show_GetByNameReleasedYear
+	@Name varchar(64),
+	@EpisodeName varchar(64),
+	@ReleasedYear smallint
+AS
+	select ShowID, Name, EpisodeName, EpisodeNumber, ReleasedOn, ReleasedYear,
+		Description, RunningMins, PictureURL, RatingID, IsAdult
+	from Show
+	where (Name = @Name) and (ReleasedYear = @ReleasedYear) and
+	(
+		((EpisodeName is null) and (@EpisodeName is null))
+		or ((not EpisodeName is null) and (not @EpisodeName is null)
+			and (EpisodeName = @EpisodeName))
+	)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.ShowProvider_Insert
+	@ShowProviderID varchar(64),
+	@ShowID varchar(64),
+	@ProviderID varchar(64),
+	@ProviderShowID varchar(64),
+	@ShowCost_ShowCostType varchar(32),
+	@ShowCost_Cost_CurrencyID varchar(3),
+	@ShowCost_Cost_Amount decimal(17,2),
+	@ShowCost_CostDisplay varchar(32),
+	@ShowCost_RentalHours smallint
+AS
+	insert into ShowProvider
+	(
+		ShowProviderID,
+		ShowID,
+		ProviderID,
+		ProviderShowID,
+		ShowCost_ShowCostType,
+		ShowCost_Cost_CurrencyID,
+		ShowCost_Cost_Amount,
+		ShowCost_CostDisplay,
+		ShowCost_RentalHours
+	)
+	values
+	(
+		@ShowProviderID,
+		@ShowID,
+		@ProviderID,
+		@ProviderShowID,
+		@ShowCost_ShowCostType,
+		@ShowCost_Cost_CurrencyID,
+		@ShowCost_Cost_Amount,
+		@ShowCost_CostDisplay,
+		@ShowCost_RentalHours
+	)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.ShowProvider_Update
+	@ShowProviderID varchar(64),
+	@ShowID varchar(64),
+	@ProviderID varchar(64),
+	@ProviderShowID varchar(64),
+	@ShowCost_ShowCostType varchar(32),
+	@ShowCost_Cost_CurrencyID varchar(3),
+	@ShowCost_Cost_Amount decimal(17,2),
+	@ShowCost_CostDisplay varchar(32),
+	@ShowCost_RentalHours smallint
+AS
+	update ShowProvider set
+		--ShowProviderID = @ShowProviderID,
+		--ShowID = @ShowID,
+		--ProviderID = @ProviderID,
+		--ProviderShowID = @ProviderShowID,
+		ShowCost_ShowCostType = @ShowCost_ShowCostType,
+		ShowCost_Cost_CurrencyID = @ShowCost_Cost_CurrencyID,
+		ShowCost_Cost_Amount = @ShowCost_Cost_Amount,
+		ShowCost_CostDisplay = @ShowCost_CostDisplay,
+		ShowCost_RentalHours = @ShowCost_RentalHours
+	where ShowProviderID = @ShowProviderID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
 CREATE PROCEDURE dbo.ShowProvider_GetByShowIDProviderID
 	@ShowID varchar(64),
 	@ProviderID varchar(64)
@@ -597,6 +786,19 @@ AS
 	from ShowProvider
 	where (ShowID = @ShowID)
 	and (ProviderID = @ProviderID)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.ShowProvider_GetByProviderIDProviderShowID
+	@ProviderID varchar(64),
+	@ProviderShowID varchar(64)
+AS
+	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowCost_ShowCostType,
+		ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount, ShowCost_CostDisplay, ShowCost_RentalHours
+	from ShowProvider
+	where (ProviderID = @ProviderID)
+	and (ProviderShowID = @ProviderShowID)
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
@@ -635,6 +837,35 @@ AS
 	from ShowProvider sp
 	join ShowCategory sc on sc.ShowID = sp.ShowID
 	where sc.CategoryID = @CategoryID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.ShowCategory_Insert
+	@ShowCategoryID varchar(64),
+	@ShowID varchar(64),
+	@CategoryID varchar(32)
+AS
+	insert into ShowCategory
+	(
+		ShowCategoryID,
+		ShowID,
+		CategoryID
+	)
+	values
+	(
+		@ShowCategoryID,
+		@ShowID,
+		@CategoryID
+	)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.ShowCategory_Delete
+	@ShowCategoryID varchar(64)
+AS
+	delete from ShowCategory where ShowCategoryID = @ShowCategoryID
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
