@@ -1,4 +1,6 @@
-Move common/dbdata classes that are not tied to db into common/data
+Update DatabaseAdaptor/DatabaseFieldWriter to support null "Objects" (where columns are not written to update/insert stored procedure).
+Created RentedShowHistory db, add entry with each rental request.
+?? - Move common/dbdata classes that are not tied to db into common/data
 Possible ArrayList to ArrayList<T>: DatabaseFieldReader,
 Change Show:indexOf, get, find to indexOfByID, getByID, findByID
 Convert MemberID to a UUID

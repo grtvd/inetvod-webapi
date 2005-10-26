@@ -13,6 +13,9 @@ import com.inetvod.common.dbdata.ProviderID;
 import com.inetvod.common.dbdata.ShowCostList;
 import com.inetvod.common.dbdata.ShowID;
 import com.inetvod.common.dbdata.ShowProvider;
+import com.inetvod.common.dbdata.ShowFormat;
+import com.inetvod.common.dbdata.MediaEncoding;
+import com.inetvod.common.dbdata.MediaContainer;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
 import com.inetvod.providerClient.rqdata.ProviderStatusCode;
@@ -49,8 +52,17 @@ public class CheckShowAvailRqst extends SessionRequestable
 		// Fetch Show as offered by Provider
 		ShowProvider showProvider = ShowProvider.getByShowIDProviderID(fShowID, fProviderID);
 
+		//TODO: determine correct format for player
+		ShowFormat showFormat = new ShowFormat();
+		showFormat.setMediaEncoding(MediaEncoding.WMV9);
+		showFormat.setMediaContainer(MediaContainer.ASF);
+		showFormat.setHorzResolution((short)600);
+		showFormat.setVertResolution((short)480);
+		showFormat.setFramesPerSecond((short)30);
+		showFormat.setBitRate((short)750);
+
 		// Send request to Provider
-		ShowCostList showCostList = providerRequestor.checkShowAvail(showProvider.getProviderShowID());
+		ShowCostList showCostList = providerRequestor.checkShowAvail(showProvider.getProviderShowID(), showFormat);
 		ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
 		if(!ProviderStatusCode.sc_Success.equals(providerStatusCode)
 			|| (showCostList == null))
