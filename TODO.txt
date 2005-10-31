@@ -1,5 +1,3 @@
-Warning, Provider is return adminuserid, adminpassword to player
-
 Certain db columns should be nvarchar, not varchar.
 Confirm Java String conversion to varchar is slowing things down.
 
