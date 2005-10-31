@@ -1,7 +1,6 @@
 Certain db columns should be nvarchar, not varchar.
-Confirm Java String conversion to varchar is slowing things down.
+Confirm Java String conversion to varchar is NOT slowing things down.
 
-Update DatabaseAdaptor/DatabaseFieldWriter to support null "Objects" (where columns are not written to update/insert stored procedure).
 Update DatabaseAdaptor/DatabaseFieldReader to support null "Objects" (using the DatabaseAdaptor.fFields, test of all field staring if fieldName_ are null, if so, return null object).
 
 Created RentedShowHistory db, add entry with each rental request.
