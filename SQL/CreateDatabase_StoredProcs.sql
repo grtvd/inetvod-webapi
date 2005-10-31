@@ -136,6 +136,10 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvid
 drop procedure [dbo].[ShowProvider_Update]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ShowProvider_Delete]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider_GetByShowIDProviderID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[ShowProvider_GetByShowIDProviderID]
 GO
@@ -775,6 +779,15 @@ AS
 	where ShowProviderID = @ShowProviderID
 GO
 
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.ShowProvider_Delete
+	@ShowProviderID varchar(64)
+AS
+	delete from ShowProvider where ShowProviderID = @ShowProviderID
+GO
+
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowProvider_GetByShowIDProviderID
@@ -1085,6 +1098,7 @@ GRANT EXECUTE ON [dbo].[Show_GetByNameReleasedYear] TO [inetvod]
 
 GRANT EXECUTE ON [dbo].[ShowProvider_Insert] TO [inetvod]
 GRANT EXECUTE ON [dbo].[ShowProvider_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowProvider_Delete] TO [inetvod]
 GRANT EXECUTE ON [dbo].[ShowProvider_GetByShowIDProviderID] TO [inetvod]
 GRANT EXECUTE ON [dbo].[ShowProvider_GetByProviderIDProviderShowID] TO [inetvod]
 GRANT EXECUTE ON [dbo].[ShowProvider_Search] TO [inetvod]
