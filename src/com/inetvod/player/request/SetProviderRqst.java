@@ -30,6 +30,8 @@ public class SetProviderRqst extends SessionRequestable
 		MemberProvider memberProvider;
 
 		//TODO: decrypt UserID and Password based on Player
+		fUserID = "member";	//TODO: remove
+		fPassword = "memberpassword";	//TODO: remove
 
 		response = new SetProviderResp();
 

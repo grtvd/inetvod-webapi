@@ -36,6 +36,8 @@ public class ProviderEnrollRqst extends SessionRequestable
 
 			memberProvider = MemberProvider.newInstance(fMemberID, fProviderID);
 			//TODO: set UserID, Password
+			memberProvider.setEncryptedUserName("member");	//TODO: remove
+			memberProvider.setEncryptedPassword("memberpassword");	//TODO: remove
 			memberProvider.update();
 
 			fStatusCode = StatusCode.sc_Success;
