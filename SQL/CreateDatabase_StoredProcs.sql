@@ -294,9 +294,9 @@ CREATE PROCEDURE dbo.Member_Insert
 	@AddrStreet1 varchar(64),
 	@AddrStreet2 varchar(64),
 	@City varchar(64),
-	@State varchar(32),
+	@State varchar(64),
 	@PostalCode varchar(32),
-	@Country varchar(32),
+	@Country varchar(64),
 	@Phone varchar(32),
 	@BirthDate datetime
 AS
@@ -339,9 +339,9 @@ CREATE PROCEDURE dbo.Member_Update
 	@AddrStreet1 varchar(64),
 	@AddrStreet2 varchar(64),
 	@City varchar(64),
-	@State varchar(32),
+	@State varchar(64),
 	@PostalCode varchar(32),
-	@Country varchar(32),
+	@Country varchar(64),
 	@Phone varchar(32),
 	@BirthDate datetime
 AS
@@ -817,7 +817,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowProvider_GetByProviderID
-	@ProviderID varchar(32)
+	@ProviderID varchar(64)
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderShowID,
 		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
@@ -1041,6 +1041,68 @@ AS
 	from RentedShow
 	where MemberID = @MemberID
 GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+GRANT EXECUTE ON [dbo].[Provider_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Provider_GetAll] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[Category_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Category_GetAll] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[Rating_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Rating_GetAll] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[Member_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Member_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Member_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Member_Delete] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[MemberPrefs_Get] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[SerialNumber_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[SerialNumber_Update] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[MemberSession_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberSession_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberSession_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberSession_Delete] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[MemberProvider_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberProvider_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberProvider_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberProvider_GetByMemberIDProviderID] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberProvider_GetByMemberID] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[Show_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Show_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Show_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Show_Search] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Show_GetByProviderID] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Show_GetByCategoryID] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Show_GetByRentedShowMemberID] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Show_GetByNameReleasedYear] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[ShowProvider_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowProvider_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowProvider_GetByShowIDProviderID] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowProvider_GetByProviderIDProviderShowID] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowProvider_Search] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowProvider_GetByProviderID] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowProvider_GetByCategoryID] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[ShowCategory_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowCategory_Delete] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowCategory_Search] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowCategory_GetByShowID] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowCategory_GetByCategoryID] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowCategory_GetByRentedShowMemberID] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[RentedShow_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[RentedShow_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[RentedShow_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[RentedShow_Delete] TO [inetvod]
+GRANT EXECUTE ON [dbo].[RentedShow_GetByMemberID] TO [inetvod]
 
 --//////////////////////////////////////////////////////////////////////////////
 
