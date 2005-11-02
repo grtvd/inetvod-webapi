@@ -4,7 +4,7 @@
  */
 package com.inetvod.player.request;
 
-import com.inetvod.common.dbdata.MemberID;
+import com.inetvod.common.data.MemberID;
 import com.inetvod.common.dbdata.MemberSession;
 import com.inetvod.player.rqdata.PlayerRequestable;
 import com.inetvod.player.rqdata.StatusCode;

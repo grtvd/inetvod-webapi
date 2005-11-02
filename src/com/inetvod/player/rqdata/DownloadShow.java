@@ -4,10 +4,10 @@
  */
 package com.inetvod.player.rqdata;
 
-import com.inetvod.common.dbdata.RentedShow;
-import com.inetvod.common.dbdata.RentedShowID;
-import com.inetvod.common.core.Writeable;
 import com.inetvod.common.core.DataWriter;
+import com.inetvod.common.core.Writeable;
+import com.inetvod.common.data.RentedShowID;
+import com.inetvod.common.dbdata.RentedShow;
 
 public class DownloadShow implements Writeable
 {

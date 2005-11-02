@@ -6,7 +6,7 @@ package com.inetvod.player.request;
 
 import java.util.UUID;
 
-import com.inetvod.common.dbdata.MemberSessionID;
+import com.inetvod.common.data.MemberSessionID;
 
 public class SessionData
 {

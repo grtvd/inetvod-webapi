@@ -4,10 +4,10 @@
  */
 package com.inetvod.player.rqdata;
 
-import com.inetvod.common.core.Writeable;
 import com.inetvod.common.core.DataWriter;
+import com.inetvod.common.core.Writeable;
+import com.inetvod.common.data.ShowID;
 import com.inetvod.common.dbdata.Show;
-import com.inetvod.common.dbdata.ShowID;
 
 public class ShowSearch implements Writeable
 {

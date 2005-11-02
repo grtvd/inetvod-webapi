@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.rqdata;
@@ -8,15 +8,15 @@ import java.util.Date;
 
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.dbdata.CategoryID;
-import com.inetvod.common.dbdata.CategoryIDList;
-import com.inetvod.common.dbdata.ProviderID;
-import com.inetvod.common.dbdata.RatingID;
-import com.inetvod.common.dbdata.RentedShowID;
+import com.inetvod.common.data.CategoryID;
+import com.inetvod.common.data.CategoryIDList;
+import com.inetvod.common.data.ProviderID;
+import com.inetvod.common.data.RatingID;
+import com.inetvod.common.data.RentedShowID;
+import com.inetvod.common.data.ShowCost;
+import com.inetvod.common.data.ShowID;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCategoryList;
-import com.inetvod.common.dbdata.ShowCost;
-import com.inetvod.common.dbdata.ShowID;
 
 public class RentedShow implements Writeable
 {

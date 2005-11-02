@@ -7,8 +7,8 @@ package com.inetvod.player.request;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.common.data.RentedShowID;
 import com.inetvod.common.dbdata.RentedShow;
-import com.inetvod.common.dbdata.RentedShowID;
 import com.inetvod.player.rqdata.StatusCode;
 
 public class ReleaseShowRqst extends SessionRequestable

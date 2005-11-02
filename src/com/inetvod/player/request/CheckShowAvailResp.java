@@ -6,7 +6,7 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.dbdata.ShowCostList;
+import com.inetvod.common.data.ShowCostList;
 
 public class CheckShowAvailResp implements Writeable
 {

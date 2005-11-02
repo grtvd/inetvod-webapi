@@ -1,9 +1,13 @@
+/**
+ * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Confidential and Proprietary
+ */
 package com.inetvod.player.rqdata;
 
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.dbdata.ProviderID;
-import com.inetvod.common.dbdata.ShowCost;
+import com.inetvod.common.data.ProviderID;
+import com.inetvod.common.data.ShowCost;
 
 public class ShowProvider implements Writeable
 {

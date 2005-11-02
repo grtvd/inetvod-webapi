@@ -6,7 +6,7 @@ package com.inetvod.player.rqdata;
 
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.dbdata.ProviderID;
+import com.inetvod.common.data.ProviderID;
 
 public class Provider implements Writeable
 {
