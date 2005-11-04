@@ -13,8 +13,6 @@ import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.data.ShowCostList;
 import com.inetvod.common.data.ShowFormat;
 import com.inetvod.common.data.ShowID;
-import com.inetvod.common.dbdata.MemberProvider;
-import com.inetvod.common.dbdata.Provider;
 import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
@@ -34,8 +32,7 @@ public class CheckShowAvailRqst extends SessionRequestable
 
 	public Writeable fulfillRequest() throws Exception
 	{
-		Provider provider = Provider.get(fProviderID);
-		ProviderRequestor providerRequestor = ProviderRequestor.newInstance(provider);
+		ProviderRequestor providerRequestor = ProviderRequestor.newInstance(fProviderID, fMemberID);
 
 		// Confirm Provider's server can be communicated with
 		if(!providerRequestor.pingServer())
@@ -43,11 +40,6 @@ public class CheckShowAvailRqst extends SessionRequestable
 			fStatusCode = StatusCode.sc_NoProviderResponse;
 			return null;
 		}
-
-		// Fetch Member's Provider information
-		MemberProvider memberProvider = MemberProvider.findByMemberIDProviderID(this.fMemberID, fProviderID);
-		//TODO: need to decrypt Member's Provider credentials
-		providerRequestor.setMemberUser(memberProvider.getEncryptedUserName(), memberProvider.getEncryptedPassword());
 
 		// Fetch Show as offered by Provider
 		ShowProvider showProvider = ShowProvider.getByShowIDProviderID(fShowID, fProviderID);
@@ -63,11 +55,16 @@ public class CheckShowAvailRqst extends SessionRequestable
 
 		// Send request to Provider
 		ShowCostList showCostList = providerRequestor.checkShowAvail(showProvider.getProviderShowID(), showFormat);
+
 		ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
 		if(!ProviderStatusCode.sc_Success.equals(providerStatusCode)
 			|| (showCostList == null))
 		{
-			if(ProviderStatusCode.sc_InvalidMemberUserID.equals(providerStatusCode))
+			if(ProviderStatusCode.sc_ShowNoAccess.equals(providerStatusCode))
+				fStatusCode = StatusCode.sc_ShowNoAccess;
+			else if(ProviderStatusCode.sc_ShowLevelInsufficient.equals(providerStatusCode))
+				fStatusCode = StatusCode.sc_ShowLevelInsufficient;
+			else if(ProviderStatusCode.sc_InvalidMemberUserID.equals(providerStatusCode))
 				fStatusCode = StatusCode.sc_InvalidProviderUserIDPassword;
 			else
 				fStatusCode = StatusCode.sc_NoProviderResponse;

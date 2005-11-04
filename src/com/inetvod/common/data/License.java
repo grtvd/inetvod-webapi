@@ -2,7 +2,9 @@
  * Copyright © 2005 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
-package com.inetvod.player.rqdata;
+package com.inetvod.common.data;
+
+import java.lang.reflect.Constructor;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
@@ -11,6 +13,9 @@ import com.inetvod.common.core.Writeable;
 
 public class License implements Readable, Writeable
 {
+	/* Constants */
+	public static Constructor<License> CtorDataReader = DataReader.getCtor(License.class);
+
 	public static final int ShowURLMaxLength = 4096;
 	public static final int LicenseURLMaxLength = 4096;
 
@@ -32,6 +37,11 @@ public class License implements Readable, Writeable
 	/* Constuction */
 	public License()
 	{
+	}
+
+	public License(DataReader reader) throws Exception
+	{
+		readFrom(reader);
 	}
 
 	/* Implementation */

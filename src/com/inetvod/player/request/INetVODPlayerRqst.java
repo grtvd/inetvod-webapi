@@ -104,6 +104,18 @@ public class INetVODPlayerRqst implements PlayerRequestable
 			response.setStatusMessage("A partial title, provider, or category must be provided for searching.");
 		else if(StatusCode.sc_NoProviderResponse.equals(statusCode))
 			response.setStatusMessage("This Provider cannot be communicated with at this time. Please try again later.");
+		else if(StatusCode.sc_UnknownProviderResponse.equals(statusCode))
+			response.setStatusMessage("An unknown error was returned from this Provider. Please try again later.");
+		else if(StatusCode.sc_CreditCardNotOnFile.equals(statusCode))
+			response.setStatusMessage("Your credit card must be on file with iNetVOD or this Provider to rent pay-per-view content. You may update your credit card preferences at inetvod.com.");
+		else if(StatusCode.sc_CreditCardDenied.equals(statusCode))
+			response.setStatusMessage("Your credit card was denied by this Provider. Please review your credit card information at inetvod.com.");
+		else if(StatusCode.sc_ShowNoAccess.equals(statusCode))
+			response.setStatusMessage("Your subscription with this Provider does not allow access to this show. Please review your subsription with this Provider.");
+		else if(StatusCode.sc_ShowLevelInsufficient.equals(statusCode))
+			response.setStatusMessage("Your subscription level with this Provider is too low to rent this show. Please review your subsription with this Provider.");
+		else if(StatusCode.sc_ShowPaymentDenied.equals(statusCode))
+			response.setStatusMessage("Your payment has been denied by this Provider. Please confirm your payment options with this Provider.");
 		else
 			response.setStatusMessage("An unknown error has occurred. Please try again. If the problem persists, please contact customer service.");	//TODO: better messages
 	}

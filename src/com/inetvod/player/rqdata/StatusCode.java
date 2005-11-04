@@ -23,9 +23,15 @@ public class StatusCode
 	public static final StatusCode sc_Player_Missing = new StatusCode(1006);
 	public static final StatusCode sc_Player_OutOfDate = new StatusCode(1007);
 
-	public static final StatusCode sc_ShowSearch_NeedCriteiia = new StatusCode(1020);
+	public static final StatusCode sc_ShowSearch_NeedCriteiia = new StatusCode(1010);
 
-	public static final StatusCode sc_NoProviderResponse = new StatusCode(1030);
+	public static final StatusCode sc_NoProviderResponse = new StatusCode(1011);
+	public static final StatusCode sc_UnknownProviderResponse = new StatusCode(1012);
+	public static final StatusCode sc_CreditCardNotOnFile = new StatusCode(1013);
+	public static final StatusCode sc_CreditCardDenied = new StatusCode(1014);
+	public static final StatusCode sc_ShowNoAccess = new StatusCode(1015);
+	public static final StatusCode sc_ShowLevelInsufficient = new StatusCode(1016);
+	public static final StatusCode sc_ShowPaymentDenied = new StatusCode(1017);
 
 	public static final StatusCode sc_GeneralError = new StatusCode(9999);
 
@@ -42,6 +48,12 @@ public class StatusCode
 			sc_Player_OutOfDate,
 			sc_ShowSearch_NeedCriteiia,
 			sc_NoProviderResponse,
+			sc_UnknownProviderResponse,
+			sc_CreditCardNotOnFile,
+			sc_CreditCardDenied,
+			sc_ShowNoAccess,
+			sc_ShowLevelInsufficient,
+			sc_ShowPaymentDenied,
 			sc_GeneralError
 		});
 
