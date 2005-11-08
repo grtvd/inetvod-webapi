@@ -152,4 +152,9 @@ public class DataRequestor
 	{
 		return (RentShowResp)sendRequest(rentShowRqst, fRequestTimeoutMillis);
 	}
+
+	public WatchShowResp watchShow(WatchShowRqst watchShowRqst)
+	{
+		return (WatchShowResp)sendRequest(watchShowRqst, fRequestTimeoutMillis);
+	}
 }

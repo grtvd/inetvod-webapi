@@ -7,11 +7,13 @@ package com.inetvod.player.request;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.data.License;
-import com.inetvod.common.data.LicenseMethod;
+import com.inetvod.common.core.CompUtil;
 import com.inetvod.common.data.RentedShowID;
 import com.inetvod.common.dbdata.RentedShow;
+import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.player.rqdata.StatusCode;
+import com.inetvod.providerClient.ProviderRequestor;
+import com.inetvod.providerClient.rqdata.ProviderStatusCode;
 
 public class WatchShowRqst extends SessionRequestable
 {
@@ -26,19 +28,46 @@ public class WatchShowRqst extends SessionRequestable
 
 	public Writeable fulfillRequest() throws Exception
 	{
-		WatchShowResp response;
-		RentedShow rentedShow;
+		// Get the rented show
+		RentedShow rentedShow = RentedShow.get(fRentedShowID);
 
-		response = new WatchShowResp();
+		ProviderRequestor providerRequestor = ProviderRequestor.newInstance(rentedShow.getProviderID(), fMemberID);
 
-		rentedShow = RentedShow.get(fRentedShowID);
-		//TODO: fetch this from Provider API
-		License license = new License();
-		license.setLicenseMethod(LicenseMethod.URLOnly);
-		license.setShowURL(rentedShow.getShowURL());
-		response.setLicense(license);
-		//TODO: update rentedShow.setAvailableUntil(); from provider
-		//TODO: fetch this from Provider API
+		// Confirm Provider's server can be communicated with
+		if(!providerRequestor.pingServer())
+		{
+			fStatusCode = StatusCode.sc_NoProviderResponse;
+			return null;
+		}
+
+		// Fetch Show as offered by Provider
+		ShowProvider showProvider = ShowProvider.getByShowIDProviderID(rentedShow.getShowID(), rentedShow.getProviderID());
+
+		// Send request to Provider
+		com.inetvod.providerClient.request.WatchShowResp providerWatchShowResp = providerRequestor.watchShow(
+			showProvider.getProviderShowID(), "127.0.0.1");
+
+		ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
+		if(!ProviderStatusCode.sc_Success.equals(providerStatusCode) || (providerWatchShowResp == null))
+		{
+			if(ProviderStatusCode.sc_ShowRentExpired.equals(providerStatusCode))
+				fStatusCode = StatusCode.sc_ShowRentExpired;
+			else
+				fStatusCode = StatusCode.sc_UnknownProviderResponse;
+
+			return null;
+		}
+
+		// Update rented show
+		if(!CompUtil.areEqual(rentedShow.getAvailableUntil(), providerWatchShowResp.getAvailableUntil()))
+		{
+			rentedShow.setAvailableUntil(providerWatchShowResp.getAvailableUntil());
+			rentedShow.update();
+		}
+
+		// Return response to player
+		WatchShowResp response = new WatchShowResp();
+		response.setLicense(providerWatchShowResp.getLicense());
 
 		fStatusCode = StatusCode.sc_Success;
 		return response;

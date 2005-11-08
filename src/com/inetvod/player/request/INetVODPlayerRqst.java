@@ -116,6 +116,8 @@ public class INetVODPlayerRqst implements PlayerRequestable
 			response.setStatusMessage("Your subscription level with this Provider is too low to rent this show. Please review your subsription with this Provider.");
 		else if(StatusCode.sc_ShowPaymentDenied.equals(statusCode))
 			response.setStatusMessage("Your payment has been denied by this Provider. Please confirm your payment options with this Provider.");
+		else if(StatusCode.sc_ShowRentExpired.equals(statusCode))
+			response.setStatusMessage("This Show's rentail period has expired and as a result, this Show no longer viewable.");
 		else
 			response.setStatusMessage("An unknown error has occurred. Please try again. If the problem persists, please contact customer service.");	//TODO: better messages
 	}

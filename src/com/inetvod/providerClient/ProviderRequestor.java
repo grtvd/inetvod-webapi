@@ -21,6 +21,8 @@ import com.inetvod.providerClient.request.RentShowRqst;
 import com.inetvod.providerClient.request.ShowDetailResp;
 import com.inetvod.providerClient.request.ShowDetailRqst;
 import com.inetvod.providerClient.request.ShowListResp;
+import com.inetvod.providerClient.request.WatchShowRqst;
+import com.inetvod.providerClient.request.WatchShowResp;
 import com.inetvod.providerClient.rqdata.Payment;
 import com.inetvod.providerClient.rqdata.ProviderStatusCode;
 import com.inetvod.providerClient.rqdata.ShowDetailList;
@@ -140,5 +142,15 @@ public class ProviderRequestor
 
 		fStatusCode = dataRequestor.getStatusCode();
 		return rentShowResp;
+	}
+
+	public WatchShowResp watchShow(ProviderShowID showID, String playerIPAddress)
+	{
+		DataRequestor dataRequestor = newDataRequestor(true);
+		WatchShowRqst watchShowRqst = WatchShowRqst.newInstance(showID, playerIPAddress);
+		WatchShowResp watchShowResp = dataRequestor.watchShow(watchShowRqst);
+
+		fStatusCode = dataRequestor.getStatusCode();
+		return watchShowResp;
 	}
 }

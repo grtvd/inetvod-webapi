@@ -1,3 +1,7 @@
+Add a WatchOn field to RentedShow, should be set during WatchShowRest.
+
+Update RentShowRqst, WatchShowRqst to pass 'real' PlayerIPAddress to Provider
+
 Certain db columns should be nvarchar, not varchar.
 Confirm Java String conversion to varchar is NOT slowing things down.
 
