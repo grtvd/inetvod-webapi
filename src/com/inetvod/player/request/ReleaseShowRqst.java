@@ -9,7 +9,10 @@ import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.RentedShowID;
 import com.inetvod.common.dbdata.RentedShow;
+import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.player.rqdata.StatusCode;
+import com.inetvod.providerClient.ProviderRequestor;
+import com.inetvod.providerClient.rqdata.ProviderStatusCode;
 
 public class ReleaseShowRqst extends SessionRequestable
 {
@@ -24,14 +27,36 @@ public class ReleaseShowRqst extends SessionRequestable
 
 	public Writeable fulfillRequest() throws Exception
 	{
-		ReleaseShowResp response;
-		RentedShow rentedShow;
+		// Get the rented show
+		RentedShow rentedShow = RentedShow.get(fRentedShowID);
 
-		response = new ReleaseShowResp();
+		ProviderRequestor providerRequestor = ProviderRequestor.newInstance(rentedShow.getProviderID(), fMemberID);
 
-		rentedShow = RentedShow.get(fRentedShowID);
-		//TODO: save to history
+		// Confirm Provider's server can be communicated with
+		if(!providerRequestor.pingServer())
+		{
+			fStatusCode = StatusCode.sc_NoProviderResponse;
+			return null;
+		}
+
+		// Fetch Show as offered by Provider
+		ShowProvider showProvider = ShowProvider.getByShowIDProviderID(rentedShow.getShowID(), rentedShow.getProviderID());
+
+		// Send request to Provider
+		boolean success = providerRequestor.releaseShow(showProvider.getProviderShowID());
+
+		ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
+		if(!ProviderStatusCode.sc_Success.equals(providerStatusCode) || !success)
+		{
+			fStatusCode = StatusCode.sc_UnknownProviderResponse;
+			return null;
+		}
+
+		// Delete rented show
 		rentedShow.delete();
+
+		// Return response to player
+		ReleaseShowResp response = new ReleaseShowResp();
 
 		fStatusCode = StatusCode.sc_Success;
 		return response;

@@ -16,13 +16,15 @@ import com.inetvod.common.dbdata.Provider;
 import com.inetvod.providerClient.request.CheckShowAvailResp;
 import com.inetvod.providerClient.request.CheckShowAvailRqst;
 import com.inetvod.providerClient.request.DataRequestor;
+import com.inetvod.providerClient.request.ReleaseShowResp;
+import com.inetvod.providerClient.request.ReleaseShowRqst;
 import com.inetvod.providerClient.request.RentShowResp;
 import com.inetvod.providerClient.request.RentShowRqst;
 import com.inetvod.providerClient.request.ShowDetailResp;
 import com.inetvod.providerClient.request.ShowDetailRqst;
 import com.inetvod.providerClient.request.ShowListResp;
-import com.inetvod.providerClient.request.WatchShowRqst;
 import com.inetvod.providerClient.request.WatchShowResp;
+import com.inetvod.providerClient.request.WatchShowRqst;
 import com.inetvod.providerClient.rqdata.Payment;
 import com.inetvod.providerClient.rqdata.ProviderStatusCode;
 import com.inetvod.providerClient.rqdata.ShowDetailList;
@@ -152,5 +154,15 @@ public class ProviderRequestor
 
 		fStatusCode = dataRequestor.getStatusCode();
 		return watchShowResp;
+	}
+
+	public boolean releaseShow(ProviderShowID showID)
+	{
+		DataRequestor dataRequestor = newDataRequestor(true);
+		ReleaseShowRqst releaseShowRqst = ReleaseShowRqst.newInstance(showID);
+		ReleaseShowResp releaseShowResp = dataRequestor.releaseShow(releaseShowRqst);
+
+		fStatusCode = dataRequestor.getStatusCode();
+		return ProviderStatusCode.sc_Success.equals(fStatusCode);
 	}
 }

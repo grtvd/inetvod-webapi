@@ -157,4 +157,9 @@ public class DataRequestor
 	{
 		return (WatchShowResp)sendRequest(watchShowRqst, fRequestTimeoutMillis);
 	}
+
+	public ReleaseShowResp releaseShow(ReleaseShowRqst releaseShowRqst)
+	{
+		return (ReleaseShowResp)sendRequest(releaseShowRqst, fRequestTimeoutMillis);
+	}
 }
