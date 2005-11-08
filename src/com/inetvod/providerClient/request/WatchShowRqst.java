@@ -18,7 +18,7 @@ public class WatchShowRqst implements Writeable
 	private String fPlayerIPAddress;
 
 	/* Construction */
-	public WatchShowRqst(ProviderShowID showID, String playerIPAddress)
+	private WatchShowRqst(ProviderShowID showID, String playerIPAddress)
 	{
 		fShowID = showID;
 		fPlayerIPAddress = playerIPAddress;
