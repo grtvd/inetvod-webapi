@@ -149,6 +149,8 @@ public class RentShowRqst extends SessionRequestable
 		rentedShow.setAvailableUntil(providerRentShowResp.getAvailableUntil());
 		rentedShow.update();
 
+		//TODO: save to rental history
+
 		// Return response to player
 		RentShowResp response = new RentShowResp();
 		response.setRentedShowID(rentedShow.getRentedShowID());
