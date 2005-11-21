@@ -4,6 +4,8 @@
  */
 package com.inetvod.player.rqdata;
 
+import java.util.Date;
+
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.ShowID;
@@ -15,6 +17,7 @@ public class ShowSearch implements Writeable
 	protected ShowID fShowID;
 	protected String fName;
 	protected String fEpisodeName;
+	protected Date fReleasedOn;
 	protected Short fReleasedYear;
 	protected ShowProviderList fShowProviderList = new ShowProviderList();
 
@@ -35,6 +38,7 @@ public class ShowSearch implements Writeable
 		fShowID = show.getShowID();
 		fName = show.getName();
 		fEpisodeName = show.getEpisodeName();
+		fReleasedOn = show.getReleasedOn();
 		fReleasedYear = show.getReleasedYear();
 	}
 
@@ -43,6 +47,7 @@ public class ShowSearch implements Writeable
 		writer.writeDataID("ShowID", fShowID, ShowID.MaxLength);
 		writer.writeString("Name", fName, Show.NameMaxLength);
 		writer.writeString("EpisodeName", fEpisodeName, Show.EpisodeNameMaxLength);
+		writer.writeDate("ReleasedOn", fReleasedOn);
 		writer.writeShort("ReleasedYear", fReleasedYear);
 		writer.writeList("ShowProvider", fShowProviderList);
 	}

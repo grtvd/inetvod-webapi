@@ -54,13 +54,21 @@ public class SignonRqst implements PlayerRequestable
 			return response;
 		}
 		//TODO: make standard Player-version check
-		if((new ManufacturerID("inetvod").equals(fPlayer.getManufacturerID()) && "ps2".equals(fPlayer.getModelNo())))
+		if(new ManufacturerID("inetvod").equals(fPlayer.getManufacturerID()))
 		{
-			String version = fPlayer.getVersion();
-			if(!"1.0.1005".equals(version))
+			if("ps2".equals(fPlayer.getModelNo()))
 			{
 				fStatusCode = StatusCode.sc_Player_OutOfDate;
 				return response;
+			}
+			else if("mpdemo".equals(fPlayer.getModelNo()))
+			{
+				String version = fPlayer.getVersion();
+				if(!"1.0.1006".equals(version))
+				{
+					fStatusCode = StatusCode.sc_Player_OutOfDate;
+					return response;
+				}
 			}
 		}
 
