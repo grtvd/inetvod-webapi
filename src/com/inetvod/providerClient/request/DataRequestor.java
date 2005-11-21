@@ -133,6 +133,11 @@ public class DataRequestor
 		return fStatusCode;
 	}
 
+	public EnrollResp enroll(EnrollRqst enrollRqst)
+	{
+		return (EnrollResp)sendRequest(enrollRqst, fRequestTimeoutMillis);
+	}
+
 	public ShowListResp showList()
 	{
 		return (ShowListResp)sendRequest(ShowListRqst.newInstance(), fRequestTimeoutMillis);

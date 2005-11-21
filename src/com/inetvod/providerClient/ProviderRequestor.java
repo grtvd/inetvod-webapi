@@ -16,7 +16,7 @@ import com.inetvod.common.dbdata.Provider;
 import com.inetvod.providerClient.request.CheckShowAvailResp;
 import com.inetvod.providerClient.request.CheckShowAvailRqst;
 import com.inetvod.providerClient.request.DataRequestor;
-import com.inetvod.providerClient.request.ReleaseShowResp;
+import com.inetvod.providerClient.request.EnrollRqst;
 import com.inetvod.providerClient.request.ReleaseShowRqst;
 import com.inetvod.providerClient.request.RentShowResp;
 import com.inetvod.providerClient.request.RentShowRqst;
@@ -99,6 +99,15 @@ public class ProviderRequestor
 		return ProviderStatusCode.sc_Success.equals(fStatusCode);
 	}
 
+	public boolean enroll(EnrollRqst enrollRqst)
+	{
+		DataRequestor dataRequestor = newDataRequestor(false);
+		dataRequestor.enroll(enrollRqst);
+
+		fStatusCode = dataRequestor.getStatusCode();
+		return ProviderStatusCode.sc_Success.equals(fStatusCode);
+	}
+
 	public ShowIDList showList()
 	{
 		DataRequestor dataRequestor = newDataRequestor(false);
@@ -160,7 +169,7 @@ public class ProviderRequestor
 	{
 		DataRequestor dataRequestor = newDataRequestor(true);
 		ReleaseShowRqst releaseShowRqst = ReleaseShowRqst.newInstance(showID);
-		ReleaseShowResp releaseShowResp = dataRequestor.releaseShow(releaseShowRqst);
+		dataRequestor.releaseShow(releaseShowRqst);
 
 		fStatusCode = dataRequestor.getStatusCode();
 		return ProviderStatusCode.sc_Success.equals(fStatusCode);
