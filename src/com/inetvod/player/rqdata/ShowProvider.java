@@ -7,29 +7,32 @@ package com.inetvod.player.rqdata;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.ProviderID;
-import com.inetvod.common.data.ShowCost;
+import com.inetvod.common.data.ShowCostList;
 
 public class ShowProvider implements Writeable
 {
 	/* Fields */
 	protected ProviderID fProviderID;
-	protected ShowCost fShowCost;
+	protected ShowCostList fShowCostList;
 
 	/* Getters and Setters */
 	public ProviderID getProviderID() { return fProviderID; }
-	public ShowCost getShowCost() { return fShowCost; }
+	//public ShowCost getShowCost() { return fShowCost; }
 
 	/* Constuction Methods */
 	public ShowProvider(com.inetvod.common.dbdata.ShowProvider showProvider)
 	{
 		fProviderID = showProvider.getProviderID();
-		fShowCost = showProvider.getShowCost();
+
+		//TODO: update ShowProvider to store ShowCost list in db
+		fShowCostList = new ShowCostList();
+		fShowCostList.add(showProvider.getShowCost());
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
 		writer.writeDataID("ProviderID", fProviderID, ProviderID.MaxLength);
-		writer.writeObject("ShowCost", fShowCost);
+		writer.writeList("ShowCost", fShowCostList);
 	}
 }
 

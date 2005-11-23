@@ -10,19 +10,15 @@ import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.CategoryID;
 import com.inetvod.common.data.CategoryIDList;
-import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.data.RatingID;
-import com.inetvod.common.data.ShowCostList;
 import com.inetvod.common.data.ShowID;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCategoryList;
-import com.inetvod.common.dbdata.ShowProvider;
 
 public class ShowDetail implements Writeable
 {
 	/* Fields */
 	protected ShowID fShowID;
-	protected ProviderID fProviderID;
 	protected String fName;
 	protected String fEpisodeName;
 	protected String fEpisodeNumber;
@@ -36,14 +32,13 @@ public class ShowDetail implements Writeable
 	protected RatingID fRatingID;
 	protected Boolean fIsAdult;
 
-	protected ShowCostList fShowCostList;
+	protected ShowProviderList fShowProviderList;
 
 	/* Constuction Methods */
-	public ShowDetail(Show show, ShowProvider showProvider,
+	public ShowDetail(Show show, ShowProviderList showProviderList,
 		ShowCategoryList showCategoryList)
 	{
 		fShowID = show.getShowID();
-		fProviderID = showProvider.getProviderID();
 		fName = show.getName();
 		fEpisodeName = show.getEpisodeName();
 		fEpisodeNumber = show.getEpisodeNumber();
@@ -57,14 +52,12 @@ public class ShowDetail implements Writeable
 		fRatingID = show.getRatingID();
 		fIsAdult = show.getIsAdult();
 
-		fShowCostList = new ShowCostList();	//TODO: get list from provider
-		fShowCostList.add(showProvider.getShowCost());
+		fShowProviderList = showProviderList;
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
 		writer.writeDataID("ShowID", fShowID, ShowID.MaxLength);
-		writer.writeDataID("ProviderID", fProviderID, ProviderID.MaxLength);
 		writer.writeString("Name", fName, Show.NameMaxLength);
 		writer.writeString("EpisodeName", fEpisodeName, Show.EpisodeNameMaxLength);
 		writer.writeString("EpisodeNumber", fEpisodeNumber, Show.EpisodeNumberMaxLength);
@@ -80,6 +73,6 @@ public class ShowDetail implements Writeable
 		writer.writeDataID("RatingID", fRatingID, RatingID.MaxLength);
 		writer.writeBoolean("IsAdult", fIsAdult);
 
-		writer.writeList("ShowCost", fShowCostList);
+		writer.writeList("ShowProvider", fShowProviderList);
 	}
 }
