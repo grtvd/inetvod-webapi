@@ -8,7 +8,6 @@ import com.inetvod.common.data.MemberID;
 import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.data.ProviderShowID;
 import com.inetvod.common.data.ShowCost;
-import com.inetvod.common.data.ShowCostList;
 import com.inetvod.common.data.ShowFormat;
 import com.inetvod.common.data.ShowIDList;
 import com.inetvod.common.dbdata.MemberProvider;
@@ -131,15 +130,15 @@ public class ProviderRequestor
 		return null;
 	}
 
-	public ShowCostList checkShowAvail(ProviderShowID providerShowID, ShowFormat showFormat)
+	public ShowCost checkShowAvail(ProviderShowID providerShowID, ShowFormat showFormat, ShowCost showCost)
 	{
 		DataRequestor dataRequestor = newDataRequestor(true);
-		CheckShowAvailRqst checkShowAvailRqst = CheckShowAvailRqst.newInstance(providerShowID, showFormat);
+		CheckShowAvailRqst checkShowAvailRqst = CheckShowAvailRqst.newInstance(providerShowID, showFormat, showCost);
 		CheckShowAvailResp checkShowAvailResp = dataRequestor.checkShowAvail(checkShowAvailRqst);
 
 		fStatusCode = dataRequestor.getStatusCode();
 		if(checkShowAvailResp != null)
-			return checkShowAvailResp.getShowCostList();
+			return checkShowAvailResp.getShowCost();
 		return null;
 	}
 

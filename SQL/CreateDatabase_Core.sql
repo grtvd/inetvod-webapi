@@ -364,7 +364,8 @@ CREATE TABLE [dbo].[ShowProvider] (
 	[ShowCost_Cost_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
 	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
 	[ShowCost_CostDisplay] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowCost_RentalHours] [smallint] NULL
+	[ShowCost_RentalWindowDays] [smallint] NULL ,
+	[ShowCost_RentalPeriodHours] [smallint] NULL
 --TODO: might be good to maintain a 'last updated' from provider field
 --TODO: forget that, this record should be deleted, but what happens if currently in somebodies rental queue
 --TODO: maybe instead we need an Available field, which would get set to false if removed from Provider's list.
@@ -456,7 +457,8 @@ CREATE TABLE [dbo].[RentedShow] (
 	[ShowCost_Cost_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
 	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
 	[ShowCost_CostDisplay] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowCost_RentalHours] [smallint] NULL ,
+	[ShowCost_RentalWindowDays] [smallint] NULL ,
+	[ShowCost_RentalPeriodHours] [smallint] NULL ,
 	[RentedOn] [datetime] NOT NULL ,
 	[AvailableUntil] [datetime] NULL ,
 ) ON [PRIMARY]

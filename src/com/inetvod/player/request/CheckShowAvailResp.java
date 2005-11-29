@@ -6,27 +6,27 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.data.ShowCostList;
+import com.inetvod.common.data.ShowCost;
 
 public class CheckShowAvailResp implements Writeable
 {
 	/* Fields */
-	private ShowCostList fShowCostList;
+	private ShowCost fShowCost;
 
 	/* Construction */
-	private CheckShowAvailResp(ShowCostList showCostList)
+	private CheckShowAvailResp(ShowCost showCost)
 	{
-		fShowCostList = showCostList;
+		fShowCost = showCost;
 	}
 
-	public static CheckShowAvailResp newInstance(ShowCostList showCostList)
+	public static CheckShowAvailResp newInstance(ShowCost showCost)
 	{
-		return new CheckShowAvailResp(showCostList);
+		return new CheckShowAvailResp(showCost);
 	}
 
 	/* Implementation */
 	public void writeTo(DataWriter writer) throws Exception
 	{
-		writer.writeList("ShowCost", fShowCostList);
+		writer.writeObject("ShowCost", fShowCost);
 	}
 }

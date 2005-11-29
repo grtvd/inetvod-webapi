@@ -7,25 +7,27 @@ package com.inetvod.providerClient.request;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.ProviderShowID;
+import com.inetvod.common.data.ShowCost;
 import com.inetvod.common.data.ShowFormat;
-import com.inetvod.common.data.ShowID;
 
 public class CheckShowAvailRqst implements Writeable
 {
 	/* Fields */
 	private ProviderShowID fShowID;
 	private ShowFormat fShowFormat;
+	private ShowCost fShowCost;
 
 	/* Construction */
-	private CheckShowAvailRqst(ProviderShowID showID, ShowFormat showFormat)
+	private CheckShowAvailRqst(ProviderShowID showID, ShowFormat showFormat, ShowCost showCost)
 	{
 		fShowID = showID;
 		fShowFormat = showFormat;
+		fShowCost = showCost;
 	}
 
-	public static CheckShowAvailRqst newInstance(ProviderShowID showID, ShowFormat showFormat)
+	public static CheckShowAvailRqst newInstance(ProviderShowID showID, ShowFormat showFormat, ShowCost showCost)
 	{
-		return new CheckShowAvailRqst(showID, showFormat);
+		return new CheckShowAvailRqst(showID, showFormat, showCost);
 	}
 
 	/* Implementation */
@@ -33,5 +35,6 @@ public class CheckShowAvailRqst implements Writeable
 	{
 		writer.writeDataID("ShowID", fShowID, ProviderShowID.MaxLength);
 		writer.writeObject("ShowFormat", fShowFormat);
+		writer.writeObject("ShowCost", fShowCost);
 	}
 }

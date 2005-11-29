@@ -7,15 +7,14 @@ package com.inetvod.providerClient.request;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.Readable;
 import com.inetvod.common.data.ShowCost;
-import com.inetvod.common.data.ShowCostList;
 
 public class CheckShowAvailResp implements Readable
 {
 	/* Fields */
-	private ShowCostList fShowCostList;
+	private ShowCost fShowCost;
 
 	/* Getters and Setters */
-	public ShowCostList getShowCostList() { return fShowCostList; }
+	public ShowCost getShowCost() { return fShowCost; }
 
 	/* Construction */
 	public CheckShowAvailResp(DataReader reader) throws Exception
@@ -26,6 +25,6 @@ public class CheckShowAvailResp implements Readable
 	/* Implementation */
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fShowCostList = reader.readList("ShowCost", ShowCostList.Ctor, ShowCost.CtorDataReader);
+		fShowCost = reader.readObject("ShowCost", ShowCost.CtorDataReader);
 	}
 }
