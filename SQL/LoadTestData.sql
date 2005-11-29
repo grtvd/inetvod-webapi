@@ -16,27 +16,21 @@ go
 
 --//////////////////////////////////////////////////////////////////////////////
 
-insert into Provider (ProviderID, Name)
-values ('internetvideos', 'Internet Videos')
-insert into Provider (ProviderID, Name)
-values ('moviesmovies', 'Movies, Movies')
-insert into Provider (ProviderID, Name)
-values ('vodflicks', 'VOD Flicks')
-insert into Provider (ProviderID, Name)
-values ('excellentvideos', 'Excellent Videos')
+insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
+values ('internetvideos', 'Internet Videos', 'http://api.inetvod.com/provider_internetvideos/providerapi', 'super', 'superpassword')
 
---insert into Provider (ProviderID, Name)
---values ('cinemanow', 'CinemaNow')
---insert into Provider (ProviderID, Name)
---values ('movieflix', 'MovieFlix')
---insert into Provider (ProviderID, Name)
---values ('movielink', 'MoiveLink')
---insert into Provider (ProviderID, Name)
---values ('divxopen', 'DivX Open Video System')
---insert into Provider (ProviderID, Name)
---values ('divxafter', 'DivX After Dark')
---insert into Provider (ProviderID, Name)
---values ('vanguard', 'Vanguard Indie Films')
+insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
+values ('moviesmovies', 'Movies, Movies', 'http://api.inetvod.com/provider_moviesmovies/providerapi', 'super', 'superpassword')
+
+insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
+values ('vodflicks', 'VOD Flicks', 'http://api.inetvod.com/provider_vodflicks/providerapi', 'super', 'superpassword')
+
+insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
+values ('excellentvideos', 'Excellent Videos', 'http://api.inetvod.com/provider_excellentvideos/providerapi', 'super', 'superpassword')
+
+insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
+values ('mlb', 'MLB.com', 'http://api.inetvod.com/provider_mlb/providerapi', 'super', 'superpassword')
+
 go
 
 --//////////////////////////////////////////////////////////////////////////////
@@ -57,6 +51,8 @@ insert into Category (CategoryID, Name)
 values ('romance', 'Romance')
 insert into Category (CategoryID, Name)
 values ('scifi', 'Sci-Fi')
+insert into Category (CategoryID, Name)
+values ('sports', 'Sports')
 insert into Category (CategoryID, Name)
 values ('tv', 'TV')
 insert into Category (CategoryID, Name)
