@@ -22,8 +22,11 @@ import com.inetvod.player.rqdata.StatusCode;
 
 public class ShowSearchRqst extends SessionRequestable
 {
+	/* Constants */
+	private static final int SearchMaxLength = 64;
+
 	/* Fields */
-	private String fPartialName;
+	private String fSearch;
 
 	private ProviderIDList fProviderIDList = new ProviderIDList();
 	private CategoryIDList fCategoryIDList = new CategoryIDList();
@@ -53,17 +56,17 @@ public class ShowSearchRqst extends SessionRequestable
 		response = new ShowSearchResp();
 		response.ReachedMax = false;
 
-		if(fPartialName != null)
+		if(fSearch != null)
 		{
-			showList = ShowList.findByName(fPartialName);
+			showList = ShowList.findByName(fSearch);
 
-			showProviderList = ShowProviderList.findByShowName(fPartialName);
+			showProviderList = ShowProviderList.findByShowName(fSearch);
 			if(fProviderIDList.size() > 0)
 				showProviderList = showProviderList.findItemsByProviderIDList(fProviderIDList);
 
 			if(fCategoryIDList.size() > 0)
 			{
-				showCategoryList = ShowCategoryList.findByShowName(fPartialName);
+				showCategoryList = ShowCategoryList.findByShowName(fSearch);
 				showCategoryList = showCategoryList.findItemsByCategoryIDList(fCategoryIDList);
 			}
 		}
@@ -127,7 +130,7 @@ public class ShowSearchRqst extends SessionRequestable
 
 	public void readFrom(DataReader reader) throws Exception
 	{
-		fPartialName = reader.readString("PartialName", Show.NameMaxLength);
+		fSearch = reader.readString("Search", SearchMaxLength);
 
 		fProviderIDList = reader.readStringList("ProviderID", ProviderID.MaxLength, ProviderIDList.Ctor,
 			ProviderID.CtorString);
@@ -140,7 +143,7 @@ public class ShowSearchRqst extends SessionRequestable
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
-		writer.writeString("PartialName", fPartialName, Show.NameMaxLength);
+		writer.writeString("Search", fSearch, SearchMaxLength);
 
 		writer.writeStringList("ProviderID", fProviderIDList, ProviderID.MaxLength);
 		writer.writeStringList("CategoryID", fCategoryIDList, CategoryID.MaxLength);
