@@ -1,0 +1,18 @@
+Instructions for Setting up a new Database
+
+Edit "CreateDatabase_Core.sql"
+- Confirm paths in "CREATE DATABASE" statement:
+-- Confirm paths to iNetVOD_Data.MDF and iNetVOD_Log.LDF
+- Search for "sp_addlogin"
+- Enter password for 'inetvod' logon (second argument to "sp_addlogin")
+
+Run "Query Analyzer"
+
+- Execute "CreateDatabase_Core.sql"
+- Execute "CreateDatabase_StoredProcs.sql"
+- Execute "CreateDatabase_InitData.sql"
+
+(Optional)
+- Execute "LoadCES2005Data.sql"
+- Execute "LoadDemoData.sql"
+

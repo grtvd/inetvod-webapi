@@ -8,7 +8,7 @@ IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'iNetVOD')
 	DROP DATABASE [iNetVOD]
 GO
 
-CREATE DATABASE [iNetVOD]  ON (NAME = N'iNetVOD_Data', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL\Data\iNetVOD_Data.MDF' , SIZE = 1, FILEGROWTH = 10%) LOG ON (NAME = N'iNetVOD_Log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL\Data\iNetVOD_Log.LDF' , SIZE = 1, FILEGROWTH = 10%)
+CREATE DATABASE [iNetVOD]  ON (NAME = N'iNetVOD_Data', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL\Data\iNetVOD_Data.MDF' , SIZE = 2, FILEGROWTH = 10%) LOG ON (NAME = N'iNetVOD_Log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL\Data\iNetVOD_Log.LDF' , SIZE = 2, FILEGROWTH = 10%)
  COLLATE SQL_Latin1_General_CP1_CI_AS
 GO
 
@@ -130,7 +130,7 @@ GO
 
 CREATE TABLE [dbo].[Provider] (
 	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[Name] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL
+	[Name] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[RequestURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
 	[AdminUserID] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
 	[AdminPassword] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
@@ -509,6 +509,10 @@ ALTER TABLE [dbo].[RentedShow] ADD
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
+
+if exists (select * from master.dbo.syslogins where loginname = N'inetvod')
+	EXEC sp_droplogin N'inetvod'
+GO
 
 if not exists (select * from master.dbo.syslogins where loginname = N'inetvod')
 BEGIN
