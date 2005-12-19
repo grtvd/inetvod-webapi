@@ -22,21 +22,4 @@
 
 
 - Steps for next update only (remove these items after each deployment)
-	- In Query Analyzer, run
-		- UpdateDatabase_0004.sql
-		- UpdateDatabase_0005.sql
-			NOTE: before running, set password in sp_addlogin call
-		- UpdateDatabase_0006.sql
-		- UpdateDatabase_0007.sql
-		- CreateDatabase_StoredProcs.sql
-
-	- Test run apiservice
-
-	- In Query Analyzer, run
-		- UpdateDatabase_0008.sql
-
-	- Run apiservice
-
-	- In Query Analyzer, run
-		- UpdateDatabase_0009.sql
-
+	(none)
