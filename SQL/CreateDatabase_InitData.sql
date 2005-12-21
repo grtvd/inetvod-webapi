@@ -17,19 +17,22 @@ go
 --//////////////////////////////////////////////////////////////////////////////
 
 insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('internetvideos', 'Internet Videos', 'http://api.inetvod.com/provider_internetvideos/providerapi', 'super', 'superpassword')
+values ('internetvideos', 'Internet Videos', 'http://localhost/provider_internetvideos/providerapi', 'super', 'superpassword')
 
 insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('moviesmovies', 'Movies, Movies', 'http://api.inetvod.com/provider_moviesmovies/providerapi', 'super', 'superpassword')
+values ('moviesmovies', 'Movies, Movies', 'http://localhost/provider_moviesmovies/providerapi', 'super', 'superpassword')
 
 insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('vodflicks', 'VOD Flicks', 'http://api.inetvod.com/provider_vodflicks/providerapi', 'super', 'superpassword')
+values ('vodflicks', 'VOD Flicks', 'http://localhost/provider_vodflicks/providerapi', 'super', 'superpassword')
 
 insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('excellentvideos', 'Excellent Videos', 'http://api.inetvod.com/provider_excellentvideos/providerapi', 'super', 'superpassword')
+values ('excellentvideos', 'Excellent Videos', 'http://localhost/provider_excellentvideos/providerapi', 'super', 'superpassword')
 
 insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('mlb', 'MLB.com', 'http://api.inetvod.com/provider_mlb/providerapi', 'super', 'superpassword')
+values ('mlb', 'MLB.com', 'http://localhost/provider_mlb/providerapi', 'super', 'superpassword')
+
+insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
+values ('rocketboom', 'Rocketboom', 'http://localhost/provider_rocketboom/providerapi', 'super', 'superpassword')
 
 go
 
