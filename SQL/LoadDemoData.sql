@@ -56,6 +56,17 @@ insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, Cit
 insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('7da2d432-9270-4a11-a525-a034ab847111','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
 insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('20c9e023-8734-40a1-954d-66d51797c40a','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
 insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('e322afba-3d34-499e-9a30-254c24a0088f','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
+
+insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('52273fbc-b0a5-4f12-a5e9-96a310bd76da','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
+insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('a5751dc0-66f9-4b0f-b569-ebee3a33cd5c','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
+insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('7c9d210c-1d60-4a4f-8b74-d65fdcc9d847','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
+insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('7ed9988e-5b36-4a0c-b671-7d5d00045e26','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
+insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('6de40f73-6486-4dcb-9011-1783e4c6fe57','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
+insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('ff8dfeaa-a2a2-4ca9-8f62-83b229e29d22','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
+insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('b9352672-358e-4323-a375-dd0fd5d9a077','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
+insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('f93f8968-1acc-4bee-a7b7-a141af9440db','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
+insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('9d769e6e-a2db-45a6-8f81-3387d605f388','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
+insert into Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone) values ('cccf4fd6-042d-4486-99b7-8ae6d66aee03','Joe','Demo', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '215-243-8387')
 go
 
 --//////////////////////////////////////////////////////////////////////////////
@@ -120,5 +131,16 @@ insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000
 insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000088',1,'7da2d432-9270-4a11-a525-a034ab847111','719821')
 insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000089',1,'20c9e023-8734-40a1-954d-66d51797c40a','451524')
 insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000090',1,'e322afba-3d34-499e-9a30-254c24a0088f','581462')
+
+insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000091',1,'52273fbc-b0a5-4f12-a5e9-96a310bd76da','755752')
+insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000092',1,'a5751dc0-66f9-4b0f-b569-ebee3a33cd5c','511491')
+insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000093',1,'7c9d210c-1d60-4a4f-8b74-d65fdcc9d847','203345')
+insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000094',1,'7ed9988e-5b36-4a0c-b671-7d5d00045e26','344967')
+insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000095',1,'6de40f73-6486-4dcb-9011-1783e4c6fe57','505961')
+insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000096',1,'ff8dfeaa-a2a2-4ca9-8f62-83b229e29d22','808172')
+insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000097',1,'b9352672-358e-4323-a375-dd0fd5d9a077','853631')
+insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000098',1,'f93f8968-1acc-4bee-a7b7-a141af9440db','817376')
+insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000099',1,'9d769e6e-a2db-45a6-8f81-3387d605f388','778156')
+insert into SerialNumber (SerialNumberID, Active, MemberID, PIN) values ('100000100',1,'cccf4fd6-042d-4486-99b7-8ae6d66aee03','274776')
 go
 
