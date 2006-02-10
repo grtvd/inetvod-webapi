@@ -1,5 +1,5 @@
 --//////////////////////////////////////////////////////////////////////////////
--- Copyright © 2005 iNetVOD, Inc. All Rights Reserved.
+-- Copyright © 2005-2006 iNetVOD, Inc. All Rights Reserved.
 -- Confidential and Proprietary
 --//////////////////////////////////////////////////////////////////////////////
 
@@ -102,12 +102,12 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberSess
 drop table [dbo].[MemberSession]
 GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[SerialNumber]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
-drop table [dbo].[SerialNumber]
-GO
-
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberPrefs]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
 drop table [dbo].[MemberPrefs]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberLogon]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[MemberLogon]
 GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Member]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
@@ -177,17 +177,9 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE [dbo].[Member] (
-	[MemberID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[FirstName] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[LastName] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[AddrStreet1] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[AddrStreet2] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[City] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[State] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[PostalCode] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[Country] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[Phone] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[BirthDate] [datetime]
+	[MemberID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[FirstName] [varchar] (32) NULL ,
+	[LastName] [varchar] (32) NULL ,
 ) ON [PRIMARY]
 GO
 
@@ -200,9 +192,57 @@ GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
+CREATE TABLE [dbo].[MemberLogon] (
+	[MemberID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[EmailKey] [varchar] (64) NOT NULL,
+	[Email] [varchar] (64) NOT NULL,
+	[Password] [varchar] (32) NOT NULL,
+	[LogonID] [int] NOT NULL IDENTITY (100000200, 1),
+	[PIN] [varchar] (16) NULL,
+
+	[SecretQuestion] [varchar] (64) NOT NULL,
+	[SecretAnswer] [varchar] (64) NOT NULL,
+	[TermsAcceptedOn] [datetime] NOT NULL,
+	[TermsAcceptedVersion] [varchar] (16) NOT NULL,
+	[LogonFailedAt] [datetime] NULL,
+	[LogonFailedCount] [tinyint] DEFAULT(0) NOT NULL,
+	[LogonDisabled] [bit] DEFAULT(0) NOT NULL
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[MemberLogon] ADD
+	CONSTRAINT [PK_MemberLogon] PRIMARY KEY  CLUSTERED
+	(
+		[MemberID]
+	)  ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[MemberLogon] ADD
+	CONSTRAINT [FK_MemberLogon_Member] FOREIGN KEY
+	(
+		[MemberID]
+	) REFERENCES [dbo].[Member] (
+		[MemberID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE
+
+GO
+
+CREATE  UNIQUE  INDEX [IX_MemberLogon_Email] ON [dbo].[MemberLogon]([EmailKey]) ON [PRIMARY]
+GO
+
+CREATE  UNIQUE  INDEX [IX_MemberLogon_LogonID] ON [dbo].[MemberLogon]([LogonID]) ON [PRIMARY]
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
 CREATE TABLE [dbo].[MemberPrefs] (
-	[MemberID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[IncludeAdult] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+	[MemberID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[IncludeAdult] [varchar] (32) NULL ,
+	[AdultPIN] [varchar] (8) NULL ,
+	[IncludeRatingIDList] [varchar] (128) NULL ,
+	[IncludeDownload] [bit] NULL ,
+	[IncludeStreaming] [bit] NULL ,
+	[ConnectionSpeed] [varchar] (32) NULL
 ) ON [PRIMARY]
 GO
 
@@ -219,44 +259,14 @@ ALTER TABLE [dbo].[MemberPrefs] ADD
 		[MemberID]
 	) REFERENCES [dbo].[Member] (
 		[MemberID]
-	)
-GO
-
---//////////////////////////////////////////////////////////////////////////////
-
-CREATE TABLE [dbo].[SerialNumber] (
-	[SerialNumberID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[Active] [bit] NOT NULL ,
-	[MemberID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[PIN] [varchar] (16) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
-) ON [PRIMARY]
-GO
-
-ALTER TABLE [dbo].[SerialNumber] ADD
-	CONSTRAINT [PK_SerialNumber] PRIMARY KEY  CLUSTERED
-	(
-		[SerialNumberID]
-	)  ON [PRIMARY]
-GO
-
--- Can't be unique because of NULL MemberIDs
-CREATE  INDEX [IX_SerialNumber_MemberID] ON [dbo].[SerialNumber]([MemberID]) ON [PRIMARY]
-GO
-
-ALTER TABLE [dbo].[SerialNumber] ADD
-	CONSTRAINT [FK_SerialNumber_Member] FOREIGN KEY
-	(
-		[MemberID]
-	) REFERENCES [dbo].[Member] (
-		[MemberID]
-	)
+	) ON DELETE CASCADE  ON UPDATE CASCADE
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE [dbo].[MemberSession] (
 	[MemberSessionID] uniqueidentifier NOT NULL ROWGUIDCOL ,
-	[MemberID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[MemberID] uniqueidentifier NOT NULL ,
 	[PlayerID] uniqueidentifier NOT NULL ,
 	[StartedOn] [datetime] NOT NULL ,
 	[ExpiresAt] [datetime] NOT NULL ,
@@ -288,11 +298,11 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE [dbo].[MemberProvider] (
-	[MemberProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[MemberID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[MemberProviderID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[MemberID] uniqueidentifier NOT NULL ,
 	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[EncryptedUserName] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[EncryptedPassword] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+	[EncryptedPassword] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
 ) ON [PRIMARY]
 
 GO
@@ -331,7 +341,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE [dbo].[Show] (
-	[ShowID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[Name] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[EpisodeName] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
 	[EpisodeNumber] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
@@ -356,8 +366,8 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE [dbo].[ShowProvider] (
-	[ShowProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowProviderID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[ShowID] uniqueidentifier NOT NULL ,
 	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ProviderShowID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ShowCost_ShowCostType] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
@@ -408,8 +418,8 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE [dbo].[ShowCategory] (
-	[ShowCategoryID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowCategoryID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[ShowID] uniqueidentifier NOT NULL ,
 	[CategoryID] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL
 ) ON [PRIMARY]
 GO
@@ -448,9 +458,9 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE [dbo].[RentedShow] (
-	[RentedShowID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[MemberID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[RentedShowID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[MemberID] uniqueidentifier NOT NULL ,
+	[ShowID] uniqueidentifier NOT NULL ,
 	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ShowURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ShowCost_ShowCostType] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,

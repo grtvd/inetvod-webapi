@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.rqdata;
@@ -12,9 +12,8 @@ public class StatusCode
 {
 	public static final StatusCode sc_Success = new StatusCode(0);
 
-	public static final StatusCode sc_InvalidUserID = new StatusCode(1000);
+	public static final StatusCode sc_InvalidUserIDPassword = new StatusCode(1000);
 	public static final StatusCode sc_InvalidSession = new StatusCode(1001);
-	public static final StatusCode sc_UserIDPasswordMismatch = new StatusCode(1002);
 	public static final StatusCode sc_InvalidProviderUserIDPassword = new StatusCode(1003);
 
 	public static final StatusCode sc_AlreadyEnrolledAtProvider = new StatusCode(1004);
@@ -39,9 +38,8 @@ public class StatusCode
 	private static List<StatusCode> fAllValues = Arrays.asList(new StatusCode[]
 		{
 			sc_Success,
-			sc_InvalidUserID,
+			sc_InvalidUserIDPassword,
 			sc_InvalidSession,
-			sc_UserIDPasswordMismatch,
 			sc_InvalidProviderUserIDPassword,
 			sc_AlreadyEnrolledAtProvider,
 			sc_NoAutoProviderEnrollment,

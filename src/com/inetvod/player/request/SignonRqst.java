@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.request;
@@ -14,8 +14,8 @@ import com.inetvod.common.data.IncludeAdult;
 import com.inetvod.common.data.ManufacturerID;
 import com.inetvod.common.data.PlayerID;
 import com.inetvod.common.dbdata.Member;
+import com.inetvod.common.dbdata.MemberLogon;
 import com.inetvod.common.dbdata.MemberSession;
-import com.inetvod.common.dbdata.SerialNumber;
 import com.inetvod.player.rqdata.MemberPrefs;
 import com.inetvod.player.rqdata.MemberProviderList;
 import com.inetvod.player.rqdata.MemberState;
@@ -45,7 +45,7 @@ public class SignonRqst implements PlayerRequestable
 	public Writeable fulfillRequest() throws Exception
 	{
 		SignonResp response = new SignonResp();
-		SerialNumber serialNumber;
+		MemberLogon memberLogon = null;
 
 		// get Player information
 		if(fPlayer == null)
@@ -77,35 +77,34 @@ public class SignonRqst implements PlayerRequestable
 
 		//TODO: decrypt UserID and Password based on Player
 
-		serialNumber = SerialNumber.find(fUserID);
-		if((serialNumber != null) && serialNumber.getActive())
+		int logonID = -1;
+		try { logonID = Integer.parseInt(fUserID); } catch(NumberFormatException e) {}
+
+		if(logonID != -1)
+			memberLogon = MemberLogon.findByLogonIDPIN(Integer.parseInt(fUserID), fPassword);
+		if(memberLogon != null)
 		{
-			if(serialNumber.getPIN().matches(fPassword))
-			{
-				Member member = Member.get(serialNumber.getMemberID());
-				MemberSession memberSession = MemberSession.newInstance(serialNumber.getMemberID(), playerID);
+			Member member = Member.get(memberLogon.getMemberID());
+			MemberSession memberSession = MemberSession.newInstance(memberLogon.getMemberID(), playerID);
 
-				SessionData sessionData = new SessionData(memberSession.getMemberSessionID());
-				response.setSessionData(sessionData);
-				response.setSessionExpires(memberSession.getExpiresAt());
+			SessionData sessionData = new SessionData(memberSession.getMemberSessionID());
+			response.setSessionData(sessionData);
+			response.setSessionExpires(memberSession.getExpiresAt());
 
-				MemberState memberState = new MemberState();
-				com.inetvod.common.dbdata.MemberPrefs dbMemberPrefs = com.inetvod.common.dbdata.MemberPrefs.getCreate(member.getMemberID());
-				memberState.setMemberPrefs(new MemberPrefs(dbMemberPrefs));
-				memberState.setMemberProviderList(new MemberProviderList(
-					com.inetvod.common.dbdata.MemberProviderList.findByMemberID(member.getMemberID())));
-				response.setMemberState(memberState);
+			MemberState memberState = new MemberState();
+			com.inetvod.common.dbdata.MemberPrefs dbMemberPrefs = com.inetvod.common.dbdata.MemberPrefs.getCreate(member.getMemberID());
+			memberState.setMemberPrefs(new MemberPrefs(dbMemberPrefs));
+			memberState.setMemberProviderList(new MemberProviderList(
+				com.inetvod.common.dbdata.MemberProviderList.findByMemberID(member.getMemberID())));
+			response.setMemberState(memberState);
 
-				memberSession.setShowAdult(IncludeAdult.Always.equals(dbMemberPrefs.getIncludeAdult()));
-				memberSession.update();
+			memberSession.setShowAdult(IncludeAdult.Always.equals(dbMemberPrefs.getIncludeAdult()));
+			memberSession.update();
 
-				fStatusCode = StatusCode.sc_Success;
-			}
-			else
-				fStatusCode = StatusCode.sc_UserIDPasswordMismatch;
+			fStatusCode = StatusCode.sc_Success;
 		}
 		else
-			fStatusCode = StatusCode.sc_InvalidUserID;
+			fStatusCode = StatusCode.sc_InvalidUserIDPassword;
 
 		Logger.logInfo(this, "fulfillRequest", String.format("UserID:%s; StatusCode:%d;", fUserID, StatusCode.convertToInt(fStatusCode)));
 		return response;

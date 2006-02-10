@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.playerapi;
@@ -7,26 +7,28 @@ package com.inetvod.playerapi;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.xml.DOMConfigurator;
+
 import com.inetvod.common.core.ServletFulfiller;
 import com.inetvod.common.dbdata.Category;
 import com.inetvod.common.dbdata.Member;
+import com.inetvod.common.dbdata.MemberLogon;
 import com.inetvod.common.dbdata.MemberPrefs;
 import com.inetvod.common.dbdata.MemberProvider;
 import com.inetvod.common.dbdata.MemberSession;
 import com.inetvod.common.dbdata.Provider;
 import com.inetvod.common.dbdata.Rating;
 import com.inetvod.common.dbdata.RentedShow;
-import com.inetvod.common.dbdata.SerialNumber;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCategory;
 import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.player.request.PlayerServletFulfiller;
-import org.apache.log4j.xml.DOMConfigurator;
 
 public class PlayerXmlServlet extends HttpServlet
 {
@@ -47,8 +49,8 @@ public class PlayerXmlServlet extends HttpServlet
 		Category.getDatabaseAdaptor();
 		Rating.getDatabaseAdaptor();
 		Member.getDatabaseAdaptor();
+		MemberLogon.getDatabaseAdaptor();
 		MemberPrefs.getDatabaseAdaptor();
-		SerialNumber.getDatabaseAdaptor();
 		MemberSession.getDatabaseAdaptor();
 		MemberProvider.getDatabaseAdaptor();
 		Show.getDatabaseAdaptor();

@@ -1,3 +1,8 @@
+--//////////////////////////////////////////////////////////////////////////////
+-- Copyright © 2005-2006 iNetVOD, Inc. All Rights Reserved.
+-- Confidential and Proprietary
+--//////////////////////////////////////////////////////////////////////////////
+
 use inetvod
 
 --//////////////////////////////////////////////////////////////////////////////
@@ -9,8 +14,8 @@ delete from Show
 delete from Provider
 delete from Category
 delete from Rating
-delete from SerialNumber
 delete from MemberPrefs
+delete from MemberLogon
 delete from Member
 go
 
@@ -96,20 +101,24 @@ go
 
 --//////////////////////////////////////////////////////////////////////////////
 
-insert Member (MemberID, FirstName, LastName, AddrStreet1, AddrStreet2, City, State, PostalCode, Country, Phone, BirthDate)
-values ('f2c3e739-85c9-4b61-b906-230986c656c5', 'Robert', 'Davidson', '1000 Hoy Cir.', null, 'Collegeville', 'PA', '19426', 'USA', '610-489-4459', '1966-10-27')
+insert Member (MemberID, FirstName, LastName)
+values ('f2c3e739-85c9-4b61-b906-230986c656c5', 'Robert', 'Davidson')
 go
 
 --//////////////////////////////////////////////////////////////////////////////
 
-insert MemberPrefs (MemberID, IncludeAdult)
-values ('f2c3e739-85c9-4b61-b906-230986c656c5', 'PromptPassword')
+SET IDENTITY_INSERT MemberLogon ON
+
+insert into MemberLogon (MemberID, EmailKey, Email, Password, LogonID, PIN, SecretQuestion, SecretAnswer, TermsAcceptedOn, TermsAcceptedVersion)
+values ('f2c3e739-85c9-4b61-b906-230986c656c5', '1@INETVOD.ORG', '1@inetvod.org', '654321', 100000000, '123456', 'What''s your favoriate color?', 'red', '1999-12-31T23:59:59', '0.0.0.0')
 go
+
+SET IDENTITY_INSERT MemberLogon OFF
 
 --//////////////////////////////////////////////////////////////////////////////
 
-insert into SerialNumber (SerialNumberID, Active, MemberID, PIN)
-values ('1', 1, 'f2c3e739-85c9-4b61-b906-230986c656c5', '123456')
+insert MemberPrefs (MemberID, IncludeAdult, AdultPIN, IncludeRatingIDList, IncludeDownload, IncludeStreaming, ConnectionSpeed)
+values ('f2c3e739-85c9-4b61-b906-230986c656c5', 'PromptPassword', '123456', 'g,pg,pg13,r,tv7,tvy7,tvy7fv', 1, 1, 1500)
 go
 
 --//////////////////////////////////////////////////////////////////////////////

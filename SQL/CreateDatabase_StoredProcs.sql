@@ -1,5 +1,5 @@
 --//////////////////////////////////////////////////////////////////////////////
--- Copyright © 2005 iNetVOD, Inc. All Rights Reserved.
+-- Copyright © 2005-2006 iNetVOD, Inc. All Rights Reserved.
 -- Confidential and Proprietary
 --//////////////////////////////////////////////////////////////////////////////
 
@@ -48,16 +48,44 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Member_Del
 drop procedure [dbo].[Member_Delete]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberLogon_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberLogon_Get]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberLogon_Insert]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberLogon_Insert]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberLogon_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberLogon_Update]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberLogon_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberLogon_Delete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberLogon_GetByEmail]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberLogon_GetByEmail]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberLogon_GetByLogonIDPIN]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberLogon_GetByLogonIDPIN]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberPrefs_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[MemberPrefs_Get]
 GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[SerialNumber_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
-drop procedure [dbo].[SerialNumber_Get]
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberPrefs_Insert]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberPrefs_Insert]
 GO
 
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[SerialNumber_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
-drop procedure [dbo].[SerialNumber_Update]
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberPrefs_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberPrefs_Update]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberPrefs_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberPrefs_Delete]
 GO
 
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberSession_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
@@ -275,20 +303,12 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.Member_Get
-	@MemberID varchar(64)
+	@MemberID uniqueidentifier
 AS
 	select
 		MemberID,
 		FirstName,
-		LastName,
-		AddrStreet1,
-		AddrStreet2,
-		City,
-		State,
-		PostalCode,
-		Country,
-		Phone,
-		BirthDate
+		LastName
 	from Member
 	where MemberID = @MemberID
 GO
@@ -296,124 +316,289 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.Member_Insert
-	@MemberID varchar(64),
+	@MemberID uniqueidentifier,
 	@FirstName varchar(32),
-	@LastName varchar(32),
-	@AddrStreet1 varchar(64),
-	@AddrStreet2 varchar(64),
-	@City varchar(64),
-	@State varchar(64),
-	@PostalCode varchar(32),
-	@Country varchar(64),
-	@Phone varchar(32),
-	@BirthDate datetime
+	@LastName varchar(32)
 AS
 	insert into Member
 	(
 		MemberID,
 		FirstName,
-		LastName,
-		AddrStreet1,
-		AddrStreet2,
-		City,
-		State,
-		PostalCode,
-		Country,
-		Phone,
-		BirthDate
+		LastName
 	)
 	values
 	(
 		@MemberID,
 		@FirstName,
-		@LastName,
-		@AddrStreet1,
-		@AddrStreet2,
-		@City,
-		@State,
-		@PostalCode,
-		@Country,
-		@Phone,
-		@BirthDate
+		@LastName
 	)
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.Member_Update
-	@MemberID varchar(64),
+	@MemberID uniqueidentifier,
 	@FirstName varchar(32),
-	@LastName varchar(32),
-	@AddrStreet1 varchar(64),
-	@AddrStreet2 varchar(64),
-	@City varchar(64),
-	@State varchar(64),
-	@PostalCode varchar(32),
-	@Country varchar(64),
-	@Phone varchar(32),
-	@BirthDate datetime
+	@LastName varchar(32)
 AS
 	update Member set
 		FirstName = @FirstName,
-		LastName = @LastName,
-		AddrStreet1 = @AddrStreet1,
-		AddrStreet2 = @AddrStreet2,
-		City = @City,
-		State = @State,
-		PostalCode = @PostalCode,
-		Country = @Country,
-		Phone = @Phone,
-		BirthDate = @BirthDate
+		LastName = @LastName
 	where MemberID = @MemberID
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.Member_Delete
-	@MemberID varchar(64)
+	@MemberID uniqueidentifier
 AS
 	delete from Member where MemberID = @MemberID
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
-CREATE PROCEDURE dbo.MemberPrefs_Get
-	@MemberID varchar(64)
+CREATE PROCEDURE dbo.MemberLogon_Get
+	@MemberID uniqueidentifier
 AS
 	select
 		MemberID,
-		IncludeAdult
+		Email,
+		Password,
+		LogonID,
+		PIN,
+
+		SecretQuestion,
+		SecretAnswer,
+		TermsAcceptedOn,
+		TermsAcceptedVersion,
+		LogonFailedAt,
+		LogonFailedCount,
+		LogonDisabled
+	from MemberLogon
+	where MemberID = @MemberID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberLogon_Insert
+	@MemberID uniqueidentifier,
+	@Email varchar(64),
+	@Password varchar(32),
+	@LogonID int,
+	@PIN varchar(16),
+
+	@SecretQuestion varchar(64),
+	@SecretAnswer varchar(64),
+	@TermsAcceptedOn datetime,
+	@TermsAcceptedVersion varchar(16),
+	@LogonFailedAt datetime,
+	@LogonFailedCount tinyint,
+	@LogonDisabled bit
+AS
+	insert into MemberLogon
+	(
+		MemberID,
+		EmailKey,
+		Email,
+		Password,
+		--LogonID,
+		PIN,
+
+		SecretQuestion,
+		SecretAnswer,
+		TermsAcceptedOn,
+		TermsAcceptedVersion,
+		LogonFailedAt,
+		LogonFailedCount,
+		LogonDisabled
+	)
+	values
+	(
+		@MemberID,
+		upper(@Email),
+		@Email,
+		@Password,
+		--@LogonID,
+		@PIN,
+
+		@SecretQuestion,
+		@SecretAnswer,
+		@TermsAcceptedOn,
+		@TermsAcceptedVersion,
+		@LogonFailedAt,
+		@LogonFailedCount,
+		@LogonDisabled
+	)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberLogon_Update
+	@MemberID uniqueidentifier,
+	@Email varchar(64),
+	@Password varchar(32),
+	@LogonID int,
+	@PIN varchar(16),
+
+	@SecretQuestion varchar(64),
+	@SecretAnswer varchar(64),
+	@TermsAcceptedOn datetime,
+	@TermsAcceptedVersion varchar(16),
+	@LogonFailedAt datetime,
+	@LogonFailedCount tinyint,
+	@LogonDisabled bit
+AS
+	update MemberLogon set
+		EmailKey = upper(@Email),
+		Email = @Email,
+		Password = @Password,
+		--LogonID = @LogonID,
+		SecretQuestion = @SecretQuestion,
+		SecretAnswer = @SecretAnswer,
+		TermsAcceptedOn = @TermsAcceptedOn,
+		TermsAcceptedVersion = @TermsAcceptedVersion,
+		PIN = @PIN,
+		LogonFailedAt = @LogonFailedAt,
+		LogonFailedCount = @LogonFailedCount,
+		LogonDisabled = @LogonDisabled
+	where MemberID = @MemberID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberLogon_Delete
+	@MemberID uniqueidentifier
+AS
+	delete from MemberLogon where MemberID = @MemberID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberLogon_GetByEmail
+	@Email varchar(64)
+AS
+	declare @emailSrch varchar(64)
+	set @emailSrch = upper(@Email)
+
+	select
+		MemberID,
+		Email,
+		Password,
+		LogonID,
+		PIN,
+
+		SecretQuestion,
+		SecretAnswer,
+		TermsAcceptedOn,
+		TermsAcceptedVersion,
+		LogonFailedAt,
+		LogonFailedCount,
+		LogonDisabled
+	from MemberLogon
+	where (EmailKey = @emailSrch)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberLogon_GetByLogonIDPIN
+	@LogonID int,
+	@PIN varchar(16)
+AS
+	select
+		MemberID,
+		Email,
+		Password,
+		LogonID,
+		PIN,
+
+		SecretQuestion,
+		SecretAnswer,
+		TermsAcceptedOn,
+		TermsAcceptedVersion,
+		LogonFailedAt,
+		LogonFailedCount,
+		LogonDisabled
+	from MemberLogon
+	where (LogonID = @LogonID) and (PIN = @PIN)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberPrefs_Get
+	@MemberID uniqueidentifier
+AS
+	select
+		MemberID,
+		IncludeAdult,
+		AdultPIN,
+		IncludeRatingIDList,
+		IncludeDownload,
+		IncludeStreaming,
+		ConnectionSpeed
 	from MemberPrefs
 	where MemberID = @MemberID
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
-CREATE PROCEDURE dbo.SerialNumber_Get
-	@SerialNumberID varchar(64)
+CREATE PROCEDURE dbo.MemberPrefs_Insert
+	@MemberID uniqueidentifier,
+	@IncludeAdult varchar(32),
+	@AdultPIN varchar(8),
+	@IncludeRatingIDList varchar(128),
+	@IncludeDownload bit,
+	@IncludeStreaming bit,
+	@ConnectionSpeed varchar (32)
 AS
-	select
-		SerialNumberID,
-		Active,
+	insert into MemberPrefs
+	(
 		MemberID,
-		PIN
-	from SerialNumber
-	where SerialNumberID = @SerialNumberID
+		IncludeAdult,
+		AdultPIN,
+		IncludeRatingIDList,
+		IncludeDownload,
+		IncludeStreaming,
+		ConnectionSpeed
+	)
+	values
+	(
+		@MemberID,
+		@IncludeAdult,
+		@AdultPIN,
+		@IncludeRatingIDList,
+		@IncludeDownload,
+		@IncludeStreaming,
+		@ConnectionSpeed
+	)
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
-CREATE PROCEDURE dbo.SerialNumber_Update
-	@SerialNumberID varchar(64),
-	@Active bit,
-	@MemberID varchar(64),
-	@PIN varchar(16)
+CREATE PROCEDURE dbo.MemberPrefs_Update
+	@MemberID uniqueidentifier,
+	@IncludeAdult varchar(32),
+	@AdultPIN varchar(8),
+	@IncludeRatingIDList varchar(128),
+	@IncludeDownload bit,
+	@IncludeStreaming bit,
+	@ConnectionSpeed varchar (32)
 AS
-	update SerialNumber set
-		Active = @Active,
-		MemberID = @MemberID,
-		PIN = @PIN
-	where SerialNumberID = @SerialNumberID
+	update MemberPrefs set
+		IncludeAdult = @IncludeAdult,
+		AdultPIN = @AdultPIN,
+		IncludeRatingIDList = @IncludeRatingIDList,
+		IncludeDownload = @IncludeDownload,
+		IncludeStreaming = @IncludeStreaming,
+		ConnectionSpeed = @ConnectionSpeed
+	where MemberID = @MemberID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberPrefs_Delete
+	@MemberID uniqueidentifier
+AS
+	delete from MemberPrefs where MemberID = @MemberID
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
@@ -436,7 +621,7 @@ GO
 
 CREATE PROCEDURE dbo.MemberSession_Insert
 	@MemberSessionID uniqueidentifier,
-	@MemberID varchar(64),
+	@MemberID uniqueidentifier,
 	@PlayerID uniqueidentifier,
 	@StartedOn datetime,
 	@ExpiresAt datetime,
@@ -466,7 +651,7 @@ GO
 
 CREATE PROCEDURE dbo.MemberSession_Update
 	@MemberSessionID uniqueidentifier,
-	@MemberID varchar(64),
+	@MemberID uniqueidentifier,
 	@PlayerID uniqueidentifier,
 	@StartedOn datetime,
 	@ExpiresAt datetime,
@@ -492,7 +677,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.MemberProvider_Get
-	@MemberProviderID varchar(64)
+	@MemberProviderID uniqueidentifier
 AS
 	select MemberProviderID, MemberID, ProviderID, EncryptedUserName, EncryptedPassword
 	from MemberProvider
@@ -503,10 +688,10 @@ GO
 
 CREATE PROCEDURE dbo.MemberProvider_Insert
 	@MemberProviderID varchar(64),
-	@MemberID varchar(64),
+	@MemberID uniqueidentifier,
 	@ProviderID varchar(64),
 	@EncryptedUserName varchar(128),
-	@EncryptedPassword varchar(64)
+	@EncryptedPassword varchar(32)
 AS
 	insert into MemberProvider
 	(
@@ -530,10 +715,10 @@ GO
 
 CREATE PROCEDURE dbo.MemberProvider_Update
 	@MemberProviderID varchar(64),
-	@MemberID varchar(64),
+	@MemberID uniqueidentifier,
 	@ProviderID varchar(64),
 	@EncryptedUserName varchar(128),
-	@EncryptedPassword varchar(64)
+	@EncryptedPassword varchar(32)
 AS
 	update MemberProvider set
 		MemberID = @MemberID,
@@ -546,7 +731,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.MemberProvider_GetByMemberIDProviderID
-	@MemberID varchar(64),
+	@MemberID uniqueidentifier,
 	@ProviderID varchar(64)
 AS
 	select MemberProviderID, MemberID, ProviderID, EncryptedUserName, EncryptedPassword
@@ -558,7 +743,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.MemberProvider_GetByMemberID
-	@MemberID varchar(64)
+	@MemberID uniqueidentifier
 AS
 	select MemberProviderID, MemberID, ProviderID, EncryptedUserName, EncryptedPassword
 	from MemberProvider
@@ -568,7 +753,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.Show_Get
-	@ShowID varchar(64)
+	@ShowID uniqueidentifier
 AS
 	select ShowID, Name, EpisodeName, EpisodeNumber, ReleasedOn, ReleasedYear,
 		Description, RunningMins, PictureURL, RatingID, IsAdult
@@ -579,7 +764,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.Show_Insert
-	@ShowID varchar(64),
+	@ShowID uniqueidentifier,
 	@Name varchar(64),
 	@EpisodeName varchar(64),
 	@EpisodeNumber varchar(32),
@@ -624,7 +809,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.Show_Update
-	@ShowID varchar(64),
+	@ShowID uniqueidentifier,
 	@Name varchar(64),
 	@EpisodeName varchar(64),
 	@EpisodeNumber varchar(32),
@@ -691,7 +876,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.Show_GetByRentedShowMemberID
-	@MemberID varchar(64)
+	@MemberID uniqueidentifier
 AS
 	select s.ShowID, s.Name, s.EpisodeName, s.EpisodeNumber, s.ReleasedOn, s.ReleasedYear,
 		s.Description, s.RunningMins, s.PictureURL, s.RatingID, s.IsAdult
@@ -721,8 +906,8 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowProvider_Insert
-	@ShowProviderID varchar(64),
-	@ShowID varchar(64),
+	@ShowProviderID uniqueidentifier,
+	@ShowID uniqueidentifier,
 	@ProviderID varchar(64),
 	@ProviderShowID varchar(64),
 	@ShowCost_ShowCostType varchar(32),
@@ -763,8 +948,8 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowProvider_Update
-	@ShowProviderID varchar(64),
-	@ShowID varchar(64),
+	@ShowProviderID uniqueidentifier,
+	@ShowID uniqueidentifier,
 	@ProviderID varchar(64),
 	@ProviderShowID varchar(64),
 	@ShowCost_ShowCostType varchar(32),
@@ -792,7 +977,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowProvider_Delete
-	@ShowProviderID varchar(64)
+	@ShowProviderID uniqueidentifier
 AS
 	delete from ShowProvider where ShowProviderID = @ShowProviderID
 GO
@@ -800,7 +985,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowProvider_GetByShowIDProviderID
-	@ShowID varchar(64),
+	@ShowID uniqueidentifier,
 	@ProviderID varchar(64)
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowCost_ShowCostType,
@@ -814,7 +999,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowProvider_GetByShowID
-	@ShowID varchar(64)
+	@ShowID uniqueidentifier
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowCost_ShowCostType,
 		ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount, ShowCost_CostDisplay,
@@ -878,8 +1063,8 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowCategory_Insert
-	@ShowCategoryID varchar(64),
-	@ShowID varchar(64),
+	@ShowCategoryID uniqueidentifier,
+	@ShowID uniqueidentifier,
 	@CategoryID varchar(32)
 AS
 	insert into ShowCategory
@@ -899,7 +1084,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowCategory_Delete
-	@ShowCategoryID varchar(64)
+	@ShowCategoryID uniqueidentifier
 AS
 	delete from ShowCategory where ShowCategoryID = @ShowCategoryID
 GO
@@ -918,7 +1103,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowCategory_GetByShowID
-	@ShowID varchar(64)
+	@ShowID uniqueidentifier
 AS
 	select ShowCategoryID, ShowID, CategoryID
 	from ShowCategory
@@ -938,7 +1123,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.ShowCategory_GetByRentedShowMemberID
-	@MemberID varchar(64)
+	@MemberID uniqueidentifier
 AS
 	select sc.ShowCategoryID, sc.ShowID, sc.CategoryID
 	from ShowCategory sc
@@ -950,7 +1135,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.RentedShow_Get
-	@RentedShowID varchar(64)
+	@RentedShowID uniqueidentifier
 AS
 	select
 		RentedShowID,
@@ -973,9 +1158,9 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.RentedShow_Insert
-	@RentedShowID varchar(64),
-	@MemberID varchar(64),
-	@ShowID varchar(64),
+	@RentedShowID uniqueidentifier,
+	@MemberID uniqueidentifier,
+	@ShowID uniqueidentifier,
 	@ProviderID varchar(64),
 	@ShowURL varchar(4096),
 	@ShowCost_ShowCostType varchar(32),
@@ -1024,9 +1209,9 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.RentedShow_Update
-	@RentedShowID varchar(64),
-	@MemberID varchar(64),
-	@ShowID varchar(64),
+	@RentedShowID uniqueidentifier,
+	@MemberID uniqueidentifier,
+	@ShowID uniqueidentifier,
 	@ProviderID varchar(64),
 	@ShowURL varchar(4096),
 	@ShowCost_ShowCostType varchar(32),
@@ -1057,7 +1242,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.RentedShow_Delete
-	@RentedShowID varchar(64)
+	@RentedShowID uniqueidentifier
 AS
 	delete from RentedShow where RentedShowID = @RentedShowID
 GO
@@ -1065,7 +1250,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.RentedShow_GetByMemberID
-	@MemberID varchar(64)
+	@MemberID uniqueidentifier
 AS
 	select
 		RentedShowID,
@@ -1101,10 +1286,17 @@ GRANT EXECUTE ON [dbo].[Member_Insert] TO [inetvod]
 GRANT EXECUTE ON [dbo].[Member_Update] TO [inetvod]
 GRANT EXECUTE ON [dbo].[Member_Delete] TO [inetvod]
 
-GRANT EXECUTE ON [dbo].[MemberPrefs_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberLogon_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberLogon_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberLogon_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberLogon_Delete] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberLogon_GetByEmail] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberLogon_GetByLogonIDPIN] TO [inetvod]
 
-GRANT EXECUTE ON [dbo].[SerialNumber_Get] TO [inetvod]
-GRANT EXECUTE ON [dbo].[SerialNumber_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberPrefs_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberPrefs_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberPrefs_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberPrefs_Delete] TO [inetvod]
 
 GRANT EXECUTE ON [dbo].[MemberSession_Get] TO [inetvod]
 GRANT EXECUTE ON [dbo].[MemberSession_Insert] TO [inetvod]
