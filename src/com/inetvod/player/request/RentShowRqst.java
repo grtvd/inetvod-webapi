@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2005 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
  * Confidential and Proprietary
  */
 package com.inetvod.player.request;
@@ -16,8 +16,7 @@ import com.inetvod.common.data.ShowCost;
 import com.inetvod.common.data.ShowCostType;
 import com.inetvod.common.data.ShowFormat;
 import com.inetvod.common.data.ShowID;
-import com.inetvod.common.data.CreditCard;
-import com.inetvod.common.data.Address;
+import com.inetvod.common.dbdata.MemberAccount;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.player.rqdata.StatusCode;
@@ -50,26 +49,11 @@ public class RentShowRqst extends SessionRequestable
 
 		if(ShowCostType.PayPerView.equals(fApprovedCost.getShowCostType()))
 		{
-			//TODO: does Member have credit card on file
-//			CreditCard creditCard = MemberCreditCard.get(fMemberID).getCreditCard();
-			if(true)
+			// Does Member have credit card on file
+			MemberAccount memberAccount = MemberAccount.find(fMemberID);
+			if((memberAccount != null) && (memberAccount.getCreditCard() != null))
 			{
-				//TODO: remove temp code
-				CreditCard creditCard = new CreditCard();
-				creditCard.setNameOnCC("Joe Buck");
-				creditCard.setCCType("Visa");
-				creditCard.setCCNumber("1111-2222-3333-4444");
-				creditCard.setCCSIC("123");
-				creditCard.setExpireDate("05-99");
-				Address address = new Address();
-				address.setAddrStreet1("123 Main St.");
-				address.setCity("Anytown");
-				address.setState("AT");
-				address.setPostalCode("11111");
-				creditCard.setBillingAddress(address);
-				//TODO: remove temp code
-
-				payment = Payment.newInstance(PaymentType.CreditCard, creditCard);
+				payment = Payment.newInstance(PaymentType.CreditCard, memberAccount.getCreditCard());
 				paymentType = PaymentType.CreditCard;
 				ccOnFile = true;
 			}

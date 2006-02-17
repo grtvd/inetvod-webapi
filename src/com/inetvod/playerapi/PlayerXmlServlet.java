@@ -18,6 +18,7 @@ import org.apache.log4j.xml.DOMConfigurator;
 import com.inetvod.common.core.ServletFulfiller;
 import com.inetvod.common.dbdata.Category;
 import com.inetvod.common.dbdata.Member;
+import com.inetvod.common.dbdata.MemberAccount;
 import com.inetvod.common.dbdata.MemberLogon;
 import com.inetvod.common.dbdata.MemberPrefs;
 import com.inetvod.common.dbdata.MemberProvider;
@@ -50,6 +51,7 @@ public class PlayerXmlServlet extends HttpServlet
 		Rating.getDatabaseAdaptor();
 		Member.getDatabaseAdaptor();
 		MemberLogon.getDatabaseAdaptor();
+		MemberAccount.getDatabaseAdaptor();
 		MemberPrefs.getDatabaseAdaptor();
 		MemberSession.getDatabaseAdaptor();
 		MemberProvider.getDatabaseAdaptor();

@@ -15,6 +15,7 @@ delete from Provider
 delete from Category
 delete from Rating
 delete from MemberPrefs
+delete from MemberAccount
 delete from MemberLogon
 delete from Member
 go
@@ -118,7 +119,7 @@ SET IDENTITY_INSERT MemberLogon OFF
 --//////////////////////////////////////////////////////////////////////////////
 
 insert MemberPrefs (MemberID, IncludeAdult, AdultPIN, IncludeRatingIDList, IncludeDownload, IncludeStreaming, ConnectionSpeed)
-values ('f2c3e739-85c9-4b61-b906-230986c656c5', 'PromptPassword', '123456', 'g,pg,pg13,r,tv7,tvy7,tvy7fv', 1, 1, 1500)
+values ('f2c3e739-85c9-4b61-b906-230986c656c5', 'PromptPassword', '123456', 'g,pg,pg13,r,tv7,tvy7,tvy7fv', 1, 1, '1500K')
 go
 
 --//////////////////////////////////////////////////////////////////////////////

@@ -1,3 +1,5 @@
+Replace StringBuffer with StringBuilder
+
 Confirm all Dates/Times stored/retrieve to database are in GMT.  This will allow move database to different ISPs w/o effecting the data.
 
 Reorganize Show search to use ShowSearch table.  Should make searcing related tables easier (ShowProvider, ShowProviderRental, ShowCategory, etc.)

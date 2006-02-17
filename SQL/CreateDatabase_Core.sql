@@ -106,6 +106,10 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberPref
 drop table [dbo].[MemberPrefs]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberAccount]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[MemberAccount]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberLogon]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
 drop table [dbo].[MemberLogon]
 GO
@@ -235,10 +239,57 @@ GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
+CREATE TABLE [dbo].[MemberAccount] (
+	[MemberID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+
+	[HomeAddress_AddrStreet1] [varchar] (64) NULL ,
+	[HomeAddress_AddrStreet2] [varchar] (64) NULL ,
+	[HomeAddress_City] [varchar] (64) NULL ,
+	[HomeAddress_State] [varchar] (64) NULL ,
+	[HomeAddress_PostalCode] [varchar] (32) NULL ,
+	[HomeAddress_Country] [varchar] (2) NULL ,
+	[HomeAddress_Phone] [varchar] (32) NULL ,
+
+	[CreditCard_NameOnCC] [varchar] (64) NULL ,
+	[CreditCard_CCType] [varchar] (16) NULL ,
+	[CreditCard_CCNumber] [varchar] (32) NULL ,
+	[CreditCard_CCSIC] [varchar] (16) NULL ,
+	[CreditCard_ExpireDate] [varchar] (16) NULL ,
+
+	[CreditCard_BillingAddress_AddrStreet1] [varchar] (64) NULL ,
+	[CreditCard_BillingAddress_AddrStreet2] [varchar] (64) NULL ,
+	[CreditCard_BillingAddress_City] [varchar] (64) NULL ,
+	[CreditCard_BillingAddress_State] [varchar] (64) NULL ,
+	[CreditCard_BillingAddress_PostalCode] [varchar] (32) NULL ,
+	[CreditCard_BillingAddress_Country] [varchar] (2) NULL ,
+	[CreditCard_BillingAddress_Phone] [varchar] (32) NULL ,
+
+	[BirthDate] [datetime]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[MemberAccount] ADD
+	CONSTRAINT [PK_MemberAccount] PRIMARY KEY  CLUSTERED
+	(
+		[MemberID]
+	)  ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[MemberAccount] ADD
+	CONSTRAINT [FK_MemberAccount_Member] FOREIGN KEY
+	(
+		[MemberID]
+	) REFERENCES [dbo].[Member] (
+		[MemberID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
 CREATE TABLE [dbo].[MemberPrefs] (
 	[MemberID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[IncludeAdult] [varchar] (32) NULL ,
-	[AdultPIN] [varchar] (8) NULL ,
+	[AdultPIN] [varchar] (16) NULL ,
 	[IncludeRatingIDList] [varchar] (128) NULL ,
 	[IncludeDownload] [bit] NULL ,
 	[IncludeStreaming] [bit] NULL ,

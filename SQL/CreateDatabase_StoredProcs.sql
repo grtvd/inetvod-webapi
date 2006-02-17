@@ -72,6 +72,22 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberLogo
 drop procedure [dbo].[MemberLogon_GetByLogonIDPIN]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberAccount_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberAccount_Get]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberAccount_Insert]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberAccount_Insert]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberAccount_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberAccount_Update]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberAccount_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[MemberAccount_Delete]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[MemberPrefs_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[MemberPrefs_Get]
 GO
@@ -524,6 +540,192 @@ GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
+CREATE PROCEDURE dbo.MemberAccount_Get
+	@MemberID uniqueidentifier
+AS
+	select
+		MemberID,
+
+		HomeAddress_AddrStreet1,
+		HomeAddress_AddrStreet2,
+		HomeAddress_City,
+		HomeAddress_State,
+		HomeAddress_PostalCode,
+		HomeAddress_Country,
+		HomeAddress_Phone,
+
+		CreditCard_NameOnCC,
+		CreditCard_CCType,
+		CreditCard_CCNumber,
+		CreditCard_CCSIC,
+		CreditCard_ExpireDate,
+
+		CreditCard_BillingAddress_AddrStreet1,
+		CreditCard_BillingAddress_AddrStreet2,
+		CreditCard_BillingAddress_City,
+		CreditCard_BillingAddress_State,
+		CreditCard_BillingAddress_PostalCode,
+		CreditCard_BillingAddress_Country,
+		CreditCard_BillingAddress_Phone,
+
+		BirthDate
+	from MemberAccount
+	where MemberID = @MemberID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberAccount_Insert
+	@MemberID uniqueidentifier,
+
+	@HomeAddress_AddrStreet1 varchar(64),
+	@HomeAddress_AddrStreet2 varchar(64),
+	@HomeAddress_City varchar(64),
+	@HomeAddress_State varchar(64),
+	@HomeAddress_PostalCode varchar(32),
+	@HomeAddress_Country varchar(2),
+	@HomeAddress_Phone varchar(32),
+
+	@CreditCard_NameOnCC varchar(64),
+	@CreditCard_CCType varchar(16),
+	@CreditCard_CCNumber varchar(32),
+	@CreditCard_CCSIC varchar(16),
+	@CreditCard_ExpireDate varchar(16),
+
+	@CreditCard_BillingAddress_AddrStreet1 varchar(64),
+	@CreditCard_BillingAddress_AddrStreet2 varchar(64),
+	@CreditCard_BillingAddress_City varchar(64),
+	@CreditCard_BillingAddress_State varchar(64),
+	@CreditCard_BillingAddress_PostalCode varchar(32),
+	@CreditCard_BillingAddress_Country varchar(2),
+	@CreditCard_BillingAddress_Phone varchar(32),
+
+	@BirthDate datetime
+AS
+	insert into MemberAccount
+	(
+		MemberID,
+
+		HomeAddress_AddrStreet1,
+		HomeAddress_AddrStreet2,
+		HomeAddress_City,
+		HomeAddress_State,
+		HomeAddress_PostalCode,
+		HomeAddress_Country,
+		HomeAddress_Phone,
+
+		CreditCard_NameOnCC,
+		CreditCard_CCType,
+		CreditCard_CCNumber,
+		CreditCard_CCSIC,
+		CreditCard_ExpireDate,
+
+		CreditCard_BillingAddress_AddrStreet1,
+		CreditCard_BillingAddress_AddrStreet2,
+		CreditCard_BillingAddress_City,
+		CreditCard_BillingAddress_State,
+		CreditCard_BillingAddress_PostalCode,
+		CreditCard_BillingAddress_Country,
+		CreditCard_BillingAddress_Phone,
+
+		BirthDate
+	)
+	values
+	(
+		@MemberID,
+
+		@HomeAddress_AddrStreet1,
+		@HomeAddress_AddrStreet2,
+		@HomeAddress_City,
+		@HomeAddress_State,
+		@HomeAddress_PostalCode,
+		@HomeAddress_Country,
+		@HomeAddress_Phone,
+
+		@CreditCard_NameOnCC,
+		@CreditCard_CCType,
+		@CreditCard_CCNumber,
+		@CreditCard_CCSIC,
+		@CreditCard_ExpireDate,
+
+		@CreditCard_BillingAddress_AddrStreet1,
+		@CreditCard_BillingAddress_AddrStreet2,
+		@CreditCard_BillingAddress_City,
+		@CreditCard_BillingAddress_State,
+		@CreditCard_BillingAddress_PostalCode,
+		@CreditCard_BillingAddress_Country,
+		@CreditCard_BillingAddress_Phone,
+
+		@BirthDate
+	)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberAccount_Update
+	@MemberID uniqueidentifier,
+
+	@HomeAddress_AddrStreet1 varchar(64),
+	@HomeAddress_AddrStreet2 varchar(64),
+	@HomeAddress_City varchar(64),
+	@HomeAddress_State varchar(64),
+	@HomeAddress_PostalCode varchar(32),
+	@HomeAddress_Country varchar(2),
+	@HomeAddress_Phone varchar(32),
+
+	@CreditCard_NameOnCC varchar(64),
+	@CreditCard_CCType varchar(16),
+	@CreditCard_CCNumber varchar(32),
+	@CreditCard_CCSIC varchar(16),
+	@CreditCard_ExpireDate varchar(16),
+
+	@CreditCard_BillingAddress_AddrStreet1 varchar(64),
+	@CreditCard_BillingAddress_AddrStreet2 varchar(64),
+	@CreditCard_BillingAddress_City varchar(64),
+	@CreditCard_BillingAddress_State varchar(64),
+	@CreditCard_BillingAddress_PostalCode varchar(32),
+	@CreditCard_BillingAddress_Country varchar(2),
+	@CreditCard_BillingAddress_Phone varchar(32),
+
+	@BirthDate datetime
+AS
+	update MemberAccount set
+		HomeAddress_AddrStreet1 = @HomeAddress_AddrStreet1,
+		HomeAddress_AddrStreet2 = @HomeAddress_AddrStreet2,
+		HomeAddress_City = @HomeAddress_City,
+		HomeAddress_State = @HomeAddress_State,
+		HomeAddress_PostalCode = @HomeAddress_PostalCode,
+		HomeAddress_Country = @HomeAddress_Country,
+		HomeAddress_Phone = @HomeAddress_Phone,
+
+		CreditCard_NameOnCC = @CreditCard_NameOnCC,
+		CreditCard_CCType = @CreditCard_CCType,
+		CreditCard_CCNumber = @CreditCard_CCNumber,
+		CreditCard_CCSIC = @CreditCard_CCSIC,
+		CreditCard_ExpireDate = @CreditCard_ExpireDate,
+
+		CreditCard_BillingAddress_AddrStreet1 = @CreditCard_BillingAddress_AddrStreet1,
+		CreditCard_BillingAddress_AddrStreet2 = @CreditCard_BillingAddress_AddrStreet2,
+		CreditCard_BillingAddress_City = @CreditCard_BillingAddress_City,
+		CreditCard_BillingAddress_State = @CreditCard_BillingAddress_State,
+		CreditCard_BillingAddress_PostalCode = @CreditCard_BillingAddress_PostalCode,
+		CreditCard_BillingAddress_Country = @CreditCard_BillingAddress_Country,
+		CreditCard_BillingAddress_Phone = @CreditCard_BillingAddress_Phone,
+
+		BirthDate = @BirthDate
+	where MemberID = @MemberID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.MemberAccount_Delete
+	@MemberID uniqueidentifier
+AS
+	delete from MemberAccount where MemberID = @MemberID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
 CREATE PROCEDURE dbo.MemberPrefs_Get
 	@MemberID uniqueidentifier
 AS
@@ -544,7 +746,7 @@ GO
 CREATE PROCEDURE dbo.MemberPrefs_Insert
 	@MemberID uniqueidentifier,
 	@IncludeAdult varchar(32),
-	@AdultPIN varchar(8),
+	@AdultPIN varchar(16),
 	@IncludeRatingIDList varchar(128),
 	@IncludeDownload bit,
 	@IncludeStreaming bit,
@@ -577,7 +779,7 @@ GO
 CREATE PROCEDURE dbo.MemberPrefs_Update
 	@MemberID uniqueidentifier,
 	@IncludeAdult varchar(32),
-	@AdultPIN varchar(8),
+	@AdultPIN varchar(16),
 	@IncludeRatingIDList varchar(128),
 	@IncludeDownload bit,
 	@IncludeStreaming bit,
@@ -687,7 +889,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.MemberProvider_Insert
-	@MemberProviderID varchar(64),
+	@MemberProviderID uniqueidentifier,
 	@MemberID uniqueidentifier,
 	@ProviderID varchar(64),
 	@EncryptedUserName varchar(128),
@@ -714,7 +916,7 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE PROCEDURE dbo.MemberProvider_Update
-	@MemberProviderID varchar(64),
+	@MemberProviderID uniqueidentifier,
 	@MemberID uniqueidentifier,
 	@ProviderID varchar(64),
 	@EncryptedUserName varchar(128),
@@ -1292,6 +1494,11 @@ GRANT EXECUTE ON [dbo].[MemberLogon_Update] TO [inetvod]
 GRANT EXECUTE ON [dbo].[MemberLogon_Delete] TO [inetvod]
 GRANT EXECUTE ON [dbo].[MemberLogon_GetByEmail] TO [inetvod]
 GRANT EXECUTE ON [dbo].[MemberLogon_GetByLogonIDPIN] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[MemberAccount_Get] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberAccount_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberAccount_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[MemberAccount_Delete] TO [inetvod]
 
 GRANT EXECUTE ON [dbo].[MemberPrefs_Get] TO [inetvod]
 GRANT EXECUTE ON [dbo].[MemberPrefs_Insert] TO [inetvod]
