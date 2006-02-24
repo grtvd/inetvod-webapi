@@ -111,7 +111,7 @@ go
 SET IDENTITY_INSERT MemberLogon ON
 
 insert into MemberLogon (MemberID, EmailKey, Email, Password, LogonID, PIN, SecretQuestion, SecretAnswer, TermsAcceptedOn, TermsAcceptedVersion)
-values ('f2c3e739-85c9-4b61-b906-230986c656c5', '1@INETVOD.ORG', '1@inetvod.org', '654321', 100000000, '123456', 'What''s your favoriate color?', 'red', '1999-12-31T23:59:59', '0.0.0.0')
+values ('f2c3e739-85c9-4b61-b906-230986c656c5', '100000000@INETVOD.ORG', '100000000@inetvod.org', '123456', 100000000, '123456', 'What''s your favoriate color?', 'red', '1999-12-31T23:59:59', '0.0.0.0')
 go
 
 SET IDENTITY_INSERT MemberLogon OFF
