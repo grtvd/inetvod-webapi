@@ -24,6 +24,7 @@ import com.inetvod.common.dbdata.MemberPrefs;
 import com.inetvod.common.dbdata.MemberProvider;
 import com.inetvod.common.dbdata.MemberSession;
 import com.inetvod.common.dbdata.Provider;
+import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.common.dbdata.Rating;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.Show;
@@ -47,6 +48,7 @@ public class PlayerXmlServlet extends HttpServlet
 
 		// Preload DatabaseAdaptors
 		Provider.getDatabaseAdaptor();
+		ProviderConnection.getDatabaseAdaptor();
 		Category.getDatabaseAdaptor();
 		Rating.getDatabaseAdaptor();
 		Member.getDatabaseAdaptor();

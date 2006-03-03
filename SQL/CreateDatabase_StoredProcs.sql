@@ -16,6 +16,22 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Provider_G
 drop procedure [dbo].[Provider_GetAll]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ProviderConnection_Insert]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ProviderConnection_Insert]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ProviderConnection_Update]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ProviderConnection_Update]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ProviderConnection_Delete]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ProviderConnection_Delete]
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ProviderConnection_GetByProviderID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ProviderConnection_GetByProviderID]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Category_Get]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[Category_Get]
 GO
@@ -276,6 +292,63 @@ AS
 	select ProviderID, Name, RequestURL, AdminUserID, AdminPassword
 	from Provider
 	order by Name
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.ProviderConnection_Insert
+	@ProviderConnectionID uniqueidentifier,
+	@ProviderID varchar(64),
+	@ProviderConnectionType varchar(16),
+	@ConnectionURL varchar(4096)
+AS
+	insert into ProviderConnection
+	(
+		ProviderConnectionID,
+		ProviderID,
+		ProviderConnectionType,
+		ConnectionURL
+	)
+	values
+	(
+		@ProviderConnectionID,
+		@ProviderID,
+		@ProviderConnectionType,
+		@ConnectionURL
+	)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.ProviderConnection_Update
+	@ProviderConnectionID uniqueidentifier,
+	@ProviderID varchar(64),
+	@ProviderConnectionType varchar(16),
+	@ConnectionURL varchar(4096)
+AS
+	update ProviderConnection set
+		ProviderID = @ProviderID,
+		ProviderConnectionType = @ProviderConnectionType,
+		ConnectionURL = @ConnectionURL
+	where ProviderConnectionID = @ProviderConnectionID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.ProviderConnection_Delete
+	@ProviderConnectionID uniqueidentifier
+AS
+	delete from ProviderConnection where ProviderConnectionID = @ProviderConnectionID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
+CREATE PROCEDURE dbo.ProviderConnection_GetByProviderID
+	@ProviderID varchar(64)
+AS
+	select ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL
+	from ProviderConnection
+	where (ProviderID = @ProviderID)
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
@@ -1476,6 +1549,11 @@ GO
 
 GRANT EXECUTE ON [dbo].[Provider_Get] TO [inetvod]
 GRANT EXECUTE ON [dbo].[Provider_GetAll] TO [inetvod]
+
+GRANT EXECUTE ON [dbo].[ProviderConnection_Insert] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ProviderConnection_Update] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ProviderConnection_Delete] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ProviderConnection_GetByProviderID] TO [inetvod]
 
 GRANT EXECUTE ON [dbo].[Category_Get] TO [inetvod]
 GRANT EXECUTE ON [dbo].[Category_GetAll] TO [inetvod]
