@@ -1184,7 +1184,8 @@ CREATE PROCEDURE dbo.ShowProvider_Insert
 	@ShowProviderID uniqueidentifier,
 	@ShowID uniqueidentifier,
 	@ProviderID varchar(64),
-	@ProviderShowID varchar(64),
+	@ProviderShowID varchar(128),
+	@ShowURL varchar(4096),
 	@ShowCost_ShowCostType varchar(32),
 	@ShowCost_Cost_CurrencyID varchar(3),
 	@ShowCost_Cost_Amount decimal(17,2),
@@ -1198,6 +1199,7 @@ AS
 		ShowID,
 		ProviderID,
 		ProviderShowID,
+		ShowURL,
 		ShowCost_ShowCostType,
 		ShowCost_Cost_CurrencyID,
 		ShowCost_Cost_Amount,
@@ -1211,6 +1213,7 @@ AS
 		@ShowID,
 		@ProviderID,
 		@ProviderShowID,
+		@ShowURL,
 		@ShowCost_ShowCostType,
 		@ShowCost_Cost_CurrencyID,
 		@ShowCost_Cost_Amount,
@@ -1226,7 +1229,8 @@ CREATE PROCEDURE dbo.ShowProvider_Update
 	@ShowProviderID uniqueidentifier,
 	@ShowID uniqueidentifier,
 	@ProviderID varchar(64),
-	@ProviderShowID varchar(64),
+	@ProviderShowID varchar(128),
+	@ShowURL varchar(4096),
 	@ShowCost_ShowCostType varchar(32),
 	@ShowCost_Cost_CurrencyID varchar(3),
 	@ShowCost_Cost_Amount decimal(17,2),
@@ -1239,6 +1243,7 @@ AS
 		--ShowID = @ShowID,
 		--ProviderID = @ProviderID,
 		--ProviderShowID = @ProviderShowID,
+		ShowURL = @ShowURL,
 		ShowCost_ShowCostType = @ShowCost_ShowCostType,
 		ShowCost_Cost_CurrencyID = @ShowCost_Cost_CurrencyID,
 		ShowCost_Cost_Amount = @ShowCost_Cost_Amount,
@@ -1263,9 +1268,9 @@ CREATE PROCEDURE dbo.ShowProvider_GetByShowIDProviderID
 	@ShowID uniqueidentifier,
 	@ProviderID varchar(64)
 AS
-	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowCost_ShowCostType,
-		ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount, ShowCost_CostDisplay,
-		ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
+	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowURL,
+		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
+		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
 	from ShowProvider
 	where (ShowID = @ShowID)
 	and (ProviderID = @ProviderID)
@@ -1276,9 +1281,9 @@ GO
 CREATE PROCEDURE dbo.ShowProvider_GetByShowID
 	@ShowID uniqueidentifier
 AS
-	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowCost_ShowCostType,
-		ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount, ShowCost_CostDisplay,
-		ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
+	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowURL,
+		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
+		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
 	from ShowProvider
 	where (ShowID = @ShowID)
 GO
@@ -1287,11 +1292,11 @@ GO
 
 CREATE PROCEDURE dbo.ShowProvider_GetByProviderIDProviderShowID
 	@ProviderID varchar(64),
-	@ProviderShowID varchar(64)
+	@ProviderShowID varchar(128)
 AS
-	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowCost_ShowCostType,
-		ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount, ShowCost_CostDisplay,
-		ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
+	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowURL,
+		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
+		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
 	from ShowProvider
 	where (ProviderID = @ProviderID)
 	and (ProviderShowID = @ProviderShowID)
@@ -1302,7 +1307,7 @@ GO
 CREATE PROCEDURE dbo.ShowProvider_Search
 	@PartialName varchar(64)
 AS
-	select sp.ShowProviderID, sp.ShowID, ProviderID, ProviderShowID,
+	select sp.ShowProviderID, sp.ShowID, ProviderID, ProviderShowID, ShowURL,
 		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
 		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
 	from ShowProvider sp
@@ -1315,7 +1320,7 @@ GO
 CREATE PROCEDURE dbo.ShowProvider_GetByProviderID
 	@ProviderID varchar(64)
 AS
-	select ShowProviderID, ShowID, ProviderID, ProviderShowID,
+	select ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowURL,
 		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
 		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
 	from ShowProvider
@@ -1327,7 +1332,7 @@ GO
 CREATE PROCEDURE dbo.ShowProvider_GetByCategoryID
 	@CategoryID varchar(32)
 AS
-	select sp.ShowProviderID, sp.ShowID, ProviderID, ProviderShowID,
+	select sp.ShowProviderID, sp.ShowID, ProviderID, ProviderShowID, ShowURL,
 		ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
 		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
 	from ShowProvider sp
