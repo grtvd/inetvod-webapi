@@ -6,6 +6,7 @@
 	<servlet>
 		<servlet-name>XmlPlayerAPI</servlet-name>
 		<servlet-class>com.inetvod.playerapi.PlayerXmlServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
