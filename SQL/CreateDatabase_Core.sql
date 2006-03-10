@@ -139,9 +139,6 @@ GO
 CREATE TABLE [dbo].[Provider] (
 	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[Name] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[RequestURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[AdminUserID] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[AdminPassword] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
 ) ON [PRIMARY]
 GO
 
@@ -159,6 +156,8 @@ CREATE TABLE [dbo].[ProviderConnection] (
 	[ProviderID] [varchar] (64) NOT NULL ,
 	[ProviderConnectionType] [varchar] (16) NOT NULL ,
 	[ConnectionURL] [varchar] (4096) NULL
+	[AdminUserID] [varchar] (128) NULL ,
+	[AdminPassword] [varchar] (32) NULL ,
 ) ON [PRIMARY]
 GO
 
@@ -453,8 +452,9 @@ CREATE TABLE [dbo].[ShowProvider] (
 	[ShowProviderID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[ShowID] uniqueidentifier NOT NULL ,
 	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ProviderConnectionID] uniqueidentifier NOT NULL ,
 	[ProviderShowID] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
 	[ShowCost_ShowCostType] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ShowCost_Cost_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
 	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
@@ -547,6 +547,7 @@ CREATE TABLE [dbo].[RentedShow] (
 	[MemberID] uniqueidentifier NOT NULL ,
 	[ShowID] uniqueidentifier NOT NULL ,
 	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ProviderConnectionID] uniqueidentifier NOT NULL ,
 	[ShowURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ShowCost_ShowCostType] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ShowCost_Cost_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,

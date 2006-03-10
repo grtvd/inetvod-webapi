@@ -12,8 +12,10 @@ import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.Address;
 import com.inetvod.common.data.ProviderID;
+import com.inetvod.common.data.ProviderConnectionType;
 import com.inetvod.common.dbdata.Member;
 import com.inetvod.common.dbdata.MemberProvider;
+import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
 import com.inetvod.providerClient.request.EnrollRqst;
@@ -39,7 +41,16 @@ public class ProviderEnrollRqst extends SessionRequestable
 			return null;
 		}
 
-		ProviderRequestor providerRequestor = ProviderRequestor.newInstance(fProviderID);
+		// Fetch ProviderAPI ProviderConnection, other connections do not support enrollment
+		ProviderConnection providerConnection = ProviderConnection.findByProviderIDConnectionType(
+			fProviderID, ProviderConnectionType.ProviderAPI);
+		if(providerConnection == null)
+		{
+			fStatusCode = StatusCode.sc_GeneralError;
+			return null;
+		}
+
+		ProviderRequestor providerRequestor = ProviderRequestor.newInstance(providerConnection);
 
 		// Confirm Provider's server can be communicated with
 		if(!providerRequestor.pingServer())

@@ -11,6 +11,7 @@ delete from RentedShow
 delete from ShowProvider
 delete from ShowCategory
 delete from Show
+delete from ProviderConnection
 delete from Provider
 delete from Category
 delete from Rating
@@ -22,23 +23,46 @@ go
 
 --//////////////////////////////////////////////////////////////////////////////
 
-insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('internetvideos', 'Internet Videos', 'http://localhost/provider_internetvideos/providerapi', 'super', 'superpassword')
+insert into Provider (ProviderID, Name)
+values ('internetvideos', 'Internet Videos')
 
-insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('moviesmovies', 'Movies, Movies', 'http://localhost/provider_moviesmovies/providerapi', 'super', 'superpassword')
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
+values (newid(), 'internetvideos', 'ProviderAPI', 'http://localhost/provider_internetvideos/providerapi', 'super', 'superpassword')
 
-insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('vodflicks', 'VOD Flicks', 'http://localhost/provider_vodflicks/providerapi', 'super', 'superpassword')
 
-insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('excellentvideos', 'Excellent Videos', 'http://localhost/provider_excellentvideos/providerapi', 'super', 'superpassword')
+insert into Provider (ProviderID, Name)
+values ('moviesmovies', 'Movies, Movies')
 
-insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('mlb', 'MLB.com', 'http://localhost/provider_mlb/providerapi', 'super', 'superpassword')
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
+values (newid(), 'moviesmovies', 'ProviderAPI', 'http://localhost/provider_moviesmovies/providerapi', 'super', 'superpassword')
 
-insert into Provider (ProviderID, Name, RequestURL, AdminUserID, AdminPassword)
-values ('rocketboom', 'Rocketboom', 'http://localhost/provider_rocketboom/providerapi', 'super', 'superpassword')
+
+insert into Provider (ProviderID, Name)
+values ('vodflicks', 'VOD Flicks')
+
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
+values (newid(), 'vodflicks', 'ProviderAPI', 'http://localhost/provider_vodflicks/providerapi', 'super', 'superpassword')
+
+
+insert into Provider (ProviderID, Name)
+values ('excellentvideos', 'Excellent Videos')
+
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
+values (newid(), 'excellentvideos', 'ProviderAPI', 'http://localhost/provider_excellentvideos/providerapi', 'super', 'superpassword')
+
+
+insert into Provider (ProviderID, Name)
+values ('mlb', 'MLB.com')
+
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
+values (newid(), 'mlb', 'ProviderAPI', 'http://localhost/provider_mlb/providerapi', 'super', 'superpassword')
+
+
+insert into Provider (ProviderID, Name)
+values ('rocketboom', 'Rocketboom')
+
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL)
+values (newid(), 'rocketboom', 'Rss2', 'http://localhost:81/samplefeeds/rocketboom.xml')
 
 go
 

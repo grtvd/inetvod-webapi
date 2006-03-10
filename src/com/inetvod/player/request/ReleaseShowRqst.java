@@ -8,8 +8,10 @@ import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.RentedShowID;
+import com.inetvod.common.data.ProviderConnectionType;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.ShowProvider;
+import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
 import com.inetvod.providerClient.rqdata.ProviderStatusCode;
@@ -30,26 +32,34 @@ public class ReleaseShowRqst extends SessionRequestable
 		// Get the rented show
 		RentedShow rentedShow = RentedShow.get(fRentedShowID);
 
-		ProviderRequestor providerRequestor = ProviderRequestor.newInstance(rentedShow.getProviderID(), fMemberID);
+		// Get the provider connectin
+		ProviderConnection providerConnection = ProviderConnection.get(rentedShow.getProviderConnectionID());
 
-		// Confirm Provider's server can be communicated with
-		if(!providerRequestor.pingServer())
+		// Is a ProviderAPI connection?
+		if(ProviderConnectionType.ProviderAPI.equals(providerConnection.getProviderConnectionType()))
 		{
-			fStatusCode = StatusCode.sc_NoProviderResponse;
-			return null;
-		}
+			ProviderRequestor providerRequestor = ProviderRequestor.newInstance(providerConnection, fMemberID);
 
-		// Fetch Show as offered by Provider
-		ShowProvider showProvider = ShowProvider.getByShowIDProviderID(rentedShow.getShowID(), rentedShow.getProviderID());
+			// Confirm Provider's server can be communicated with
+			if(!providerRequestor.pingServer())
+			{
+				fStatusCode = StatusCode.sc_NoProviderResponse;
+				return null;
+			}
 
-		// Send request to Provider
-		boolean success = providerRequestor.releaseShow(showProvider.getProviderShowID());
+			// Fetch Show as offered by Provider
+			ShowProvider showProvider = ShowProvider.getByShowIDProviderID(rentedShow.getShowID(),
+				rentedShow.getProviderID());
 
-		ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
-		if(!ProviderStatusCode.sc_Success.equals(providerStatusCode) || !success)
-		{
-			fStatusCode = StatusCode.sc_UnknownProviderResponse;
-			return null;
+			// Send request to Provider
+			boolean success = providerRequestor.releaseShow(showProvider.getProviderShowID());
+
+			ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
+			if(!ProviderStatusCode.sc_Success.equals(providerStatusCode) || !success)
+			{
+				fStatusCode = StatusCode.sc_UnknownProviderResponse;
+				return null;
+			}
 		}
 
 		// Delete rented show

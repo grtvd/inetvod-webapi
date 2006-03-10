@@ -22,84 +22,130 @@ COMMIT
 --//////////////////////////////////////////////////////////////////////////////
 
 BEGIN TRANSACTION
-ALTER TABLE dbo.ShowProvider
-	DROP CONSTRAINT FK_ShowProvider_Provider
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[ShowProvider]
 GO
-COMMIT
 
---//////////////////////////////////////////////////////////////////////////////
-
-BEGIN TRANSACTION
-ALTER TABLE dbo.ShowProvider
-	DROP CONSTRAINT FK_ShowProvider_Show
+CREATE TABLE [dbo].[ShowProvider] (
+	[ShowProviderID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[ShowID] uniqueidentifier NOT NULL ,
+	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ProviderConnectionID] uniqueidentifier NOT NULL ,
+	[ProviderShowID] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ShowCost_ShowCostType] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowCost_Cost_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
+	[ShowCost_CostDisplay] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowCost_RentalWindowDays] [smallint] NULL ,
+	[ShowCost_RentalPeriodHours] [smallint] NULL
+) ON [PRIMARY]
 GO
-COMMIT
 
---//////////////////////////////////////////////////////////////////////////////
-
-BEGIN TRANSACTION
-CREATE TABLE dbo.Tmp_ShowProvider
+ALTER TABLE [dbo].[ShowProvider] ADD
+	CONSTRAINT [PK_ShowProvider] PRIMARY KEY  CLUSTERED
 	(
-	ShowProviderID uniqueidentifier NOT NULL ROWGUIDCOL,
-	ShowID uniqueidentifier NOT NULL,
-	ProviderID varchar(64) NOT NULL,
-	ProviderShowID varchar(128) NOT NULL,
-	ShowURL varchar(4096) NULL,
-	ShowCost_ShowCostType varchar(32) NOT NULL,
-	ShowCost_Cost_CurrencyID varchar(3) NULL,
-	ShowCost_Cost_Amount decimal(17, 2) NULL,
-	ShowCost_CostDisplay varchar(32) NOT NULL,
-	ShowCost_RentalWindowDays smallint NULL,
-	ShowCost_RentalPeriodHours smallint NULL
+		[ShowProviderID]
 	)  ON [PRIMARY]
 GO
-IF EXISTS(SELECT * FROM dbo.ShowProvider)
-	 EXEC('INSERT INTO dbo.Tmp_ShowProvider (ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount, ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours)
-		SELECT ShowProviderID, ShowID, ProviderID, ProviderShowID, ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount, ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours FROM dbo.ShowProvider TABLOCKX')
+
+CREATE  INDEX [IX_ShowProvider_ShowID] ON [dbo].[ShowProvider]([ShowID]) ON [PRIMARY]
 GO
-DROP TABLE dbo.ShowProvider
+
+CREATE  INDEX [IX_ShowProvider_ProviderID] ON [dbo].[ShowProvider]([ProviderID]) ON [PRIMARY]
 GO
-EXECUTE sp_rename N'dbo.Tmp_ShowProvider', N'ShowProvider', 'OBJECT'
-GO
-ALTER TABLE dbo.ShowProvider ADD CONSTRAINT
-	PK_ShowProvider PRIMARY KEY CLUSTERED 
+
+
+ALTER TABLE [dbo].[ShowProvider] ADD
+	CONSTRAINT [FK_ShowProvider_Show] FOREIGN KEY
 	(
-	ShowProviderID
-	) ON [PRIMARY]
+		[ShowID]
+	) REFERENCES [dbo].[Show] (
+		[ShowID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE
+GO
+
+ALTER TABLE [dbo].[ShowProvider] ADD
+	CONSTRAINT [FK_ShowProvider_Provider] FOREIGN KEY
+	(
+		[ProviderID]
+	) REFERENCES [dbo].[Provider] (
+		[ProviderID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE
+GO
+
+COMMIT
+
+--//////////////////////////////////////////////////////////////////////////////
+
+BEGIN TRANSACTION
+
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[RentedShow]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[RentedShow]
+GO
+
+CREATE TABLE [dbo].[RentedShow] (
+	[RentedShowID] uniqueidentifier NOT NULL ROWGUIDCOL ,
+	[MemberID] uniqueidentifier NOT NULL ,
+	[ShowID] uniqueidentifier NOT NULL ,
+	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ProviderConnectionID] uniqueidentifier NOT NULL ,
+	[ShowURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowCost_ShowCostType] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowCost_Cost_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
+	[ShowCost_CostDisplay] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowCost_RentalWindowDays] [smallint] NULL ,
+	[ShowCost_RentalPeriodHours] [smallint] NULL ,
+	[RentedOn] [datetime] NOT NULL ,
+	[AvailableUntil] [datetime] NULL ,
+) ON [PRIMARY]
 
 GO
-CREATE NONCLUSTERED INDEX IX_ShowProvider_ShowID ON dbo.ShowProvider
+
+ALTER TABLE [dbo].[RentedShow] ADD
+	CONSTRAINT [PK_RentedShow] PRIMARY KEY  CLUSTERED
 	(
-	ShowID
-	) ON [PRIMARY]
+		[RentedShowID]
+	)  ON [PRIMARY]
 GO
-CREATE NONCLUSTERED INDEX IX_ShowProvider_ProviderID ON dbo.ShowProvider
-	(
-	ProviderID
-	) ON [PRIMARY]
+
+CREATE  INDEX [IX_RentedShow_MemberID] ON [dbo].[RentedShow]([MemberID]) ON [PRIMARY]
 GO
-ALTER TABLE dbo.ShowProvider WITH NOCHECK ADD CONSTRAINT
-	FK_ShowProvider_Show FOREIGN KEY
-	(
-	ShowID
-	) REFERENCES dbo.Show
-	(
-	ShowID
-	) ON UPDATE CASCADE
-	 ON DELETE CASCADE
-	
+
+CREATE  INDEX [IX_RentedShow_ShowID] ON [dbo].[RentedShow]([ShowID]) ON [PRIMARY]
 GO
-ALTER TABLE dbo.ShowProvider WITH NOCHECK ADD CONSTRAINT
-	FK_ShowProvider_Provider FOREIGN KEY
-	(
-	ProviderID
-	) REFERENCES dbo.Provider
-	(
-	ProviderID
-	) ON UPDATE CASCADE
-	 ON DELETE CASCADE
-	
+
+CREATE  INDEX [IX_RentedShow_ProviderID] ON [dbo].[RentedShow]([ProviderID]) ON [PRIMARY]
 GO
+
+ALTER TABLE [dbo].[RentedShow] ADD
+	CONSTRAINT [FK_RentedShow_Member] FOREIGN KEY
+	(
+		[MemberID]
+	) REFERENCES [dbo].[Member] (
+		[MemberID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE
+GO
+
+ALTER TABLE [dbo].[RentedShow] ADD
+	CONSTRAINT [FK_RentedShow_Show] FOREIGN KEY
+	(
+		[ShowID]
+	) REFERENCES [dbo].[Show] (
+		[ShowID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE
+GO
+
+ALTER TABLE [dbo].[RentedShow] ADD
+	CONSTRAINT [FK_RentedShow_Provider] FOREIGN KEY
+	(
+		[ProviderID]
+	) REFERENCES [dbo].[Provider] (
+		[ProviderID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE
+GO
+
 COMMIT
 
 --//////////////////////////////////////////////////////////////////////////////

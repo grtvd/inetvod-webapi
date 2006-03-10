@@ -18,11 +18,19 @@ GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
+ALTER TABLE dbo.Provider
+	DROP COLUMN RequestURL, AdminUserID, AdminPassword
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
 CREATE TABLE [dbo].[ProviderConnection] (
 	[ProviderConnectionID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[ProviderID] [varchar] (64) NOT NULL ,
 	[ProviderConnectionType] [varchar] (16) NOT NULL ,
-	[ConnectionURL] [varchar] (4096) NULL
+	[ConnectionURL] [varchar] (4096) NULL, 
+	[AdminUserID] [varchar] (128) NULL ,
+	[AdminPassword] [varchar] (32) NULL
 ) ON [PRIMARY]
 GO
 
@@ -53,8 +61,23 @@ COMMIT
 
 --delete from ProviderConnection
 
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
+values (newid(), 'internetvideos', 'ProviderAPI', 'http://localhost/provider_internetvideos/providerapi', 'super', 'superpassword')
+
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
+values (newid(), 'moviesmovies', 'ProviderAPI', 'http://localhost/provider_moviesmovies/providerapi', 'super', 'superpassword')
+
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
+values (newid(), 'vodflicks', 'ProviderAPI', 'http://localhost/provider_vodflicks/providerapi', 'super', 'superpassword')
+
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
+values (newid(), 'excellentvideos', 'ProviderAPI', 'http://localhost/provider_excellentvideos/providerapi', 'super', 'superpassword')
+
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
+values (newid(), 'mlb', 'ProviderAPI', 'http://localhost/provider_mlb/providerapi', 'super', 'superpassword')
+
 insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL)
-values (newid(), 'rocketboom', 'Rss2', 'http://localhost:8080/samplefeeds/rss2.xml')
+values (newid(), 'rocketboom', 'Rss2', 'http://localhost:81/samplefeeds/rocketboom.xml')
 go
 
 
