@@ -121,6 +121,7 @@ public class ShowSearchRqst extends SessionRequestable
 
 			showSearch = new ShowSearch(show);
 			response.ShowSearchList.add(showSearch);
+			//TODO: short providers by lowest ShowCost (Free content first, then subscription, then pay-per-view)
 			showSearch.getShowProviderList().addAll(new com.inetvod.player.rqdata.ShowProviderList(thisShowProviderList));
 		}
 
@@ -139,6 +140,7 @@ public class ShowSearchRqst extends SessionRequestable
 		fRatingIDList = reader.readStringList("RatingID", RatingID.MaxLength, RatingIDList.Ctor, RatingID.CtorString);
 
 		fMaxResults = reader.readShort("MaxResults");
+		//TODO: ResultsPage
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
