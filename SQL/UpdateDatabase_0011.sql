@@ -1,6 +1,6 @@
 --//////////////////////////////////////////////////////////////////////////////
 -- Copyright © 2006 iNetVOD, Inc. All Rights Reserved.
--- Confidential and Proprietary
+-- iNetVOD Confidential and Proprietary.  See LEGAL.txt.
 --//////////////////////////////////////////////////////////////////////////////
 
 use [iNetVOD]
@@ -28,7 +28,7 @@ CREATE TABLE [dbo].[ProviderConnection] (
 	[ProviderConnectionID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[ProviderID] [varchar] (64) NOT NULL ,
 	[ProviderConnectionType] [varchar] (16) NOT NULL ,
-	[ConnectionURL] [varchar] (4096) NULL, 
+	[ConnectionURL] [varchar] (4096) NULL,
 	[AdminUserID] [varchar] (128) NULL ,
 	[AdminPassword] [varchar] (32) NULL
 ) ON [PRIMARY]

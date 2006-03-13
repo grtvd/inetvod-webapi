@@ -1,6 +1,6 @@
 --//////////////////////////////////////////////////////////////////////////////
--- Copyright © 2005 iNetVOD, Inc. All Rights Reserved.
--- Confidential and Proprietary
+-- Copyright © 2005-2006 iNetVOD, Inc. All Rights Reserved.
+-- iNetVOD Confidential and Proprietary.  See LEGAL.txt.
 --//////////////////////////////////////////////////////////////////////////////
 
 -- CHANGES
@@ -64,7 +64,7 @@ GO
 EXECUTE sp_rename N'dbo.Tmp_ShowProvider', N'ShowProvider', 'OBJECT'
 GO
 ALTER TABLE dbo.ShowProvider ADD CONSTRAINT
-	PK_ShowProvider PRIMARY KEY CLUSTERED 
+	PK_ShowProvider PRIMARY KEY CLUSTERED
 	(
 	ShowProviderID
 	) ON [PRIMARY]
@@ -89,7 +89,7 @@ ALTER TABLE dbo.ShowProvider WITH NOCHECK ADD CONSTRAINT
 	ShowID
 	) ON UPDATE CASCADE
 	 ON DELETE CASCADE
-	
+
 GO
 ALTER TABLE dbo.ShowProvider WITH NOCHECK ADD CONSTRAINT
 	FK_ShowProvider_Provider FOREIGN KEY
@@ -100,7 +100,7 @@ ALTER TABLE dbo.ShowProvider WITH NOCHECK ADD CONSTRAINT
 	ProviderID
 	) ON UPDATE CASCADE
 	 ON DELETE CASCADE
-	
+
 GO
 COMMIT
 
@@ -148,7 +148,7 @@ GO
 EXECUTE sp_rename N'dbo.Tmp_RentedShow', N'RentedShow', 'OBJECT'
 GO
 ALTER TABLE dbo.RentedShow ADD CONSTRAINT
-	PK_RentedShow PRIMARY KEY CLUSTERED 
+	PK_RentedShow PRIMARY KEY CLUSTERED
 	(
 	RentedShowID
 	) ON [PRIMARY]
@@ -178,7 +178,7 @@ ALTER TABLE dbo.RentedShow WITH NOCHECK ADD CONSTRAINT
 	MemberID
 	) ON UPDATE CASCADE
 	 ON DELETE CASCADE
-	
+
 GO
 ALTER TABLE dbo.RentedShow WITH NOCHECK ADD CONSTRAINT
 	FK_RentedShow_Show FOREIGN KEY
@@ -189,7 +189,7 @@ ALTER TABLE dbo.RentedShow WITH NOCHECK ADD CONSTRAINT
 	ShowID
 	) ON UPDATE CASCADE
 	 ON DELETE CASCADE
-	
+
 GO
 ALTER TABLE dbo.RentedShow WITH NOCHECK ADD CONSTRAINT
 	FK_RentedShow_Provider FOREIGN KEY
@@ -200,7 +200,7 @@ ALTER TABLE dbo.RentedShow WITH NOCHECK ADD CONSTRAINT
 	ProviderID
 	) ON UPDATE CASCADE
 	 ON DELETE CASCADE
-	
+
 GO
 COMMIT
 

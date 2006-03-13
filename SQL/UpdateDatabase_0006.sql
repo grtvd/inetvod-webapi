@@ -1,6 +1,6 @@
 --//////////////////////////////////////////////////////////////////////////////
--- Copyright © 2005 iNetVOD, Inc. All Rights Reserved.
--- Confidential and Proprietary
+-- Copyright © 2005-2006 iNetVOD, Inc. All Rights Reserved.
+-- iNetVOD Confidential and Proprietary.  See LEGAL.txt.
 --//////////////////////////////////////////////////////////////////////////////
 
 use [iNetVOD]
@@ -17,7 +17,7 @@ insert into Rating (RatingID, Name) values ('tvma', 'TV-MA')
 GO
 
 update Show set RatingID = 'tvma' where RatingID = 'tv-ma'
-GO 
+GO
 
 delete from Rating where RatingID = 'tv-ma'
 GO
