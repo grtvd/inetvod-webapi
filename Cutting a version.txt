@@ -22,4 +22,4 @@
 
 
 - Steps for next update only (remove these items after each deployment)
-	(none)
+	Deploy dbconnect.xml file
