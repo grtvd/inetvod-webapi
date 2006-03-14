@@ -17,6 +17,7 @@ import org.apache.log4j.xml.DOMConfigurator;
 
 import com.inetvod.common.core.ServletFulfiller;
 import com.inetvod.common.dbdata.Category;
+import com.inetvod.common.dbdata.DatabaseAdaptor;
 import com.inetvod.common.dbdata.Member;
 import com.inetvod.common.dbdata.MemberAccount;
 import com.inetvod.common.dbdata.MemberLogon;
@@ -44,6 +45,15 @@ public class PlayerXmlServlet extends HttpServlet
 		}
 		catch(MalformedURLException e)
 		{
+		}
+
+		try
+		{
+			DatabaseAdaptor.setDBConnectFile(getServletContext().getInitParameter("dbconnect"));
+		}
+		catch(Exception e)
+		{
+			throw new ServletException(e.getMessage(), e);
 		}
 
 		// Preload DatabaseAdaptors
