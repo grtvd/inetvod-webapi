@@ -4,12 +4,17 @@
 --//////////////////////////////////////////////////////////////////////////////
 
 use master
-IF EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'iNetVOD')
-	DROP DATABASE [iNetVOD]
-GO
+
+IF NOT EXISTS (SELECT name FROM master.dbo.sysdatabases WHERE name = N'iNetVOD')
+BEGIN
+print 'creating database'
 
 CREATE DATABASE [iNetVOD]  ON (NAME = N'iNetVOD_Data', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL\Data\iNetVOD_Data.MDF' , SIZE = 2, FILEGROWTH = 10%) LOG ON (NAME = N'iNetVOD_Log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL\Data\iNetVOD_Log.LDF' , SIZE = 2, FILEGROWTH = 10%)
  COLLATE SQL_Latin1_General_CP1_CI_AS
+
+END
+ELSE
+print 'database not created, already existed'
 GO
 
 exec sp_dboption N'iNetVOD', N'autoclose', N'true'
@@ -137,8 +142,8 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE [dbo].[Provider] (
-	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[Name] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ProviderID] [varchar] (64) NOT NULL ,
+	[Name] [varchar] (64) NOT NULL ,
 ) ON [PRIMARY]
 GO
 
@@ -155,9 +160,9 @@ CREATE TABLE [dbo].[ProviderConnection] (
 	[ProviderConnectionID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[ProviderID] [varchar] (64) NOT NULL ,
 	[ProviderConnectionType] [varchar] (16) NOT NULL ,
-	[ConnectionURL] [varchar] (4096) NULL
+	[ConnectionURL] [varchar] (4096) NULL ,
 	[AdminUserID] [varchar] (128) NULL ,
-	[AdminPassword] [varchar] (32) NULL ,
+	[AdminPassword] [varchar] (32) NULL
 ) ON [PRIMARY]
 GO
 
@@ -183,8 +188,8 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE [dbo].[Category] (
-	[CategoryID] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[Name] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL
+	[CategoryID] [varchar] (32) NOT NULL ,
+	[Name] [varchar] (32) NOT NULL
 ) ON [PRIMARY]
 GO
 
@@ -198,8 +203,8 @@ GO
 --//////////////////////////////////////////////////////////////////////////////
 
 CREATE TABLE [dbo].[Rating] (
-	[RatingID] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[Name] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL
+	[RatingID] [varchar] (32) NOT NULL ,
+	[Name] [varchar] (32) NOT NULL
 ) ON [PRIMARY]
 GO
 
@@ -383,9 +388,9 @@ GO
 CREATE TABLE [dbo].[MemberProvider] (
 	[MemberProviderID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[MemberID] uniqueidentifier NOT NULL ,
-	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[EncryptedUserName] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[EncryptedPassword] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NULL
+	[ProviderID] [varchar] (64) NOT NULL ,
+	[EncryptedUserName] [varchar] (128) NULL ,
+	[EncryptedPassword] [varchar] (32) NULL
 ) ON [PRIMARY]
 
 GO
@@ -425,15 +430,15 @@ GO
 
 CREATE TABLE [dbo].[Show] (
 	[ShowID] uniqueidentifier NOT NULL ROWGUIDCOL ,
-	[Name] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[EpisodeName] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[EpisodeNumber] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Name] [varchar] (64) NOT NULL ,
+	[EpisodeName] [varchar] (64) NULL ,
+	[EpisodeNumber] [varchar] (32) NULL ,
 	[ReleasedOn] [datetime] NULL ,
 	[ReleasedYear] [smallint] NULL ,
-	[Description] [text] COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[Description] [text] NULL ,
 	[RunningMins] [smallint] NULL ,
-	[PictureURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[RatingID] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[PictureURL] [varchar] (4096) NULL ,
+	[RatingID] [varchar] (32) NULL ,
 	[IsAdult] [bit] NOT NULL
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
@@ -451,14 +456,14 @@ GO
 CREATE TABLE [dbo].[ShowProvider] (
 	[ShowProviderID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[ShowID] uniqueidentifier NOT NULL ,
-	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ProviderID] [varchar] (64) NOT NULL ,
 	[ProviderConnectionID] uniqueidentifier NOT NULL ,
-	[ProviderShowID] [varchar] (128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
-	[ShowCost_ShowCostType] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowCost_Cost_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ProviderShowID] [varchar] (128) NOT NULL ,
+	[ShowURL] [varchar] (4096) NULL ,
+	[ShowCost_ShowCostType] [varchar] (32) NOT NULL ,
+	[ShowCost_Cost_CurrencyID] [varchar] (3) NULL ,
 	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
-	[ShowCost_CostDisplay] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowCost_CostDisplay] [varchar] (32) NOT NULL ,
 	[ShowCost_RentalWindowDays] [smallint] NULL ,
 	[ShowCost_RentalPeriodHours] [smallint] NULL
 --TODO: might be good to maintain a 'last updated' from provider field
@@ -505,7 +510,7 @@ GO
 CREATE TABLE [dbo].[ShowCategory] (
 	[ShowCategoryID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[ShowID] uniqueidentifier NOT NULL ,
-	[CategoryID] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL
+	[CategoryID] [varchar] (32) NOT NULL
 ) ON [PRIMARY]
 GO
 
@@ -546,13 +551,13 @@ CREATE TABLE [dbo].[RentedShow] (
 	[RentedShowID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[MemberID] uniqueidentifier NOT NULL ,
 	[ShowID] uniqueidentifier NOT NULL ,
-	[ProviderID] [varchar] (64) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ProviderID] [varchar] (64) NOT NULL ,
 	[ProviderConnectionID] uniqueidentifier NOT NULL ,
-	[ShowURL] [varchar] (4096) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowCost_ShowCostType] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
-	[ShowCost_Cost_CurrencyID] [varchar] (3) COLLATE SQL_Latin1_General_CP1_CI_AS NULL ,
+	[ShowURL] [varchar] (4096) NOT NULL ,
+	[ShowCost_ShowCostType] [varchar] (32) NOT NULL ,
+	[ShowCost_Cost_CurrencyID] [varchar] (3) NULL ,
 	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
-	[ShowCost_CostDisplay] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
+	[ShowCost_CostDisplay] [varchar] (32) NOT NULL ,
 	[ShowCost_RentalWindowDays] [smallint] NULL ,
 	[ShowCost_RentalPeriodHours] [smallint] NULL ,
 	[RentedOn] [datetime] NOT NULL ,
@@ -606,9 +611,15 @@ GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
+if exists (select * from dbo.sysusers where name = N'inetvod' and uid < 16382)
+	EXEC sp_revokedbaccess  N'inetvod'
+GO
+
 if exists (select * from master.dbo.syslogins where loginname = N'inetvod')
 	EXEC sp_droplogin N'inetvod'
 GO
+
+--//////////////////////////////////////////////////////////////////////////////
 
 if not exists (select * from master.dbo.syslogins where loginname = N'inetvod')
 BEGIN
@@ -620,7 +631,6 @@ BEGIN
 	exec sp_addlogin N'inetvod', null, @logindb, @loginlang
 END
 GO
-
 
 --//////////////////////////////////////////////////////////////////////////////
 
