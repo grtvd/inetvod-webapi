@@ -17,6 +17,9 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.vladium.utils.timing.ITimer;
+import com.vladium.utils.timing.TimerFactory;
+
 public abstract class ServletFulfiller
 {
 	protected HttpServletRequest fHttpServletRequest;
@@ -30,14 +33,15 @@ public abstract class ServletFulfiller
 
 	public abstract DataFormat getRequestDataFormat();
 
-
 	public void fulfill() throws Exception
 	{
 		Requestable request = null;
 		Writeable response = null;
-		Date startTime = new Date();
+		//Date startTime = new Date();
+		ITimer timer = TimerFactory.newTimer();
 		boolean logged = false;
 
+		timer.start();
 		try
 		{
 			request = readRequestable();
@@ -46,7 +50,7 @@ public abstract class ServletFulfiller
 		{
 			response = createResponseFromException(request, e);
 
-			logRequest(false, "Failed reading request", fHttpServletRequest.getInputStream(), startTime, e);
+			logRequest(false, "Failed reading request", fHttpServletRequest.getInputStream(), timer, e);
 			logged = true;
 
 			// if we have a valid response, don't propogate exception
@@ -63,7 +67,7 @@ public abstract class ServletFulfiller
 		{
 			response = createResponseFromException(request, e);
 
-			logRequest(false, "Failed fulfilling request", null, request, response, startTime, e);
+			logRequest(false, "Failed fulfilling request", null, request, response, timer, e);
 			logged = true;
 
 			// if we have a valid response, don't propogate exception
@@ -77,12 +81,12 @@ public abstract class ServletFulfiller
 		}
 		catch(Exception e)
 		{
-			logRequest(false, "Failed writing response", null, request, response, startTime, e);
+			logRequest(false, "Failed writing response", null, request, response, timer, e);
 			throw e;
 		}
 
 		if(!logged)
-			logRequest(request, response, startTime);
+			logRequest(request, response, timer);
 	}
 
 	protected abstract Writeable createResponseFromException(Requestable requestable, Exception e);
@@ -176,18 +180,19 @@ public abstract class ServletFulfiller
 	protected abstract String getRequestType(Requestable requestable);
 
 	protected void logRequest(boolean success, String msg, String requestType, InputStream requestStream,
-		InputStream responseStream, String requestFileExt, String responseFileExt, Date startTime, Exception exception)
+		InputStream responseStream, String requestFileExt, String responseFileExt, ITimer timer, Exception exception)
 	{
 		PrintWriter writer = null;
 
 		try
 		{
-			long milliSecs = (new Date()).getTime() - startTime.getTime();
+			timer.stop();
+			double milliSecs = timer.getDuration();
 
 			StringBuffer sb = new StringBuffer();
 			String fileDir = "c:\\temp\\iNetVOD\\requests\\";
 			String baseFileName = String.format ("%s-%d", (new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSSS")).format(
-				startTime, sb, new FieldPosition(DateFormat.YEAR_FIELD)).toString(), Thread.currentThread().getId());
+				new Date(), sb, new FieldPosition(DateFormat.YEAR_FIELD)).toString(), Thread.currentThread().getId());
 			String fileName = (new File(fileDir, baseFileName)).getPath();
 
 			if(requestStream != null)
@@ -202,7 +207,7 @@ public abstract class ServletFulfiller
 				sb.append(String.format("msg:%s; ", msg));
 			if((requestType != null) && (requestType.length() > 0))
 				sb.append(String.format("type:%s; ", requestType));
-			sb.append(String.format("time:%d; ", milliSecs));
+			sb.append(String.format("time:%.4f; ", milliSecs));
 			sb.append(String.format("file:%s; ", baseFileName));
 			if(exception == null)
 				Logger.logInfo(this, "logRequest", sb.toString());
@@ -218,13 +223,13 @@ public abstract class ServletFulfiller
 	}
 
 	protected void logRequest(boolean success, String msg, InputStream requestStream,
-		Date startTime, Exception exception)
+		ITimer timer, Exception exception)
 	{
-		logRequest(success, msg, null, requestStream, null, ".raw", null, startTime, exception);
+		logRequest(success, msg, null, requestStream, null, ".raw", null, timer, exception);
 	}
 
 	protected void logRequest(boolean success, String msg, Requestable request,
-		Date startTime, Exception exception) throws Exception
+		ITimer timer, Exception exception) throws Exception
 	{
 		XmlDataWriter requestWriter = null;
 		try
@@ -235,7 +240,7 @@ public abstract class ServletFulfiller
 			requestWriter.close();
 
 			logRequest(success, getRequestType(request), null, new ByteArrayInputStream(requestStream.toByteArray()),
-				null, ".xml", null, startTime, exception);
+				null, ".xml", null, timer, exception);
 		}
 		catch(Exception e)
 		{
@@ -249,7 +254,7 @@ public abstract class ServletFulfiller
 	}
 
 	protected void logRequest(boolean success, String msg, String requestType, Requestable request, Writeable response,
-		Date startTime, Exception exception) throws Exception
+		ITimer timer, Exception exception) throws Exception
 	{
 		XmlDataWriter requestWriter = null;
 		XmlDataWriter responseWriter = null;
@@ -268,7 +273,7 @@ public abstract class ServletFulfiller
 			ByteArrayInputStream requestInStream = new ByteArrayInputStream(requestStream.toByteArray());
 			ByteArrayInputStream responseInStream = new ByteArrayInputStream(responseStream.toByteArray());
 
-			logRequest(success, msg, requestType, requestInStream, responseInStream, ".xml", ".xml", startTime, exception);
+			logRequest(success, msg, requestType, requestInStream, responseInStream, ".xml", ".xml", timer, exception);
 		}
 		catch(Exception e)
 		{
@@ -283,8 +288,8 @@ public abstract class ServletFulfiller
 		}
 	}
 
-	protected void logRequest(Requestable request, Writeable response, Date startTime) throws Exception
+	protected void logRequest(Requestable request, Writeable response, ITimer timer) throws Exception
 	{
-		logRequest(true, null, getRequestType(request), request, response, startTime, null);
+		logRequest(true, null, getRequestType(request), request, response, timer, null);
 	}
 }

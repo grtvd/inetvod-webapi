@@ -6,7 +6,7 @@ package com.inetvod.playerapi;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,19 +37,18 @@ public class PlayerXmlServlet extends HttpServlet
 {
 	public void init() throws ServletException
 	{
-		String realPath = getServletContext().getRealPath("/log4j.xml");
-		File log4jFile = new File(realPath);
 		try
 		{
+			// set the log file
+			String realPath = getServletContext().getRealPath("/log4j.xml");
+			File log4jFile = new File(realPath);
 			DOMConfigurator.configure(log4jFile.toURL());
-		}
-		catch(MalformedURLException e)
-		{
-		}
 
-		try
-		{
+			// setup db connection
 			DatabaseAdaptor.setDBConnectFile(getServletContext().getInitParameter("dbconnect"));
+
+			// prime UUID, first hit is big
+			UUID.randomUUID();
 		}
 		catch(Exception e)
 		{
