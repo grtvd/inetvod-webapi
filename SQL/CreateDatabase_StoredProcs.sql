@@ -236,6 +236,10 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvid
 drop procedure [dbo].[ShowProvider_GetByCategoryID]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider_MarkUnavailByProviderConnectionID]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[ShowProvider_MarkUnavailByProviderConnectionID]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowCategory_Insert]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[ShowCategory_Insert]
 GO
@@ -1423,6 +1427,16 @@ GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
+CREATE PROCEDURE dbo.ShowProvider_MarkUnavailByProviderConnectionID
+	@ProviderConnectionID uniqueidentifier
+AS
+	update ShowProvider
+		set ShowAvail = 'Unavailable'
+	where ProviderConnectionID = @ProviderConnectionID
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
 CREATE PROCEDURE dbo.ShowCategory_Insert
 	@ShowCategoryID uniqueidentifier,
 	@ShowID uniqueidentifier,
@@ -1708,6 +1722,7 @@ GRANT EXECUTE ON [dbo].[ShowProvider_GetByProviderIDProviderShowID] TO [inetvod]
 GRANT EXECUTE ON [dbo].[ShowProvider_Search] TO [inetvod]
 GRANT EXECUTE ON [dbo].[ShowProvider_GetByProviderID] TO [inetvod]
 GRANT EXECUTE ON [dbo].[ShowProvider_GetByCategoryID] TO [inetvod]
+GRANT EXECUTE ON [dbo].[ShowProvider_MarkUnavailByProviderConnectionID] TO [inetvod]
 
 GRANT EXECUTE ON [dbo].[ShowCategory_Insert] TO [inetvod]
 GRANT EXECUTE ON [dbo].[ShowCategory_Delete] TO [inetvod]

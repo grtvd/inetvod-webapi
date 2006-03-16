@@ -56,6 +56,9 @@ GO
 CREATE  INDEX [IX_ShowProvider_ProviderID] ON [dbo].[ShowProvider]([ProviderID]) ON [PRIMARY]
 GO
 
+CREATE  INDEX [IX_ShowProvider_ProviderConnectionID] ON [dbo].[ShowProvider]([ProviderConnectionID]) ON [PRIMARY]
+GO
+
 
 ALTER TABLE [dbo].[ShowProvider] ADD
 	CONSTRAINT [FK_ShowProvider_Show] FOREIGN KEY
