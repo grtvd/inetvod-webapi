@@ -98,7 +98,7 @@ public class ShowSearchRqst extends SessionRequestable
 			if(!includeAdult && show.getIsAdult())
 				continue;
 
-			thisShowProviderList = showProviderList.findItemsByShowID(show.getShowID());
+			thisShowProviderList = showProviderList.findItemsByShowID(show.getShowID()).findItemsByAvailable();
 			if(thisShowProviderList.size() == 0)
 				continue;
 
