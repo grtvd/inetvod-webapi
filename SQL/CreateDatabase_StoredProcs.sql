@@ -196,6 +196,10 @@ if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Show_GetBy
 drop procedure [dbo].[Show_GetByNameReleasedYear]
 GO
 
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Show_GetByNameReleasedOn]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure [dbo].[Show_GetByNameReleasedOn]
+GO
+
 if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ShowProvider_Insert]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
 drop procedure [dbo].[ShowProvider_Insert]
 GO
@@ -1223,6 +1227,24 @@ GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
+CREATE PROCEDURE dbo.Show_GetByNameReleasedOn
+	@Name varchar(64),
+	@EpisodeName varchar(64),
+	@ReleasedOn datetime
+AS
+	select ShowID, Name, EpisodeName, EpisodeNumber, ReleasedOn, ReleasedYear,
+		Description, RunningMins, PictureURL, RatingID, IsAdult
+	from Show
+	where (Name = @Name) and (ReleasedOn = @ReleasedOn) and
+	(
+		((EpisodeName is null) and (@EpisodeName is null))
+		or ((not EpisodeName is null) and (not @EpisodeName is null)
+			and (EpisodeName = @EpisodeName))
+	)
+GO
+
+--//////////////////////////////////////////////////////////////////////////////
+
 CREATE PROCEDURE dbo.ShowProvider_Insert
 	@ShowProviderID uniqueidentifier,
 	@ShowID uniqueidentifier,
@@ -1675,6 +1697,7 @@ GRANT EXECUTE ON [dbo].[Show_GetByProviderID] TO [inetvod]
 GRANT EXECUTE ON [dbo].[Show_GetByCategoryID] TO [inetvod]
 GRANT EXECUTE ON [dbo].[Show_GetByRentedShowMemberID] TO [inetvod]
 GRANT EXECUTE ON [dbo].[Show_GetByNameReleasedYear] TO [inetvod]
+GRANT EXECUTE ON [dbo].[Show_GetByNameReleasedOn] TO [inetvod]
 
 GRANT EXECUTE ON [dbo].[ShowProvider_Insert] TO [inetvod]
 GRANT EXECUTE ON [dbo].[ShowProvider_Update] TO [inetvod]

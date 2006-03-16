@@ -6,6 +6,7 @@ package com.inetvod.common.dbdata;
 
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import com.inetvod.common.data.CategoryID;
@@ -14,6 +15,7 @@ import com.inetvod.common.data.MemberID;
 import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.data.ProviderIDList;
 import com.inetvod.common.data.ShowID;
+import com.inetvod.common.core.DateUtil;
 
 public class ShowList extends ArrayList<Show>
 {
@@ -31,8 +33,11 @@ public class ShowList extends ArrayList<Show>
 		return Show.getDatabaseAdaptor().selectManyByProc("Show_Search", params);
 	}
 
-	public static ShowList findByNameReleasedYear(String name, String episodeName, short releasedYear) throws Exception
+	public static ShowList findByNameReleasedYear(String name, String episodeName, Short releasedYear) throws Exception
 	{
+		if((releasedYear == null) || (releasedYear == 0))
+			throw new IllegalArgumentException("ReleaseOn cannot be null or 0");
+
 		DatabaseProcParam params[] = new DatabaseProcParam[3];
 
 		params[0] = new DatabaseProcParam(Types.VARCHAR, name);
@@ -40,6 +45,20 @@ public class ShowList extends ArrayList<Show>
 		params[2] = new DatabaseProcParam(Types.SMALLINT, releasedYear);
 
 		return Show.getDatabaseAdaptor().selectManyByProc("Show_GetByNameReleasedYear", params);
+	}
+
+	public static ShowList findByNameReleasedOn(String name, String episodeName, Date releasedOn) throws Exception
+	{
+		if(releasedOn == null)
+			throw new IllegalArgumentException("ReleaseOn cannot be null");
+
+		DatabaseProcParam params[] = new DatabaseProcParam[3];
+
+		params[0] = new DatabaseProcParam(Types.VARCHAR, name);
+		params[1] = new DatabaseProcParam(Types.VARCHAR, episodeName);
+		params[2] = new DatabaseProcParam(Types.DATE, DateUtil.convertToDBDate(releasedOn));
+
+		return Show.getDatabaseAdaptor().selectManyByProc("Show_GetByNameReleasedOn", params);
 	}
 
 	public static ShowList findByRentedShowMemberID(MemberID memberID) throws Exception
