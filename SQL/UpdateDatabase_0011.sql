@@ -12,14 +12,14 @@ BEGIN TRANSACTION
 
 --//////////////////////////////////////////////////////////////////////////////
 
-if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ProviderConnection]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
-drop table [dbo].[ProviderConnection]
+ALTER TABLE dbo.Provider
+	DROP COLUMN RequestURL, AdminUserID, AdminPassword
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
 
-ALTER TABLE dbo.Provider
-	DROP COLUMN RequestURL, AdminUserID, AdminPassword
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[ProviderConnection]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[ProviderConnection]
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
@@ -28,9 +28,12 @@ CREATE TABLE [dbo].[ProviderConnection] (
 	[ProviderConnectionID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[ProviderID] [varchar] (64) NOT NULL ,
 	[ProviderConnectionType] [varchar] (16) NOT NULL ,
+	[Disabled] [bit] DEFAULT(0) NOT NULL ,
 	[ConnectionURL] [varchar] (4096) NULL,
 	[AdminUserID] [varchar] (128) NULL ,
-	[AdminPassword] [varchar] (32) NULL
+	[AdminPassword] [varchar] (32) NULL ,
+	[UseFieldForName] [varchar] (32) NULL ,
+	[UseFieldForEpisodeName] [varchar] (32) NULL
 ) ON [PRIMARY]
 GO
 
@@ -76,8 +79,8 @@ values (newid(), 'excellentvideos', 'ProviderAPI', 'http://localhost/provider_ex
 insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, AdminUserID, AdminPassword)
 values (newid(), 'mlb', 'ProviderAPI', 'http://localhost/provider_mlb/providerapi', 'super', 'superpassword')
 
-insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL)
-values (newid(), 'rocketboom', 'Rss2', 'http://localhost:81/samplefeeds/rocketboom.xml')
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL, UseFieldForName)
+values (newid(), 'rocketboom', 'Rss2', 'http://www.rocketboom.com/vlog/win_media_player_daily_enclosures.xml', 'provider.name')
 go
 
 

@@ -1,6 +1,8 @@
 Sort order when searching for Shows should be Name, ReleaseDate desc
 - Need to deal with duplicates and no ReleaseDate (ReleaseYear)
 
+Check ProviderConnection.isEnabled() before using ProviderRequestor
+
 Replace StringBuffer with StringBuilder
 
 Confirm all Dates/Times stored/retrieve to database are in GMT.  This will allow move database to different ISPs w/o effecting the data.

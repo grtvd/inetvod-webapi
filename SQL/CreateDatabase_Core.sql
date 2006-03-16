@@ -160,9 +160,12 @@ CREATE TABLE [dbo].[ProviderConnection] (
 	[ProviderConnectionID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[ProviderID] [varchar] (64) NOT NULL ,
 	[ProviderConnectionType] [varchar] (16) NOT NULL ,
+	[Disabled] [bit] DEFAULT(0) NOT NULL ,
 	[ConnectionURL] [varchar] (4096) NULL ,
 	[AdminUserID] [varchar] (128) NULL ,
-	[AdminPassword] [varchar] (32) NULL
+	[AdminPassword] [varchar] (32) NULL ,
+	[UseFieldForName] [varchar] (32) NULL ,
+	[UseFieldForEpisodeName] [varchar] (32) NULL
 ) ON [PRIMARY]
 GO
 
@@ -494,7 +497,7 @@ ALTER TABLE [dbo].[ShowProvider] ADD
 		[ShowID]
 	) REFERENCES [dbo].[Show] (
 		[ShowID]
-	) ON DELETE CASCADE  ON UPDATE CASCADE
+	) ON DELETE NO ACTION  ON UPDATE NO ACTION
 GO
 
 ALTER TABLE [dbo].[ShowProvider] ADD
@@ -503,7 +506,16 @@ ALTER TABLE [dbo].[ShowProvider] ADD
 		[ProviderID]
 	) REFERENCES [dbo].[Provider] (
 		[ProviderID]
-	) ON DELETE CASCADE  ON UPDATE CASCADE
+	) ON DELETE NO ACTION  ON UPDATE NO ACTION
+GO
+
+ALTER TABLE [dbo].[ShowProvider] ADD
+	CONSTRAINT [FK_ShowProvider_ProviderConnection] FOREIGN KEY
+	(
+		[ProviderConnectionID]
+	) REFERENCES [dbo].[ProviderConnection] (
+		[ProviderConnectionID]
+	) ON DELETE NO ACTION  ON UPDATE NO ACTION
 GO
 
 --//////////////////////////////////////////////////////////////////////////////
@@ -598,7 +610,7 @@ ALTER TABLE [dbo].[RentedShow] ADD
 		[ShowID]
 	) REFERENCES [dbo].[Show] (
 		[ShowID]
-	) ON DELETE CASCADE  ON UPDATE CASCADE
+	) ON DELETE NO ACTION  ON UPDATE NO ACTION
 GO
 
 ALTER TABLE [dbo].[RentedShow] ADD
@@ -607,7 +619,7 @@ ALTER TABLE [dbo].[RentedShow] ADD
 		[ProviderID]
 	) REFERENCES [dbo].[Provider] (
 		[ProviderID]
-	) ON DELETE CASCADE  ON UPDATE CASCADE
+	) ON DELETE NO ACTION  ON UPDATE NO ACTION
 GO
 
 --//////////////////////////////////////////////////////////////////////////////

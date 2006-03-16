@@ -315,8 +315,8 @@ GO
 CREATE PROCEDURE dbo.ProviderConnection_Get
 	@ProviderConnectionID uniqueidentifier
 AS
-	select ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL,
-		AdminUserID, AdminPassword
+	select ProviderConnectionID, ProviderID, ProviderConnectionType, Disabled,
+		ConnectionURL, AdminUserID, AdminPassword, UseFieldForName, UseFieldForEpisodeName
 	from ProviderConnection
 	where (ProviderConnectionID = @ProviderConnectionID)
 GO
@@ -327,27 +327,36 @@ CREATE PROCEDURE dbo.ProviderConnection_Insert
 	@ProviderConnectionID uniqueidentifier,
 	@ProviderID varchar(64),
 	@ProviderConnectionType varchar(16),
+	@Disabled bit,
 	@ConnectionURL varchar(4096),
 	@AdminUserID varchar(128),
-	@AdminPassword varchar(32)
+	@AdminPassword varchar(32),
+	@UseFieldForName varchar(32),
+	@UseFieldForEpisodeName varchar(32)
 AS
 	insert into ProviderConnection
 	(
 		ProviderConnectionID,
 		ProviderID,
 		ProviderConnectionType,
+		Disabled,
 		ConnectionURL,
 		AdminUserID,
-		AdminPassword
+		AdminPassword,
+		UseFieldForName,
+		UseFieldForEpisodeName
 	)
 	values
 	(
 		@ProviderConnectionID,
 		@ProviderID,
 		@ProviderConnectionType,
+		@Disabled,
 		@ConnectionURL,
 		@AdminUserID,
-		@AdminPassword
+		@AdminPassword,
+		@UseFieldForName,
+		@UseFieldForEpisodeName
 	)
 GO
 
@@ -357,16 +366,22 @@ CREATE PROCEDURE dbo.ProviderConnection_Update
 	@ProviderConnectionID uniqueidentifier,
 	@ProviderID varchar(64),
 	@ProviderConnectionType varchar(16),
+	@Disabled bit,
 	@ConnectionURL varchar(4096),
 	@AdminUserID varchar(128),
-	@AdminPassword varchar(32)
+	@AdminPassword varchar(32),
+	@UseFieldForName varchar(32),
+	@UseFieldForEpisodeName varchar(32)
 AS
 	update ProviderConnection set
 		ProviderID = @ProviderID,
 		ProviderConnectionType = @ProviderConnectionType,
+		Disabled = @Disabled,
 		ConnectionURL = @ConnectionURL,
 		AdminUserID = @AdminUserID,
-		AdminPassword = @AdminPassword
+		AdminPassword = @AdminPassword,
+		UseFieldForName = @UseFieldForName,
+		UseFieldForEpisodeName = @UseFieldForEpisodeName
 	where ProviderConnectionID = @ProviderConnectionID
 GO
 
@@ -383,8 +398,8 @@ GO
 CREATE PROCEDURE dbo.ProviderConnection_GetByProviderID
 	@ProviderID varchar(64)
 AS
-	select ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL,
-		AdminUserID, AdminPassword
+	select ProviderConnectionID, ProviderID, ProviderConnectionType, Disabled,
+		ConnectionURL, AdminUserID, AdminPassword, UseFieldForName, UseFieldForEpisodeName
 	from ProviderConnection
 	where (ProviderID = @ProviderID)
 GO
@@ -395,8 +410,8 @@ CREATE PROCEDURE dbo.ProviderConnection_GetByProviderIDConnectionType
 	@ProviderID varchar(64),
 	@ProviderConnectionType varchar(16)
 AS
-	select ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL,
-		AdminUserID, AdminPassword
+	select ProviderConnectionID, ProviderID, ProviderConnectionType, Disabled,
+		ConnectionURL, AdminUserID, AdminPassword, UseFieldForName, UseFieldForEpisodeName
 	from ProviderConnection
 	where (ProviderID = @ProviderID)
 	and (ProviderConnectionType = @ProviderConnectionType)
