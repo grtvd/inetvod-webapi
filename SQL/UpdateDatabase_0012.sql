@@ -38,7 +38,8 @@ CREATE TABLE [dbo].[ShowProvider] (
 	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
 	[ShowCost_CostDisplay] [varchar] (32) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL ,
 	[ShowCost_RentalWindowDays] [smallint] NULL ,
-	[ShowCost_RentalPeriodHours] [smallint] NULL
+	[ShowCost_RentalPeriodHours] [smallint] NULL ,
+	[ShowAvail] [varchar] (32) NOT NULL
 ) ON [PRIMARY]
 GO
 

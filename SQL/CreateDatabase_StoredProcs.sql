@@ -1235,7 +1235,8 @@ CREATE PROCEDURE dbo.ShowProvider_Insert
 	@ShowCost_Cost_Amount decimal(17,2),
 	@ShowCost_CostDisplay varchar(32),
 	@ShowCost_RentalWindowDays smallint,
-	@ShowCost_RentalPeriodHours smallint
+	@ShowCost_RentalPeriodHours smallint,
+	@ShowAvail varchar(32)
 AS
 	insert into ShowProvider
 	(
@@ -1250,7 +1251,8 @@ AS
 		ShowCost_Cost_Amount,
 		ShowCost_CostDisplay,
 		ShowCost_RentalWindowDays,
-		ShowCost_RentalPeriodHours
+		ShowCost_RentalPeriodHours,
+		ShowAvail
 	)
 	values
 	(
@@ -1265,7 +1267,8 @@ AS
 		@ShowCost_Cost_Amount,
 		@ShowCost_CostDisplay,
 		@ShowCost_RentalWindowDays,
-		@ShowCost_RentalPeriodHours
+		@ShowCost_RentalPeriodHours,
+		@ShowAvail
 	)
 GO
 
@@ -1283,7 +1286,8 @@ CREATE PROCEDURE dbo.ShowProvider_Update
 	@ShowCost_Cost_Amount decimal(17,2),
 	@ShowCost_CostDisplay varchar(32),
 	@ShowCost_RentalWindowDays smallint,
-	@ShowCost_RentalPeriodHours smallint
+	@ShowCost_RentalPeriodHours smallint,
+	@ShowAvail varchar(32)
 AS
 	update ShowProvider set
 		--ShowProviderID = @ShowProviderID,
@@ -1297,7 +1301,8 @@ AS
 		ShowCost_Cost_Amount = @ShowCost_Cost_Amount,
 		ShowCost_CostDisplay = @ShowCost_CostDisplay,
 		ShowCost_RentalWindowDays = @ShowCost_RentalWindowDays,
-		ShowCost_RentalPeriodHours = @ShowCost_RentalPeriodHours
+		ShowCost_RentalPeriodHours = @ShowCost_RentalPeriodHours,
+		ShowAvail = @ShowAvail
 	where ShowProviderID = @ShowProviderID
 GO
 
@@ -1318,7 +1323,8 @@ CREATE PROCEDURE dbo.ShowProvider_GetByShowIDProviderID
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderConnectionID, ProviderShowID,
 		ShowURL, ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
-		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
+		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours,
+		ShowAvail
 	from ShowProvider
 	where (ShowID = @ShowID)
 	and (ProviderID = @ProviderID)
@@ -1331,7 +1337,8 @@ CREATE PROCEDURE dbo.ShowProvider_GetByShowID
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderConnectionID, ProviderShowID,
 		ShowURL, ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
-		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
+		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours,
+		ShowAvail
 	from ShowProvider
 	where (ShowID = @ShowID)
 GO
@@ -1344,7 +1351,8 @@ CREATE PROCEDURE dbo.ShowProvider_GetByProviderIDProviderShowID
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderConnectionID, ProviderShowID,
 		ShowURL, ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
-		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
+		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours,
+		ShowAvail
 	from ShowProvider
 	where (ProviderID = @ProviderID)
 	and (ProviderShowID = @ProviderShowID)
@@ -1358,7 +1366,7 @@ AS
 	select sp.ShowProviderID, sp.ShowID, ProviderID, ProviderConnectionID,
 		ProviderShowID, ShowURL, ShowCost_ShowCostType, ShowCost_Cost_CurrencyID,
 		ShowCost_Cost_Amount, ShowCost_CostDisplay, ShowCost_RentalWindowDays,
-		ShowCost_RentalPeriodHours
+		ShowCost_RentalPeriodHours, ShowAvail
 	from ShowProvider sp
 	join Show s on s.ShowID = sp.ShowID
 	where s.Name like '%' + isnull(@PartialName, '') + '%'
@@ -1371,7 +1379,8 @@ CREATE PROCEDURE dbo.ShowProvider_GetByProviderID
 AS
 	select ShowProviderID, ShowID, ProviderID, ProviderConnectionID, ProviderShowID,
 		ShowURL, ShowCost_ShowCostType, ShowCost_Cost_CurrencyID, ShowCost_Cost_Amount,
-		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours
+		ShowCost_CostDisplay, ShowCost_RentalWindowDays, ShowCost_RentalPeriodHours,
+		ShowAvail
 	from ShowProvider
 	where ProviderID = @ProviderID
 GO
@@ -1384,7 +1393,7 @@ AS
 	select sp.ShowProviderID, sp.ShowID, ProviderID, ProviderConnectionID,
 		ProviderShowID, ShowURL, ShowCost_ShowCostType, ShowCost_Cost_CurrencyID,
 		ShowCost_Cost_Amount, ShowCost_CostDisplay, ShowCost_RentalWindowDays,
-		ShowCost_RentalPeriodHours
+		ShowCost_RentalPeriodHours, ShowAvail
 	from ShowProvider sp
 	join ShowCategory sc on sc.ShowID = sp.ShowID
 	where sc.CategoryID = @CategoryID

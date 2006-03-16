@@ -26,3 +26,7 @@
 	Deploy hrtlib.dll to /program files/inetvod/common
 		- Update PATH env var
 		- Confirm dll is being found by web service
+
+	- In Query Analyzer, run
+		- UpdateDatabase_0011.sql
+		- UpdateDatabase_0012.sql
