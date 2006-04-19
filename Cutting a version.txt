@@ -13,6 +13,8 @@
 - Commit all changed files, use label: "webapi: Cut version CCYY-MM-DD."
 
 - Deploy to Server
+	- Confirm dbconnect.xml in "C:\Program Files\iNetVOD\Common".
+
 	- In Firefox, open: http://api.inetvod.com/manager/html
 
 	- In "Applications" section, Undeploy "inetvod"
