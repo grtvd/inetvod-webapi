@@ -80,7 +80,7 @@ insert into Provider (ProviderID, Name)
 values ('rocketboom', 'Rocketboom')
 
 insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL)
-values (newid(), 'rocketboom', 'Rss2', 'http://localhost:81/samplefeeds/rocketboom.xml')
+values (newid(), 'rocketboom', 'Rss2', 'http://www.rocketboom.com/vlog/win_media_player_daily_enclosures.xml')
 
 
 insert into Provider (ProviderID, Name)
