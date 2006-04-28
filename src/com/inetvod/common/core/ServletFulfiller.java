@@ -6,7 +6,6 @@ package com.inetvod.common.core;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.ByteOrder;
@@ -14,6 +13,7 @@ import java.text.DateFormat;
 import java.text.FieldPosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -180,7 +180,8 @@ public abstract class ServletFulfiller
 	protected abstract String getRequestType(Requestable requestable);
 
 	protected void logRequest(boolean success, String msg, String requestType, InputStream requestStream,
-		InputStream responseStream, String requestFileExt, String responseFileExt, ITimer timer, Exception exception)
+		InputStream responseStream, FileExtension requestFileExt, FileExtension responseFileExt, ITimer timer,
+		Exception exception)
 	{
 		PrintWriter writer = null;
 
@@ -190,16 +191,14 @@ public abstract class ServletFulfiller
 			double milliSecs = timer.getDuration();
 
 			StringBuffer sb = new StringBuffer();
-			String fileDir = "c:\\temp\\iNetVOD\\requests\\";
 			String baseFileName = String.format ("%s-%d", (new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss-SSSS")).format(
 				new Date(), sb, new FieldPosition(DateFormat.YEAR_FIELD)).toString(), Thread.currentThread().getId());
-			String fileName = (new File(fileDir, baseFileName)).getPath();
 
 			if(requestStream != null)
-				StreamUtil.streamToFile(requestStream, fileName + "_Rqst" + requestFileExt);
+				Logger.logFile(requestStream, "request", baseFileName + "_Rqst" + requestFileExt);
 
 			if(responseStream != null)
-				StreamUtil.streamToFile(responseStream, fileName + "_Resp" + responseFileExt);
+				Logger.logFile(responseStream, "request", baseFileName + "_Resp" + requestFileExt);
 
 			sb = new StringBuffer();
 			sb.append(String.format("result:%s; ", (success ? "Success" : "FAILED")));
@@ -225,7 +224,7 @@ public abstract class ServletFulfiller
 	protected void logRequest(boolean success, String msg, InputStream requestStream,
 		ITimer timer, Exception exception)
 	{
-		logRequest(success, msg, null, requestStream, null, ".raw", null, timer, exception);
+		logRequest(success, msg, null, requestStream, null, FileExtension.raw, null, timer, exception);
 	}
 
 	protected void logRequest(boolean success, String msg, Requestable request,
@@ -240,7 +239,7 @@ public abstract class ServletFulfiller
 			requestWriter.close();
 
 			logRequest(success, getRequestType(request), null, new ByteArrayInputStream(requestStream.toByteArray()),
-				null, ".xml", null, timer, exception);
+				null, FileExtension.xml, null, timer, exception);
 		}
 		catch(Exception e)
 		{
@@ -273,7 +272,8 @@ public abstract class ServletFulfiller
 			ByteArrayInputStream requestInStream = new ByteArrayInputStream(requestStream.toByteArray());
 			ByteArrayInputStream responseInStream = new ByteArrayInputStream(responseStream.toByteArray());
 
-			logRequest(success, msg, requestType, requestInStream, responseInStream, ".xml", ".xml", timer, exception);
+			logRequest(success, msg, requestType, requestInStream, responseInStream, FileExtension.xml,
+				FileExtension.xml, timer, exception);
 		}
 		catch(Exception e)
 		{

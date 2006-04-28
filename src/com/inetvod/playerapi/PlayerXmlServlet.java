@@ -4,7 +4,6 @@
  */
 package com.inetvod.playerapi;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -13,8 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.xml.DOMConfigurator;
-
+import com.inetvod.common.core.Logger;
 import com.inetvod.common.core.ServletFulfiller;
 import com.inetvod.common.dbdata.Category;
 import com.inetvod.common.dbdata.DatabaseAdaptor;
@@ -40,9 +38,8 @@ public class PlayerXmlServlet extends HttpServlet
 		try
 		{
 			// set the log file
-			String realPath = getServletContext().getRealPath("/log4j.xml");
-			File log4jFile = new File(realPath);
-			DOMConfigurator.configure(log4jFile.toURL());
+			Logger.initialize(getServletContext().getRealPath("/log4j.xml"),
+				getServletContext().getInitParameter("logdir"));
 
 			// setup db connection
 			DatabaseAdaptor.setDBConnectFile(getServletContext().getInitParameter("dbconnect"));
