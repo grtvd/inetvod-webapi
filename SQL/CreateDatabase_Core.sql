@@ -463,6 +463,7 @@ CREATE TABLE [dbo].[ShowProvider] (
 	[ProviderConnectionID] uniqueidentifier NOT NULL ,
 	[ProviderShowID] [varchar] (128) NOT NULL ,
 	[ShowURL] [varchar] (4096) NULL ,
+	[ShowFormatMime] [varchar] (32) NULL ,
 	[ShowCost_ShowCostType] [varchar] (32) NOT NULL ,
 	[ShowCost_Cost_CurrencyID] [varchar] (3) NULL ,
 	[ShowCost_Cost_Amount] [decimal] (17,2) NULL ,
