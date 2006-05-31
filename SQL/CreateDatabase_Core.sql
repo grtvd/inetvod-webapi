@@ -242,10 +242,10 @@ CREATE TABLE [dbo].[MemberLogon] (
 	[Email] [varchar] (64) NOT NULL,
 	[Password] [varchar] (32) NOT NULL,
 	[LogonID] [int] NOT NULL IDENTITY (100000200, 1),
-	[PIN] [varchar] (16) NULL,
+	[PIN] [varchar] (32) NULL,
 
 	[SecretQuestion] [varchar] (64) NOT NULL,
-	[SecretAnswer] [varchar] (64) NOT NULL,
+	[SecretAnswer] [varchar] (32) NOT NULL,
 	[TermsAcceptedOn] [datetime] NOT NULL,
 	[TermsAcceptedVersion] [varchar] (16) NOT NULL,
 	[LogonFailedAt] [datetime] NULL,
@@ -329,7 +329,7 @@ GO
 CREATE TABLE [dbo].[MemberPrefs] (
 	[MemberID] uniqueidentifier NOT NULL ROWGUIDCOL ,
 	[IncludeAdult] [varchar] (32) NULL ,
-	[AdultPIN] [varchar] (16) NULL ,
+	[AdultPIN] [varchar] (32) NULL ,
 	[IncludeRatingIDList] [varchar] (128) NULL ,
 	[IncludeDownload] [bit] NULL ,
 	[IncludeStreaming] [bit] NULL ,

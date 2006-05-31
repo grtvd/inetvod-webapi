@@ -540,10 +540,10 @@ CREATE PROCEDURE dbo.MemberLogon_Insert
 	@Email varchar(64),
 	@Password varchar(32),
 	@LogonID int,
-	@PIN varchar(16),
+	@PIN varchar(32),
 
 	@SecretQuestion varchar(64),
-	@SecretAnswer varchar(64),
+	@SecretAnswer varchar(32),
 	@TermsAcceptedOn datetime,
 	@TermsAcceptedVersion varchar(16),
 	@LogonFailedAt datetime,
@@ -593,10 +593,10 @@ CREATE PROCEDURE dbo.MemberLogon_Update
 	@Email varchar(64),
 	@Password varchar(32),
 	@LogonID int,
-	@PIN varchar(16),
+	@PIN varchar(32),
 
 	@SecretQuestion varchar(64),
-	@SecretAnswer varchar(64),
+	@SecretAnswer varchar(32),
 	@TermsAcceptedOn datetime,
 	@TermsAcceptedVersion varchar(16),
 	@LogonFailedAt datetime,
@@ -657,7 +657,7 @@ GO
 
 CREATE PROCEDURE dbo.MemberLogon_GetByLogonIDPIN
 	@LogonID int,
-	@PIN varchar(16)
+	@PIN varchar(32)
 AS
 	select
 		MemberID,
@@ -885,7 +885,7 @@ GO
 CREATE PROCEDURE dbo.MemberPrefs_Insert
 	@MemberID uniqueidentifier,
 	@IncludeAdult varchar(32),
-	@AdultPIN varchar(16),
+	@AdultPIN varchar(32),
 	@IncludeRatingIDList varchar(128),
 	@IncludeDownload bit,
 	@IncludeStreaming bit,
@@ -918,7 +918,7 @@ GO
 CREATE PROCEDURE dbo.MemberPrefs_Update
 	@MemberID uniqueidentifier,
 	@IncludeAdult varchar(32),
-	@AdultPIN varchar(16),
+	@AdultPIN varchar(32),
 	@IncludeRatingIDList varchar(128),
 	@IncludeDownload bit,
 	@IncludeStreaming bit,
