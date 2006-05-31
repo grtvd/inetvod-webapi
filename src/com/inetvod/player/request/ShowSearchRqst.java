@@ -24,6 +24,7 @@ public class ShowSearchRqst extends SessionRequestable
 {
 	/* Constants */
 	private static final int SearchMaxLength = 64;
+	private static final String[] ValidMimeTypeList = new String[] { "video/x-ms-wmv", "audio/mpeg" };
 
 	/* Fields */
 	private String fSearch;
@@ -98,7 +99,8 @@ public class ShowSearchRqst extends SessionRequestable
 			if(!includeAdult && show.getIsAdult())
 				continue;
 
-			thisShowProviderList = showProviderList.findItemsByShowID(show.getShowID()).findItemsByAvailable();
+			thisShowProviderList = showProviderList.findItemsByShowID(show.getShowID()).findItemsByAvailable()
+				.findItemsByShowFormatMimeList(ValidMimeTypeList);
 			if(thisShowProviderList.size() == 0)
 				continue;
 
