@@ -102,6 +102,16 @@ values ('happyhouseofhentai', 'Happy House of Hentai')
 
 insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL)
 values (newid(), 'happyhouseofhentai', 'Rss2', 'http://happyhouseofhentai.libsyn.com/rss')
+
+
+insert into Provider (ProviderID, Name)
+values ('clerks2', 'Clerks 2')
+
+insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL)
+values (newid(), 'clerks2', 'Rss2', 'http://clerks2.com/clerks2.xml')
+
+--insert ProviderConnection (ProviderConnectionID, ProviderID, ProviderConnectionType, ConnectionURL)
+--values (newid(), 'clerks2', 'Rss2', 'http://clerks2.com/trainwreck/?feed=rss2')
 go
 
 --//////////////////////////////////////////////////////////////////////////////
