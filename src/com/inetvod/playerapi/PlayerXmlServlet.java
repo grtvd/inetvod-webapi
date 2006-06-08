@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.inetvod.common.core.Logger;
-import com.inetvod.common.core.ServletFulfiller;
+import com.inetvod.common.cryto.CryptoKeyStore;
 import com.inetvod.common.dbdata.Category;
 import com.inetvod.common.dbdata.DatabaseAdaptor;
 import com.inetvod.common.dbdata.Member;
@@ -29,6 +29,7 @@ import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCategory;
 import com.inetvod.common.dbdata.ShowProvider;
+import com.inetvod.common.web.ServletFulfiller;
 import com.inetvod.player.request.PlayerServletFulfiller;
 
 public class PlayerXmlServlet extends HttpServlet
@@ -43,6 +44,9 @@ public class PlayerXmlServlet extends HttpServlet
 
 			// setup db connection
 			DatabaseAdaptor.setDBConnectFile(getServletContext().getInitParameter("dbconnect"));
+
+			// init the CrytoKeyStore
+			CryptoKeyStore.load(getServletContext().getInitParameter("cryptokeystore"));
 
 			// prime UUID, first hit is big
 			UUID.randomUUID();

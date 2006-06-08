@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.inetvod.common.core.DataFormat;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.Requestable;
-import com.inetvod.common.core.ServletFulfiller;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.common.web.ServletFulfiller;
 import com.inetvod.player.rqdata.StatusCode;
 
 public class PlayerServletFulfiller extends ServletFulfiller
