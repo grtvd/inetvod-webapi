@@ -32,6 +32,7 @@ public class StatusCode
 	public static final StatusCode sc_ShowLevelInsufficient = new StatusCode(1016);
 	public static final StatusCode sc_ShowPaymentDenied = new StatusCode(1017);
 	public static final StatusCode sc_ShowRentExpired = new StatusCode(1018);
+	public static final StatusCode sc_InvalidAdultPIN = new StatusCode(1019);
 
 	public static final StatusCode sc_GeneralError = new StatusCode(9999);
 

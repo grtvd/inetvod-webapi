@@ -10,12 +10,14 @@ import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Logger;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.common.core.StrUtil;
 import com.inetvod.common.data.IncludeAdult;
 import com.inetvod.common.data.ManufacturerID;
 import com.inetvod.common.data.PlayerID;
 import com.inetvod.common.dbdata.Member;
 import com.inetvod.common.dbdata.MemberLogon;
 import com.inetvod.common.dbdata.MemberSession;
+import com.inetvod.common.cryto.CryptoDigest;
 import com.inetvod.player.rqdata.MemberPrefs;
 import com.inetvod.player.rqdata.MemberProviderList;
 import com.inetvod.player.rqdata.MemberState;
@@ -78,10 +80,19 @@ public class SignonRqst implements PlayerRequestable
 		//TODO: decrypt UserID and Password based on Player
 
 		int logonID = -1;
+		String password = fPassword;
+
 		try { logonID = Integer.parseInt(fUserID); } catch(NumberFormatException e) {}
 
+		if(StrUtil.isNumeric(password))	//TODO:
+			try { password = CryptoDigest.encrypt(password); } catch(Exception e) {}
+
 		if(logonID != -1)
-			memberLogon = MemberLogon.findByLogonIDPIN(Integer.parseInt(fUserID), fPassword);
+		{
+			memberLogon = MemberLogon.findByLogonIDPIN(logonID, password);
+			if((memberLogon == null) && StrUtil.isNumeric(fPassword))	//TODO: remove, temp fix to unencrypted values in DB
+				memberLogon = MemberLogon.findByLogonIDPIN(logonID, fPassword);
+		}
 		if(memberLogon != null)
 		{
 			Member member = Member.get(memberLogon.getMemberID());

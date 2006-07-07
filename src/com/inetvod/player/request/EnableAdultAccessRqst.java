@@ -6,7 +6,9 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
+import com.inetvod.common.core.StrUtil;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.common.cryto.CryptoDigest;
 import com.inetvod.common.data.IncludeAdult;
 import com.inetvod.common.dbdata.MemberPrefs;
 import com.inetvod.player.rqdata.StatusCode;
@@ -30,21 +32,29 @@ public class EnableAdultAccessRqst extends SessionRequestable
 		EnableAdultAccessResp response;
 		MemberPrefs memberPrefs;
 
-		//TODO: decrypt Password based on SessionData:Player
+		// Confirm user desires to see Adult content
+		memberPrefs = MemberPrefs.getCreate(fMemberID);
+		if(IncludeAdult.Never.equals(memberPrefs.getIncludeAdult()))
+			return null;
+
+		String password = fPassword;
+
+		if(StrUtil.isNumeric(password))	//TODO:
+			try { password = CryptoDigest.encrypt(password); } catch(Exception e) {}
+
+		if(!memberPrefs.getAdultPIN().equals(password))
+		{
+			fStatusCode = StatusCode.sc_InvalidAdultPIN;
+			return null;
+		}
 
 		response = new EnableAdultAccessResp();
 
-		// Confirm user desires to see Adult content
-		memberPrefs = MemberPrefs.getCreate(fMemberID);
-		if(!IncludeAdult.Never.equals(memberPrefs.getIncludeAdult()))
-		{
-			// Update session to show adult
-			fMemberSession.setShowAdult(true);
-			fMemberSession.update();
+		// Update session to show adult
+		fMemberSession.setShowAdult(true);
+		fMemberSession.update();
 
-			fStatusCode = StatusCode.sc_Success;
-		}
-
+		fStatusCode = StatusCode.sc_Success;
 		return response;
 	}
 
