@@ -17,7 +17,7 @@ import com.inetvod.common.data.PlayerID;
 import com.inetvod.common.dbdata.Member;
 import com.inetvod.common.dbdata.MemberLogon;
 import com.inetvod.common.dbdata.MemberSession;
-import com.inetvod.common.cryto.CryptoDigest;
+import com.inetvod.common.crypto.CryptoDigest;
 import com.inetvod.player.rqdata.MemberPrefs;
 import com.inetvod.player.rqdata.MemberProviderList;
 import com.inetvod.player.rqdata.MemberState;
