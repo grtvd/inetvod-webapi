@@ -23,10 +23,21 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<servlet>
+		<servlet-name>CryptoAPI</servlet-name>
+		<servlet-class>com.inetvod.cryptoapi.CryptoAPIServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>XmlPlayerAPI</servlet-name>
 		<!-- <url-pattern>/inetvod/playerapi/xml</url-pattern> -->
 		<url-pattern>/playerapi/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>CryptoAPI</servlet-name>
+		<url-pattern>/cryptoapi/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>
