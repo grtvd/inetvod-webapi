@@ -11,6 +11,7 @@ import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.RentedShowList;
+import com.inetvod.common.dbdata.Show;
 import com.inetvod.player.rqdata.DownloadShow;
 import com.inetvod.player.rqdata.StatusCode;
 
@@ -40,7 +41,8 @@ public class DownloadShowListRqst extends SessionRequestable
 			rentedShow = (RentedShow)iterator.next();
 
 			//TODO: need to filter for downloadable shows only
-			response.getDownloadShowList().add(new DownloadShow(rentedShow));
+			//TODO: need to fetch ShowList of rented shows in a single request
+			response.getDownloadShowList().add(new DownloadShow(Show.get(rentedShow.getShowID()), rentedShow));
 		}
 
 		fStatusCode = StatusCode.sc_Success;

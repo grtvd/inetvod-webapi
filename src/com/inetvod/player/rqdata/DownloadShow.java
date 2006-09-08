@@ -6,23 +6,30 @@ package com.inetvod.player.rqdata;
 
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.common.core.StrUtil;
 import com.inetvod.common.data.RentedShowID;
 import com.inetvod.common.dbdata.RentedShow;
+import com.inetvod.common.dbdata.Show;
 
 public class DownloadShow implements Writeable
 {
 	/* Constants */
 	public static final int ShowURLMaxLength = 4096;
+	private static final int DataFileNameMaxLength = 128;
 
 	/* Fields */
 	protected RentedShowID fRentedShowID;
 	protected String fShowURL;
+	protected String fDataFileName;
 
 	/* Construction */
-	public DownloadShow(RentedShow rentedShow)
+	public DownloadShow(Show show, RentedShow rentedShow)
 	{
 		fRentedShowID = rentedShow.getRentedShowID();
 		fShowURL = rentedShow.getShowURL();
+		fDataFileName = show.getName();
+		if(StrUtil.hasLen(show.getEpisodeName()))
+			fDataFileName += String.format(" - ''%s''", show.getEpisodeName());
 	}
 
 	/* Implementation */
@@ -30,5 +37,6 @@ public class DownloadShow implements Writeable
 	{
 		writer.writeDataID("RentedShowID", fRentedShowID, RentedShowID.MaxLength);
 		writer.writeString("ShowURL", fShowURL, ShowURLMaxLength);
+		writer.writeString("DataFileName", fDataFileName, DataFileNameMaxLength);
 	}
 }
