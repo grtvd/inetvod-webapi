@@ -23,7 +23,7 @@ public class DownloadShow implements Writeable
 	protected String fDataFileName;
 
 	/* Construction */
-	public DownloadShow(Show show, RentedShow rentedShow)
+	public DownloadShow(RentedShow rentedShow, Show show)
 	{
 		fRentedShowID = rentedShow.getRentedShowID();
 		fShowURL = rentedShow.getShowURL();
