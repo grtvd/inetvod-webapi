@@ -4,20 +4,19 @@
  */
 package com.inetvod.player.request;
 
-import java.util.UUID;
-
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Logger;
-import com.inetvod.common.core.Writeable;
 import com.inetvod.common.core.StrUtil;
+import com.inetvod.common.core.Writeable;
+import com.inetvod.common.crypto.CryptoDigest;
 import com.inetvod.common.data.IncludeAdult;
 import com.inetvod.common.data.ManufacturerID;
 import com.inetvod.common.data.PlayerID;
 import com.inetvod.common.dbdata.Member;
 import com.inetvod.common.dbdata.MemberLogon;
 import com.inetvod.common.dbdata.MemberSession;
-import com.inetvod.common.crypto.CryptoDigest;
+import com.inetvod.common.dbdata.PlayerManager;
 import com.inetvod.player.rqdata.MemberPrefs;
 import com.inetvod.player.rqdata.MemberProviderList;
 import com.inetvod.player.rqdata.MemberState;
@@ -52,7 +51,7 @@ public class SignonRqst implements PlayerRequestable
 		// get Player information
 		if(fPlayer == null)
 		{
-			fStatusCode = StatusCode.sc_Player_Missing;
+			fStatusCode = StatusCode.sc_PlayerMissing;
 			return response;
 		}
 		//TODO: make standard Player-version check
@@ -60,7 +59,7 @@ public class SignonRqst implements PlayerRequestable
 		{
 			if("ps2".equals(fPlayer.getModelNo()))
 			{
-				fStatusCode = StatusCode.sc_Player_OutOfDate;
+				fStatusCode = StatusCode.sc_PlayerOutOfDate;
 				return response;
 			}
 			else if("mpdemo".equals(fPlayer.getModelNo()))
@@ -68,14 +67,19 @@ public class SignonRqst implements PlayerRequestable
 				String version = fPlayer.getVersion();
 				if(!"1.0.1006".equals(version))
 				{
-					fStatusCode = StatusCode.sc_Player_OutOfDate;
+					fStatusCode = StatusCode.sc_PlayerOutOfDate;
 					return response;
 				}
 			}
 		}
 
 		//TODO: this should be using a UUID from a database of players based on Manufacturer, ModelNo, Version
-		PlayerID playerID = new PlayerID(UUID.randomUUID().toString());
+		PlayerID playerID = PlayerManager.getThe().findPlayerIDFromPlayer(fPlayer);
+		if(playerID == null)
+		{
+			fStatusCode = StatusCode.sc_PlayerUnknown;
+			return response;
+		}
 
 		//TODO: decrypt UserID and Password based on Player
 

@@ -13,6 +13,8 @@ import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.data.ProviderIDList;
 import com.inetvod.common.data.RatingID;
 import com.inetvod.common.data.RatingIDList;
+import com.inetvod.common.dbdata.Player;
+import com.inetvod.common.dbdata.PlayerManager;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCategoryList;
 import com.inetvod.common.dbdata.ShowList;
@@ -24,7 +26,6 @@ public class ShowSearchRqst extends SessionRequestable
 {
 	/* Constants */
 	private static final int SearchMaxLength = 64;
-	private static final String[] ValidMimeTypeList = new String[] { "video/x-ms-wmv", "audio/mpeg" };
 
 	/* Fields */
 	private String fSearch;
@@ -50,6 +51,7 @@ public class ShowSearchRqst extends SessionRequestable
 		ShowProviderList thisShowProviderList;
 		ShowCategoryList showCategoryList = null;
 		boolean includeAdult;
+		Player player;
 		short numFound = 0;
 
 		includeAdult = fMemberSession.getShowAdult();
@@ -94,13 +96,15 @@ public class ShowSearchRqst extends SessionRequestable
 			return response;
 		}
 
+		player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
+
 		for(Show show : showList)
 		{
 			if(!includeAdult && show.getIsAdult())
 				continue;
 
 			thisShowProviderList = showProviderList.findItemsByShowID(show.getShowID()).findItemsByAvailable()
-				.findItemsByShowFormatMimeList(ValidMimeTypeList);
+				.findItemsByPlayerMimeType(player);
 			if(thisShowProviderList.size() == 0)
 				continue;
 

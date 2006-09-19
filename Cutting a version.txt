@@ -17,6 +17,8 @@
 
 	- Comfirm cryptokeystore.xml in "C:\Program Files\iNetVOD\Common".
 
+	- Comfirm playerdata.xml in "C:\Program Files\iNetVOD\Common".
+
 	- In Firefox, open: http://api.inetvod.com/manager/html
 
 	- In "Applications" section, Undeploy "inetvod"

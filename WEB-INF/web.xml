@@ -17,6 +17,11 @@
 		<param-value>/program files/inetvod/common/cryptokeystore.xml</param-value>
 	</context-param>
 
+	<context-param>
+		<param-name>playerdata</param-name>
+		<param-value>/program files/inetvod/common/playerData.xml</param-value>
+	</context-param>
+
 	<servlet>
 		<servlet-name>XmlPlayerAPI</servlet-name>
 		<servlet-class>com.inetvod.playerapi.PlayerXmlServlet</servlet-class>

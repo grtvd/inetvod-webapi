@@ -19,8 +19,9 @@ public class StatusCode
 	public static final StatusCode sc_AlreadyEnrolledAtProvider = new StatusCode(1004);
 	public static final StatusCode sc_NoAutoProviderEnrollment = new StatusCode(1005);
 
-	public static final StatusCode sc_Player_Missing = new StatusCode(1006);
-	public static final StatusCode sc_Player_OutOfDate = new StatusCode(1007);
+	public static final StatusCode sc_PlayerMissing = new StatusCode(1006);
+	public static final StatusCode sc_PlayerOutOfDate = new StatusCode(1007);
+	public static final StatusCode sc_PlayerUnknown = new StatusCode(1008);
 
 	public static final StatusCode sc_ShowSearch_NeedCriteiia = new StatusCode(1010);
 
@@ -44,8 +45,9 @@ public class StatusCode
 			sc_InvalidProviderUserIDPassword,
 			sc_AlreadyEnrolledAtProvider,
 			sc_NoAutoProviderEnrollment,
-			sc_Player_Missing,
-			sc_Player_OutOfDate,
+			sc_PlayerMissing,
+			sc_PlayerOutOfDate,
+			sc_PlayerUnknown,
 			sc_ShowSearch_NeedCriteiia,
 			sc_NoProviderResponse,
 			sc_UnknownProviderResponse,

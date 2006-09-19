@@ -94,10 +94,12 @@ public class INetVODPlayerRqst implements PlayerRequestable
 			response.setStatusMessage("TODO: need message");
 		else if(StatusCode.sc_NoAutoProviderEnrollment.equals(statusCode))
 			response.setStatusMessage("TODO: need message");
-		else if(StatusCode.sc_Player_Missing.equals(statusCode))
+		else if(StatusCode.sc_PlayerMissing.equals(statusCode))
 			response.setStatusMessage("Player information was not specified.");
-		else if(StatusCode.sc_Player_OutOfDate.equals(statusCode))
+		else if(StatusCode.sc_PlayerOutOfDate.equals(statusCode))
 			response.setStatusMessage("This version of the player is no longer supported. A newer version of this player is available.");
+		else if(StatusCode.sc_PlayerUnknown.equals(statusCode))
+			response.setStatusMessage("This player is not recognized by iNetVOD.");
 		else if(StatusCode.sc_ShowSearch_NeedCriteiia.equals(statusCode))
 			response.setStatusMessage("A partial title, provider, or category must be provided for searching.");
 		else if(StatusCode.sc_NoProviderResponse.equals(statusCode))

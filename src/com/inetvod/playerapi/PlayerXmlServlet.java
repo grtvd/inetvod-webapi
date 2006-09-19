@@ -29,6 +29,7 @@ import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCategory;
 import com.inetvod.common.dbdata.ShowProvider;
+import com.inetvod.common.dbdata.PlayerManager;
 import com.inetvod.common.web.ServletFulfiller;
 import com.inetvod.player.request.PlayerServletFulfiller;
 
@@ -47,6 +48,9 @@ public class PlayerXmlServlet extends HttpServlet
 
 			// init the CryptoKeyStore
 			CryptoKeyStore.load(getServletContext().getInitParameter("cryptokeystore"));
+
+			// load the PlayerManager
+			PlayerManager.load(getServletContext().getInitParameter("playerdata"));
 
 			// prime UUID, first hit is big
 			UUID.randomUUID();
