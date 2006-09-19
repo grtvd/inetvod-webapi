@@ -74,7 +74,8 @@ public class SignonRqst implements PlayerRequestable
 		}
 
 		//TODO: this should be using a UUID from a database of players based on Manufacturer, ModelNo, Version
-		PlayerID playerID = PlayerManager.getThe().findPlayerIDFromPlayer(fPlayer);
+		PlayerID playerID = PlayerManager.getThe().findPlayerIDFromManufacturerIDModelNo(fPlayer.getManufacturerID(),
+			fPlayer.getModelNo());
 		if(playerID == null)
 		{
 			fStatusCode = StatusCode.sc_PlayerUnknown;
