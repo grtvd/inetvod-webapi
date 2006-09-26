@@ -6,8 +6,8 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.data.License;
 import com.inetvod.common.data.RentedShowID;
+import com.inetvod.player.rqdata.License;
 
 public class RentShowResp implements Writeable
 {

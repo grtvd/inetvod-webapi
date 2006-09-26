@@ -4,17 +4,18 @@
  */
 package com.inetvod.player.request;
 
+import com.inetvod.common.core.CompUtil;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.core.CompUtil;
-import com.inetvod.common.data.RentedShowID;
-import com.inetvod.common.data.ProviderConnectionType;
-import com.inetvod.common.data.License;
 import com.inetvod.common.data.LicenseMethod;
+import com.inetvod.common.data.ProviderConnectionType;
+import com.inetvod.common.data.RentedShowID;
+import com.inetvod.common.dbdata.MemberProvider;
+import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.ShowProvider;
-import com.inetvod.common.dbdata.ProviderConnection;
+import com.inetvod.player.rqdata.License;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
 import com.inetvod.providerClient.rqdata.ProviderStatusCode;
@@ -41,7 +42,8 @@ public class WatchShowRqst extends SessionRequestable
 		// Is a ProviderAPI connection?
 		if(ProviderConnectionType.ProviderAPI.equals(providerConnection.getProviderConnectionType()))
 		{
-			ProviderRequestor providerRequestor = ProviderRequestor.newInstance(providerConnection, fMemberID);
+			MemberProvider memberProvider = MemberProvider.findByMemberIDProviderID(fMemberID, rentedShow.getProviderID());
+			ProviderRequestor providerRequestor = ProviderRequestor.newInstance(providerConnection, memberProvider);
 
 			// Confirm Provider's server can be communicated with
 			if(!providerRequestor.pingServer())
@@ -75,7 +77,20 @@ public class WatchShowRqst extends SessionRequestable
 				rentedShow.update();
 			}
 
-			license = providerWatchShowResp.getLicense();
+			license = new License();
+			license.setShowURL(providerWatchShowResp.getLicense().getShowURL());
+			if(LicenseMethod.LicenseServer.equals(providerWatchShowResp.getLicense().getLicenseMethod()))
+			{
+				license.setLicenseMethod(LicenseMethod.LicenseServer);
+				license.setLicenseURL(providerWatchShowResp.getLicense().getLicenseURL());
+				license.setContentID(showProvider.getProviderShowID().toString());
+				license.setUserID(memberProvider.getEncryptedUserName());
+				license.setPassword(memberProvider.getEncryptedPassword());
+			}
+			else
+			{
+				license.setLicenseMethod(LicenseMethod.URLOnly);
+			}
 		}
 		else
 		{

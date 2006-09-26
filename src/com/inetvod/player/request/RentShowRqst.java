@@ -9,20 +9,21 @@ import java.util.Date;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.common.data.LicenseMethod;
 import com.inetvod.common.data.MediaContainer;
 import com.inetvod.common.data.MediaEncoding;
+import com.inetvod.common.data.ProviderConnectionType;
 import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.data.ShowCost;
 import com.inetvod.common.data.ShowCostType;
 import com.inetvod.common.data.ShowFormat;
 import com.inetvod.common.data.ShowID;
-import com.inetvod.common.data.ProviderConnectionType;
-import com.inetvod.common.data.License;
-import com.inetvod.common.data.LicenseMethod;
 import com.inetvod.common.dbdata.MemberAccount;
+import com.inetvod.common.dbdata.MemberProvider;
+import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.ShowProvider;
-import com.inetvod.common.dbdata.ProviderConnection;
+import com.inetvod.player.rqdata.License;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
 import com.inetvod.providerClient.rqdata.Payment;
@@ -56,7 +57,8 @@ public class RentShowRqst extends SessionRequestable
 		// Is a ProviderAPI connection?
 		if(ProviderConnectionType.ProviderAPI.equals(providerConnection.getProviderConnectionType()))
 		{
-			ProviderRequestor providerRequestor = ProviderRequestor.newInstance(providerConnection, fMemberID);
+			MemberProvider memberProvider = MemberProvider.findByMemberIDProviderID(fMemberID, fProviderID);
+			ProviderRequestor providerRequestor = ProviderRequestor.newInstance(providerConnection, memberProvider);
 
 			// Determine payment
 			Payment payment = null;
@@ -133,7 +135,22 @@ public class RentShowRqst extends SessionRequestable
 			}
 
 			showURL = providerRentShowResp.getLicense().getShowURL();
-			license = providerRentShowResp.getLicense();
+
+			license = new License();
+			license.setShowURL(showURL);
+			if(LicenseMethod.LicenseServer.equals(providerRentShowResp.getLicense().getLicenseMethod()))
+			{
+				license.setLicenseMethod(LicenseMethod.LicenseServer);
+				license.setLicenseURL(providerRentShowResp.getLicense().getLicenseURL());
+				license.setContentID(showProvider.getProviderShowID().toString());
+				license.setUserID(memberProvider.getEncryptedUserName());
+				license.setPassword(memberProvider.getEncryptedPassword());
+			}
+			else
+			{
+				license.setLicenseMethod(LicenseMethod.URLOnly);
+			}
+
 			availableUntil = providerRentShowResp.getAvailableUntil();
 		}
 		else
@@ -156,7 +173,6 @@ public class RentShowRqst extends SessionRequestable
 			providerConnection.getProviderConnectionID());
 
 		rentedShow.setShowURL(showURL);
-		//rentedShow.setShowURL("http://api.inetvod.com/mce/videos/TestVideo.wmv");
 		//TODO: save LicenseMethod, LicenseServer
 
 		rentedShow.setShowCost(fApprovedCost);
