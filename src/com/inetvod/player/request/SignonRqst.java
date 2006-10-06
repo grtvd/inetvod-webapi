@@ -65,7 +65,7 @@ public class SignonRqst implements PlayerRequestable
 			else if("mpdemo".equals(fPlayer.getModelNo()))
 			{
 				String version = fPlayer.getVersion();
-				if(!"1.0.1006".equals(version))
+				if(!"1.0.1007".equals(version))
 				{
 					fStatusCode = StatusCode.sc_PlayerOutOfDate;
 					return response;
