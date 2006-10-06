@@ -39,8 +39,8 @@ public class SetProviderRqst extends SessionRequestable
 		if(memberProvider == null)
 			memberProvider = MemberProvider.newInstance(fMemberID, fProviderID);
 
-		memberProvider.setEncryptedUserName(fUserID);
-		memberProvider.setEncryptedPassword(fPassword);
+		memberProvider.setUserID(fUserID);
+		memberProvider.setPassword(fPassword);
 		memberProvider.update();
 
 		fStatusCode = StatusCode.sc_Success;
@@ -51,14 +51,14 @@ public class SetProviderRqst extends SessionRequestable
 	public void readFrom(DataReader reader) throws Exception
 	{
 		fProviderID = reader.readDataID("ProviderID", ProviderID.MaxLength, ProviderID.CtorString);
-		fUserID = reader.readString("UserID", MemberProvider.EncryptedUserIDMaxLength);
-		fPassword = reader.readString("Password", MemberProvider.EncryptedPasswordMaxLength);
+		fUserID = reader.readString("UserID", MemberProvider.UserIDMaxLength);
+		fPassword = reader.readString("Password", MemberProvider.PasswordMaxLength);
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
 	{
 		writer.writeDataID("ProviderID", fProviderID, ProviderID.MaxLength);
-		writer.writeString("UserID", fUserID, MemberProvider.EncryptedUserIDMaxLength);
-		writer.writeString("Password", fPassword, MemberProvider.EncryptedPasswordMaxLength);
+		writer.writeString("UserID", fUserID, MemberProvider.UserIDMaxLength);
+		writer.writeString("Password", fPassword, MemberProvider.PasswordMaxLength);
 	}
 }

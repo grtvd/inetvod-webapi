@@ -91,8 +91,8 @@ public class ProviderEnrollRqst extends SessionRequestable
 		// Save member's provider information
 		MemberProvider memberProvider = MemberProvider.newInstance(fMemberID, fProviderID);
 		//TODO: set UserID, Password
-		memberProvider.setEncryptedUserName("member");	//TODO: remove
-		memberProvider.setEncryptedPassword("memberpassword");	//TODO: remove
+		memberProvider.setUserID("member");	//TODO: remove
+		memberProvider.setPassword("memberpassword");	//TODO: remove
 		memberProvider.update();
 
 		// Return response to player

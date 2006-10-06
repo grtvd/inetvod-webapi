@@ -84,8 +84,8 @@ public class WatchShowRqst extends SessionRequestable
 				license.setLicenseMethod(LicenseMethod.LicenseServer);
 				license.setLicenseURL(providerWatchShowResp.getLicense().getLicenseURL());
 				license.setContentID(showProvider.getProviderShowID().toString());
-				license.setUserID(memberProvider.getEncryptedUserName());
-				license.setPassword(memberProvider.getEncryptedPassword());
+				license.setUserID(memberProvider.getUserID());
+				license.setPassword(memberProvider.getPassword());
 			}
 			else
 			{
