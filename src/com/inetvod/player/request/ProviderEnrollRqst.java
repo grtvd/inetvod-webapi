@@ -4,16 +4,16 @@
  */
 package com.inetvod.player.request;
 
-import java.util.Calendar;
+import java.util.UUID;
 
-import com.inetvod.common.core.CountryID;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.data.Address;
-import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.data.ProviderConnectionType;
+import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.dbdata.Member;
+import com.inetvod.common.dbdata.MemberAccount;
+import com.inetvod.common.dbdata.MemberLogon;
 import com.inetvod.common.dbdata.MemberProvider;
 import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.player.rqdata.StatusCode;
@@ -23,6 +23,9 @@ import com.inetvod.providerClient.rqdata.ProviderStatusCode;
 
 public class ProviderEnrollRqst extends SessionRequestable
 {
+	/* Constants */
+	private static final int PasswordMaxLength = 16;
+
 	/* Fields */
 	private ProviderID fProviderID;
 
@@ -60,25 +63,24 @@ public class ProviderEnrollRqst extends SessionRequestable
 		}
 
 		// Enroll user at provider
-		String userID = "member";	//TODO:
-		String password = "memberpassword"; 	//TODO:
-		String email = "abc@def.com";	//TODO:
 		Member member = getMember();
+		MemberLogon memberLogon = MemberLogon.get(member.getMemberID());
+		MemberAccount memberAccount = MemberAccount.find(member.getMemberID());
+
+		String userID = String.format("inetvod%d", memberLogon.getLogonID());
+		String password = UUID.randomUUID().toString().replaceAll("-", "").substring(0, PasswordMaxLength);
+		String email = String.format("%d@inetvod.net", memberLogon.getLogonID());
 		EnrollRqst enrollRqst = EnrollRqst.newInstance(userID, password, member.getFirstName(), member.getLastName(),
 			email);
-		//TODO: set BirthDate, ShippingAddress, BillingAddress
-		Calendar cal = Calendar.getInstance();
-		cal.set(1980, 0, 1, 0, 0, 0);
-		enrollRqst.setBirthDate(cal.getTime());
-		Address address = new Address();
-		address.setAddrStreet1("1000 Hoy Circle");
-		address.setCity("Collegeville");
-		address.setState("PA");
-		address.setPostalCode("19426");
-		address.setCountry(CountryID.US);
-		address.setPhone("610-757-9999");
-		enrollRqst.setShippingAddress(address);
-		enrollRqst.setBillingAddress(address);
+
+		if(memberAccount != null)
+		{
+			enrollRqst.setBirthDate(memberAccount.getBirthDate());
+			enrollRqst.setShippingAddress(memberAccount.getHomeAddress());
+			if(memberAccount.getCreditCard() != null)
+				enrollRqst.setBillingAddress(memberAccount.getCreditCard().getBillingAddress());
+		}
+
 		boolean success = providerRequestor.enroll(enrollRqst);
 
 		ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
@@ -90,9 +92,8 @@ public class ProviderEnrollRqst extends SessionRequestable
 
 		// Save member's provider information
 		MemberProvider memberProvider = MemberProvider.newInstance(fMemberID, fProviderID);
-		//TODO: set UserID, Password
-		memberProvider.setUserID("member");	//TODO: remove
-		memberProvider.setPassword("memberpassword");	//TODO: remove
+		memberProvider.setUserID(userID);
+		memberProvider.setPassword(password);
 		memberProvider.update();
 
 		// Return response to player
