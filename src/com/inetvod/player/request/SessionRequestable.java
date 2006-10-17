@@ -22,12 +22,14 @@ public abstract class SessionRequestable implements PlayerRequestable
 	protected MemberSession fMemberSession;
 	protected MemberID fMemberID;
 	protected Member fMember;
+	protected String fPlayerIPAddress;
 
 	protected StatusCode fStatusCode = StatusCode.sc_GeneralError;
 	public StatusCode getStatusCode() { return fStatusCode; }
 
 	/* Implementation */
-	public StatusCode setRequest(String version, String requestID, SessionData sessionData) throws Exception
+	public StatusCode setRequest(String version, String requestID, SessionData sessionData, String playerIPAddress)
+		throws Exception
 	{
 		//fVersion = version;
 		//fRequestID = requestID;
@@ -44,6 +46,7 @@ public abstract class SessionRequestable implements PlayerRequestable
 		}
 
 		fMemberID = fMemberSession.getMemberID();
+		fPlayerIPAddress = playerIPAddress;
 		return StatusCode.sc_Success;
 	}
 

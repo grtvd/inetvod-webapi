@@ -57,7 +57,7 @@ public class WatchShowRqst extends SessionRequestable
 
 			// Send request to Provider
 			com.inetvod.providerClient.request.WatchShowResp providerWatchShowResp = providerRequestor.watchShow(
-				showProvider.getProviderShowID(), "127.0.0.1");
+				showProvider.getProviderShowID(), fPlayerIPAddress);
 
 			ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
 			if(!ProviderStatusCode.sc_Success.equals(providerStatusCode) || (providerWatchShowResp == null))

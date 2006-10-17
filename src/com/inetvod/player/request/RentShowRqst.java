@@ -97,7 +97,7 @@ public class RentShowRqst extends SessionRequestable
 
 			// Send request to Provider
 			com.inetvod.providerClient.request.RentShowResp providerRentShowResp = providerRequestor.rentShow(
-				showProvider.getProviderShowID(), "127.0.0.1", showFormat, fApprovedCost, payment);
+				showProvider.getProviderShowID(), fPlayerIPAddress, showFormat, fApprovedCost, payment);
 
 			ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
 			if(!ProviderStatusCode.sc_Success.equals(providerStatusCode) || (providerRentShowResp == null))

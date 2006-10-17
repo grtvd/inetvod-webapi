@@ -6,6 +6,8 @@ package com.inetvod.player.request;
 
 import java.lang.reflect.Constructor;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
@@ -30,6 +32,8 @@ public class INetVODPlayerRqst implements PlayerRequestable
 	private RequestData fRequestData;
 	public RequestData getRequestData() { return fRequestData; }
 
+	private String fPlayerIPAddress;
+
 	private StatusCode fStatusCode = StatusCode.sc_GeneralError;
 	public StatusCode getStatusCode() { return fStatusCode; }
 
@@ -48,7 +52,7 @@ public class INetVODPlayerRqst implements PlayerRequestable
 		// fulfull request
 		response.setRequestID(fRequestID);
 
-		fStatusCode = fRequestData.setRequest(fVersion, fRequestID, fSessionData);
+		fStatusCode = fRequestData.setRequest(fVersion, fRequestID, fSessionData, fPlayerIPAddress);
 		if(StatusCode.sc_Success.equals(fStatusCode))
 		{
 			response.setResponseData((ResponseData)fRequestData.fulfillRequest());
@@ -75,6 +79,11 @@ public class INetVODPlayerRqst implements PlayerRequestable
 		writer.writeString("SessionData", fSessionData.toString(), SessionData.SessionDataMaxLength);
 
 		writer.writeObject("RequestData", fRequestData);
+	}
+
+	public void readRequestData(HttpServletRequest httpServletRequest)
+	{
+		fPlayerIPAddress = httpServletRequest.getRemoteAddr();
 	}
 
 	protected void setStatus(INetVODPlayerResp response, StatusCode statusCode)

@@ -32,10 +32,10 @@ public class RequestData implements PlayerRequestable
 		readFrom(reader);
 	}
 
-	public StatusCode setRequest(String version, String requestID, SessionData sessionData) throws Exception
+	public StatusCode setRequest(String version, String requestID, SessionData sessionData, String playerIPAddress) throws Exception
 	{
 		if(fRequest instanceof SessionRequestable)
-			return ((SessionRequestable)fRequest).setRequest(version, requestID, sessionData);
+			return ((SessionRequestable)fRequest).setRequest(version, requestID, sessionData, playerIPAddress);
 
 		return StatusCode.sc_Success;
 	}
@@ -65,7 +65,7 @@ public class RequestData implements PlayerRequestable
 		fRequestType = reader.readString("RequestType", RequestTypeMaxLength);
 
 		Class<PlayerRequestable> cl = (Class<PlayerRequestable>)Class.forName(getClass().getPackage().getName() + "." + fRequestType);
-		Constructor<PlayerRequestable> ctor = cl.getConstructor(new Class[] { DataReader.class });
+		Constructor<PlayerRequestable> ctor = cl.getConstructor(DataReader.class);
 		fRequest = reader.readObject(fRequestType, ctor);
 	}
 
