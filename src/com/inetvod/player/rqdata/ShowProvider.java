@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.rqdata;
@@ -20,13 +20,10 @@ public class ShowProvider implements Writeable
 	//public ShowCost getShowCost() { return fShowCost; }
 
 	/* Constuction Methods */
-	public ShowProvider(com.inetvod.common.dbdata.ShowProvider showProvider)
+	public ShowProvider(ProviderID providerID, ShowCostList showCostList)
 	{
-		fProviderID = showProvider.getProviderID();
-
-		//TODO: update ShowProvider to store ShowCost list in db
-		fShowCostList = new ShowCostList();
-		fShowCostList.add(showProvider.getShowCost());
+		fProviderID = providerID;
+		fShowCostList = showCostList;
 	}
 
 	public void writeTo(DataWriter writer) throws Exception

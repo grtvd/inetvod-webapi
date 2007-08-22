@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -15,6 +15,9 @@ import com.inetvod.common.dbdata.MemberProvider;
 import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.ShowProvider;
+import com.inetvod.common.dbdata.Player;
+import com.inetvod.common.dbdata.PlayerManager;
+import com.inetvod.common.dbdata.ShowProviderList;
 import com.inetvod.player.rqdata.License;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
@@ -53,7 +56,15 @@ public class WatchShowRqst extends SessionRequestable
 			}
 
 			// Fetch Show as offered by Provider
-			ShowProvider showProvider = ShowProvider.getByShowIDProviderID(rentedShow.getShowID(), rentedShow.getProviderID());
+			Player player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
+			//TODO: Get specific ShowProvider by using RentedShow.getShowFormat
+			ShowProvider showProvider = ShowProviderList.findByShowIDProviderID(rentedShow.getShowID(),
+				rentedShow.getProviderID()).findFirstByPlayerMimeType(player);
+			if(showProvider == null)
+			{
+				fStatusCode = StatusCode.sc_GeneralError;
+				return null;
+			}
 
 			// Send request to Provider
 			com.inetvod.providerClient.request.WatchShowResp providerWatchShowResp = providerRequestor.watchShow(

@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -10,6 +10,8 @@ import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.ShowID;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowCategoryList;
+import com.inetvod.common.dbdata.Player;
+import com.inetvod.common.dbdata.PlayerManager;
 import com.inetvod.player.rqdata.ShowDetail;
 import com.inetvod.player.rqdata.ShowProviderList;
 import com.inetvod.player.rqdata.StatusCode;
@@ -28,14 +30,17 @@ public class ShowDetailRqst extends SessionRequestable
 	public Writeable fulfillRequest() throws Exception
 	{
 		ShowDetailResp response;
+		Player player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
 		Show show;
 		ShowProviderList showProviderList;
 		ShowCategoryList showCategoryList;
 
 		response = new ShowDetailResp();
 		show = Show.get(fShowID);
-		showProviderList = new ShowProviderList(com.inetvod.common.dbdata.ShowProviderList.findByShowID(fShowID));
+		showProviderList = new ShowProviderList(com.inetvod.common.dbdata.ShowProviderList.findByShowIDAvailable(fShowID)
+			.findItemsByPlayerMimeType(player));
 		showCategoryList = ShowCategoryList.findByShowID(fShowID);
+
 		response.ShowDetail = new ShowDetail(show, showProviderList, showCategoryList);
 
 		fStatusCode = StatusCode.sc_Success;

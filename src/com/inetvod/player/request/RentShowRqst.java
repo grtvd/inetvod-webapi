@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -18,11 +18,15 @@ import com.inetvod.common.data.ShowCost;
 import com.inetvod.common.data.ShowCostType;
 import com.inetvod.common.data.ShowFormat;
 import com.inetvod.common.data.ShowID;
+import com.inetvod.common.data.CreditCard;
 import com.inetvod.common.dbdata.MemberAccount;
 import com.inetvod.common.dbdata.MemberProvider;
 import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.ShowProvider;
+import com.inetvod.common.dbdata.Player;
+import com.inetvod.common.dbdata.PlayerManager;
+import com.inetvod.common.dbdata.ShowProviderList;
 import com.inetvod.player.rqdata.License;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
@@ -51,7 +55,16 @@ public class RentShowRqst extends SessionRequestable
 		Date availableUntil = null;
 
 		// Fetch Show as offered by Provider
-		ShowProvider showProvider = ShowProvider.getByShowIDProviderID(fShowID, fProviderID);
+		Player player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
+		ShowProviderList showProviderList = ShowProviderList.findByShowIDProviderIDAvailable(fShowID, fProviderID)
+			.findItemsByShowCost(fApprovedCost);
+		// Fettch first ShowProvider supported by Player
+		ShowProvider showProvider = showProviderList.findFirstByPlayerMimeType(player);
+		if(showProvider == null)
+		{
+			fStatusCode = StatusCode.sc_GeneralError;
+			return null;
+		}
 		ProviderConnection providerConnection = ProviderConnection.get(showProvider.getProviderConnectionID());
 
 		// Is a ProviderAPI connection?
@@ -71,7 +84,9 @@ public class RentShowRqst extends SessionRequestable
 				MemberAccount memberAccount = MemberAccount.find(fMemberID);
 				if((memberAccount != null) && (memberAccount.getCreditCard() != null))
 				{
-					payment = Payment.newInstance(PaymentType.CreditCard, memberAccount.getCreditCard());
+					CreditCard creditCard = memberAccount.getCreditCard().clone();
+					creditCard.setStoreEncrypted(false);
+					payment = Payment.newInstance(PaymentType.CreditCard, creditCard);
 					paymentType = PaymentType.CreditCard;
 					ccOnFile = true;
 				}
@@ -175,6 +190,7 @@ public class RentShowRqst extends SessionRequestable
 		rentedShow.setShowURL(showURL);
 		//TODO: save LicenseMethod, LicenseServer
 
+		//TODO : save ShowFormat
 		rentedShow.setShowCost(fApprovedCost);
 		rentedShow.setRentedOn(rentedOn);
 		rentedShow.setAvailableUntil(availableUntil);

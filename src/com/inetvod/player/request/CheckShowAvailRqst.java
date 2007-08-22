@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -17,6 +17,9 @@ import com.inetvod.common.data.ProviderConnectionType;
 import com.inetvod.common.data.ShowCostType;
 import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.common.dbdata.ProviderConnection;
+import com.inetvod.common.dbdata.ShowProviderList;
+import com.inetvod.common.dbdata.PlayerManager;
+import com.inetvod.common.dbdata.Player;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
 import com.inetvod.providerClient.rqdata.ProviderStatusCode;
@@ -39,7 +42,14 @@ public class CheckShowAvailRqst extends SessionRequestable
 		ShowCost updatedShowCost = fShowCost;
 
 		// Fetch Show as offered by Provider
-		ShowProvider showProvider = ShowProvider.getByShowIDProviderID(fShowID, fProviderID);
+		Player player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
+		ShowProvider showProvider = ShowProviderList.findByShowIDProviderIDAvailable(fShowID, fProviderID)
+			.findItemsByShowCost(fShowCost).findFirstByPlayerMimeType(player);
+		if(showProvider == null)
+		{
+			fStatusCode = StatusCode.sc_GeneralError;
+			return null;
+		}
 		ProviderConnection providerConnection = ProviderConnection.get(showProvider.getProviderConnectionID());
 
 		// Is a ProviderAPI connection?

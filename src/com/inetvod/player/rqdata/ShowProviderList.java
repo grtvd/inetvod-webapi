@@ -1,11 +1,14 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.rqdata;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
+
+import com.inetvod.common.data.ProviderID;
+import com.inetvod.common.data.ShowCostList;
 
 public class ShowProviderList extends ArrayList<ShowProvider>
 {
@@ -16,13 +19,12 @@ public class ShowProviderList extends ArrayList<ShowProvider>
 
 	public ShowProviderList(com.inetvod.common.dbdata.ShowProviderList showProviderList)
 	{
-		Iterator iterator = showProviderList.iterator();
-		com.inetvod.common.dbdata.ShowProvider showProvider;
-
-		while(iterator.hasNext())
+		HashMap<ProviderID, com.inetvod.common.dbdata.ShowProviderList> providerMap = showProviderList.splitByProviderID();
+		for(ProviderID providerID : providerMap.keySet())
 		{
-			showProvider = (com.inetvod.common.dbdata.ShowProvider)iterator.next();
-			add(new ShowProvider(showProvider));
+			ShowCostList showCostList = providerMap.get(providerID).combineShowCostList();
+			showCostList.sort();
+			add(new ShowProvider(providerID, showCostList));
 		}
 	}
 }
