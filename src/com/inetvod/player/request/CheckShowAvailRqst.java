@@ -15,6 +15,7 @@ import com.inetvod.common.data.ShowFormat;
 import com.inetvod.common.data.ShowID;
 import com.inetvod.common.data.ProviderConnectionType;
 import com.inetvod.common.data.ShowCostType;
+import com.inetvod.common.data.ShowFormatID;
 import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.common.dbdata.ShowProviderList;
@@ -65,7 +66,7 @@ public class CheckShowAvailRqst extends SessionRequestable
 			}
 
 			//TODO: determine correct format for player
-			ShowFormat showFormat = new ShowFormat(null, MediaEncoding.WMV9, MediaContainer.ASF, (short)600,
+			ShowFormat showFormat = new ShowFormat(new ShowFormatID("0f7db069-c104-40d9-8df7-b5042ab17082"), MediaEncoding.WMV2, MediaContainer.ASF, (short)600,
 				(short)480, (short)30, (short)750);
 
 			// Send request to Provider
