@@ -65,13 +65,8 @@ public class CheckShowAvailRqst extends SessionRequestable
 			}
 
 			//TODO: determine correct format for player
-			ShowFormat showFormat = new ShowFormat();
-			showFormat.setMediaEncoding(MediaEncoding.WMV9);
-			showFormat.setMediaContainer(MediaContainer.ASF);
-			showFormat.setHorzResolution((short)600);
-			showFormat.setVertResolution((short)480);
-			showFormat.setFramesPerSecond((short)30);
-			showFormat.setBitRate((short)750);
+			ShowFormat showFormat = new ShowFormat(null, MediaEncoding.WMV9, MediaContainer.ASF, (short)600,
+				(short)480, (short)30, (short)750);
 
 			// Send request to Provider
 			updatedShowCost = providerRequestor.checkShowAvail(showProvider.getProviderShowID(), showFormat,
