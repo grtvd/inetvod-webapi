@@ -7,20 +7,16 @@ package com.inetvod.player.request;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.data.MediaContainer;
-import com.inetvod.common.data.MediaEncoding;
+import com.inetvod.common.data.ProviderConnectionType;
 import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.data.ShowCost;
-import com.inetvod.common.data.ShowFormat;
-import com.inetvod.common.data.ShowID;
-import com.inetvod.common.data.ProviderConnectionType;
 import com.inetvod.common.data.ShowCostType;
-import com.inetvod.common.data.ShowFormatID;
-import com.inetvod.common.dbdata.ShowProvider;
-import com.inetvod.common.dbdata.ProviderConnection;
-import com.inetvod.common.dbdata.ShowProviderList;
-import com.inetvod.common.dbdata.PlayerManager;
+import com.inetvod.common.data.ShowID;
 import com.inetvod.common.dbdata.Player;
+import com.inetvod.common.dbdata.PlayerManager;
+import com.inetvod.common.dbdata.ProviderConnection;
+import com.inetvod.common.dbdata.ShowProvider;
+import com.inetvod.common.dbdata.ShowProviderList;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
 import com.inetvod.providerClient.rqdata.ProviderStatusCode;
@@ -65,13 +61,9 @@ public class CheckShowAvailRqst extends SessionRequestable
 				return null;
 			}
 
-			//TODO: determine correct format for player
-			ShowFormat showFormat = new ShowFormat(new ShowFormatID("0f7db069-c104-40d9-8df7-b5042ab17082"), MediaEncoding.WMV2, MediaContainer.ASF, (short)600,
-				(short)480, (short)30, (short)750);
-
 			// Send request to Provider
-			updatedShowCost = providerRequestor.checkShowAvail(showProvider.getProviderShowID(), showFormat,
-				fShowCost);
+			updatedShowCost = providerRequestor.checkShowAvail(showProvider.getProviderShowID(),
+				showProvider.getShowFormat(), fShowCost);
 
 			ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
 			if(!ProviderStatusCode.sc_Success.equals(providerStatusCode)

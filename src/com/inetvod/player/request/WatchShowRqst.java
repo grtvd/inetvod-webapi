@@ -9,12 +9,8 @@ import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.LicenseMethod;
-import com.inetvod.common.data.MediaContainer;
-import com.inetvod.common.data.MediaEncoding;
 import com.inetvod.common.data.ProviderConnectionType;
 import com.inetvod.common.data.RentedShowID;
-import com.inetvod.common.data.ShowFormat;
-import com.inetvod.common.data.ShowFormatID;
 import com.inetvod.common.dbdata.MemberProvider;
 import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.common.dbdata.RentedShow;
@@ -57,13 +53,9 @@ public class WatchShowRqst extends SessionRequestable
 				return null;
 			}
 
-			//TODO: determine correct format for player
-			ShowFormat showFormat = new ShowFormat(new ShowFormatID("0f7db069-c104-40d9-8df7-b5042ab17082"), MediaEncoding.WMV2, MediaContainer.ASF, (short)600,
-				(short)480, (short)30, (short)750);
-
 			// Send request to Provider
 			com.inetvod.providerClient.request.WatchShowResp providerWatchShowResp = providerRequestor.watchShow(
-				showProvider.getProviderShowID(), fPlayerIPAddress, showFormat);
+				showProvider.getProviderShowID(), fPlayerIPAddress, showProvider.getShowFormat());
 
 			ProviderStatusCode providerStatusCode = providerRequestor.getStatusCode();
 			if(!ProviderStatusCode.sc_Success.equals(providerStatusCode) || (providerWatchShowResp == null))
