@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -14,6 +14,7 @@ import com.inetvod.common.dbdata.RentedShowList;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowList;
 import com.inetvod.common.dbdata.ShowProviderList;
+import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.player.rqdata.RentedShowSearch;
 import com.inetvod.player.rqdata.StatusCode;
 
@@ -31,25 +32,27 @@ public class RentedShowListRqst extends SessionRequestable
 		RentedShowList rentedShowList;
 		ShowList showList;
 		ShowProviderList showProviderList;
-		ShowProviderList thisShowProviderList;
+		ShowProvider showProvider;
 		Show show;
 		Player player;
 
 		response = new RentedShowListResp();
 
 		rentedShowList = RentedShowList.findByMemberID(fMemberID);
-		showList = ShowList.findByRentedShowMemberID(fMemberID);
-		showProviderList = ShowProviderList.findByRentedShowMemberID(fMemberID);
-		player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
-
-		for(RentedShow rentedShow : rentedShowList)
+		if(rentedShowList.size() > 0)
 		{
-			show = showList.get(rentedShow.getShowID());
-			thisShowProviderList = showProviderList.findItemsByShowIDProviderID(rentedShow.getShowID(),
-				rentedShow.getProviderID()).findItemsByPlayerMimeType(player);
+			showList = ShowList.findByRentedShowMemberID(fMemberID);
+			showProviderList = ShowProviderList.findByRentedShowMemberID(fMemberID);
+			player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
 
-			if(thisShowProviderList.size() > 0)
-				response.getRentedShowSearchList().add(new RentedShowSearch(rentedShow, show));
+			for(RentedShow rentedShow : rentedShowList)
+			{
+				show = showList.get(rentedShow.getShowID());
+				showProvider = showProviderList.get(rentedShow.getShowProviderID());
+
+				if(player.supportsMimeType(showProvider.getShowFormatMime()))
+					response.getRentedShowSearchList().add(new RentedShowSearch(rentedShow, show));
+			}
 		}
 
 		fStatusCode = StatusCode.sc_Success;

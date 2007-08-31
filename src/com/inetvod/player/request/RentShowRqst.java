@@ -180,8 +180,7 @@ public class RentShowRqst extends SessionRequestable
 		}
 
 		// Save the RentedShow record
-		RentedShow rentedShow = RentedShow.newInstance(fMemberID, fShowID, fProviderID,
-			providerConnection.getProviderConnectionID());
+		RentedShow rentedShow = RentedShow.newInstance(fMemberID, fShowID, fProviderID, showProvider.getShowProviderID());
 
 		rentedShow.setShowURL(showURL);
 		//TODO: save LicenseMethod, LicenseServer

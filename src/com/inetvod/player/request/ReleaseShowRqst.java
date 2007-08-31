@@ -13,12 +13,9 @@ import com.inetvod.common.data.ProviderConnectionType;
 import com.inetvod.common.data.RentedShowID;
 import com.inetvod.common.data.ShowFormat;
 import com.inetvod.common.data.ShowFormatID;
-import com.inetvod.common.dbdata.Player;
-import com.inetvod.common.dbdata.PlayerManager;
 import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.ShowProvider;
-import com.inetvod.common.dbdata.ShowProviderList;
 import com.inetvod.player.rqdata.StatusCode;
 import com.inetvod.providerClient.ProviderRequestor;
 import com.inetvod.providerClient.rqdata.ProviderStatusCode;
@@ -36,11 +33,10 @@ public class ReleaseShowRqst extends SessionRequestable
 
 	public Writeable fulfillRequest() throws Exception
 	{
-		// Get the rented show
+		// Get the rented show, provider, and connection
 		RentedShow rentedShow = RentedShow.get(fRentedShowID);
-
-		// Get the provider connectin
-		ProviderConnection providerConnection = ProviderConnection.get(rentedShow.getProviderConnectionID());
+		ShowProvider showProvider = ShowProvider.get(rentedShow.getShowProviderID());
+		ProviderConnection providerConnection = ProviderConnection.get(showProvider.getProviderConnectionID());
 
 		// Is a ProviderAPI connection?
 		if(ProviderConnectionType.ProviderAPI.equals(providerConnection.getProviderConnectionType()))
@@ -51,17 +47,6 @@ public class ReleaseShowRqst extends SessionRequestable
 			if(!providerRequestor.pingServer())
 			{
 				fStatusCode = StatusCode.sc_NoProviderResponse;
-				return null;
-			}
-
-			// Fetch Show as offered by Provider
-			Player player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
-			//TODO: Get specific ShowProvider by using RentedShow.getShowFormat
-			ShowProvider showProvider = ShowProviderList.findByShowIDProviderID(rentedShow.getShowID(),
-				rentedShow.getProviderID()).findFirstByPlayerMimeType(player);
-			if(showProvider == null)
-			{
-				fStatusCode = StatusCode.sc_GeneralError;
 				return null;
 			}
 

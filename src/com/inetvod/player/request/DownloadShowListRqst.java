@@ -1,5 +1,5 @@
 /**
- * Copyright © 2005-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2005-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -14,6 +14,7 @@ import com.inetvod.common.dbdata.RentedShowList;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowList;
 import com.inetvod.common.dbdata.ShowProviderList;
+import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.player.rqdata.DownloadShow;
 import com.inetvod.player.rqdata.StatusCode;
 
@@ -32,26 +33,28 @@ public class DownloadShowListRqst extends SessionRequestable
 		RentedShowList rentedShowList;
 		ShowList showList;
 		ShowProviderList showProviderList;
-		ShowProviderList thisShowProviderList;
+		ShowProvider showProvider;
 		Show show;
 		Player player;
 
 		response = new DownloadShowListResp();
 
 		rentedShowList = RentedShowList.findByMemberID(fMemberID);
-		showList = ShowList.findByRentedShowMemberID(fMemberID);
-		showProviderList = ShowProviderList.findByRentedShowMemberID(fMemberID);
-		player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
-
-		for(RentedShow rentedShow : rentedShowList)
+		if(rentedShowList.size() > 0)
 		{
-			//TODO: need to filter for downloadable shows only
-			show = showList.get(rentedShow.getShowID());
-			thisShowProviderList = showProviderList.findItemsByShowIDProviderID(rentedShow.getShowID(),
-				rentedShow.getProviderID()).findItemsByPlayerMimeType(player);
+			showList = ShowList.findByRentedShowMemberID(fMemberID);
+			showProviderList = ShowProviderList.findByRentedShowMemberID(fMemberID);
+			player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
 
-			if(thisShowProviderList.size() > 0)
-				response.getDownloadShowList().add(new DownloadShow(rentedShow, show));
+			for(RentedShow rentedShow : rentedShowList)
+			{
+				//TODO: need to filter for downloadable shows only
+				show = showList.get(rentedShow.getShowID());
+				showProvider = showProviderList.get(rentedShow.getShowProviderID());
+
+				if(player.supportsMimeType(showProvider.getShowFormatMime()))
+					response.getDownloadShowList().add(new DownloadShow(rentedShow, show));
+			}
 		}
 
 		fStatusCode = StatusCode.sc_Success;
