@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -97,14 +97,14 @@ public class ShowSearchRqst extends SessionRequestable
 		}
 
 		player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
+		showProviderList = showProviderList.findItemsByAvailable().findItemsByPlayer(player);
 
 		for(Show show : showList)
 		{
 			if(!includeAdult && show.getIsAdult())
 				continue;
 
-			thisShowProviderList = showProviderList.findItemsByShowID(show.getShowID()).findItemsByAvailable()
-				.findItemsByPlayerMimeType(player);
+			thisShowProviderList = showProviderList.findItemsByShowID(show.getShowID());
 			if(thisShowProviderList.size() == 0)
 				continue;
 

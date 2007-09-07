@@ -56,7 +56,7 @@ public class RentShowRqst extends SessionRequestable
 		ShowProviderList showProviderList = ShowProviderList.findByShowIDProviderIDAvailable(fShowID, fProviderID)
 			.findItemsByShowCost(fApprovedCost);
 		// Fettch first ShowProvider supported by Player
-		ShowProvider showProvider = showProviderList.findFirstByPlayerMimeType(player);
+		ShowProvider showProvider = showProviderList.findFirstByPlayer(player);
 		if(showProvider == null)
 		{
 			fStatusCode = StatusCode.sc_GeneralError;

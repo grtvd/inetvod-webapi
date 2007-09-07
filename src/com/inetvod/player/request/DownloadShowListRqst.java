@@ -13,8 +13,8 @@ import com.inetvod.common.dbdata.RentedShow;
 import com.inetvod.common.dbdata.RentedShowList;
 import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowList;
-import com.inetvod.common.dbdata.ShowProviderList;
 import com.inetvod.common.dbdata.ShowProvider;
+import com.inetvod.common.dbdata.ShowProviderList;
 import com.inetvod.player.rqdata.DownloadShow;
 import com.inetvod.player.rqdata.StatusCode;
 
@@ -52,7 +52,7 @@ public class DownloadShowListRqst extends SessionRequestable
 				show = showList.get(rentedShow.getShowID());
 				showProvider = showProviderList.get(rentedShow.getShowProviderID());
 
-				if(player.supportsMimeType(showProvider.getShowFormatMime()))
+				if(player.supportsFormat(showProvider.getShowFormat(), showProvider.getShowFormatMime()))
 					response.getDownloadShowList().add(new DownloadShow(rentedShow, show));
 			}
 		}

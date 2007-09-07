@@ -8,10 +8,10 @@ import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.ShowID;
-import com.inetvod.common.dbdata.Show;
-import com.inetvod.common.dbdata.ShowCategoryList;
 import com.inetvod.common.dbdata.Player;
 import com.inetvod.common.dbdata.PlayerManager;
+import com.inetvod.common.dbdata.Show;
+import com.inetvod.common.dbdata.ShowCategoryList;
 import com.inetvod.player.rqdata.ShowDetail;
 import com.inetvod.player.rqdata.ShowProviderList;
 import com.inetvod.player.rqdata.StatusCode;
@@ -38,7 +38,7 @@ public class ShowDetailRqst extends SessionRequestable
 		response = new ShowDetailResp();
 		show = Show.get(fShowID);
 		showProviderList = new ShowProviderList(com.inetvod.common.dbdata.ShowProviderList.findByShowIDAvailable(fShowID)
-			.findItemsByPlayerMimeType(player));
+			.findItemsByPlayer(player));
 		showCategoryList = ShowCategoryList.findByShowID(fShowID);
 
 		response.ShowDetail = new ShowDetail(show, showProviderList, showCategoryList);

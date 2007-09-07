@@ -41,7 +41,7 @@ public class CheckShowAvailRqst extends SessionRequestable
 		// Fetch Show as offered by Provider
 		Player player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
 		ShowProvider showProvider = ShowProviderList.findByShowIDProviderIDAvailable(fShowID, fProviderID)
-			.findItemsByShowCost(fShowCost).findFirstByPlayerMimeType(player);
+			.findItemsByShowCost(fShowCost).findFirstByPlayer(player);
 		if(showProvider == null)
 		{
 			fStatusCode = StatusCode.sc_GeneralError;
