@@ -4,6 +4,8 @@
  */
 package com.inetvod.player.request;
 
+import java.util.HashMap;
+
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
@@ -13,6 +15,7 @@ import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.data.ProviderIDList;
 import com.inetvod.common.data.RatingID;
 import com.inetvod.common.data.RatingIDList;
+import com.inetvod.common.data.ShowID;
 import com.inetvod.common.dbdata.Player;
 import com.inetvod.common.dbdata.PlayerManager;
 import com.inetvod.common.dbdata.Show;
@@ -63,7 +66,7 @@ public class ShowSearchRqst extends SessionRequestable
 		{
 			showList = ShowList.findByName(fSearch);
 
-			showProviderList = ShowProviderList.findByShowName(fSearch);
+			showProviderList = ShowProviderList.findByShowNameAvailable(fSearch);
 			if(fProviderIDList.size() > 0)
 				showProviderList = showProviderList.findItemsByProviderIDList(fProviderIDList);
 
@@ -77,7 +80,7 @@ public class ShowSearchRqst extends SessionRequestable
 		{
 			showList = ShowList.findByProviderIDList(fProviderIDList);
 
-			showProviderList = ShowProviderList.findByProviderIDList(fProviderIDList);
+			showProviderList = ShowProviderList.findByProviderIDListAvailable(fProviderIDList);
 
 			if(fCategoryIDList.size() > 0)
 				showCategoryList = ShowCategoryList.findByCategoryIDList(fCategoryIDList);
@@ -86,7 +89,7 @@ public class ShowSearchRqst extends SessionRequestable
 		{
 			showList = ShowList.findByCategoryIDList(fCategoryIDList);
 
-			showProviderList = ShowProviderList.findByCategoryIDList(fCategoryIDList);
+			showProviderList = ShowProviderList.findByCategoryIDListAvailable(fCategoryIDList);
 			if(fProviderIDList.size() > 0)
 				showProviderList = showProviderList.findItemsByProviderIDList(fProviderIDList);
 		}
@@ -97,15 +100,16 @@ public class ShowSearchRqst extends SessionRequestable
 		}
 
 		player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
-		showProviderList = showProviderList.findItemsByAvailable().findItemsByPlayer(player);
+		showProviderList = showProviderList.findItemsByPlayer(player);
+		HashMap<ShowID, ShowProviderList> showShowProviderMap = showProviderList.splitByShowID();
 
 		for(Show show : showList)
 		{
 			if(!includeAdult && show.getIsAdult())
 				continue;
 
-			thisShowProviderList = showProviderList.findItemsByShowID(show.getShowID());
-			if(thisShowProviderList.size() == 0)
+			thisShowProviderList = showShowProviderMap.get(show.getShowID());
+			if((thisShowProviderList == null) || (thisShowProviderList.size() == 0))
 				continue;
 
 			if(showCategoryList != null)
