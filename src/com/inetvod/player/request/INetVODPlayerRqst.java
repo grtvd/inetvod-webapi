@@ -1,11 +1,10 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
 
 import java.lang.reflect.Constructor;
-
 import javax.servlet.http.HttpServletRequest;
 
 import com.inetvod.common.core.DataReader;
@@ -129,6 +128,8 @@ public class INetVODPlayerRqst implements PlayerRequestable
 			response.setStatusMessage("This Show's rentail period has expired and as a result, this Show no longer viewable.");
 		else if(StatusCode.sc_InvalidAdultPIN.equals(statusCode))
 			response.setStatusMessage("Your Adult PIN was invalid. Access to adult content has been denied.");
+		else if(StatusCode.sc_GuestNotAllowed.equals(statusCode))
+			response.setStatusMessage("Guest access is not allowed for this request.");
 		else
 			response.setStatusMessage("An unknown error has occurred. Please try again. If the problem persists, please contact customer service.");	//TODO: better messages
 	}

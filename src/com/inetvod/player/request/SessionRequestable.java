@@ -1,12 +1,12 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
 
 import com.inetvod.common.data.MemberID;
-import com.inetvod.common.dbdata.MemberSession;
 import com.inetvod.common.dbdata.Member;
+import com.inetvod.common.dbdata.MemberSession;
 import com.inetvod.player.rqdata.PlayerRequestable;
 import com.inetvod.player.rqdata.StatusCode;
 
@@ -28,6 +28,8 @@ public abstract class SessionRequestable implements PlayerRequestable
 	public StatusCode getStatusCode() { return fStatusCode; }
 
 	/* Implementation */
+	protected boolean areGuestsAllowedForRequest() { return false; }
+
 	public StatusCode setRequest(String version, String requestID, SessionData sessionData, String playerIPAddress)
 		throws Exception
 	{
@@ -44,6 +46,9 @@ public abstract class SessionRequestable implements PlayerRequestable
 				fMemberSession.delete();
 			return StatusCode.sc_InvalidSession;
 		}
+
+		if (MemberID.GuestMemberID.equals(fMemberSession.getMemberID()) && !areGuestsAllowedForRequest())
+			return StatusCode.sc_GuestNotAllowed;
 
 		fMemberID = fMemberSession.getMemberID();
 		fPlayerIPAddress = playerIPAddress;

@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.rqdata;
@@ -35,29 +35,30 @@ public class StatusCode
 	public static final StatusCode sc_ShowRentExpired = new StatusCode(1018);
 	public static final StatusCode sc_InvalidAdultPIN = new StatusCode(1019);
 
+	public static final StatusCode sc_GuestNotAllowed = new StatusCode(1020);
+
 	public static final StatusCode sc_GeneralError = new StatusCode(9999);
 
-	private static List<StatusCode> fAllValues = Arrays.asList(new StatusCode[]
-		{
-			sc_Success,
-			sc_InvalidUserIDPassword,
-			sc_InvalidSession,
-			sc_InvalidProviderUserIDPassword,
-			sc_AlreadyEnrolledAtProvider,
-			sc_NoAutoProviderEnrollment,
-			sc_PlayerMissing,
-			sc_PlayerOutOfDate,
-			sc_PlayerUnknown,
-			sc_ShowSearch_NeedCriteiia,
-			sc_NoProviderResponse,
-			sc_UnknownProviderResponse,
-			sc_CreditCardNotOnFile,
-			sc_CreditCardDenied,
-			sc_ShowNoAccess,
-			sc_ShowLevelInsufficient,
-			sc_ShowPaymentDenied,
-			sc_GeneralError
-		});
+	private static List<StatusCode> fAllValues = Arrays.asList(
+		sc_Success,
+		sc_InvalidUserIDPassword,
+		sc_InvalidSession,
+		sc_InvalidProviderUserIDPassword,
+		sc_AlreadyEnrolledAtProvider,
+		sc_NoAutoProviderEnrollment,
+		sc_PlayerMissing,
+		sc_PlayerOutOfDate,
+		sc_PlayerUnknown,
+		sc_ShowSearch_NeedCriteiia,
+		sc_NoProviderResponse,
+		sc_UnknownProviderResponse,
+		sc_CreditCardNotOnFile,
+		sc_CreditCardDenied,
+		sc_ShowNoAccess,
+		sc_ShowLevelInsufficient,
+		sc_ShowPaymentDenied,
+		sc_GuestNotAllowed,
+		sc_GeneralError);
 
 	protected int fValue;
 

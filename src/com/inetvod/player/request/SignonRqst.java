@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -9,9 +9,9 @@ import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Logger;
 import com.inetvod.common.core.StrUtil;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.crypto.CryptoDigest;
 import com.inetvod.common.data.IncludeAdult;
 import com.inetvod.common.data.ManufacturerID;
+import com.inetvod.common.data.MemberID;
 import com.inetvod.common.data.PlayerID;
 import com.inetvod.common.dbdata.Member;
 import com.inetvod.common.dbdata.MemberLogon;
@@ -29,6 +29,7 @@ public class SignonRqst implements PlayerRequestable
 	/* Constants */
 	private static final int UserIDMaxLength = 128;
 	private static final int PasswordMaxLength = 32;
+	private static final String GuestUserID = "guest";
 
 	/* Fields */
 	private String fUserID;
@@ -84,20 +85,16 @@ public class SignonRqst implements PlayerRequestable
 
 		//TODO: decrypt UserID and Password based on Player
 
-		int logonID = -1;
-		String password = fPassword;
-
-		try { logonID = Integer.parseInt(fUserID); } catch(NumberFormatException e) {}
-
-		if(StrUtil.isNumeric(password))	//TODO:
-			try { password = CryptoDigest.encrypt(password); } catch(Exception e) {}
-
-		if(logonID != -1)
+		if(GuestUserID.equals(fUserID))
+			memberLogon = MemberLogon.get(MemberID.GuestMemberID);
+		else
 		{
-			memberLogon = MemberLogon.findByLogonIDPIN(logonID, password);
-			if((memberLogon == null) && StrUtil.isNumeric(fPassword))	//TODO: remove, temp fix to unencrypted values in DB
-				memberLogon = MemberLogon.findByLogonIDPIN(logonID, fPassword);
+			if(StrUtil.isNumeric(fUserID))
+				memberLogon = MemberLogon.findByLogonIDPIN(Integer.parseInt(fUserID), fPassword);
+			else
+				memberLogon = MemberLogon.findByEmailPassword(fUserID, fPassword);
 		}
+
 		if(memberLogon != null)
 		{
 			Member member = Member.get(memberLogon.getMemberID());

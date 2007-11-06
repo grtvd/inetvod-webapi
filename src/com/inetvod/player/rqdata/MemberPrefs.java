@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.rqdata;
@@ -12,6 +12,11 @@ public class MemberPrefs implements Writeable
 {
 	/* Fields */
 	protected IncludeAdult fIncludeAdult;
+
+	public MemberPrefs()
+	{
+		fIncludeAdult = IncludeAdult.Never;
+	}
 
 	public MemberPrefs(com.inetvod.common.dbdata.MemberPrefs memberPrefs)
 	{

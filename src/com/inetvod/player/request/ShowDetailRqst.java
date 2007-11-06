@@ -27,6 +27,9 @@ public class ShowDetailRqst extends SessionRequestable
 		readFrom(reader);
 	}
 
+	/* Implementation */
+	protected boolean areGuestsAllowedForRequest() { return true; }
+
 	public Writeable fulfillRequest() throws Exception
 	{
 		ShowDetailResp response;

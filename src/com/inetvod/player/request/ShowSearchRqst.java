@@ -45,6 +45,9 @@ public class ShowSearchRqst extends SessionRequestable
 		readFrom(reader);
 	}
 
+	/* Implementation */
+	protected boolean areGuestsAllowedForRequest() { return true; }
+
 	public Writeable fulfillRequest() throws Exception
 	{
 		ShowSearchResp response;
