@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2008 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.rqdata;
@@ -19,6 +19,7 @@ public class ShowSearch implements Writeable
 	protected String fEpisodeName;
 	protected Date fReleasedOn;
 	protected Short fReleasedYear;
+	protected String fPictureURL;
 	protected ShowProviderList fShowProviderList = new ShowProviderList();
 
 	/* Getters and Setters */
@@ -26,6 +27,7 @@ public class ShowSearch implements Writeable
 	public String getName() { return fName; }
 	public String getEpisodeName() { return fEpisodeName; }
 	public Short getReleasedYear() { return fReleasedYear; }
+	public String getPictureURL() { return fPictureURL; }
 	public ShowProviderList getShowProviderList() { return fShowProviderList; }
 
 	/* Constuction Methods */
@@ -40,6 +42,7 @@ public class ShowSearch implements Writeable
 		fEpisodeName = show.getEpisodeName();
 		fReleasedOn = show.getReleasedOn();
 		fReleasedYear = show.getReleasedYear();
+		fPictureURL = show.getPictureURL();
 	}
 
 	public void writeTo(DataWriter writer) throws Exception
@@ -50,5 +53,6 @@ public class ShowSearch implements Writeable
 		writer.writeDate("ReleasedOn", fReleasedOn);
 		writer.writeShort("ReleasedYear", fReleasedYear);
 		writer.writeList("ShowProvider", fShowProviderList);
+		writer.writeString("PictureURL", fPictureURL, Show.PictureURLMaxLength);
 	}
 }
