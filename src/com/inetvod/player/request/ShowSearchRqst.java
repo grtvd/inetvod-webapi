@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2008 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -64,6 +64,12 @@ public class ShowSearchRqst extends SessionRequestable
 
 		response = new ShowSearchResp();
 		response.ReachedMax = false;
+
+		if(fMaxResults == null)
+		{
+			fStatusCode = StatusCode.sc_ShowSearch_NeedCriteiia;
+			return response;
+		}
 
 		if(fSearch != null)
 		{
