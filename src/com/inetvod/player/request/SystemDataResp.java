@@ -1,13 +1,13 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2008 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.dbdata.CategoryList;
 import com.inetvod.common.dbdata.RatingList;
+import com.inetvod.player.rqdata.CategoryList;
 import com.inetvod.player.rqdata.ProviderList;
 
 public class SystemDataResp implements Writeable
