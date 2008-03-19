@@ -5,6 +5,7 @@
 package com.inetvod.player.request;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
@@ -57,10 +58,22 @@ public class ShowSearchRqst extends SessionRequestable
 		ShowProviderList thisShowProviderList;
 		ShowCategoryList showCategoryList = null;
 		boolean includeAdult;
+		//noinspection MismatchedQueryAndUpdateOfCollection
+		RatingIDList includeRatingIDList = new RatingIDList();
+		HashSet<RatingID> includeRatingIDSet;
 		Player player;
 		short numFound = 0;
 
 		includeAdult = fMemberSession.getShowAdult();
+		if(includeAdult)
+			includeRatingIDList.copy(fRatingIDList);
+		else
+		{
+			includeRatingIDList.copy(fMemberSession.getIncludeRatingIDList());
+			if(fRatingIDList.size() > 0)
+				includeRatingIDList.and(fRatingIDList);
+		}
+		includeRatingIDSet = includeRatingIDList.getHashSet();
 
 		response = new ShowSearchResp();
 		response.ReachedMax = false;
@@ -116,6 +129,9 @@ public class ShowSearchRqst extends SessionRequestable
 		{
 			if(!includeAdult && show.getIsAdult())
 				continue;
+			if((includeRatingIDSet.size() != 0) && (!includeRatingIDSet.contains((show.getRatingID() != null)
+					? show.getRatingID() : RatingID.NotRated)))
+				continue;
 
 			thisShowProviderList = showShowProviderMap.get(show.getShowID());
 			if((thisShowProviderList == null) || (thisShowProviderList.size() == 0))
@@ -123,10 +139,6 @@ public class ShowSearchRqst extends SessionRequestable
 
 			if(showCategoryList != null)
 				if(showCategoryList.findItemsByShowID(show.getShowID()).size() == 0)
-					continue;
-
-			if(fRatingIDList.size() > 0)
-				if(!fRatingIDList.contains(show.getRatingID()))
 					continue;
 
 			// Test max results BEFORE adding to response list so response.ReachedMax is only set to true if the max

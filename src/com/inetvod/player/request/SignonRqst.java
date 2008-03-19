@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2008 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -98,14 +98,15 @@ public class SignonRqst implements PlayerRequestable
 		if(memberLogon != null)
 		{
 			Member member = Member.get(memberLogon.getMemberID());
-			MemberSession memberSession = MemberSession.newInstance(memberLogon.getMemberID(), playerID);
+			com.inetvod.common.dbdata.MemberPrefs dbMemberPrefs = com.inetvod.common.dbdata.MemberPrefs.getCreate(member.getMemberID());
+			MemberSession memberSession = MemberSession.newInstance(memberLogon.getMemberID(), playerID,
+				dbMemberPrefs.getIncludeRatingIDList());
 
 			SessionData sessionData = new SessionData(memberSession.getMemberSessionID());
 			response.setSessionData(sessionData);
 			response.setSessionExpires(memberSession.getExpiresAt());
 
 			MemberState memberState = new MemberState();
-			com.inetvod.common.dbdata.MemberPrefs dbMemberPrefs = com.inetvod.common.dbdata.MemberPrefs.getCreate(member.getMemberID());
 			memberState.setMemberPrefs(new MemberPrefs(dbMemberPrefs));
 			memberState.setMemberProviderList(new MemberProviderList(
 				com.inetvod.common.dbdata.MemberProviderList.findByMemberID(member.getMemberID())));

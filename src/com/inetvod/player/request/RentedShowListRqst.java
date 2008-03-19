@@ -4,9 +4,12 @@
  */
 package com.inetvod.player.request;
 
+import java.util.HashSet;
+
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
+import com.inetvod.common.data.RatingID;
 import com.inetvod.common.dbdata.Player;
 import com.inetvod.common.dbdata.PlayerManager;
 import com.inetvod.common.dbdata.RentedShow;
@@ -36,6 +39,7 @@ public class RentedShowListRqst extends SessionRequestable
 		Show show;
 		Player player;
 		boolean includeAdult;
+		HashSet<RatingID> includeRatingIDSet;
 
 		response = new RentedShowListResp();
 
@@ -43,6 +47,11 @@ public class RentedShowListRqst extends SessionRequestable
 		if(rentedShowList.size() > 0)
 		{
 			includeAdult = fMemberSession.getShowAdult();
+			if(!includeAdult)
+				includeRatingIDSet = fMemberSession.getIncludeRatingIDList().getHashSet();
+			else
+				includeRatingIDSet = new HashSet<RatingID>();
+
 			showList = ShowList.findByRentedShowMemberID(fMemberID);
 			showProviderList = ShowProviderList.findByRentedShowMemberID(fMemberID);
 			player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
@@ -53,7 +62,9 @@ public class RentedShowListRqst extends SessionRequestable
 				showProvider = showProviderList.get(rentedShow.getShowProviderID());
 
 				if(player.supportsFormat(showProvider.getShowFormat(), showProvider.getShowFormatMime())
-						&& (includeAdult || !show.getIsAdult()))
+						&& (includeAdult || !show.getIsAdult())
+						&& (includeAdult || includeRatingIDSet.contains((show.getRatingID() != null)
+							? show.getRatingID() : RatingID.NotRated)))
 					response.getRentedShowSearchList().add(new RentedShowSearch(rentedShow, show));
 			}
 		}
