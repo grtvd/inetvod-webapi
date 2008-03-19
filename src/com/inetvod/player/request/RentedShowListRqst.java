@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2008 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -35,12 +35,14 @@ public class RentedShowListRqst extends SessionRequestable
 		ShowProvider showProvider;
 		Show show;
 		Player player;
+		boolean includeAdult;
 
 		response = new RentedShowListResp();
 
 		rentedShowList = RentedShowList.findByMemberID(fMemberID);
 		if(rentedShowList.size() > 0)
 		{
+			includeAdult = fMemberSession.getShowAdult();
 			showList = ShowList.findByRentedShowMemberID(fMemberID);
 			showProviderList = ShowProviderList.findByRentedShowMemberID(fMemberID);
 			player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
@@ -50,7 +52,8 @@ public class RentedShowListRqst extends SessionRequestable
 				show = showList.get(rentedShow.getShowID());
 				showProvider = showProviderList.get(rentedShow.getShowProviderID());
 
-				if(player.supportsFormat(showProvider.getShowFormat(), showProvider.getShowFormatMime()))
+				if(player.supportsFormat(showProvider.getShowFormat(), showProvider.getShowFormatMime())
+						&& (includeAdult || !show.getIsAdult()))
 					response.getRentedShowSearchList().add(new RentedShowSearch(rentedShow, show));
 			}
 		}
