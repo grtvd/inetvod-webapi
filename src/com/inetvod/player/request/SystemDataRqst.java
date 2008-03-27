@@ -7,9 +7,9 @@ package com.inetvod.player.request;
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.dbdata.RatingList;
 import com.inetvod.player.rqdata.CategoryList;
 import com.inetvod.player.rqdata.ProviderList;
+import com.inetvod.player.rqdata.RatingList;
 import com.inetvod.player.rqdata.StatusCode;
 
 public class SystemDataRqst extends SessionRequestable
@@ -37,7 +37,7 @@ public class SystemDataRqst extends SessionRequestable
 			response.ProviderList = ProviderList.newInstance(com.inetvod.common.dbdata.ProviderList.findByNoAdult());
 			response.CategoryList = CategoryList.newInstance(com.inetvod.common.dbdata.CategoryList.findByNoAdult());
 		}
-		response.RatingList = RatingList.find();
+		response.RatingList = RatingList.newInstance(com.inetvod.common.dbdata.RatingList.find());
 
 		fStatusCode = StatusCode.sc_Success;
 

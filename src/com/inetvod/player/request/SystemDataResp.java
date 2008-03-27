@@ -6,9 +6,9 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataWriter;
 import com.inetvod.common.core.Writeable;
-import com.inetvod.common.dbdata.RatingList;
 import com.inetvod.player.rqdata.CategoryList;
 import com.inetvod.player.rqdata.ProviderList;
+import com.inetvod.player.rqdata.RatingList;
 
 public class SystemDataResp implements Writeable
 {
