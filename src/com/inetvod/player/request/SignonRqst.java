@@ -91,7 +91,7 @@ public class SignonRqst implements PlayerRequestable
 		{
 			if(StrUtil.isNumeric(fUserID))
 				memberLogon = MemberLogon.findByLogonIDPIN(Integer.parseInt(fUserID), fPassword);
-			else
+			else if(StrUtil.isEmail(fUserID))
 				memberLogon = MemberLogon.findByEmailPassword(fUserID, fPassword);
 		}
 
