@@ -14,8 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.inetvod.common.core.AppProperties;
 import com.inetvod.common.core.Logger;
+import com.inetvod.common.core.Mailer;
 import com.inetvod.common.core.StrUtil;
+import com.inetvod.common.core.XmlDataReader;
 import com.inetvod.common.data.ProviderConnectionType;
 import com.inetvod.common.data.ProviderID;
 import com.inetvod.common.dbdata.ProviderConnection;
@@ -32,18 +35,27 @@ public class ExtraAPIServlet extends HttpServlet
 	private static final String PARAM_ENCODING = "UTF-8";
 
 	private static final String ADD_CONTENT_METHOD = "ac";
+	private static final String SEND_FEEDBACK_METHOD = "fb";
 
 	private static final String SUCCESS_RESULT = "OK";
 	private static final String FAILED_RESULT = "FAIL";
+	private static final String BAD_REQUEST_RESULT = "BAD";
 	private static final String ADD_CONTENT_DUPLICATE_RESULT = "DUP";
 
 	private static final int ConnectionTimeoutMillis = 30000;	//TODO: config?
 	private static final int SocketTimeoutMillis = 30000;	//TODO: config?
 
+	public static String SendFeedbackToEmailProperty = "extraapi.sendfeedback.toemail";
+
+	private static String SendFeedbackToEmail;
+
 	@Override
 	public void init() throws ServletException
 	{
-		// this code assumes PlayerXmlServlet is initalized everything
+		// this code assumes PlayerXmlServlet initalizes most things
+
+		AppProperties properties = AppProperties.getThe();
+		SendFeedbackToEmail = properties.getProperty(SendFeedbackToEmailProperty);
 	}
 
 //	@Override
@@ -88,6 +100,10 @@ public class ExtraAPIServlet extends HttpServlet
 			if(ADD_CONTENT_METHOD.equals(requestMethod.getName()))
 			{
 				result = addContent(getRequestBody(httpServletRequest));
+			}
+			else if(SEND_FEEDBACK_METHOD.equals(requestMethod.getName()))
+			{
+				result = sendFeedback(httpServletRequest);
 			}
 		}
 		catch(Exception ignore)
@@ -183,6 +199,42 @@ public class ExtraAPIServlet extends HttpServlet
 		}
 
 		return false;
+	}
+
+	private static String sendFeedback(HttpServletRequest httpServletRequest)
+	{
+		FeedbackData feedbackData = null;
+
+		try
+		{
+			feedbackData = readFeedbackData(httpServletRequest);
+
+			if(!StrUtil.hasLen(feedbackData.getSubject()) || !StrUtil.hasLen(feedbackData.getBody()))
+				return BAD_REQUEST_RESULT;
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(String.format("Member: %s\n", feedbackData.getMemberUserID()));
+			sb.append(String.format("IP: %s\n", httpServletRequest.getRemoteAddr()));
+			sb.append(String.format("Subject: %s\n", feedbackData.getSubject()));
+			sb.append(String.format("Body: %s\n", feedbackData.getBody()));
+
+			Mailer.sendMail(SendFeedbackToEmail, "Feedback", sb.toString());
+			return SUCCESS_RESULT;
+		}
+		catch(Exception e)
+		{
+			Logger.logWarn(ExtraAPIServlet.class, "sendFeedback", String.format("Failed to email, Subject(%s), Body(%s)",
+				(feedbackData != null) ? feedbackData.getSubject() : "", (feedbackData != null) ? feedbackData.getBody() : ""),
+				e);
+		}
+
+		return FAILED_RESULT;
+	}
+
+	private static FeedbackData readFeedbackData(HttpServletRequest httpServletRequest) throws Exception
+	{
+		XmlDataReader reader = new XmlDataReader(httpServletRequest.getInputStream());
+		return reader.readObject(FeedbackData.Name, FeedbackData.CtorDataReader);
 	}
 
 	private static class Method

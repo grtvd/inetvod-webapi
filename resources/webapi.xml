@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+	<entry key="mailer.smtpserver">k2smtpout.secureserver.net</entry>
+	<entry key="mailer.defaultfromemail">ops@inetvod.com</entry>
+	<entry key="extraapi.sendfeedback.toemail">ops@inetvod.com</entry>
+</properties>
