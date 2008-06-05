@@ -190,8 +190,9 @@ public class RentShowRqst extends SessionRequestable
 		try
 		{
 			Show show = Show.get(fShowID);
-			RentedShowHistory rentedShowHistory = RentedShowHistory.newInstance(getMember(), show, showProvider, rentedShow,
-				player, fPlayerIPAddress);
+			RentedShowHistory rentedShowHistory = RentedShowHistory.newInstance(getMember(), show, showProvider,
+				rentedShow, player, fMemberSession.getPlayerSerialNo(), fMemberSession.getPlayerVersion(),
+				fPlayerIPAddress);
 			rentedShowHistory.update();
 		}
 		catch(Exception e)

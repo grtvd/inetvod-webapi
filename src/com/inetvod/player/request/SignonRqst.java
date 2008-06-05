@@ -100,7 +100,7 @@ public class SignonRqst implements PlayerRequestable
 			Member member = Member.get(memberLogon.getMemberID());
 			com.inetvod.common.dbdata.MemberPrefs dbMemberPrefs = com.inetvod.common.dbdata.MemberPrefs.getCreate(member.getMemberID());
 			MemberSession memberSession = MemberSession.newInstance(memberLogon.getMemberID(), playerID,
-				dbMemberPrefs.getIncludeRatingIDList());
+				fPlayer.getSerialNo(), fPlayer.getVersion(), dbMemberPrefs.getIncludeRatingIDList());
 
 			SessionData sessionData = new SessionData(memberSession.getMemberSessionID());
 			response.setSessionData(sessionData);
