@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2008 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.rqdata;
@@ -16,9 +16,9 @@ public class Player implements Readable, Writeable
 {
 	/* Constants */
 	public static final Constructor<Player> CtorDataReader = DataReader.getCtor(Player.class);
-	public static final int ModelNoMaxLength = 32;
-	public static final int SerialNoMaxLength = 64;
-	public static final int VersionMaxLength = 16;
+	private static final int ModelNoMaxLength = com.inetvod.common.dbdata.Player.ModelNoMaxLength;
+	public static final int SerialNoMaxLength = com.inetvod.common.dbdata.Player.SerialNoMaxLength;
+	public static final int VersionMaxLength = com.inetvod.common.dbdata.Player.VersionMaxLength;
 
 	/* Fields */
 	protected ManufacturerID fManufacturerID;

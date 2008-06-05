@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2008 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -8,6 +8,7 @@ import java.util.Date;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
+import com.inetvod.common.core.Logger;
 import com.inetvod.common.core.Writeable;
 import com.inetvod.common.data.CreditCard;
 import com.inetvod.common.data.LicenseMethod;
@@ -22,6 +23,8 @@ import com.inetvod.common.dbdata.Player;
 import com.inetvod.common.dbdata.PlayerManager;
 import com.inetvod.common.dbdata.ProviderConnection;
 import com.inetvod.common.dbdata.RentedShow;
+import com.inetvod.common.dbdata.RentedShowHistory;
+import com.inetvod.common.dbdata.Show;
 import com.inetvod.common.dbdata.ShowProvider;
 import com.inetvod.common.dbdata.ShowProviderList;
 import com.inetvod.player.rqdata.License;
@@ -55,7 +58,7 @@ public class RentShowRqst extends SessionRequestable
 		Player player = PlayerManager.getThe().getPlayer(fMemberSession.getPlayerID());
 		ShowProviderList showProviderList = ShowProviderList.findByShowIDProviderIDAvailable(fShowID, fProviderID)
 			.findItemsByShowCost(fApprovedCost);
-		// Fettch first ShowProvider supported by Player
+		// Fetch first ShowProvider supported by Player
 		ShowProvider showProvider = showProviderList.findFirstByPlayer(player);
 		if(showProvider == null)
 		{
@@ -183,7 +186,20 @@ public class RentShowRqst extends SessionRequestable
 		rentedShow.setAvailableUntil(availableUntil);
 		rentedShow.update();
 
-		//TODO: save to rental history
+		// Save to rental history
+		try
+		{
+			Show show = Show.get(fShowID);
+			RentedShowHistory rentedShowHistory = RentedShowHistory.newInstance(getMember(), show, showProvider, rentedShow,
+				player, fPlayerIPAddress);
+			rentedShowHistory.update();
+		}
+		catch(Exception e)
+		{
+			// Don't fail rental if history save fails
+			Logger.logErr(this, "fulfillRequest", String.format("Unable to save RentedShowHistory, MemberID(%s), ShowID(%s), ProviderID(%s)",
+				fMemberID, fShowID, fProviderID), e);
+		}
 
 		// Return response to player
 		RentShowResp response = new RentShowResp();
