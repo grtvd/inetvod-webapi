@@ -17,15 +17,19 @@ import com.inetvod.common.dbdata.Show;
 public class RentedShowSearch implements Writeable
 {
 	/* Fields */
-	protected RentedShowID fRentedShowID;
+	private RentedShowID fRentedShowID;
 
-	protected ShowID fShowID;
-	protected ProviderID fProviderID;
-	protected String fName;
-	protected String fEpisodeName;
-	protected String fPictureURL;
+	private ShowID fShowID;
+	private ProviderID fProviderID;
+	private String fName;
+	private String fEpisodeName;
 
-	public Date fAvailableUntil;
+	private Date fReleasedOn;
+	private Short fReleasedYear;
+	private String fPictureURL;
+
+	private Date fRentedOn;
+	private Date fAvailableUntil;
 
 	/* Getters and Setters */
 
@@ -41,8 +45,12 @@ public class RentedShowSearch implements Writeable
 		fProviderID = rentedShow.getProviderID();
 		fName = show.getName();
 		fEpisodeName = show.getEpisodeName();
+
+		fReleasedOn = show.getReleasedOn();
+		fReleasedYear = show.getReleasedYear();
 		fPictureURL = show.getPictureURL();
 
+		fRentedOn = rentedShow.getRentedOn();
 		fAvailableUntil = rentedShow.getAvailableUntil();
 	}
 
@@ -54,8 +62,12 @@ public class RentedShowSearch implements Writeable
 		writer.writeDataID("ProviderID", fProviderID, ProviderID.MaxLength);
 		writer.writeString("Name", fName, Show.NameMaxLength);
 		writer.writeString("EpisodeName", fEpisodeName, Show.EpisodeNameMaxLength);
+
+		writer.writeDate("ReleasedOn", fReleasedOn);
+		writer.writeShort("ReleasedYear", fReleasedYear);
 		writer.writeString("PictureURL", fPictureURL, Show.PictureURLMaxLength);
 
+		writer.writeDateTime("RentedOn", fRentedOn);
 		writer.writeDateTime("AvailableUntil", fAvailableUntil);
 	}
 }
