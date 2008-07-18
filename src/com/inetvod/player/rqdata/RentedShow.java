@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2008 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.rqdata;
@@ -82,7 +82,7 @@ public class RentedShow implements Writeable
 		writer.writeString("EpisodeName", fEpisodeName, Show.EpisodeNameMaxLength);
 		writer.writeString("EpisodeNumber", fEpisodeNumber, Show.EpisodeNumberMaxLength);
 
-		writer.writeDate("ReleasedOn", fReleasedOn);
+		writer.writeDateTime("ReleasedOn", fReleasedOn);
 		writer.writeShort("ReleasedYear", fReleasedYear);
 		writer.writeString("Description", fDescription, Short.MAX_VALUE);
 

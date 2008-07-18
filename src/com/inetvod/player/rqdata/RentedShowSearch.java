@@ -63,7 +63,7 @@ public class RentedShowSearch implements Writeable
 		writer.writeString("Name", fName, Show.NameMaxLength);
 		writer.writeString("EpisodeName", fEpisodeName, Show.EpisodeNameMaxLength);
 
-		writer.writeDate("ReleasedOn", fReleasedOn);
+		writer.writeDateTime("ReleasedOn", fReleasedOn);
 		writer.writeShort("ReleasedYear", fReleasedYear);
 		writer.writeString("PictureURL", fPictureURL, Show.PictureURLMaxLength);
 

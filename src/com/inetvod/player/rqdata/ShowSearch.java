@@ -50,7 +50,7 @@ public class ShowSearch implements Writeable
 		writer.writeDataID("ShowID", fShowID, ShowID.MaxLength);
 		writer.writeString("Name", fName, Show.NameMaxLength);
 		writer.writeString("EpisodeName", fEpisodeName, Show.EpisodeNameMaxLength);
-		writer.writeDate("ReleasedOn", fReleasedOn);
+		writer.writeDateTime("ReleasedOn", fReleasedOn);
 		writer.writeShort("ReleasedYear", fReleasedYear);
 		writer.writeList("ShowProvider", fShowProviderList);
 		writer.writeString("PictureURL", fPictureURL, Show.PictureURLMaxLength);
