@@ -6,6 +6,7 @@ package com.inetvod.player.request;
 
 import com.inetvod.common.core.DataReader;
 import com.inetvod.common.core.DataWriter;
+import com.inetvod.common.core.EmailUtil;
 import com.inetvod.common.core.Logger;
 import com.inetvod.common.core.StrUtil;
 import com.inetvod.common.core.Writeable;
@@ -66,7 +67,7 @@ public class SignonRqst implements PlayerRequestable
 			else if("mpdemo".equals(fPlayer.getModelNo()))
 			{
 				String version = fPlayer.getVersion();
-				if(!"1.0.1007".equals(version))
+				if(!"1.0.1008".equals(version))
 				{
 					fStatusCode = StatusCode.sc_PlayerOutOfDate;
 					return response;
@@ -91,7 +92,7 @@ public class SignonRqst implements PlayerRequestable
 		{
 			if(StrUtil.isNumeric(fUserID))
 				memberLogon = MemberLogon.findByLogonIDPIN(Integer.parseInt(fUserID), fPassword);
-			else if(StrUtil.isEmail(fUserID))
+			else if(EmailUtil.isEmail(fUserID))
 				memberLogon = MemberLogon.findByEmailPassword(fUserID, fPassword);
 		}
 
