@@ -80,6 +80,8 @@
     <content url="file://$MODULE_DIR$/../../shared/SQL" />
     <content url="file://$MODULE_DIR$/../../shared/java">
       <sourceFolder url="file://$MODULE_DIR$/../../shared/java" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../shared/java/com/inetvod/contmgr" />
+      <excludeFolder url="file://$MODULE_DIR$/../../shared/java/com/inetvod/playerClient" />
     </content>
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />

@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2008 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2009 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -13,19 +13,15 @@ import com.inetvod.common.core.Writeable;
 import com.inetvod.player.rqdata.PlayerRequestable;
 import com.inetvod.player.rqdata.StatusCode;
 
-public class INetVODPlayerRqst implements PlayerRequestable
+public class PlayerRqst implements PlayerRequestable
 {
 	/* Constants */
 	private static final int VersionMaxLength = 16;
-	private static final int RequestIDMaxLength = 64;
 
-	public static final Constructor<INetVODPlayerRqst> CtorDataReader = DataReader.getCtor(INetVODPlayerRqst.class);
+	public static final Constructor<PlayerRqst> CtorDataReader = DataReader.getCtor(PlayerRqst.class);
 
 	/* Fields */
 	private String fVersion;
-	private String fRequestID;
-	public String getRequestID() { return fRequestID; }
-
 	private SessionData fSessionData;
 
 	private RequestData fRequestData;
@@ -36,22 +32,20 @@ public class INetVODPlayerRqst implements PlayerRequestable
 	private StatusCode fStatusCode = StatusCode.sc_GeneralError;
 	public StatusCode getStatusCode() { return fStatusCode; }
 
-	public INetVODPlayerRqst(DataReader reader) throws Exception
+	public PlayerRqst(DataReader reader) throws Exception
 	{
 		readFrom(reader);
 	}
 
 	public Writeable fulfillRequest() throws Exception
 	{
-		INetVODPlayerResp response = new INetVODPlayerResp();
+		PlayerResp response = new PlayerResp();
 
 		// validate request
 		//TODO: validate version of client
 
-		// fulfull request
-		response.setRequestID(fRequestID);
-
-		fStatusCode = fRequestData.setRequest(fVersion, fRequestID, fSessionData, fPlayerIPAddress);
+		// fulfill request
+		fStatusCode = fRequestData.setRequest(fVersion, fSessionData, fPlayerIPAddress);
 		if(StatusCode.sc_Success.equals(fStatusCode))
 		{
 			response.setResponseData((ResponseData)fRequestData.fulfillRequest());
@@ -65,7 +59,6 @@ public class INetVODPlayerRqst implements PlayerRequestable
 	public void readFrom(DataReader reader) throws Exception
 	{
 		fVersion = reader.readString("Version", VersionMaxLength);
-		fRequestID = reader.readString("RequestID", RequestIDMaxLength);
 		fSessionData = new SessionData(reader.readString("SessionData", SessionData.SessionDataMaxLength));
 
 		fRequestData = reader.readObject("RequestData", RequestData.CtorDataReader);
@@ -74,7 +67,6 @@ public class INetVODPlayerRqst implements PlayerRequestable
 	public void writeTo(DataWriter writer) throws Exception
 	{
 		writer.writeString("Version", fVersion, VersionMaxLength);
-		writer.writeString("RequestID", fRequestID, RequestIDMaxLength);
 		writer.writeString("SessionData", fSessionData.toString(), SessionData.SessionDataMaxLength);
 
 		writer.writeObject("RequestData", fRequestData);
@@ -85,7 +77,7 @@ public class INetVODPlayerRqst implements PlayerRequestable
 		fPlayerIPAddress = httpServletRequest.getRemoteAddr();
 	}
 
-	protected void setStatus(INetVODPlayerResp response, StatusCode statusCode)
+	protected void setStatus(PlayerResp response, StatusCode statusCode)
 	{
 		//TODO: move this a config file or DB
 		response.setStatusCode(statusCode);

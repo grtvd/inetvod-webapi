@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2007 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2009 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -17,7 +17,6 @@ public abstract class SessionRequestable implements PlayerRequestable
 {
 	/* Fields */
 	//private String fVersion;
-	//private String fRequestID;
 
 	protected MemberSession fMemberSession;
 	protected MemberID fMemberID;
@@ -30,11 +29,10 @@ public abstract class SessionRequestable implements PlayerRequestable
 	/* Implementation */
 	protected boolean areGuestsAllowedForRequest() { return false; }
 
-	public StatusCode setRequest(String version, String requestID, SessionData sessionData, String playerIPAddress)
+	public StatusCode setRequest(String version, SessionData sessionData, String playerIPAddress)
 		throws Exception
 	{
 		//fVersion = version;
-		//fRequestID = requestID;
 
 		if((sessionData == null) || (sessionData.getMemberSessionID() == null))
 			return StatusCode.sc_GeneralError;

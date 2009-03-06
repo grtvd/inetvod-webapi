@@ -1,5 +1,5 @@
 /**
- * Copyright © 2005-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2005-2009 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -21,6 +21,7 @@ public class PlayerServletFulfiller extends ServletFulfiller
 		super(httpServletRequest, httpServletResponse);
 	}
 
+	@Override
 	public DataFormat getRequestDataFormat()
 	{
 		if(this.fHttpServletRequest.getRequestURL().toString().toLowerCase().endsWith("/xml"))
@@ -28,39 +29,34 @@ public class PlayerServletFulfiller extends ServletFulfiller
 		return DataFormat.Binary;
 	}
 
+	@Override
 	protected Writeable createResponseFromException(Requestable requestable, Exception e)
 	{
-		INetVODPlayerResp response = new INetVODPlayerResp();
-
-		if((requestable != null) && (requestable instanceof INetVODPlayerRqst))
-			response.setRequestID(((INetVODPlayerRqst)requestable).getRequestID());
+		PlayerResp response = new PlayerResp();
 
 		response.setStatusCode(StatusCode.sc_GeneralError);
 
 		return response;
 	}
 
-	/// <summary>
-	/// Read a Requestable object from its name
-	/// </summary>
-	/// <param name="className"></param>
-	/// <returns></returns>
+	@Override
 	protected Requestable readRequestableFromReader(DataReader dataReader) throws Exception
 	{
-		INetVODPlayerRqst iNetVODPlayerRqst = dataReader.readObject("INetVODPlayerRqst", INetVODPlayerRqst.CtorDataReader);
-		iNetVODPlayerRqst.readRequestData(fHttpServletRequest);
-		return iNetVODPlayerRqst;
+		PlayerRqst playerRqst = dataReader.readObject("PlayerRqst", PlayerRqst.CtorDataReader);
+		playerRqst.readRequestData(fHttpServletRequest);
+		return playerRqst;
 	}
 
+	@Override
 	protected String getRequestType(Requestable requestable)
 	{
 		String requestType = null;
 
-		if(requestable instanceof INetVODPlayerRqst)
+		if(requestable instanceof PlayerRqst)
 		{
-			INetVODPlayerRqst iNetVODPlayerRqst = (INetVODPlayerRqst)requestable;
-			if(iNetVODPlayerRqst.getRequestData() != null)
-				requestType = iNetVODPlayerRqst.getRequestData().getRequestType();
+			PlayerRqst playerRqst = (PlayerRqst)requestable;
+			if(playerRqst.getRequestData() != null)
+				requestType = playerRqst.getRequestData().getRequestType();
 		}
 
 		return requestType;

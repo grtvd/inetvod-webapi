@@ -1,5 +1,5 @@
 /**
- * Copyright © 2004-2006 iNetVOD, Inc. All Rights Reserved.
+ * Copyright © 2004-2009 iNetVOD, Inc. All Rights Reserved.
  * iNetVOD Confidential and Proprietary.  See LEGAL.txt.
  */
 package com.inetvod.player.request;
@@ -32,10 +32,10 @@ public class RequestData implements PlayerRequestable
 		readFrom(reader);
 	}
 
-	public StatusCode setRequest(String version, String requestID, SessionData sessionData, String playerIPAddress) throws Exception
+	public StatusCode setRequest(String version, SessionData sessionData, String playerIPAddress) throws Exception
 	{
 		if(fRequest instanceof SessionRequestable)
-			return ((SessionRequestable)fRequest).setRequest(version, requestID, sessionData, playerIPAddress);
+			return ((SessionRequestable)fRequest).setRequest(version, sessionData, playerIPAddress);
 
 		return StatusCode.sc_Success;
 	}
